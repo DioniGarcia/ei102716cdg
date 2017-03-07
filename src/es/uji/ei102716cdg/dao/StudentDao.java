@@ -1,6 +1,6 @@
 package es.uji.ei102716cdg.dao;
 
-
+/* IPSUM */
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +67,6 @@ public class StudentDao {
 	}
 
 	public void deleteStudent(String nif) {
-		this.jdbcTemplate.update("DELETE FROM Nadador WHERE nif = ?", nif);
+		this.jdbcTemplate.update("DELETE FROM Student WHERE nif = ?", nif);
 	}
 }
