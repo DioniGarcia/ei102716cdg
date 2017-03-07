@@ -1,6 +1,6 @@
 package es.uji.ei102716cdg.dao;
 
-/* IPSUM Sa */
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
