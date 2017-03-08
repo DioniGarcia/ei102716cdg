@@ -1,5 +1,5 @@
 package es.uji.ei102716cdg.dao;
-//Prueba
+
 
 import javax.sql.DataSource;
 
@@ -45,7 +45,7 @@ public class StudentDao {
 	}
 	
 	public Student getStudent(String nif) {
-		return this.jdbcTemplate.queryForObject("SELECT * FROM Nadador WHERE nif = ?",
+		return this.jdbcTemplate.queryForObject("SELECT * FROM Student WHERE nif = ?",
 				new Object[] {nif}, new StudentMapper());
 	}
 	
