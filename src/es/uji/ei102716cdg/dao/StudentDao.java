@@ -29,13 +29,13 @@ public class StudentDao {
 	
 	private static final class StudentMapper implements RowMapper<Student>{
 		public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
-			Student nadador = new Student();
-			nadador.setNif(rs.getString("nif"));
-			nadador.setName(rs.getString("nom"));
-			nadador.setEmail(rs.getString("email"));
-			nadador.setUserName(rs.getString("userName"));
-			nadador.setPasswd(rs.getString("passwd"));
-			return nadador;
+			Student student = new Student();
+			student.setNif(rs.getString("nif"));
+			student.setName(rs.getString("name"));
+			student.setEmail(rs.getString("email"));
+			student.setUserName(rs.getString("userName"));
+			student.setPasswd(rs.getString("passwd"));
+			return student;
 		}
 	}
 
@@ -44,9 +44,9 @@ public class StudentDao {
 				new StudentMapper());
 	}
 	
-	public Student getStudent(String nif) {
-		return this.jdbcTemplate.queryForObject("SELECT * FROM Nadador WHERE nif = ?",
-				new Object[] {nif}, new StudentMapper());
+	public Student getStudent(String userName) {
+		return this.jdbcTemplate.queryForObject("SELECT * FROM Nadador WHERE userName = ?",
+				new Object[] {userName}, new StudentMapper());
 	}
 	
 	public void addStudent(Student student) {
@@ -66,7 +66,7 @@ public class StudentDao {
 				student.getNif(), student.getName(), student.getEmail() , student.getUserName(), student.getPasswd(), student.getNif());
 	}
 
-	public void deleteStudent(String nif) {
-		this.jdbcTemplate.update("DELETE FROM Student WHERE nif = ?", nif);
+	public void deleteStudent(String userName) {
+		this.jdbcTemplate.update("DELETE FROM Student WHERE userName = ?", userName);
 	}
 }
