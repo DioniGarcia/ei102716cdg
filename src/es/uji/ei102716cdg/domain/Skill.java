@@ -32,7 +32,7 @@ public class Skill {
 	public void setLevel(String level) {
 		this.level = level;
 	}
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 	public void setStatus(boolean status) {
@@ -44,6 +44,7 @@ public class Skill {
 		return "Skill [id=" + id + ", name=" + name + ", description =" + description + ",level=" + level + ", status ="
 				+ status + "]";
 	}
+	
 	
 }
 	

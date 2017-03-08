@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei102716cdg.domain.Collaboration;
-import es.uji.ei102716cdg.domain.Student;
 
 import java.util.List;
 
@@ -49,7 +48,7 @@ public class CollaborationDao {
 	}
 	
 	public Collaboration getCollaboration(int id) {
-		return this.jdbcTemplate.queryForObject("SELECT * FROM Collaboration WHERE nif = ?",
+		return this.jdbcTemplate.queryForObject("SELECT * FROM Collaboration WHERE id = ?",
 				new Object[] {id}, new CollaborationMapper());
 	}
 	
@@ -70,9 +69,11 @@ public class CollaborationDao {
 				+ "comments = ?"
 				+ "rating = ?"
 				+ "offerId = ?"
-				+ "requestId = ?",
-				collaboration.getId(), collaboration.getStartDate(), collaboration.getEndDate() , collaboration.getTotalHours(), 
-				collaboration.getComments(), collaboration.getRating(), collaboration.getOfferId(),collaboration.getRequestId());
+				+ "requestId = ?"
+				+ "WHERE id = ?",
+				collaboration.getId(), collaboration.getStartDate(), collaboration.getEndDate() , 
+				collaboration.getTotalHours(),collaboration.getComments(), collaboration.getRating(), 
+				collaboration.getOfferId(),collaboration.getRequestId(), collaboration.getId());
 	}
 
 	public void deleteCollaboration(String id) {

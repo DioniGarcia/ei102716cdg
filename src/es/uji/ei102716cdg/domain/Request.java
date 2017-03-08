@@ -10,7 +10,7 @@ public class Request {
 	private Date endDate;
 	private String description;
 	private String nif;
-	private int skill_id;
+	private int skillId;
 	
 	public int getId() {
 		return id;
@@ -42,17 +42,17 @@ public class Request {
 	public void setNif(String nif) {
 		this.nif = nif;
 	}
-	public int getSkill_id() {
-		return skill_id;
+	public int getSkillId() {
+		return skillId;
 	}
 	public void setSkill_id(int skill_id) {
-		this.skill_id = skill_id;
+		this.skillId = skill_id;
 	}
 	
 	@Override
 	public String toString() {
 		return "Request [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", description="
-				+ description + ", nif=" + nif + ", skill_id=" + skill_id + "]";
+				+ description + ", nif=" + nif + ", skill_id=" + skillId + "]";
 	}
 }
 
