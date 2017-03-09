@@ -1,65 +1,78 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>New student</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="<c:url value="/resources/style.css" />">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-            <li><a href="list.html">List</a></li>
-            <li class="active"><a href="#">Add</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-    <div class="container">
-		<h2>New student</h2>
-		<form:form method="post" modelAttribute="student">
+	<!-- Always shows a header, even in smaller screens. -->
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	  <header class="mdl-layout__header">
+	    <div class="mdl-layout__header-row">
+	      <!-- Title -->
+	      <span class="mdl-layout-title">Title</span>
+	      <!-- Add spacer, to align navigation to the right -->
+	      <div class="mdl-layout-spacer"></div>
+	      <!-- Navigation. We hide it in small screens. -->
+	      <nav class="mdl-navigation mdl-layout--large-screen-only">
+	        <a class="mdl-navigation__link" href="student/list.html">List</a>
+	        <a class="mdl-navigation__link" href="student/add.html">Add</a>
+	      </nav>
+	    </div>
+	  </header>
+	  <div class="mdl-layout__drawer">
+	    <span class="mdl-layout-title">Student</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="list.html">List</a>
+	      <a class="mdl-navigation__link" href="">Add</a>
+	    </nav>
+	    <span class="mdl-layout-title">Offer (WIP)</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="">List</a>
+	      <a class="mdl-navigation__link" href="">Add</a>
+	    </nav>
+	  </div>
+	  <main class="mdl-layout__content">
+	    <div class="page-content">
+	    	<!-- Your content goes here -->
+	    	<h4>New student</h4>
+			<form:form method="post" modelAttribute="student">
 			
-			<div class="form-group">
-				<form:label path="nif">NIF</form:label>
-				<form:input class="form-control" path="nif"/>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<form:label class="mdl-textfield__label" path="nif">NIF</form:label>
+				<form:input class="mdl-textfield__input" path="nif"/>
 			</div>
-			
-			<div class="form-group">
-				<form:label path="name">Name</form:label>
-				<form:input class="form-control" path="name"/>
+			<br>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<form:label class="mdl-textfield__label" path="name">Name</form:label>
+				<form:input class="mdl-textfield__input" path="name"/>
 			</div>
-			
-			<div class="form-group">
-				<form:label path="email">Email</form:label>
-				<form:input class="form-control" path="email"/>
+			<br>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<form:label class="mdl-textfield__label" path="email">Email</form:label>
+				<form:input class="mdl-textfield__input" path="email"/>
 			</div>
-			
-			<div class="form-group">
-				<form:label path="userName">Username</form:label>
-				<form:input class="form-control" path="userName"/>
+			<br>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<form:label class="mdl-textfield__label" path="userName">Username</form:label>
+				<form:input class="mdl-textfield__input" path="userName"/>
 			</div>
-			<div class="form-group">
-				<form:label path="passwd">Password</form:label>
-				<form:input class="form-control" path="passwd"/>
+			<br>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<form:label class="mdl-textfield__label" path="passwd">Password</form:label>
+				<form:input class="mdl-textfield__input" path="passwd"/>
 			</div>
-			
+			<br>
 			<input type="submit" class="btn btn-default" value="Add student"/>
 			
 		</form:form>
-	</div><!-- /.container -->
+	    </div>
+	  </main>
 </body>
 </html>

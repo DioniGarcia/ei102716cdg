@@ -1,71 +1,85 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Manage Students</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="<c:url value="/resources/style.css" />">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-            <li class="active"><a href="#">List</a></li>
-            <li><a href="add.html">Add</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-    <div class="container">
-		<h1>List students</h1>
-		<table class="table">
-			<tr>
-				<th>NIF</th>
-				<th>Name</th>
-				<th>Email</th>
-				<th>Username</th>
-				<th>Password</th>
-			</tr>	
-			<c:forEach items="${students}" var="student">
-				<tr>
-					<td>${student.nif }</td>
-					<td>${student.name }</td>
-					<td>${student.email }</td>
-					<td>${student.userName }</td>
-					<td>${student.passwd }</td>
-					<td>
-						<a href="update/${ student.userName }.html">
-							<button type="button" class="btn btn-default btn-sm">
-	  							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-							</button>
-						</a>
-						<a href="delete/${ student.userName }.html">
-							<button type="button" class="btn btn-danger btn-sm">
-	  							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-							</button>
-						</a>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
-		<a href="add.html">
-			<button type="button" class="btn btn-default btn-sm">
-	  			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Student
-			</button>
-		</a>
-	</div><!-- /.container -->
+	<!-- Always shows a header, even in smaller screens. -->
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	  <header class="mdl-layout__header">
+	    <div class="mdl-layout__header-row">
+	      <!-- Title -->
+	      <span class="mdl-layout-title">Title</span>
+	      <!-- Add spacer, to align navigation to the right -->
+	      <div class="mdl-layout-spacer"></div>
+	      <!-- Navigation. We hide it in small screens. -->
+	      <nav class="mdl-navigation mdl-layout--large-screen-only">
+	        <a class="mdl-navigation__link" href="student/list.html">List</a>
+	        <a class="mdl-navigation__link" href="student/add.html">Add</a>
+	      </nav>
+	    </div>
+	  </header>
+	  <div class="mdl-layout__drawer">
+	    <span class="mdl-layout-title">Student</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="">List</a>
+	      <a class="mdl-navigation__link" href="add.html">Add</a>
+	    </nav>
+	    <span class="mdl-layout-title">Offer (WIP)</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="">List</a>
+	      <a class="mdl-navigation__link" href="">Add</a>
+	    </nav>
+	  </div>
+	  <main style="overflow-x: auto;" class="mdl-layout__content">
+	    <div class="page-content">
+	    	<!-- Your content goes here -->
+	    	<h4>List students</h4>
+			<table class="mdl-data-table mdl-js-data-table">
+				<thead>
+					<tr>
+						<th class="mdl-data-table__cell--non-numeric">NIF</th>
+						<th class="mdl-data-table__cell--non-numeric">Name</th>
+						<th class="mdl-data-table__cell--non-numeric">Email</th>
+						<th class="mdl-data-table__cell--non-numeric">Username</th>
+						<th class="mdl-data-table__cell--non-numeric">Password</th>
+						<th class="mdl-data-table__cell--non-numeric">Actions</th>
+					</tr>	
+				</thead>
+				<tbody>	
+				<c:forEach items="${students}" var="student">
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">${student.nif }</td>
+						<td class="mdl-data-table__cell--non-numeric">${student.name }</td>
+						<td class="mdl-data-table__cell--non-numeric">${student.email }</td>
+						<td class="mdl-data-table__cell--non-numeric">${student.userName }</td>
+						<td class="mdl-data-table__cell--non-numeric">${student.passwd }</td>
+						<td>
+							<a style="display:inline-block;" href="update/${ student.userName }.html">
+								<i class="material-icons">mode_edit</i>
+							</a>
+							<a style="display:inline-block;" href="delete/${ student.userName }.html">
+								<i class="material-icons">delete</i>
+							</a>
+						</td>
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>			
+			<a href="add.html">
+				<button style="position: fixed; bottom: 24px; right: 24px;" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" aria-label="Add a category">
+  					<i class="material-icons">add</i>
+				</button>
+			</a>
+	    </div>
+	  </main>
+	
 </body>
 </html>
