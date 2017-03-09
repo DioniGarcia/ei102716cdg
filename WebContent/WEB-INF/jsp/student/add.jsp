@@ -6,7 +6,7 @@
 <head>
 <title>New student</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="<c:url value="/resources/style.css" />">
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
