@@ -1,0 +1,7 @@
+*.class
+jdbc.properties
+.project
+.classpath
+.settings/
+build/
+*.jar
