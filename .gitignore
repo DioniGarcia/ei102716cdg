@@ -5,3 +5,4 @@ jdbc.properties
 .settings/
 build/
 *.jar
+/bin/
