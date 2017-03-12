@@ -53,17 +53,16 @@ public class CollaborationDao {
 	}
 	
 	public void addCollaboration(Collaboration collaboration) {
-		this.jdbcTemplate.update("insert into Collaboration(id, startDate, endDate, "
+		this.jdbcTemplate.update("insert into Collaboration(startDate, endDate, "
 				+ "totalHours, comments, rating, offer_id, request_id) "
-				+ "values(?, ?, ?, ?, ?, ?, ?, ?)",
-				collaboration.getId(), collaboration.getStartDate(), collaboration.getEndDate() , collaboration.getTotalHours(), 
+				+ "values(?, ?, ?, ?, ?, ?, ?)",
+				collaboration.getStartDate(), collaboration.getEndDate() , collaboration.getTotalHours(), 
 				collaboration.getComments(), collaboration.getRating(), collaboration.getOfferId(),collaboration.getRequestId());
 	}
 
 	public void updateCollaboration(Collaboration collaboration) {
 		this.jdbcTemplate.update("update collaboration "
-				+ "set id = ?,"
-				+ " startDate = ?,"
+				+ "set startDate = ?,"
 				+ " endDate = ?,"
 				+ " totalHours = ?,"
 				+ " comments = ?,"
@@ -71,7 +70,7 @@ public class CollaborationDao {
 				+ " offer_id = ?,"
 				+ " request_id = ?"
 				+ " WHERE id = ?",
-				collaboration.getId(), collaboration.getStartDate(), collaboration.getEndDate() , 
+				collaboration.getStartDate(), collaboration.getEndDate() , 
 				collaboration.getTotalHours(),collaboration.getComments(), collaboration.getRating(), 
 				collaboration.getOfferId(),collaboration.getRequestId(), collaboration.getId());
 	}

@@ -51,21 +51,20 @@ public class SkillDao {
 	}
 	
 	public void addSkill(Skill skill) {
-		this.jdbcTemplate.update("insert into Skill(id, name, description, level, status) "
-				+ "values(?, ?, ?, ?, ?)",
-				skill.getId(), skill.getName(), skill.getDescription(), 
+		this.jdbcTemplate.update("insert into Skill(name, description, level, status) "
+				+ "values(?, ?, ?, ?)",
+				skill.getName(), skill.getDescription(), 
 				skill.getLevel(), skill.getStatus());
 	}
 
 	public void updateSkill(Skill skill) {
 		this.jdbcTemplate.update("update Skill "
-				+ "set id = ?,"
-				+ "name = ?,"
+				+ "set name = ?,"
 				+ "description = ?,"
 				+ "level = ?,"
 				+ "status = ?"
 				+ " WHERE id = ?",
-				skill.getId(), skill.getName(), skill.getDescription(), 
+				skill.getName(), skill.getDescription(), 
 				skill.getLevel(), skill.getStatus(), skill.getId());
 	}
 

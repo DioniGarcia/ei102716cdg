@@ -28,18 +28,28 @@
 	  <div class="mdl-layout__drawer">
 	    <span class="mdl-layout-title">Student</span>
 	    <nav class="mdl-navigation">
-	      <a class="mdl-navigation__link" href="student/list.html">List</a>
-	      <a class="mdl-navigation__link" href="student/add.html">Add</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/student/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/student/add.html">Add</a>
 	    </nav>
 	    <span class="mdl-layout-title">Offer</span>
 	    <nav class="mdl-navigation">
-	      <a class="mdl-navigation__link" href="offer/list.html">List</a>
-	      <a class="mdl-navigation__link" href="offer/add.html">Add</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/offer/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/offer/add.html">Add</a>
 	    </nav>
 	    <span class="mdl-layout-title">Skill</span>
 	    <nav class="mdl-navigation">
-	      <a class="mdl-navigation__link" href="skill/list.html">List</a>
-	      <a class="mdl-navigation__link" href="skill/add.html">Add</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/skill/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/skill/add.html">Add</a>
+	    </nav>
+	    <span class="mdl-layout-title">Request</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/request/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/request/add.html">Add</a>
+	    </nav>
+	    <span class="mdl-layout-title">Collaboration</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/collaboration/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/collaboration/add.html">Add</a>
 	    </nav>
 	  </div>
 	  <main class="mdl-layout__content">

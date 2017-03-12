@@ -1,6 +1,5 @@
 package es.uji.ei102716cdg.dao;
 
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,18 +40,6 @@ public class OfferDao {
 		}
 	}
 	
-	private static final class NifMapper implements RowMapper<String>{
-		public String mapRow(ResultSet rs, int rowNum) throws SQLException {
-			return rs.getString("nif");
-		}
-	}
-	
-	private static final class SkillMapper implements RowMapper<String>{
-		public String mapRow(ResultSet rs, int rowNum) throws SQLException {
-			return rs.getString("nif");
-		}
-	}
-	
 	public List<String> getSkillsId() {
         return (List<String>) this.jdbcTemplate.queryForList( "select id from Skill", 
                                            String.class);
@@ -63,16 +50,6 @@ public class OfferDao {
                                            String.class);
     }
 	
-	public List<String> getNifs(){
-		return this.jdbcTemplate.query("select nif from Student",
-				new NifMapper());
-	}
-	
-	public List<String> getSkills(){
-		return this.jdbcTemplate.query("select id from Skill",
-				new SkillMapper());
-	}
-
 	public List<Offer> getOffers() {
 		return this.jdbcTemplate.query("select * from Offer",
 				new OfferMapper());
@@ -84,23 +61,22 @@ public class OfferDao {
 	}
 	
 	public void addOffer(Offer offer) {
-		this.jdbcTemplate.update("insert into Offer(id, startDate, endDate, "
+		this.jdbcTemplate.update("insert into Offer( startDate, endDate, "
 				+ "description, student_nif, skill_id) "
-				+ "values(?, ?, ?, ?, ?, ?)",
-				offer.getId(), offer.getStartDate(), offer.getEndDate() , offer.getDescription(), 
+				+ "values( ?, ?, ?, ?, ?)",
+				offer.getStartDate(), offer.getEndDate() , offer.getDescription(), 
 				offer.getNif(), offer.getSkillId());
 	}
 
 	public void updateOffer(Offer offer) {
 		this.jdbcTemplate.update("update Offer "
-				+ "set id = ?,"
 				+ "startDate = ?,"
 				+ "endDate = ?,"
 				+ "description = ?,"
 				+ "student_nif = ?,"
 				+ "skill_id = ?"
 				+ " WHERE id = ?",
-				offer.getId(), offer.getStartDate(), offer.getEndDate() , offer.getDescription(), 
+				offer.getStartDate(), offer.getEndDate() , offer.getDescription(), 
 				offer.getNif(), offer.getSkillId(), offer.getId());
 	}
 

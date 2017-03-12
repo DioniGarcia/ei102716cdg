@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei102716cdg.dao.RequestDao;
+import es.uji.ei102716cdg.dao.SkillDao;
 import es.uji.ei102716cdg.domain.Request;
 
 
@@ -17,10 +18,16 @@ import es.uji.ei102716cdg.domain.Request;
 @RequestMapping("/request")
 public class RequestController {
 	private RequestDao requestDao;
+	private SkillDao skillDao;
 	
 	@Autowired
 	public void setRequestDao(RequestDao requestDao){
 		this.requestDao=requestDao;
+	}
+	
+	@Autowired
+	public void setSkillDao(SkillDao skillDao){
+		this.skillDao=skillDao;
 	}
 	
 	@RequestMapping("/list")
@@ -32,6 +39,8 @@ public class RequestController {
 	@RequestMapping("/add")
 	public String addRequest(Model model){
 		model.addAttribute("request",new Request());
+		model.addAttribute("nifs", requestDao.getNifsId());
+		model.addAttribute("skills", skillDao.getSkills());
 		return "request/add";
 	}
 	

@@ -9,10 +9,8 @@
 <title>New offer</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <!--getmdl-select-->   
-<link rel="stylesheet" href="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.css">
-<script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
+<link rel="stylesheet" href="<c:url value="/resources/mdl-selectfield.min.css"/> ">
 </head>
 <body>
 	<!-- Always shows a header, even in smaller screens. -->
@@ -25,25 +23,35 @@
 	      <div class="mdl-layout-spacer"></div>
 	      <!-- Navigation. We hide it in small screens. -->
 	      <nav class="mdl-navigation mdl-layout--large-screen-only">
-	        <a class="mdl-navigation__link" href="">Hello</a>
+	        <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/index.jsp">Home</a>
 	      </nav>
 	    </div>
 	  </header>
 	  <div class="mdl-layout__drawer">
 	    <span class="mdl-layout-title">Student</span>
 	    <nav class="mdl-navigation">
-	      <a class="mdl-navigation__link" href="../student/list.html">List</a>
-	      <a class="mdl-navigation__link" href="../student/add.html">Add</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/student/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/student/add.html">Add</a>
 	    </nav>
 	    <span class="mdl-layout-title">Offer</span>
 	    <nav class="mdl-navigation">
-	      <a class="mdl-navigation__link" href="add.html">List</a>
-	      <a class="mdl-navigation__link" href="">Add</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/offer/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/offer/add.html">Add</a>
 	    </nav>
 	    <span class="mdl-layout-title">Skill</span>
 	    <nav class="mdl-navigation">
-	      <a class="mdl-navigation__link" href="../skill/list.html">List</a>
-	      <a class="mdl-navigation__link" href="../skill/add.html">Add</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/skill/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/skill/add.html">Add</a>
+	    </nav>
+	    <span class="mdl-layout-title">Request</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/request/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/request/add.html">Add</a>
+	    </nav>
+	    <span class="mdl-layout-title">Collaboration</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/collaboration/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/collaboration/add.html">Add</a>
 	    </nav>
 	  </div>
 	  <main class="mdl-layout__content">
@@ -51,57 +59,46 @@
 	    	<!-- Your content goes here -->
 	    	<h4>New student</h4>
 			<form:form method="post" modelAttribute="offer">
-			
-			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<form:label class="mdl-textfield__label" path="id">ID</form:label>
-				<form:input class="mdl-textfield__input" path="id"/>
-			</div>
 			<br>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 				<form:label class="mdl-textfield__label" path="startDate">Start Date</form:label>
-				<form:input class="mdl-textfield__input" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" path="startDate"/>
-				<span class="mdl-textfield__error">Invalid date, format: DD/MM/YYYY</span>
+				<form:input class="mdl-textfield__input" id="today1" type="date" path="startDate"/>
 			</div>
 			<br>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 				<form:label class="mdl-textfield__label" path="endDate">End Date</form:label>
-				<form:input class="mdl-textfield__input" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" path="endDate"/>
-				<span class="mdl-textfield__error">Invalid date, format: DD/MM/YYYY</span>
+				<form:input class="mdl-textfield__input" id="today2" type="date" path="endDate"/>
 			</div>
 			<br>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 				<form:label class="mdl-textfield__label" path="description">Description</form:label>
 				<form:input class="mdl-textfield__input" path="description"/>
-				<span class="mdl-textfield__error">Invalid email</span>
 			</div>
 			<br>
-			<form:select path="nif" items="${nifs}"/>
+			<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+ 				<form:select id="myselect" name="myselect" class="mdl-selectfield__select" path="nif">
+ 					<form:options items="${nifs }"/>
+  				</form:select>
+  				<label class="mdl-selectfield__label" for="myselect">Choose option</label>
+			</div>
 			<br>
-			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select">
-            <form:input class="mdl-textfield__input" type="text" id="sample1" value="1234F" tabIndex="-1" path="nif"></form:input>
-            <form:label for="sample1" class="mdl-textfield__label" path="nif">NIF</form:label>
-            <ul for="sample1" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-            	<c:forEach items="${nifs}" var="nif">
-            		<li class="mdl-menu__item">${nif }</li>	
-            	</c:forEach>
-            </ul>
-        	</div>
-			<br>
-			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select">
-            <form:input class="mdl-textfield__input" type="text" id="sample2" value="0" tabIndex="-1" path="skillId"></form:input>
-            <form:label for="sample2" class="mdl-textfield__label" path="skillId">Skill ID</form:label>
-            <ul for="sample2" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-            	<c:forEach items="${skills}" var="skill">
-            		<li class="mdl-menu__item">${skill }</li>
-            	</c:forEach>
-            </ul>
-        	</div>
+			<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+ 				<form:select id="myselect2" name="myselect2" class="mdl-selectfield__select" path="skillId">
+ 					<c:forEach items="${skills}" var="skill">
+ 						<form:option value="${skill.id }">${skill.name} - ${skill.level } level</form:option>
+ 					</c:forEach>
+  				</form:select>
+  				<label class="mdl-selectfield__label" for="myselect2">Choose skill</label>
+			</div>
         	<br>
-			<input type="submit" class="btn btn-default" value="Add student"/>
+			<input type="submit" class="mdl-button mdl-js-button mdl-button--raised" value="Add offer"/>
 			
 		</form:form>
 	    </div>
 	  </main>
 	</div>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script defer src="<c:url value="/resources/mdl-selectfield.min.js" />"></script>
+<script src="<c:url value="/resources/base.js" />"></script>
 </body>
 </html>

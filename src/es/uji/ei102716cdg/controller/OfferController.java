@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei102716cdg.dao.OfferDao;
+import es.uji.ei102716cdg.dao.SkillDao;
 import es.uji.ei102716cdg.domain.Offer;
 
 
@@ -17,10 +18,16 @@ import es.uji.ei102716cdg.domain.Offer;
 @RequestMapping("/offer")
 public class OfferController {
 	private OfferDao offerDao;
+	private SkillDao skillDao;
 	
 	@Autowired
 	public void setOfferDao(OfferDao offerDao){
 		this.offerDao=offerDao;
+	}
+	
+	@Autowired
+	public void setSkillDao(SkillDao skillDao){
+		this.skillDao=skillDao;
 	}
 	
 	@RequestMapping("/list")
@@ -33,7 +40,7 @@ public class OfferController {
 	public String addOffer(Model model){
 		model.addAttribute("offer",new Offer());
 		model.addAttribute("nifs", offerDao.getNifsId());
-		model.addAttribute("skills", offerDao.getSkillsId());
+		model.addAttribute("skills", skillDao.getSkills());
 		return "offer/add";
 	}
 	

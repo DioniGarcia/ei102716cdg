@@ -21,20 +21,35 @@
 	      <div class="mdl-layout-spacer"></div>
 	      <!-- Navigation. We hide it in small screens. -->
 	      <nav class="mdl-navigation mdl-layout--large-screen-only">
-	        <a class="mdl-navigation__link" href="../index.jsp">Home</a>
+	        <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/index.jsp">Home</a>
 	      </nav>
 	    </div>
 	  </header>
 	  <div class="mdl-layout__drawer">
 	    <span class="mdl-layout-title">Student</span>
 	    <nav class="mdl-navigation">
-	      <a class="mdl-navigation__link" href="../student/list.html">List</a>
-	      <a class="mdl-navigation__link" href="../student/add.html">Add</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/student/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/student/add.html">Add</a>
 	    </nav>
 	    <span class="mdl-layout-title">Offer</span>
 	    <nav class="mdl-navigation">
-	      <a class="mdl-navigation__link" href="../offer/list.html">List</a>
-	      <a class="mdl-navigation__link" href="../offer/add.html">Add</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/offer/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/offer/add.html">Add</a>
+	    </nav>
+	    <span class="mdl-layout-title">Skill</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/skill/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/skill/add.html">Add</a>
+	    </nav>
+	    <span class="mdl-layout-title">Request</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/request/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/request/add.html">Add</a>
+	    </nav>
+	    <span class="mdl-layout-title">Collaboration</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/collaboration/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/collaboration/add.html">Add</a>
 	    </nav>
 	  </div>
 	  <main style="overflow-x: auto;" class="mdl-layout__content">

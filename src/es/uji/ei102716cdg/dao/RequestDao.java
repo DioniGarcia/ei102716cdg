@@ -33,12 +33,22 @@ public class RequestDao {
 			request.setStartDate(rs.getDate("startDate"));
 			request.setEndDate(rs.getDate("endDate"));
 			request.setDescription(rs.getString("description"));
-			request.setDescription(rs.getString("student_nif"));
-			request.setSkill_id(rs.getInt("skill_id"));
+			request.setNif(rs.getString("student_nif"));
+			request.setSkillId(rs.getInt("skill_id"));
 			
 			return request;
 		}
 	}
+	
+	public List<String> getSkillsId() {
+        return (List<String>) this.jdbcTemplate.queryForList( "select id from Skill", 
+                                           String.class);
+    }
+	
+	public List<String> getNifsId() {
+        return (List<String>) this.jdbcTemplate.queryForList( "select nif from Student", 
+                                           String.class);
+    }
 
 	public List<Request> getRequests() {
 		return this.jdbcTemplate.query("select * from request",
@@ -51,23 +61,22 @@ public class RequestDao {
 	}
 	
 	public void addRequest(Request request) {
-		this.jdbcTemplate.update("insert into Request(id, startDate, endDate, "
-				+ "description, nif, skill_id) "
-				+ "values(?, ?, ?, ?, ?, ?)",
-				request.getId(), request.getStartDate(), request.getEndDate() , request.getDescription(), 
+		this.jdbcTemplate.update("insert into Request( startDate, endDate, "
+				+ "description, student_nif, skill_id) "
+				+ "values(?, ?, ?, ?, ?)",
+				request.getStartDate(), request.getEndDate() , request.getDescription(), 
 				request.getNif(), request.getSkillId());
 	}
 
 	public void updateRequest(Request request) {
 		this.jdbcTemplate.update("update request "
-				+ "set id = ?,"
-				+ "startDate = ?,"
+				+ "set startDate = ?,"
 				+ "endDate = ?,"
 				+ "description = ?,"
 				+ "nif = ?,"
 				+ "skill_id = ?"
 				+ " WHERE id = ?",
-				request.getId(), request.getStartDate(), request.getEndDate() , request.getDescription(), 
+				request.getStartDate(), request.getEndDate() , request.getDescription(), 
 				request.getNif(), request.getSkillId());
 	}
 

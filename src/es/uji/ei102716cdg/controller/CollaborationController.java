@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei102716cdg.dao.CollaborationDao;
+import es.uji.ei102716cdg.dao.OfferDao;
+import es.uji.ei102716cdg.dao.RequestDao;
 import es.uji.ei102716cdg.domain.Collaboration;
 
 
@@ -17,10 +19,22 @@ import es.uji.ei102716cdg.domain.Collaboration;
 @RequestMapping("/collaboration")
 public class CollaborationController {
 	private CollaborationDao collaborationDao;
+	private OfferDao offerDao;
+	private RequestDao requestDao;
 	
 	@Autowired
 	public void setCollaborationDao(CollaborationDao collaborationDao){
 		this.collaborationDao=collaborationDao;
+	}
+	
+	@Autowired
+	public void setOfferDao(OfferDao offerDao){
+		this.offerDao=offerDao;
+	}
+	
+	@Autowired
+	public void setRequestDao(RequestDao requestDao){
+		this.requestDao=requestDao;
 	}
 	
 	@RequestMapping("/list")
@@ -32,6 +46,8 @@ public class CollaborationController {
 	@RequestMapping("/add")
 	public String addCollaboration(Model model){
 		model.addAttribute("collaboration",new Collaboration());
+		model.addAttribute("offers",offerDao.getOffers());
+		model.addAttribute("requests",requestDao.getRequests());
 		return "collaboration/add";
 	}
 	

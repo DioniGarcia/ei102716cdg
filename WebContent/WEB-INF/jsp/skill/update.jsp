@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>New skill</title>
+<title>Edit skill</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
@@ -21,34 +21,42 @@
 	      <div class="mdl-layout-spacer"></div>
 	      <!-- Navigation. We hide it in small screens. -->
 	      <nav class="mdl-navigation mdl-layout--large-screen-only">
-	        <a class="mdl-navigation__link" href="student/list.html">List</a>
-	        <a class="mdl-navigation__link" href="student/add.html">Add</a>
+	        <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/index.jsp">Home</a>
 	      </nav>
 	    </div>
 	  </header>
 	  <div class="mdl-layout__drawer">
 	    <span class="mdl-layout-title">Student</span>
 	    <nav class="mdl-navigation">
-	      <a class="mdl-navigation__link" href="list.html">List</a>
-	      <a class="mdl-navigation__link" href="">Add</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/student/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/student/add.html">Add</a>
 	    </nav>
-	    <span class="mdl-layout-title">Offer (WIP)</span>
+	    <span class="mdl-layout-title">Offer</span>
 	    <nav class="mdl-navigation">
-	      <a class="mdl-navigation__link" href="">List</a>
-	      <a class="mdl-navigation__link" href="">Add</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/offer/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/offer/add.html">Add</a>
+	    </nav>
+	    <span class="mdl-layout-title">Skill</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/skill/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/skill/add.html">Add</a>
+	    </nav>
+	    <span class="mdl-layout-title">Request</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/request/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/request/add.html">Add</a>
+	    </nav>
+	    <span class="mdl-layout-title">Collaboration</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/collaboration/list.html">List</a>
+	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/collaboration/add.html">Add</a>
 	    </nav>
 	  </div>
 	  <main class="mdl-layout__content">
 	    <div class="page-content">
 	    	<!-- Your content goes here -->
-	    	<h4>New skill</h4>
+	    	<h4>Modify skill</h4>
 			<form:form method="post" modelAttribute="skill">
-			
-			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<form:label class="mdl-textfield__label" path="id">ID</form:label>
-				<form:input class="mdl-textfield__input" path="id"/>
-			</div>
-			<br>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 				<form:label class="mdl-textfield__label" path="name">Name</form:label>
 				<form:input class="mdl-textfield__input" path="name"/>
@@ -69,7 +77,7 @@
 				<form:input class="mdl-textfield__input" path="status"/>
 			</div>
 			<br>
-			<input type="submit" class="btn btn-default" value="Add skill"/>
+			<input type="submit" class="mdl-button mdl-js-button mdl-button--raised" value="Edit skill"/>
 			
 		</form:form>
 	    </div>

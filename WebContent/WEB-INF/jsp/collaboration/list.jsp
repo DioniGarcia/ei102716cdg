@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>New skill</title>
+<title>Manage Collaborations</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
@@ -52,36 +52,54 @@
 	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/collaboration/add.html">Add</a>
 	    </nav>
 	  </div>
-	  <main class="mdl-layout__content">
+	  <main style="overflow-x: auto;" class="mdl-layout__content">
 	    <div class="page-content">
 	    	<!-- Your content goes here -->
-	    	<h4>New skill</h4>
-			<form:form method="post" modelAttribute="skill">
-			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<form:label class="mdl-textfield__label" path="name">Name</form:label>
-				<form:input class="mdl-textfield__input" path="name"/>
-			</div>
-			<br>
-			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<form:label class="mdl-textfield__label" path="description">Description</form:label>
-				<form:input class="mdl-textfield__input" path="description"/>
-			</div>
-			<br>
-			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<form:label class="mdl-textfield__label" path="level">Level</form:label>
-				<form:input class="mdl-textfield__input" path="level"/>
-			</div>
-			<br>
-			<label for="checkbox-1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" >
-        		<input type="checkbox" id="skill_status" class="mdl-checkbox__input" path="status" />
-        		<span class="mdl-checkbox__label" path="status">Status</span>
-    		</label>
-			<br>
-			<input type="submit" class="mdl-button mdl-js-button mdl-button--raised" value="Add skill"/>
-			
-		</form:form>
+	    	<h4>List collaborations</h4>
+			<table class="mdl-data-table mdl-js-data-table">
+				<thead>
+					<tr>
+						<th class="mdl-data-table__cell--non-numeric">id</th>
+						<th class="mdl-data-table__cell--non-numeric">startDate</th>
+						<th class="mdl-data-table__cell--non-numeric">endDate</th>
+						<th class="mdl-data-table__cell--non-numeric">totalHours</th>
+						<th class="mdl-data-table__cell--non-numeric">comments</th>
+						<th class="mdl-data-table__cell--non-numeric">rating</th>
+						<th class="mdl-data-table__cell--non-numeric">offerId</th>
+						<th class="mdl-data-table__cell--non-numeric">requestId</th>
+						<th class="mdl-data-table__cell--non-numeric">Actions</th>
+					</tr>	
+				</thead>
+				<tbody>	
+				<c:forEach items="${collaborations}" var="collaboration">
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric">${collaboration.id }</td>
+						<td class="mdl-data-table__cell--non-numeric">${collaboration.startDate }</td>
+						<td class="mdl-data-table__cell--non-numeric">${collaboration.endDate }</td>
+						<td class="mdl-data-table__cell--non-numeric">${collaboration.totalHours }</td>
+						<td class="mdl-data-table__cell--non-numeric">${collaboration.comments }</td>
+						<td class="mdl-data-table__cell--non-numeric">${collaboration.rating }</td>
+						<td class="mdl-data-table__cell--non-numeric">${collaboration.offerId }</td>
+						<td class="mdl-data-table__cell--non-numeric">${collaboration.requestId }</td>
+						<td>
+							<a style="display:inline-block;" href="update/${ collaboration.id }.html">
+								<i class="material-icons">mode_edit</i>
+							</a>
+							<a style="display:inline-block;" href="delete/${ collaboration.id }.html">
+								<i class="material-icons">delete</i>
+							</a>
+						</td>
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>			
+			<a href="add.html">
+				<button style="position: fixed; bottom: 24px; right: 24px;" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" aria-label="Add a category">
+  					<i class="material-icons">add</i>
+				</button>
+			</a>
 	    </div>
 	  </main>
-	</div>
+	
 </body>
 </html>

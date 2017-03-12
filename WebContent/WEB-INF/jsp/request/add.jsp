@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>New skill</title>
+<title>New request</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<!--getmdl-select-->   
+<link rel="stylesheet" href="<c:url value="/resources/mdl-selectfield.min.css"/> ">
 </head>
 <body>
 	<!-- Always shows a header, even in smaller screens. -->
@@ -25,7 +27,7 @@
 	      </nav>
 	    </div>
 	  </header>
-	  <div class="mdl-layout__drawer">
+	 <div class="mdl-layout__drawer">
 	    <span class="mdl-layout-title">Student</span>
 	    <nav class="mdl-navigation">
 	      <a class="mdl-navigation__link" href="${pageContext.request.contextPath }/student/list.html">List</a>
@@ -55,11 +57,17 @@
 	  <main class="mdl-layout__content">
 	    <div class="page-content">
 	    	<!-- Your content goes here -->
-	    	<h4>New skill</h4>
-			<form:form method="post" modelAttribute="skill">
+	    	<h4>New request</h4>
+			<form:form method="post" modelAttribute="request">
+			<br>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<form:label class="mdl-textfield__label" path="name">Name</form:label>
-				<form:input class="mdl-textfield__input" path="name"/>
+				<form:label class="mdl-textfield__label" path="startDate">Start Date</form:label>
+				<form:input class="mdl-textfield__input" id="today1" type="date" path="startDate"/>
+			</div>
+			<br>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				<form:label class="mdl-textfield__label" path="endDate">End Date</form:label>
+				<form:input class="mdl-textfield__input" id="today2" type="date" path="endDate"/>
 			</div>
 			<br>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -67,21 +75,30 @@
 				<form:input class="mdl-textfield__input" path="description"/>
 			</div>
 			<br>
-			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<form:label class="mdl-textfield__label" path="level">Level</form:label>
-				<form:input class="mdl-textfield__input" path="level"/>
+			<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+ 				<form:select id="myselect" name="myselect" class="mdl-selectfield__select" path="nif">
+ 					<form:options items="${nifs }"/>
+  				</form:select>
+  				<label class="mdl-selectfield__label" for="myselect">Choose option</label>
 			</div>
 			<br>
-			<label for="checkbox-1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" >
-        		<input type="checkbox" id="skill_status" class="mdl-checkbox__input" path="status" />
-        		<span class="mdl-checkbox__label" path="status">Status</span>
-    		</label>
-			<br>
-			<input type="submit" class="mdl-button mdl-js-button mdl-button--raised" value="Add skill"/>
+			<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+ 				<form:select id="myselect2" name="myselect2" class="mdl-selectfield__select" path="skillId">
+ 					<c:forEach items="${skills}" var="skill">
+ 						<form:option value="${skill.id }">${skill.name} - ${skill.level } level</form:option>
+ 					</c:forEach>
+  				</form:select>
+  				<label class="mdl-selectfield__label" for="myselect2">Choose skill</label>
+			</div>
+        	<br>
+			<input type="submit" class="mdl-button mdl-js-button mdl-button--raised" value="Add request"/>
 			
 		</form:form>
 	    </div>
 	  </main>
 	</div>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script defer src="<c:url value="/resources/mdl-selectfield.min.js" />"></script>
+<script src="<c:url value="/resources/base.js" />"></script>
 </body>
 </html>
