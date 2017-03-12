@@ -51,8 +51,8 @@ public class Offer {
 	public int getSkillId() {
 		return skillId;
 	}
-	public void setSkill_id(int skill_id) {
-		this.skillId = skill_id;
+	public void setSkillId(int skillId) {
+		this.skillId = skillId;
 	}
 	
 	@Override

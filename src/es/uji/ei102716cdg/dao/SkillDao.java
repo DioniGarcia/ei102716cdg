@@ -31,9 +31,9 @@ public class SkillDao {
 		public Skill mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Skill skill = new Skill();
 			skill.setId(rs.getInt("id"));
-			skill.setDescription(rs.getString("name"));
+			skill.setName(rs.getString("name"));
 			skill.setDescription(rs.getString("description"));
-			skill.setDescription(rs.getString("level"));
+			skill.setLevel(rs.getString("level"));
 			skill.setStatus(rs.getBoolean("status"));
 		
 			return skill;
@@ -51,25 +51,24 @@ public class SkillDao {
 	}
 	
 	public void addSkill(Skill skill) {
-		this.jdbcTemplate.update("insert into Skill(id, namee, description, level, status) "
-				+ "values(?, ?, ?, ?, ?, ?)",
-				skill.getId(), skill.getName(), skill.getDescription(), 
+		this.jdbcTemplate.update("insert into Skill(name, description, level, status) "
+				+ "values(?, ?, ?, ?)",
+				skill.getName(), skill.getDescription(), 
 				skill.getLevel(), skill.getStatus());
 	}
 
 	public void updateSkill(Skill skill) {
 		this.jdbcTemplate.update("update Skill "
-				+ "set id = ?,"
-				+ "name = ?,"
-				+ "description = ?"
-				+ "level = ?"
+				+ "set name = ?,"
+				+ "description = ?,"
+				+ "level = ?,"
 				+ "status = ?"
-				+ "WEHRE id = ?",
-				skill.getId(), skill.getName(), skill.getDescription(), 
+				+ " WHERE id = ?",
+				skill.getName(), skill.getDescription(), 
 				skill.getLevel(), skill.getStatus(), skill.getId());
 	}
 
-	public void deleteSkill(String id) {
+	public void deleteSkill(int id) {
 		this.jdbcTemplate.update("DELETE FROM Skill WHERE id = ?", id);
 	}
 }

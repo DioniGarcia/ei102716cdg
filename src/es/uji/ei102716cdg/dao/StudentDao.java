@@ -38,7 +38,7 @@ public class StudentDao {
 			return student;
 		}
 	}
-
+	
 	public List<Student> getStudents() {
 		return this.jdbcTemplate.query("select nif, name, email, userName, passwd from Student",
 				new StudentMapper());
@@ -60,11 +60,11 @@ public class StudentDao {
 	public void updateStudent(Student student) {
 		this.jdbcTemplate.update("update student "
 				+ "set nif = ?,"
-				+ "name = ?,"
-				+ "email = ?,"
-				+ "userName = ?"
-				+ "passwd = ?"
-				+ "where nif = ?",
+				+ " name = ?,"
+				+ " email = ?,"
+				+ " userName = ?,"
+				+ " passwd = ?"
+				+ " where nif = ?",
 				student.getNif(), student.getName(), student.getEmail() , student.getUserName(), student.getPasswd(), student.getNif());
 	}
 
