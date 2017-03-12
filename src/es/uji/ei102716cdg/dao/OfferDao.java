@@ -34,11 +34,43 @@ public class OfferDao {
 			offer.setStartDate(rs.getDate("startDate"));
 			offer.setEndDate(rs.getDate("endDate"));
 			offer.setDescription(rs.getString("description"));
-			offer.setDescription(rs.getString("nif"));
-			offer.setSkill_id(rs.getInt("skillId"));
+			offer.setNif(rs.getString("student_nif"));
+			offer.setSkillId(rs.getInt("skill_id"));
 			
 			return offer;
 		}
+	}
+	
+	private static final class NifMapper implements RowMapper<String>{
+		public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+			return rs.getString("nif");
+		}
+	}
+	
+	private static final class SkillMapper implements RowMapper<String>{
+		public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+			return rs.getString("nif");
+		}
+	}
+	
+	public List<String> getSkillsId() {
+        return (List<String>) this.jdbcTemplate.queryForList( "select id from Skill", 
+                                           String.class);
+    }
+	
+	public List<String> getNifsId() {
+        return (List<String>) this.jdbcTemplate.queryForList( "select nif from Student", 
+                                           String.class);
+    }
+	
+	public List<String> getNifs(){
+		return this.jdbcTemplate.query("select nif from Student",
+				new NifMapper());
+	}
+	
+	public List<String> getSkills(){
+		return this.jdbcTemplate.query("select id from Skill",
+				new SkillMapper());
 	}
 
 	public List<Offer> getOffers() {
@@ -53,7 +85,7 @@ public class OfferDao {
 	
 	public void addOffer(Offer offer) {
 		this.jdbcTemplate.update("insert into Offer(id, startDate, endDate, "
-				+ "description, nif, skillId) "
+				+ "description, student_nif, skill_id) "
 				+ "values(?, ?, ?, ?, ?, ?)",
 				offer.getId(), offer.getStartDate(), offer.getEndDate() , offer.getDescription(), 
 				offer.getNif(), offer.getSkillId());
@@ -64,15 +96,15 @@ public class OfferDao {
 				+ "set id = ?,"
 				+ "startDate = ?,"
 				+ "endDate = ?,"
-				+ "description = ?"
-				+ "nif = ?"
-				+ "skillId = ?"
-				+ "WEHRE id = ?",
+				+ "description = ?,"
+				+ "student_nif = ?,"
+				+ "skill_id = ?"
+				+ " WHERE id = ?",
 				offer.getId(), offer.getStartDate(), offer.getEndDate() , offer.getDescription(), 
 				offer.getNif(), offer.getSkillId(), offer.getId());
 	}
 
-	public void deleteOffer(String id) {
+	public void deleteOffer(int id) {
 		this.jdbcTemplate.update("DELETE FROM Offer WHERE id = ?", id);
 	}
 }

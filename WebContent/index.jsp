@@ -15,13 +15,13 @@
 	  <header class="mdl-layout__header">
 	    <div class="mdl-layout__header-row">
 	      <!-- Title -->
+	      <img src= "<c:url value="/resources/logo.png" />" style="mix-blend-mode: multiply;" height="72" width="72"/>
 	      <span class="mdl-layout-title">Title</span>
 	      <!-- Add spacer, to align navigation to the right -->
 	      <div class="mdl-layout-spacer"></div>
 	      <!-- Navigation. We hide it in small screens. -->
 	      <nav class="mdl-navigation mdl-layout--large-screen-only">
-	        <a class="mdl-navigation__link" href="student/list.html">List</a>
-	        <a class="mdl-navigation__link" href="student/add.html">Add</a>
+	        <a class="mdl-navigation__link" href="">Home</a>
 	      </nav>
 	    </div>
 	  </header>
@@ -31,10 +31,15 @@
 	      <a class="mdl-navigation__link" href="student/list.html">List</a>
 	      <a class="mdl-navigation__link" href="student/add.html">Add</a>
 	    </nav>
-	    <span class="mdl-layout-title">Offer (WIP)</span>
+	    <span class="mdl-layout-title">Offer</span>
 	    <nav class="mdl-navigation">
-	      <a class="mdl-navigation__link" href="">List</a>
-	      <a class="mdl-navigation__link" href="">Add</a>
+	      <a class="mdl-navigation__link" href="offer/list.html">List</a>
+	      <a class="mdl-navigation__link" href="offer/add.html">Add</a>
+	    </nav>
+	    <span class="mdl-layout-title">Skill</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="skill/list.html">List</a>
+	      <a class="mdl-navigation__link" href="skill/add.html">Add</a>
 	    </nav>
 	  </div>
 	  <main class="mdl-layout__content">

@@ -33,8 +33,8 @@ public class RequestDao {
 			request.setStartDate(rs.getDate("startDate"));
 			request.setEndDate(rs.getDate("endDate"));
 			request.setDescription(rs.getString("description"));
-			request.setDescription(rs.getString("nif"));
-			request.setSkill_id(rs.getInt("skillId"));
+			request.setDescription(rs.getString("student_nif"));
+			request.setSkill_id(rs.getInt("skill_id"));
 			
 			return request;
 		}
@@ -52,7 +52,7 @@ public class RequestDao {
 	
 	public void addRequest(Request request) {
 		this.jdbcTemplate.update("insert into Request(id, startDate, endDate, "
-				+ "description, nif, skillId) "
+				+ "description, nif, skill_id) "
 				+ "values(?, ?, ?, ?, ?, ?)",
 				request.getId(), request.getStartDate(), request.getEndDate() , request.getDescription(), 
 				request.getNif(), request.getSkillId());
@@ -63,15 +63,15 @@ public class RequestDao {
 				+ "set id = ?,"
 				+ "startDate = ?,"
 				+ "endDate = ?,"
-				+ "description = ?"
-				+ "nif = ?"
-				+ "skillId = ?"
-				+ "WEHRE id = ?",
+				+ "description = ?,"
+				+ "nif = ?,"
+				+ "skill_id = ?"
+				+ " WHERE id = ?",
 				request.getId(), request.getStartDate(), request.getEndDate() , request.getDescription(), 
 				request.getNif(), request.getSkillId());
 	}
 
-	public void deleteRequest(String id) {
+	public void deleteRequest(int id) {
 		this.jdbcTemplate.update("DELETE FROM Request WHERE id = ?", id);
 	}
 }

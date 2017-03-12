@@ -21,8 +21,7 @@
 	      <div class="mdl-layout-spacer"></div>
 	      <!-- Navigation. We hide it in small screens. -->
 	      <nav class="mdl-navigation mdl-layout--large-screen-only">
-	        <a class="mdl-navigation__link" href="student/list.html">List</a>
-	        <a class="mdl-navigation__link" href="student/add.html">Add</a>
+	        <a class="mdl-navigation__link" href="">Hello</a>
 	      </nav>
 	    </div>
 	  </header>
@@ -32,10 +31,15 @@
 	      <a class="mdl-navigation__link" href="list.html">List</a>
 	      <a class="mdl-navigation__link" href="">Add</a>
 	    </nav>
-	    <span class="mdl-layout-title">Offer (WIP)</span>
+	    <span class="mdl-layout-title">Offer</span>
 	    <nav class="mdl-navigation">
 	      <a class="mdl-navigation__link" href="">List</a>
 	      <a class="mdl-navigation__link" href="">Add</a>
+	    </nav>
+	    <span class="mdl-layout-title">Skill</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="../skill/list.html">List</a>
+	      <a class="mdl-navigation__link" href="../skill/add.html">Add</a>
 	    </nav>
 	  </div>
 	  <main class="mdl-layout__content">
@@ -56,17 +60,19 @@
 			<br>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 				<form:label class="mdl-textfield__label" path="email">Email</form:label>
-				<form:input class="mdl-textfield__input" path="email"/>
+				<form:input class="mdl-textfield__input" type="email" path="email"/>
+				<span class="mdl-textfield__error">Invalid email</span>
 			</div>
 			<br>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 				<form:label class="mdl-textfield__label" path="userName">Username</form:label>
-				<form:input class="mdl-textfield__input" path="userName"/>
+				<form:input class="mdl-textfield__input" pattern="^[A-Za-z0-9_]{1,15}$" path="userName"/>
+				<span class="mdl-textfield__error">Max length is 15 and only alphanumeric</span>
 			</div>
 			<br>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 				<form:label class="mdl-textfield__label" path="passwd">Password</form:label>
-				<form:input class="mdl-textfield__input" path="passwd"/>
+				<form:input class="mdl-textfield__input" type="password" path="passwd"/>
 			</div>
 			<br>
 			<input type="submit" class="btn btn-default" value="Add student"/>
@@ -74,5 +80,6 @@
 		</form:form>
 	    </div>
 	  </main>
+	</div>
 </body>
 </html>

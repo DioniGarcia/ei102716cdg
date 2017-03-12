@@ -30,7 +30,7 @@ public class StudentController {
 	}
 	
 	@RequestMapping("/add")
-	public String addNadadors(Model model){
+	public String addStudent(Model model){
 		model.addAttribute("student",new Student());
 		return "student/add";
 	}
@@ -45,7 +45,7 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value="/update/{userName}", method=RequestMethod.GET)
-	public String editNadador(Model model, @PathVariable String userName){
+	public String editStudent(Model model, @PathVariable String userName){
 		model.addAttribute("student", studentDao.getStudent(userName));
 		return "student/update";
 	}

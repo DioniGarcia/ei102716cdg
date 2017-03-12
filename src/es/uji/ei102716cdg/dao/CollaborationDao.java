@@ -36,8 +36,8 @@ public class CollaborationDao {
 			collaboration.setTotalHours(rs.getShort("totalHours"));
 			collaboration.setComments(rs.getString("comments"));
 			collaboration.setRating(rs.getShort("rating"));
-			collaboration.setOfferId(rs.getInt("offerId"));
-			collaboration.setRequestId(rs.getInt("requestId"));
+			collaboration.setOfferId(rs.getInt("offer_id"));
+			collaboration.setRequestId(rs.getInt("request_id"));
 			return collaboration;
 		}
 	}
@@ -54,29 +54,29 @@ public class CollaborationDao {
 	
 	public void addCollaboration(Collaboration collaboration) {
 		this.jdbcTemplate.update("insert into Collaboration(id, startDate, endDate, "
-				+ "totalHours, comments, rating, offerId,requestId) "
+				+ "totalHours, comments, rating, offer_id, request_id) "
 				+ "values(?, ?, ?, ?, ?, ?, ?, ?)",
 				collaboration.getId(), collaboration.getStartDate(), collaboration.getEndDate() , collaboration.getTotalHours(), 
 				collaboration.getComments(), collaboration.getRating(), collaboration.getOfferId(),collaboration.getRequestId());
 	}
 
-	public void updateStudent(Collaboration collaboration) {
+	public void updateCollaboration(Collaboration collaboration) {
 		this.jdbcTemplate.update("update collaboration "
 				+ "set id = ?,"
-				+ "startDate = ?,"
-				+ "endDate = ?,"
-				+ "totalHours = ?"
-				+ "comments = ?"
-				+ "rating = ?"
-				+ "offerId = ?"
-				+ "requestId = ?"
-				+ "WHERE id = ?",
+				+ " startDate = ?,"
+				+ " endDate = ?,"
+				+ " totalHours = ?,"
+				+ " comments = ?,"
+				+ " rating = ?,"
+				+ " offer_id = ?,"
+				+ " request_id = ?"
+				+ " WHERE id = ?",
 				collaboration.getId(), collaboration.getStartDate(), collaboration.getEndDate() , 
 				collaboration.getTotalHours(),collaboration.getComments(), collaboration.getRating(), 
 				collaboration.getOfferId(),collaboration.getRequestId(), collaboration.getId());
 	}
 
-	public void deleteCollaboration(String id) {
+	public void deleteCollaboration(int id) {
 		this.jdbcTemplate.update("DELETE FROM Collaboration WHERE id = ?", id);
 	}
 }
