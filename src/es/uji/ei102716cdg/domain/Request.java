@@ -4,14 +4,19 @@ import java.sql.Date;
 
 public class Request {
 	
+	/**
+	 * <h1>Representa una demanda de ayuda por parte de un estudiante</h1>
+	 * Cada cliente puede publicar tantas demandas como quiera siempre que tenga puntos para ello
+	 */
 	
-	private int id;
-	private Date startDate;
-	private Date endDate;
-	private String description;
-	private String nif;
-	private int skillId;
+	private int id;				//Identificador unico de la demanda
+	private Date startDate;		//Fecha de inicio de una posible colaboracion 
+	private Date endDate;		//Fecha limite para la colaboracion
+	private String description;	//Pequenya descripcion complementaria sobre la ayuda demandada
+	private String nif;			//NIF del usuario ofertante
+	private int skillId;		//Identificador del Tipo de habilidad al que se refiere la demanda 
 	
+	//GETTERS & SETTERS
 	public int getId() {
 		return id;
 	}

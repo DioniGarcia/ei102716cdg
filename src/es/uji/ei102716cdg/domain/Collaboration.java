@@ -4,22 +4,20 @@ import java.sql.Date;
 
 /**
  * <h1>Representa la colaboracion entre dos estudiantes</h1>
- * 
  */
 
 public class Collaboration {
 	private int id;				//Identificador unico de la colaboracion
-	private Date startDate;		//Data de inicio
-	private Date endDate;		//Data de fin
+	private Date startDate;		//Fecha de inicio
+	private Date endDate;		//Fecha de fin
 	private short totalHours;	//Computo total de horas
 	private String comments;	//Comentario escrito por el demandante de la colaboracion
 	private short rating;		//Puntuacion por parte del demandante entre 1 y 5
 	private int offerId;		//Identificador de la oferta
-	private int requestId;		//Identificador de la demanda
+	private int requestId;		//Identificador del Tipo de habilidad al que se refiere la oferta
 	
 	
-	//GET & SET
-		
+	//GETTERS & SETTERS
 	public int getId() {
 		return id;
 	}
