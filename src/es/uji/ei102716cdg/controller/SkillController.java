@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei102716cdg.dao.SkillDao;
 import es.uji.ei102716cdg.domain.Skill;
+import es.uji.ei102716cdg.domain.SkillWrapper;
 
 
 @Controller
@@ -30,17 +31,20 @@ public class SkillController {
 	}
 	
 	@RequestMapping("/add")
-	public String addSkill(Model model){
-		model.addAttribute("skill",new Skill());
+	public String addSkills(Model model){
+		model.addAttribute("skillWrapper",new SkillWrapper());
 		return "skill/add";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String processAddSubmit(@ModelAttribute("skill") Skill skill,
+	public String processAddSubmit(@ModelAttribute("skillWrapper") SkillWrapper skillWrapper,
 													BindingResult bindingResult){
 		if(bindingResult.hasErrors())
 			return "skill/add";
-		skillDao.addSkill(skill);
+		for(Skill skill : skillWrapper.getSkills()){
+			skillDao.addSkill(skill);
+		}
+		
 		return "redirect:list.html";
 	}
 	
@@ -50,8 +54,8 @@ public class SkillController {
 		return "skill/update";
 	}
 	
-	@RequestMapping(value="/update/{userName}", method = RequestMethod.POST)
-	public String processUpdateSubmit(@PathVariable String userName,
+	@RequestMapping(value="/update/{id}", method = RequestMethod.POST)
+	public String processUpdateSubmit(@PathVariable String id,
 								@ModelAttribute("skill") Skill skill,
 								BindingResult bindingResult){
 		if (bindingResult.hasErrors())

@@ -63,8 +63,8 @@ public class SkillDao {
 				+ "description = ?,"
 				+ "level = ?,"
 				+ "status = ?"
-				+ " WHERE id = ?",
-				skill.getName(), skill.getDescription(), 
+				+ "WHERE id = ?",
+				skill.getName(),  skill.getDescription(), 
 				skill.getLevel(), skill.getStatus(), skill.getId());
 	}
 

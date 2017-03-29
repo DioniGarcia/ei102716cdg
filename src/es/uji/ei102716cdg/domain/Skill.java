@@ -6,12 +6,21 @@ package es.uji.ei102716cdg.domain;
  */
 
 public class Skill {
-	private int id;				//Identificador unico del tipo de habilidad
-	private String name;		//Nombre del tipo de hablilidad, Matematicas por ejemplo
-	private String description;	//Pequenya descripcion para facilitar la comprension del tipo de habilidad para el nivel concreto
-	private String level;		//Nivel de dificultad (Iniciado, Medio, Experto)
-	private boolean status;		//Estado actual del tipo de habilidad en el sistema (Activo o Inactivo)
+	private int id;					//Identificador unico del tipo de habilidad
+	private String  name;			//Nombre del tipo de hablilidad, Matematicas por ejemplo
+	private String  description;	//Pequenya descripcion para facilitar la comprension del tipo de habilidad para el nivel concreto
+	private String  level;			//Nivel de dificultad (Iniciado, Medio, Experto)
+	private boolean status;			//Estado actual del tipo de habilidad en el sistema (Activo o Inactivo)
 	
+	public Skill(){}
+	
+	public Skill(String name, String description, String level, boolean status) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.level = level;
+		this.status = status;
+	}
 	//GETTERS & SETTERS
 	public int getId() {
 		return id;

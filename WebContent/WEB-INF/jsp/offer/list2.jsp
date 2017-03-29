@@ -71,7 +71,7 @@
 				<tbody>	
 				<c:forEach items="${offers}" var="offer">
 					<tr>
-						<td class="mdl-data-table__cell--non-numeric">${offer.id }</td>
+						<td class="mdl-data-table__cell--non-numeric">${id.id }</td>
 						<td class="mdl-data-table__cell--non-numeric">${offer.startDate }</td>
 						<td class="mdl-data-table__cell--non-numeric">${offer.endDate }</td>
 						<td class="mdl-data-table__cell--non-numeric">${offer.description }</td>
