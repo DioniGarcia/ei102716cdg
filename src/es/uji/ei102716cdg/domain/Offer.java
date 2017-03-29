@@ -2,15 +2,22 @@ package es.uji.ei102716cdg.domain;
 
 import java.sql.Date;
 
+/**
+ * <h1>Representa una oferta de ayuda por parte de un estudiante</h1>
+ * Cada cliente puede publicar tantas ofertas como quiera
+ */
+
 public class Offer {
 	
-	private int id;
-	private Date startDate;
-	private Date endDate;
-	private String description;
-	private String nif;
-	private int skillId;
+	private int id;				//Identificador unico de la oferta
+	private Date startDate;		//Fecha de inicio de una posible colaboracion 
+	private Date endDate;		//Fecha limite para la colaboracion
+	private String description;	//Pequenya descripcion complementaria sobre la ayuda ofrecida
+	private String nif;			//NIF del usuario ofertante
+	private int skillId;		//Identificador del Tipo de habilidad al que se refiere la oferta 
 	
+	
+	//GETTERS & SETTERS
 	public int getId() {
 		return id;
 	}

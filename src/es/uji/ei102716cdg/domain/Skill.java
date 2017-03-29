@@ -1,13 +1,18 @@
 package es.uji.ei102716cdg.domain;
 
+/**
+ * <h1>Representa un tipo de habilidad en un nivel concreto</h1>
+ * Los tipos de habilidad son creados por un miembro del consejo estudiantil, el PC  
+ */
+
 public class Skill {
-	private int id;
-	private String name;
-	private String description;
-	private String level;
-	private boolean status;
+	private int id;				//Identificador unico del tipo de habilidad
+	private String name;		//Nombre del tipo de hablilidad, Matematicas por ejemplo
+	private String description;	//Pequenya descripcion para facilitar la comprension del tipo de habilidad para el nivel concreto
+	private String level;		//Nivel de dificultad (Iniciado, Medio, Experto)
+	private boolean status;		//Estado actual del tipo de habilidad en el sistema (Activo o Inactivo)
 	
-	
+	//GETTERS & SETTERS
 	public int getId() {
 		return id;
 	}
