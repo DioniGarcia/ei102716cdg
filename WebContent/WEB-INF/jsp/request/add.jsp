@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Skill Sharing - Añadir Oferta</title>
+<title>Skill Sharing - Añadir Demanda</title>
 </head>
 <body>
-    <h2>Nueva Oferta</h2>
-    <form:form method="post" modelAttribute="offer">
+    <h2>Nueva Demanda</h2>
+    <form:form method="post" modelAttribute="request">
         <table>
             <tr>
                 <td><form:label path="startDate">Fecha de inicio</form:label></td>
@@ -30,7 +30,7 @@
             </tr>
             
             <tr>
-                <td><form:label path="description">Descripcion de la oferta</form:label></td>
+                <td><form:label path="description">Descripcion de la demanda</form:label></td>
                 <td colspan="3"><form:input  path="description" /></td>
             </tr>
             
@@ -39,7 +39,7 @@
             </tr>
             
             <tr>
-                <td><form:label path="nif">Nif del ofertante</form:label></td>
+                <td><form:label path="nif">Nif del demandante</form:label></td>
                 <td>
                 	<form:select path="nif">
 						<form:options items="${nifs }" />
@@ -56,11 +56,11 @@
             <tr>
                 <td><form:label path="skillId">Skill</form:label></td>
                 <td>
-                	<form:select path="skillId">
-                		<c:forEach items="${skills}" var="skill">
-	 						<form:option value="${skill.id}">${skill.name} - Nivel ${skill.level}</form:option>
-	 					</c:forEach>
-					</form:select >
+                	<form:select id="myselect2" name="myselect2" class="mdl-selectfield__select" path="skillId">
+ 						<c:forEach items="${skills}" var="skill">
+ 							<form:option value="${skill.id }">${skill.name} - Nivel ${skill.level}</form:option>
+ 						</c:forEach>
+					</form:select>
 				</td>
             </tr>
             
