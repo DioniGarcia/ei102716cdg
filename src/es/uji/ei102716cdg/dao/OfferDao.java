@@ -70,7 +70,7 @@ public class OfferDao {
 
 	public void updateOffer(Offer offer) {
 		this.jdbcTemplate.update("update Offer "
-				+ "startDate = ?,"
+				+ "set startDate = ?,"
 				+ "endDate = ?,"
 				+ "description = ?,"
 				+ "student_nif = ?,"

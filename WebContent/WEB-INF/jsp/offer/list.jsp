@@ -25,7 +25,7 @@
                 <td>${offer.endDate}</td>
                 <td>${offer.description}</td>
                 <td>${offer.nif}</td>
-                <td>${offer.nif}</td>
+                <td>${offer.skillId}</td>
                 <td><a href="update/${offer.id}.html">Editar</a> 
                 <td><a href="delete/${offer.id}.html">Borrar</a>
             </tr>

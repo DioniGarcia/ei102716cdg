@@ -56,11 +56,13 @@ public class RequestController {
 	@RequestMapping(value="/update/{id}", method=RequestMethod.GET)
 	public String editRequest(Model model, @PathVariable int id){
 		model.addAttribute("request", requestDao.getRequest(id));
+		model.addAttribute("nifs", requestDao.getNifsId());
+		model.addAttribute("skills", skillDao.getSkills());
 		return "request/update";
 	}
 	
-	@RequestMapping(value="/update/{userName}", method = RequestMethod.POST)
-	public String processUpdateSubmit(@PathVariable String userName,
+	@RequestMapping(value="/update/{id}", method = RequestMethod.POST)
+	public String processUpdateSubmit(@PathVariable String id,
 								@ModelAttribute("request") Request request,
 								BindingResult bindingResult){
 		if (bindingResult.hasErrors())

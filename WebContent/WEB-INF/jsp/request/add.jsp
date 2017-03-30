@@ -56,11 +56,11 @@
             <tr>
                 <td><form:label path="skillId">Skill</form:label></td>
                 <td>
-                	<form:select id="myselect2" name="myselect2" class="mdl-selectfield__select" path="skillId">
- 						<c:forEach items="${skills}" var="skill">
- 							<form:option value="${skill.id }">${skill.name} - Nivel ${skill.level}</form:option>
- 						</c:forEach>
-					</form:select>
+                	<form:select path="skillId">
+                		<c:forEach items="${skills}" var="skill">
+	 						<form:option value="${skill.id}">${skill.name} - Nivel ${skill.level}</form:option>
+	 					</c:forEach>
+					</form:select >
 				</td>
             </tr>
             

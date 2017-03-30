@@ -77,7 +77,7 @@ public class RequestDao {
 				+ "skill_id = ?"
 				+ " WHERE id = ?",
 				request.getStartDate(), request.getEndDate() , request.getDescription(), 
-				request.getNif(), request.getSkillId());
+				request.getNif(), request.getSkillId(), request.getId());
 	}
 
 	public void deleteRequest(int id) {

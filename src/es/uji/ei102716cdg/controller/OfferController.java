@@ -56,11 +56,13 @@ public class OfferController {
 	@RequestMapping(value="/update/{id}", method=RequestMethod.GET)
 	public String editOffer(Model model, @PathVariable int id){
 		model.addAttribute("offer", offerDao.getOffer(id));
+		model.addAttribute("nifs", offerDao.getNifsId());
+		model.addAttribute("skills", skillDao.getSkills());
 		return "offer/update";
 	}
 	
-	@RequestMapping(value="/update/{userName}", method = RequestMethod.POST)
-	public String processUpdateSubmit(@PathVariable String userName,
+	@RequestMapping(value="/update/{id}", method = RequestMethod.POST)
+	public String processUpdateSubmit(@PathVariable String id,
 								@ModelAttribute("offer") Offer offer,
 								BindingResult bindingResult){
 		if (bindingResult.hasErrors())

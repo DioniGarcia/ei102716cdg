@@ -8,7 +8,7 @@
 <title>Skill Sharing - Añadir Oferta</title>
 </head>
 <body>
-    <h2>Nueva Oferta</h2>
+    <h2>Añadir Oferta</h2>
     <form:form method="post" modelAttribute="offer">
         <table>
             <tr>

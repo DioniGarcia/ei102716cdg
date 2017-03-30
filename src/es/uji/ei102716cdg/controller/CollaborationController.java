@@ -63,11 +63,13 @@ public class CollaborationController {
 	@RequestMapping(value="/update/{id}", method=RequestMethod.GET)
 	public String editCollaboration(Model model, @PathVariable int id){
 		model.addAttribute("collaboration", collaborationDao.getCollaboration(id));
+		model.addAttribute("offers",offerDao.getOffers());
+		model.addAttribute("requests",requestDao.getRequests());
 		return "collaboration/update";
 	}
 	
-	@RequestMapping(value="/update/{userName}", method = RequestMethod.POST)
-	public String processUpdateSubmit(@PathVariable String userName,
+	@RequestMapping(value="/update/{id}", method = RequestMethod.POST)
+	public String processUpdateSubmit(@PathVariable String id,
 								@ModelAttribute("collaboration") Collaboration collaboration,
 								BindingResult bindingResult){
 		if (bindingResult.hasErrors())
