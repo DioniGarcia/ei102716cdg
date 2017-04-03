@@ -38,6 +38,8 @@ public class StudentController {
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String processAddSubmit(@ModelAttribute("student") Student student,
 													BindingResult bindingResult){
+		StudentValidator studentValidator = new StudentValidator();
+		studentValidator.validate(student, bindingResult);
 		if(bindingResult.hasErrors())
 			return "student/add";
 		studentDao.addStudent(student);
@@ -54,6 +56,8 @@ public class StudentController {
 	public String processUpdateSubmit(@PathVariable String userName,
 								@ModelAttribute("student") Student student,
 								BindingResult bindingResult){
+		StudentValidator studentValidator = new StudentValidator();
+		studentValidator.validate(student, bindingResult);
 		if (bindingResult.hasErrors())
 			return "student/update";
 		studentDao.updateStudent(student);
