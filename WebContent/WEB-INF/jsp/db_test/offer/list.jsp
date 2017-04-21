@@ -14,8 +14,8 @@
             <th>Fecha de Inicio</th>
             <th>Fecha fin</th>
             <th>Descripción</th>
-            <th>Nif del Ofertante</th>
-            <th>Skill Ofertada</th>
+            <th>Ofertante</th>
+            <th>Skill</th>
             <th colspan="2">Acciones</th>
         </tr>
         <c:forEach items="${offers}" var="offer"> 
@@ -24,8 +24,8 @@
                 <td>${offer.startDate}</td>
                 <td>${offer.endDate}</td>
                 <td>${offer.description}</td>
-                <td>${offer.nif}</td>
-                <td>${offer.skillId}</td>
+                <td>${offer.student_nick}</td>
+                <td>${offer.skill_Id}</td>
                 <td><a href="update/${offer.id}.html">Editar</a> 
                 <td><a href="delete/${offer.id}.html">Borrar</a>
             </tr>

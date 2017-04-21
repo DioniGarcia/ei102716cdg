@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Skill Sharing - Modificar Demanda</title>
+<title>Skill Sharing - Editar Oferta</title>
 </head>
 <body>
-    <h2>Editar Demanda</h2>
-    <form:form method="post" modelAttribute="request">
+    <h2>Editar Oferta</h2>
+    <form:form method="post" modelAttribute="offer">
         <table>
             <tr>
                 <td><form:label path="startDate">Fecha de inicio</form:label></td>
@@ -30,7 +30,7 @@
             </tr>
             
             <tr>
-                <td><form:label path="description">Descripcion de la demanda</form:label></td>
+                <td><form:label path="description">Descripcion de la oferta</form:label></td>
                 <td colspan="3"><form:input  path="description" /></td>
             </tr>
             
@@ -39,26 +39,28 @@
             </tr>
             
             <tr>
-                <td><form:label path="nif">Nif del demandante</form:label></td>
+                <td><form:label path="student_nick">Nif del ofertante</form:label></td>
                 <td>
-                	<form:select path="nif">
-						<form:options items="${nifs }" />
+                	<form:select path="student_nick">
+						<form:options items="${nick_list}" />
 					</form:select >
 				</td>
+            
             </tr>
-
+			 
 
             <tr>
             	<td><hr/></td> <!-- Linea separadora -->
             	<td><hr/></td>
             </tr>
             
+            
             <tr>
-                <td><form:label path="skillId">Skill</form:label></td>
+                <td><form:label path="skill_Id">Skill</form:label></td>
                 <td>
-                	<form:select path="skillId">
-                		<c:forEach items="${skills}" var="skill">
-	 						<form:option value="${skill.id}">${skill.name} - Nivel ${skill.level}</form:option>
+                	<form:select path="skill_Id">
+                		<c:forEach items="${skill_list}" var="skill">
+	 						<form:option value="${skill.skill_id}">${skill.name} - Nivel ${skill.level}</form:option>
 	 					</c:forEach>
 					</form:select >
 				</td>

@@ -1,4 +1,4 @@
-package es.uji.ei102716cdg.domain;
+package es.uji.ei102716cdg.domain.collaboration;
 
 import java.sql.Date;
 

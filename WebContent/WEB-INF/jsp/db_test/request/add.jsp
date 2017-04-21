@@ -8,7 +8,7 @@
 <title>Skill Sharing - Añadir Demanda</title>
 </head>
 <body>
-    <h2>Nueva Demanda</h2>
+    <h2>Añadir Demanda</h2>
     <form:form method="post" modelAttribute="request">
         <table>
             <tr>
@@ -39,26 +39,28 @@
             </tr>
             
             <tr>
-                <td><form:label path="nif">Nif del demandante</form:label></td>
+                <td><form:label path="student_nick">Nif del demandante</form:label></td>
                 <td>
-                	<form:select path="nif">
-						<form:options items="${nifs }" />
+                	<form:select path="student_nick">
+						<form:options items="${nick_list}" />
 					</form:select >
 				</td>
+            
             </tr>
-
+			 
 
             <tr>
             	<td><hr/></td> <!-- Linea separadora -->
             	<td><hr/></td>
             </tr>
             
+            
             <tr>
-                <td><form:label path="skillId">Skill</form:label></td>
+                <td><form:label path="skill_Id">Skill</form:label></td>
                 <td>
-                	<form:select path="skillId">
-                		<c:forEach items="${skills}" var="skill">
-	 						<form:option value="${skill.id}">${skill.name} - Nivel ${skill.level}</form:option>
+                	<form:select path="skill_Id">
+                		<c:forEach items="${skill_list}" var="skill">
+	 						<form:option value="${skill.skill_id}"> ${skill.name} - Nivel ${skill.level}</form:option>
 	 					</c:forEach>
 					</form:select >
 				</td>

@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import es.uji.ei102716cdg.domain.Collaboration;
+import es.uji.ei102716cdg.domain.collaboration.Collaboration;
 
 import java.util.List;
 

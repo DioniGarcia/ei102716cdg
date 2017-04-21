@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import es.uji.ei102716cdg.domain.Offer;
+import es.uji.ei102716cdg.domain.collaboration.Offer;
 
 import java.util.List;
 
@@ -29,58 +29,74 @@ public class OfferDao {
 	private static final class OfferMapper implements RowMapper<Offer>{
 		public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Offer offer = new Offer();
-			offer.setId(rs.getInt("id"));
-			offer.setStartDate(rs.getDate("startDate"));
-			offer.setEndDate(rs.getDate("endDate"));
+			offer.setId(rs.getInt("offer_id"));
+			offer.setStudent_nick(rs.getString("student_nick"));
+			offer.setSkill_Id(rs.getInt("skill_id"));
+			offer.setStartDate(rs.getDate("startDate"));			
+			offer.setEndDate(rs.getDate("endDate"));	
 			offer.setDescription(rs.getString("description"));
-			offer.setNif(rs.getString("student_nif"));
-			offer.setSkillId(rs.getInt("skill_id"));
-			
+			offer.setActive(rs.getBoolean("active"));			
 			return offer;
 		}
 	}
 	
-	public List<String> getSkillsId() {
-        return (List<String>) this.jdbcTemplate.queryForList( "select id from Skill", 
-                                           String.class);
-    }
-	
-	public List<String> getNifsId() {
-        return (List<String>) this.jdbcTemplate.queryForList( "select nif from Student", 
-                                           String.class);
-    }
-	
+	/**Genera una lista con las ofertas de la base de datos
+	 * 
+	 * La lista contiene, para cada oferta: su id, el nick del estudiante que la ha piblicado, la id de la skill a la que hace referencia
+	 * la fecha en la que empieza, la fecha en la que acaba, una breve descripción de la oferta, y si esta activa o inactiva.
+	 * 
+	 * @return Lista de ofertas
+	 * */
 	public List<Offer> getOffers() {
-		return this.jdbcTemplate.query("select * from Offer",
-				new OfferMapper());
+		return this.jdbcTemplate.query("select offer_id, student_nick, skill_id, startDate, endDate, description, active from Offer",
+				new OfferMapper() );
 	}
 	
-	public Offer getOffer(int id) { 
-		return this.jdbcTemplate.queryForObject("SELECT * FROM Offer WHERE id = ?",
+	/**Busca en la base de datos la oferta asociada a una id
+	 * 
+	 * @param 	id
+	 * @return 	oferta asociada a la id
+	 */
+	public Offer getOffer(int id) {
+		return this.jdbcTemplate.queryForObject("SELECT * FROM Offer WHERE offer_id = ?",
 				new Object[] {id}, new OfferMapper());
 	}
 	
+	/**Registra la oferta dada en la base de datos
+	 * 
+	 * @param 	offer: Oferta a almacenar en el sistema	
+	 */
 	public void addOffer(Offer offer) {
-		this.jdbcTemplate.update("insert into Offer( startDate, endDate, "
-				+ "description, student_nif, skill_id) "
-				+ "values( ?, ?, ?, ?, ?)",
-				offer.getStartDate(), offer.getEndDate() , offer.getDescription(), 
-				offer.getNif(), offer.getSkillId());
+		this.jdbcTemplate.update("insert into Offer(student_nick, skill_id, startDate, endDate, description, active) "
+				+ "values(?, ?, ?, ?, ?, ?)",
+				offer.getStudent_nick(), offer.getSkill_Id(), offer.getStartDate(), offer.getEndDate(), offer.getDescription(), offer.isActive());
 	}
 
+	/**Actualiza los datos de una oferta
+	 * 
+	 * Si existe una oferta con la misma id la sobreescribe
+	 * 
+	 * @param offer: Oferta con los nuevos datos que quieren almacenarse
+	 */
 	public void updateOffer(Offer offer) {
 		this.jdbcTemplate.update("update Offer "
-				+ "set startDate = ?,"
+				+ "set offer_id = ?,"
+				+ "student_nick = ?,"
+				+ "skill_Id = ?,"
+				+ "startDate = ?,"
 				+ "endDate = ?,"
 				+ "description = ?,"
-				+ "student_nif = ?,"
-				+ "skill_id = ?"
-				+ " WHERE id = ?",
-				offer.getStartDate(), offer.getEndDate() , offer.getDescription(), 
-				offer.getNif(), offer.getSkillId(), offer.getId());
+				+ " active = ?"
+				+ " where offer_id = ?",
+				offer.getId(), offer.getStudent_nick(), offer.getSkill_Id(), offer.getStartDate(), offer.getEndDate(), offer.getDescription(), offer.isActive(), offer.getId() );
 	}
 
+	/**Borra de la base de datos la oferta asociada a una id
+	 * 
+	 * @param id: Id identificadora de la oferta
+	 */
 	public void deleteOffer(int id) {
-		this.jdbcTemplate.update("DELETE FROM Offer WHERE id = ?", id);
+		this.jdbcTemplate.update("DELETE FROM Offer WHERE offer_id = ?", id);
 	}
+
 }

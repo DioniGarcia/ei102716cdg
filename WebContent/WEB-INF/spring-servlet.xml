@@ -18,10 +18,14 @@
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
   </bean> 
+  
+  
     
   <!-- Scans -->  
   <context:component-scan base-package="es.uji.ei102716cdg.dao"/>  
   <context:component-scan base-package="es.uji.ei102716cdg.controller"/>  
+  <context:component-scan base-package="es.uji.ei102716cdg.validator"/> 
+  <context:component-scan base-package="es.uji.ei102716cdg.service"/>   
     
   <!-- Font de dades -->
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

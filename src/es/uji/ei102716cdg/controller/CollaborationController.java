@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import es.uji.ei102716cdg.dao.CollaborationDao;
 import es.uji.ei102716cdg.dao.OfferDao;
 import es.uji.ei102716cdg.dao.RequestDao;
-import es.uji.ei102716cdg.domain.Collaboration;
+import es.uji.ei102716cdg.domain.collaboration.Collaboration;
 
 
 @Controller
