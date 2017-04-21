@@ -1,0 +1,26 @@
+package es.uji.ei102716cdg.validator;
+
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+import es.uji.ei102716cdg.domain.skill.Skill;
+
+public class SkillValidator implements Validator {
+
+	@Override
+	public boolean supports(Class<?> cls) {
+		return Skill.class.equals(cls);
+	}
+
+	@Override
+	public void validate(Object obj, Errors errs) {
+		Skill skill = (Skill)obj;
+		
+		//Check skill id
+		if (skill.getName().trim().equals(""))
+			errs.rejectValue("name", "obligatorio",
+					"El nombre de la skill es obligatorio");
+
+	}
+	
+}
