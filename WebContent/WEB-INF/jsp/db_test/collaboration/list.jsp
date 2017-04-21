@@ -11,30 +11,26 @@
     <table>
         <tr>
             <th>ID</th>
-            <th>Fecha de Inicio</th>
-            <th>Fecha fin</th>
-            <th>Horas Totales</th>
-            <th>Comentarios</th>
+            <th>ID de la Oferta</th>
+            <th>ID de la Demanda</th>
             <th>Rating</th>
-            <th>IdOferta</th>
-            <th>IdDemanda</th>
+            <th>Horas totales</th>
+            <th>Comentarios</th>
             <th colspan="2">Acciones</th>
         </tr>
         <c:forEach items="${collaborations}" var="collaboration">
             <tr>
-                <td>${collaboration.id}</td> 
-                <td>${collaboration.startDate}</td>
-                <td>${collaboration.endDate}</td>
+                <td>${collaboration.collaboration_id}</td> 
+                <td>${collaboration.offer_id}</td>
+                <td>${collaboration.request_id}</td>
+                <td>${collaboration.rating}</td>
                 <td>${collaboration.totalHours}</td>
                 <td>${collaboration.comments}</td>
-                <td>${collaboration.rating}</td>
-                <td>${collaboration.offerId}</td>
-                <td>${collaboration.requestId}</td>
-                <td><a href="update/${collaboration.id}.html">Editar</a> 
-                <td><a href="delete/${collaboration.id}.html">Borrar</a>
+                <td><a href="update/${collaboration.collaboration_id}.html">Editar</a> 
+                <td><a href="delete/${collaboration.collaboration_id}.html">Borrar</a>
             </tr>
         </c:forEach>
     </table>
-    <a href="add.html">Editar</a> 
+    <a href="add.html">Añadir</a> 
 </body>
 </html>

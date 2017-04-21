@@ -16,6 +16,7 @@
             <th>Descripción</th>
             <th>Demandante</th>
             <th>Skill</th>
+            <th>Activa</th>
             <th colspan="2">Acciones</th>
         </tr>
         <c:forEach items="${requests}" var="request"> 
@@ -26,6 +27,7 @@
                 <td>${request.description}</td>
                 <td>${request.student_nick}</td>
                 <td>${request.skill_Id}</td>
+				<td>${request.active}</td>
                 <td><a href="update/${request.id}.html">Editar</a> 
                 <td><a href="delete/${request.id}.html">Borrar</a>
             </tr>

@@ -38,9 +38,6 @@
       	<li><a href="db_test/skill/add.html" >Añadir Skill</a></li>
 	  	<li><a href="db_test/skill/list.html">Listar Skill</a></li>
       </ul></li>
-      
-
-      
       <li>Oferta:
       <ul>
       	<li><a href="db_test/offer/add.html" >Añadir Oferta</a></li>
@@ -52,6 +49,8 @@
       	<li><a href="db_test/request/add.html" >Añadir Request</a></li>
 	  	<li><a href="db_test/request/list.html">Listar Request</a></li>
       </ul></li>
+      
+      
       
       <li>Colaboracion:
       <ul>

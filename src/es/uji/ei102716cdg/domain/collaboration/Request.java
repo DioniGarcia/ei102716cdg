@@ -10,8 +10,8 @@ public class Request extends Post{
 	//To String
 	@Override
 	public String toString() {
-		return "Request [id=" + getId() + ", student_nick=" + getStudent_nick() + ", skillId=" + getSkill_Id() + ", startDate=" + getStartDate()
-				+ ", endDate=" + getEndDate() + ", description=" + getDescription() + ", active=" + isActive() + "]";
+		return "Request [id=" + id + ", student_nick=" + student_nick + ", skillId=" + skill_Id + ", startDate=" + startDate
+				+ ", endDate=" + endDate + ", description=" + description + ", active=" + active + "]";
 	}
 	
 }

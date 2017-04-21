@@ -71,8 +71,13 @@ public class PostService implements PostServiceInterface {
 
 	@Override
 	public List<Request> getActiveRequests() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Request> requestList = new ArrayList<>();
+		for(Request request : requestDao.getRequests()){
+			if(request.isActive()){
+				requestList.add(request);
+			}
+		}
+		return requestList;
 	}
 
 	

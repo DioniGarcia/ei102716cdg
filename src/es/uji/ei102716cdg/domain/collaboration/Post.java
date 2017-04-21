@@ -9,13 +9,13 @@ import java.sql.Date;
 
 public class Post {
 	
-	private int  id;				//Identificador unico de la oferta
-	private String student_nick;	//Identificador del estudiante que realiza el post
-	private int  skill_Id;			//Identificador del Tipo de habilidad al que se refiere la oferta 
-	private Date startDate;			//Fecha de inicio de una posible colaboracion 
-	private Date endDate;			//Fecha limite para la colaboracion
-	private String description;		//Pequeña descripcion complementaria
-	private boolean active;			//Estado del Post (Activo o Inactivo)
+	int  id;				//Identificador unico de la oferta
+	String student_nick;	//Identificador del estudiante que realiza el post
+	int  skill_Id;			//Identificador del Tipo de habilidad al que se refiere la oferta 
+	Date startDate;			//Fecha de inicio de una posible colaboracion 
+	Date endDate;			//Fecha limite para la colaboracion
+	String description;		//Pequeña descripcion complementaria
+	boolean active;			//Estado del Post (Activo o Inactivo)
 	
 	//GETTERS & SETTERS
 	public int getId() {

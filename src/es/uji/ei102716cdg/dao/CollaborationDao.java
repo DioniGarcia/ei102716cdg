@@ -1,6 +1,10 @@
 package es.uji.ei102716cdg.dao;
 
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +13,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei102716cdg.domain.collaboration.Collaboration;
-
-import java.util.List;
-
-import java.sql.SQLException;
-import java.sql.ResultSet;
 
 
 @Repository
@@ -30,14 +29,12 @@ public class CollaborationDao {
 	private static final class CollaborationMapper implements RowMapper<Collaboration>{
 		public Collaboration mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Collaboration collaboration = new Collaboration();
-			collaboration.setId(rs.getInt("id"));
-			collaboration.setStartDate(rs.getDate("startDate"));
-			collaboration.setEndDate(rs.getDate("endDate"));
+			collaboration.setCollaboration_id(rs.getInt("collaboration_id"));
+			collaboration.setOffer_id(rs.getInt("offer_id"));
+			collaboration.setRequest_id(rs.getInt("request_id"));
+			collaboration.setRating(rs.getShort("rating"));
 			collaboration.setTotalHours(rs.getShort("totalHours"));
 			collaboration.setComments(rs.getString("comments"));
-			collaboration.setRating(rs.getShort("rating"));
-			collaboration.setOfferId(rs.getInt("offer_id"));
-			collaboration.setRequestId(rs.getInt("request_id"));
 			return collaboration;
 		}
 	}
@@ -47,35 +44,29 @@ public class CollaborationDao {
 				new CollaborationMapper());
 	}
 	
-	public Collaboration getCollaboration(int id) {
-		return this.jdbcTemplate.queryForObject("SELECT * FROM Collaboration WHERE id = ?",
-				new Object[] {id}, new CollaborationMapper());
+	public Collaboration getCollaboration(int collaboration_id) {
+		return this.jdbcTemplate.queryForObject("SELECT * FROM Collaboration WHERE collaboration_id = ?",
+				new Object[] {collaboration_id}, new CollaborationMapper());
 	}
 	
 	public void addCollaboration(Collaboration collaboration) {
-		this.jdbcTemplate.update("insert into Collaboration(startDate, endDate, "
-				+ "totalHours, comments, rating, offer_id, request_id) "
-				+ "values(?, ?, ?, ?, ?, ?, ?)",
-				collaboration.getStartDate(), collaboration.getEndDate() , collaboration.getTotalHours(), 
-				collaboration.getComments(), collaboration.getRating(), collaboration.getOfferId(),collaboration.getRequestId());
+		this.jdbcTemplate.update("insert into Collaboration( offer_id, request_id, rating, totalHours, comments )"
+				+ "values(?, ?, ?, ?, ?)",
+				collaboration.getOffer_id(), collaboration.getRequest_id(),collaboration.getRating(), collaboration.getTotalHours(), collaboration.getComments());
 	}
 
 	public void updateCollaboration(Collaboration collaboration) {
 		this.jdbcTemplate.update("update collaboration "
-				+ "set startDate = ?,"
-				+ " endDate = ?,"
-				+ " totalHours = ?,"
-				+ " comments = ?,"
+				+ "set offer_id = ?,"
+				+ " request_id = ?,"
 				+ " rating = ?,"
-				+ " offer_id = ?,"
-				+ " request_id = ?"
-				+ " WHERE id = ?",
-				collaboration.getStartDate(), collaboration.getEndDate() , 
-				collaboration.getTotalHours(),collaboration.getComments(), collaboration.getRating(), 
-				collaboration.getOfferId(),collaboration.getRequestId(), collaboration.getId());
+				+ " totalHours = ?,"
+				+ " comments = ?"
+				+ " WHERE collaboration_id = ?",
+				collaboration.getOffer_id(), collaboration.getRequest_id(), collaboration.getRating(), collaboration.getTotalHours(), collaboration.getComments(), collaboration.getCollaboration_id());
 	}
 
-	public void deleteCollaboration(int id) {
-		this.jdbcTemplate.update("DELETE FROM Collaboration WHERE id = ?", id);
+	public void deleteCollaboration(int collaboration_id) {
+		this.jdbcTemplate.update("DELETE FROM Collaboration WHERE collaboration_id = ?", collaboration_id);
 	}
 }

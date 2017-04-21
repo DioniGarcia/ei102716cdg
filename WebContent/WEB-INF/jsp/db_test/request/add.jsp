@@ -66,6 +66,16 @@
 				</td>
             </tr>
             
+             <tr>
+            	<td><hr/></td> <!-- Linea separadora -->
+            	<td><hr/></td>
+            </tr>
+            
+            <tr>
+                <td><form:label path="active">Activa</form:label></td>
+                <td><form:checkbox path="active"></form:checkbox></td>
+            </tr>
+            
             <tr></tr>
             
             <tr>

@@ -16,6 +16,7 @@
             <th>Descripción</th>
             <th>Ofertante</th>
             <th>Skill</th>
+            <th>Activa</th>
             <th colspan="2">Acciones</th>
         </tr>
         <c:forEach items="${offers}" var="offer"> 
@@ -26,6 +27,7 @@
                 <td>${offer.description}</td>
                 <td>${offer.student_nick}</td>
                 <td>${offer.skill_Id}</td>
+                <td>${offer.active}</td>
                 <td><a href="update/${offer.id}.html">Editar</a> 
                 <td><a href="delete/${offer.id}.html">Borrar</a>
             </tr>

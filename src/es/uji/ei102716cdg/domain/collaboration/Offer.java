@@ -10,8 +10,8 @@ public class Offer extends Post{
 	//To String
 	@Override
 	public String toString() {
-		return "Offer [id=" + getId() + ", student_nick=" + getStudent_nick() + ", skillId=" + getSkill_Id() + ", startDate=" + getStartDate()
-				+ ", endDate=" + getEndDate() + ", description=" + getDescription() + ", active=" + isActive() + "]";
+		return "Offer [id=" + id + ", student_nick=" + student_nick + ", skillId=" + skill_Id + ", startDate=" + startDate
+				+ ", endDate=" + endDate + ", description=" + description + ", active=" + active + "]";
 	}
 	
 }

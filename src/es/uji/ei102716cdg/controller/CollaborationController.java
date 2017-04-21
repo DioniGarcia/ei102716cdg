@@ -10,79 +10,71 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei102716cdg.dao.CollaborationDao;
-import es.uji.ei102716cdg.dao.OfferDao;
-import es.uji.ei102716cdg.dao.RequestDao;
 import es.uji.ei102716cdg.domain.collaboration.Collaboration;
+import es.uji.ei102716cdg.service.PostServiceInterface;
 
 
 @Controller
-@RequestMapping("/collaboration")
+@RequestMapping("db_test/collaboration")
 public class CollaborationController {
 	private CollaborationDao collaborationDao;
-	private OfferDao offerDao;
-	private RequestDao requestDao;
+	private PostServiceInterface postService;
+
+	@Autowired
+	public void setPostService(PostServiceInterface postService){
+		this.postService = postService;
+	}
 	
 	@Autowired
 	public void setCollaborationDao(CollaborationDao collaborationDao){
 		this.collaborationDao=collaborationDao;
 	}
 	
-	@Autowired
-	public void setOfferDao(OfferDao offerDao){
-		this.offerDao=offerDao;
-	}
-	
-	@Autowired
-	public void setRequestDao(RequestDao requestDao){
-		this.requestDao=requestDao;
-	}
-	
 	@RequestMapping("/list")
 	public String listCollaborations(Model model){
 		model.addAttribute("collaborations", collaborationDao.getCollaborations());
-		return "collaboration/list";
+		return "db_test/collaboration/list";
 	}
 	
 	@RequestMapping("/add")
 	public String addCollaboration(Model model){
 		model.addAttribute("collaboration",new Collaboration());
-		model.addAttribute("offers",offerDao.getOffers());
-		model.addAttribute("requests",requestDao.getRequests());
-		return "collaboration/add";
+		model.addAttribute("offers", postService.getActiveOffers());
+		model.addAttribute("requests",postService.getActiveRequests());
+		return "db_test/collaboration/add";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String processAddSubmit(@ModelAttribute("collaboration") Collaboration collaboration,
 													BindingResult bindingResult){
 		if(bindingResult.hasErrors())
-			return "collaboration/add";
+			return "db_test/collaboration/add";
 		collaborationDao.addCollaboration(collaboration);
 		return "redirect:list.html";
 	}
 	
-	@RequestMapping(value="/update/{id}", method=RequestMethod.GET)
-	public String editCollaboration(Model model, @PathVariable int id){
-		model.addAttribute("collaboration", collaborationDao.getCollaboration(id));
-		model.addAttribute("offers",offerDao.getOffers());
-		model.addAttribute("requests",requestDao.getRequests());
-		return "collaboration/update";
+	@RequestMapping(value="/update/{collaboration_id}", method=RequestMethod.GET)
+	public String editCollaboration(Model model, @PathVariable int collaboration_id){
+		model.addAttribute("collaboration", collaborationDao.getCollaboration(collaboration_id));
+		model.addAttribute("offers", postService.getActiveOffers());
+		model.addAttribute("requests",postService.getActiveRequests());
+		return "db_test/collaboration/update";
 	}
 	
-	@RequestMapping(value="/update/{id}", method = RequestMethod.POST)
-	public String processUpdateSubmit(@PathVariable String id,
+	@RequestMapping(value="/update/{collaboration_id}", method = RequestMethod.POST)
+	public String processUpdateSubmit(@PathVariable int collaboration_id,
 								@ModelAttribute("collaboration") Collaboration collaboration,
 								BindingResult bindingResult){
 		if (bindingResult.hasErrors())
-			return "collaboration/update";
+			return "db_test/collaboration/update";
 		collaborationDao.updateCollaboration(collaboration);
 		return "redirect:../list.html";
 	}
 	
-	@RequestMapping(value="/delete/{id}")
-	public String processDelete(@PathVariable int id){
-		collaborationDao.deleteCollaboration(id);
+	@RequestMapping(value="/delete/{collaboration_id}")
+	public String processDelete(@PathVariable int collaboration_id){
+		collaborationDao.deleteCollaboration(collaboration_id);
 		return "redirect:../list.html";
 	}
 	
 }
-
