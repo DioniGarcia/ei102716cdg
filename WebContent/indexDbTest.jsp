@@ -49,14 +49,25 @@
       	<li><a href="db_test/request/add.html" >Añadir Request</a></li>
 	  	<li><a href="db_test/request/list.html">Listar Request</a></li>
       </ul></li>
-      
-      
-      
+     
       <li>Colaboracion:
       <ul>
       	<li><a href="db_test/collaboration/add.html" >Añadir Colaboracion</a></li>
 	  	<li><a href="db_test/collaboration/list.html">Listar Colaboracion</a></li>
       </ul></li>  
+      
+      <li>Chat:
+      <ul>
+      	<li><a href="db_test/chat/add.html" >Añadir Chat</a></li>
+	  	<li><a href="db_test/chat/list.html">Listar Chats</a></li>
+      </ul></li>  
+      
+      <li>Message:
+      <ul>
+      	<li><a href="db_test/message/add.html" >Añadir Mensaje</a></li>
+	  	<li><a href="db_test/message/list.html">Listar Mensajes</a></li>
+      </ul></li>  
+      
       
       <li>
       <ul>

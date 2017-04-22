@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.uji.ei102716cdg.dao.BanDao;
+import es.uji.ei102716cdg.dao.ChatDao;
 import es.uji.ei102716cdg.dao.OfferDao;
 import es.uji.ei102716cdg.dao.RequestDao;
 import es.uji.ei102716cdg.dao.SkillDao;
 import es.uji.ei102716cdg.dao.StudentDao;
+import es.uji.ei102716cdg.domain.chat.Chat;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.collaboration.Request;
 import es.uji.ei102716cdg.domain.skill.Skill;
@@ -24,6 +26,9 @@ public class PostService implements PostServiceInterface {
 	
 	@Autowired
 	BanDao banDao;
+	
+	@Autowired
+	ChatDao chatDao;
 	
 	@Autowired
 	SkillDao skillDao;
@@ -80,6 +85,14 @@ public class PostService implements PostServiceInterface {
 		return requestList;
 	}
 
-	
+	@Override
+	public List<Chat> getChats() {
+		List<Chat> chatList = new ArrayList<Chat>();
+		
+		for(Chat chat : chatDao.getChats()){
+			chatList.add(chat);
+		}
+		return chatList;
+	}
 
 }
