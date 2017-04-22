@@ -83,7 +83,7 @@ private JdbcTemplate jdbcTemplate;
 				+ " sendingDate = ?,"
 				+ " active = ?"
 				+ " where message_id = ?",
-				message.getChat_id(), message.getSender_nick(), message.getContent(), message.getSendingDate(), message.isActive(), message.getChat_id() );
+				message.getChat_id(), message.getSender_nick(), message.getContent(), message.getSendingDate(), message.isActive(), message.getMessage_id() );
 	}
 
 	/**Borra de la base de datos el mensaje asociado a la id dada
