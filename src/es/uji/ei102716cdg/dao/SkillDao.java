@@ -1,6 +1,10 @@
 package es.uji.ei102716cdg.dao;
 
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +13,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei102716cdg.domain.skill.Skill;
-import java.util.List;
-
-import java.sql.SQLException;
-import java.sql.ResultSet;
 
 
 @Repository
@@ -56,7 +56,7 @@ public class SkillDao {
 	 * @return 	lista con una skill en todos los niveles
 	 */
 	public List<Skill> getSkillAllLevels(String name) {
-		return this.jdbcTemplate.query("select skill_id, name, description, level, active from Skill Skill WHERE name = ?",
+		return this.jdbcTemplate.query("select skill_id, name, description, level, active from Skill WHERE name = ?",
 				new Object[] {name}, new SkillMapper());
 	}
 	
@@ -104,14 +104,5 @@ public class SkillDao {
 	public void deleteSkill(int skill_id) {
 		this.jdbcTemplate.update("DELETE FROM Skill WHERE skill_id = ?", skill_id);
 	}
-	
-	/**Borra de la base de datos una skill en todos sus niveles
-	 * 
-	 * @param name: Nombre de la skill a borrar
-	 */
-	public void deleteSkillAllLevels(String name) {
-		this.jdbcTemplate.update("DELETE FROM Skill WHERE name = ?", name);
-	}
-	
 	
 }

@@ -1,5 +1,7 @@
 package es.uji.ei102716cdg.controller;
 
+import java.io.UnsupportedEncodingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,7 +74,17 @@ public class SkillController {
 	
 	@RequestMapping(value="/delete/{name}")
 	public String processDelete(@PathVariable String name){
-		skillDao.deleteSkillAllLevels(name);
+		for (Skill skill : skillDao.getSkills()){
+			String nameUTF8 = "";
+			try {
+				nameUTF8 = new String(name.getBytes("ISO-8859-1"), "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			if(skill.getName().equals(nameUTF8)){
+				skillDao.deleteSkill(skill.getSkill_id());
+			}
+		}
 		return "redirect:../list.html";
 	}
 	
