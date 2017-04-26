@@ -52,6 +52,12 @@ public class OfferDao {
 				new OfferMapper() );
 	}
 	
+	public List<Offer> getRecentOffers() {
+		return this.jdbcTemplate.query("select offer_id, student_nick, skill_id, startDate, endDate, description, active from Offer"
+										+ " ORDER BY startDate DESC LIMIT 6",
+				new OfferMapper() );
+	}
+	
 	/**Busca en la base de datos la oferta asociada a una id
 	 * 
 	 * @param 	id
@@ -97,6 +103,17 @@ public class OfferDao {
 	 */
 	public void deleteOffer(int id) {
 		this.jdbcTemplate.update("DELETE FROM Offer WHERE offer_id = ?", id);
+	}
+	
+	/** Obtener las ofertas publicadas por un usuario
+	 * 
+	 *  @param nick: nombre de usuario del que se quiere consultar
+	 *  @return lista de ofertas
+	 */
+	
+	public List<Offer> getOffersByNick(String nick){
+		return this.jdbcTemplate.query("SELECT * FROM Offer WHERE student_nick = ?",
+				new Object[] {nick}, new OfferMapper());
 	}
 
 }

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import es.uji.ei102716cdg.domain.collaboration.Request;
 
 import java.util.List;
-
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
@@ -97,6 +96,17 @@ public class RequestDao {
 	 */
 	public void deleteRequest(int id) {
 		this.jdbcTemplate.update("DELETE FROM Request WHERE request_id = ?", id);
+	}
+	
+	/** Obtener las demandas publicadas por un usuario
+	 * 
+	 *  @param nick: nombre de usuario del que se quiere consultar
+	 *  @return lista de demandas
+	 */
+	
+	public List<Request> getRequestsByNick(String nick){
+		return this.jdbcTemplate.query("SELECT * FROM Request WHERE nick = ?",
+				new Object[] {nick}, new RequestMapper());
 	}
 
 }

@@ -24,6 +24,8 @@
   <!-- Scans -->  
   <context:component-scan base-package="es.uji.ei102716cdg.dao"/>  
   <context:component-scan base-package="es.uji.ei102716cdg.controller"/>  
+  <context:component-scan base-package="es.uji.ei102716cdg.controller.my"/>  
+  <context:component-scan base-package="es.uji.ei102716cdg.controller.all"/>  
   <context:component-scan base-package="es.uji.ei102716cdg.validator"/> 
   <context:component-scan base-package="es.uji.ei102716cdg.service"/>   
     
@@ -40,5 +42,13 @@
   
   <mvc:resources mapping="/resources/**" location="/resources/" />
   <mvc:annotation-driven />
+  
+  <mvc:interceptors>
+  	<mvc:interceptor>
+            <mvc:mapping path="/my/**"/>
+            <bean class="es.uji.ei102716cdg.controller.my.NotLoggedInterceptor"/>
+    </mvc:interceptor>
+  	
+  </mvc:interceptors>
 
 </beans>
