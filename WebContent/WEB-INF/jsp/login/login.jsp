@@ -9,7 +9,7 @@
 	   <form class="form-horizontal">
 			<div class="panel-default center">
                 
-                <div class="panel-body">
+                <div class="panel-body ">
                     <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <div>

@@ -41,7 +41,7 @@ body, html {
 }
 
 .bgimg-1 {
-  background-image: url("bg.jpg");
+  background-image: url("resources/img/bg.jpg");
   height: 100%;
 }
 

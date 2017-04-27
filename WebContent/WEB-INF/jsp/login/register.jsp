@@ -9,7 +9,7 @@
 	   <form class="form-horizontal">
 			<div class="panel-default center">
                 
-                <div class="panel-body">
+                <div class="panel-body ">
                     <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <div>
@@ -34,11 +34,11 @@
                 </div>
                 <div class="split-container center-content-h">
                 	<div class="split-item-h ">
-                		<a href="login/forget_passwd.jsp" class="link">¿Has olvidado la contraseña?</a>
+                		<a href="http://www.jquery2dotnet.com" class="link">¿Has olvidado la contraseña?</a>
 					</div>
 					
 					<div class="split-item-h ">
-						<a href="login/register.jsp" class="link">Registra</a>
+						<a href="http://www.jquery2dotnet.com" class="link">Registra</a>
 					</div>
 				</div>
             </div>
