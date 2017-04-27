@@ -10,10 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult; 
 import org.springframework.web.bind.annotation.ModelAttribute; 
 import org.springframework.web.bind.annotation.RequestMapping; 
-import org.springframework.web.bind.annotation.RequestMethod; 
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import es.uji.ei102716cdg.dao.AdminDao;
 import es.uji.ei102716cdg.dao.UserDao;
 import es.uji.ei102716cdg.domain.user.User;
+import es.uji.ei102716cdg.util.Encoding;
 
 
 @Controller
@@ -22,8 +24,17 @@ public class LoginController {
 	private UserDao userDao;
 	
 	@Autowired
+	private AdminDao adminDao;
+	
+	
+	@Autowired
 	public void setUserDao(UserDao userDao){
 		this.userDao=userDao;
+	}
+	
+	@Autowired
+	public void setAdminDao(AdminDao adminDao){
+		this.adminDao=adminDao;
 	}
 	
 	@RequestMapping("/login")
@@ -40,26 +51,33 @@ public class LoginController {
 		if (bindingResult.hasErrors()) {
 			return "login";
 		}
-		String nickUTF8 = "";
-		try {
-			nickUTF8 = new String(user.getNick().getBytes("ISO-8859-1"), "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		user.setNick(nickUTF8);
 		
-		String passUTF8 = "";
-		try {
-			passUTF8 = new String(user.getPasswd().getBytes("ISO-8859-1"), "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		user.setPasswd(passUTF8);
+		user.setNick(Encoding.convertToUTF8(user.getNick()));
+		user.setPasswd(Encoding.convertToUTF8(user.getPasswd()));
+		
 	       // Comprova que el login siga correcte 
 		// intentant carregar les dades de l'usuari 
 		if (! userDao.existsUsername(user.getNick())) {
-			bindingResult.rejectValue("nick", "userNotFound", "User not found"); 
-			return "login";
+			if( ! adminDao.existsAdmin(user.getNick())) {
+				bindingResult.rejectValue("nick", "userNotFound", "User not found"); 
+				return "login";
+			}
+			user = adminDao.loadAdminByUsername(user.getNick(), user.getPasswd());
+			if (user == null) {
+				bindingResult.rejectValue("passwd", "badpw", "Contrasenya incorrecta"); 
+				return "login";
+			}
+			
+			session.setAttribute("admin", user); 
+			
+			String nextURL = (String) session.getAttribute("lastURL");
+			if (nextURL != null)
+				return "redirect:" + nextURL;
+			
+			// Torna a la pagina principal
+			return "redirect:admin/index.html";
+			
+			
 		}
 		
 		user = userDao.loadUserByUsername(user.getNick(),user.getPasswd()); 
