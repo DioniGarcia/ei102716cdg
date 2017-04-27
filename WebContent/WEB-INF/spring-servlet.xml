@@ -28,6 +28,7 @@
   <context:component-scan base-package="es.uji.ei102716cdg.controller.all"/>  
   <context:component-scan base-package="es.uji.ei102716cdg.validator"/> 
   <context:component-scan base-package="es.uji.ei102716cdg.service"/>   
+  <context:component-scan base-package="es.uji.ei102716cdg.api"/>   
     
   <!-- Font de dades -->
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

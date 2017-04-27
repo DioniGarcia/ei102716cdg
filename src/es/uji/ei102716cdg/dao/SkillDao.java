@@ -25,6 +25,12 @@ public class SkillDao {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
+	private static final class SearchMapper implements RowMapper<String>{
+		public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+			
+			return rs.getString("name");
+		}
+	}
 	
 	private static final class SkillMapper implements RowMapper<Skill>{
 		public Skill mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -41,7 +47,7 @@ public class SkillDao {
 	
 	/**Genera una lista con los tipos de habilidad (skill) de la base de datos
 	 * 
-	 * La lista contiene, para cada skill: su id, nombre, descripción, nivel y su estado (activo o no, en el sistema) 
+	 * La lista contiene, para cada skill: su id, nombre, descripciï¿½n, nivel y su estado (activo o no, en el sistema) 
 	 * 
 	 * @return Lista de skills
 	 * */
@@ -104,5 +110,12 @@ public class SkillDao {
 	public void deleteSkill(int skill_id) {
 		this.jdbcTemplate.update("DELETE FROM Skill WHERE skill_id = ?", skill_id);
 	}
+	
+	public List<String> searchSkill(String name) {
+		name += ":*";
+		return this.jdbcTemplate.query("select DISTINCT name FROM Skill "
+				+ " WHERE (to_tsvector(name) @@ (to_tsquery(?))) ",
+				new Object[] {name}, new SearchMapper());
+	} 
 	
 }

@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8" />
 <title>Skill Sharing - Añadir Oferta</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
 </head>
 <body>
     <h2>Añadir Oferta</h2>
@@ -73,5 +75,63 @@
             </tr>
         </table>
     </form:form>
+    <select id="prueba">
+  		<option value="3620194" selected="selected">select2/select2</option>
+	</select>
+    
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-3.2.1.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script type="text/javascript">
+	var delay = (function(){
+	  var timer = 0;
+	  return function(callback, ms){
+	    clearTimeout (timer);
+	    timer = setTimeout(callback, ms);
+	  };
+	})();
+	
+	$('#test').keyup(function() {
+	    delay(function(){
+	      
+	    }, 1000 );
+	});
+	
+	var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
+
+	$("#prueba").select2({
+		  width: "180px",
+		  ajax: {
+		    url: "http://localhost:8080/ei102716cdg/api/skill/search",
+		    dataType: 'json',
+		    delay: 250,
+		    data: function (params) {
+		      return {
+		        name: params.term, // search term
+		      };
+		    },
+		    processResults: function (data, params) {
+
+		      return {
+		        results: data
+		      };
+		    },
+		    cache: true
+		  },
+		  // escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+		  minimumInputLength: 1,
+		  //templateResult: formatRepo, // omitted for brevity, see the source of this page
+		  //templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+		});
+	
+	axios.get('http://localhost:8080/ei102716cdg/api/skill/all?id=5')
+	.then(function (response) {
+	  console.log(response.data);
+	})
+	.catch(function (error) {
+	  console.log(error);
+	});
+
+</script>
 </html>
