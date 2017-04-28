@@ -5,13 +5,27 @@
 
 <t:paginabasica title="SkillSharing">
 	<jsp:body>
-		<h2>SkillSharing</h2>
 		
-		<li>LogIn:
-	      <ul>
-	      	<li><a href="login.html" >Página Login</a></li>
-	      </ul>
-	    </li>  
+		<div class="split-container">
+		
+			<div class="split-item" >
+				<div align="center"  >
+					<h2 class="">Ofertas</h2>
+					<t:offerbox/>
+					<t:offerbox/>
+					<t:offerbox/>
+				</div>
+				
+			</div>
+			
+			<div class="split-item" align="center">
+				<h2>Demandas</h2>
+				<t:offerbox/>
+				<t:offerbox/>
+				<t:offerbox/>
+			</div>
+		
+		</div>
 		
 	</jsp:body>
 </t:paginabasica>

@@ -43,7 +43,6 @@
 	opacity: 0.9;
 	margin-top:30px;
 	flex: 3;
-	
 }
 
 .btn-login {
@@ -66,30 +65,11 @@
 	border-radius: 25px;
 	opacity: 1.0;
 }
-"WebContent/WEB-INF/tags/navegacio.tag"
+
 .link {
 	font-size: 15px;
 	color: #fff;
 	text-align: center;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
 
 .round-shadow {
@@ -98,4 +78,43 @@
     background-repeat: no-repeat;
     background: #111;
     opacity: 0.5;
+}
+
+.postbox {
+	height: 135px;
+	background: #fff;
+	border-top: 1px solid;
+	border-color: #ece8ec;
+}
+
+.post-title {
+	font-size: 19px;
+	color: #111;
+	text-align: left;
+	padding-left: 30px;
+}
+
+.post-description {
+	font-size: 14px;
+	color: #111;
+	text-align: left;
+	padding-left: 30px;
+	padding-right: 10px;
+}
+
+.post-date {
+	font-size: 11px;
+	color: #111;
+	opacity: 0.6;
+	text-align: right;
+	padding-right: 10px;
+}
+
+.img-circle-thumbnail {
+   border-radius: 50%;
+   
+   padding: 2px;
+   line-height: 1.42857143;
+   background-color: #eafff3;
+   border: 4px double #ddd;
 }
