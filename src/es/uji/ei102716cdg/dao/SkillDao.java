@@ -118,4 +118,11 @@ public class SkillDao {
 				new Object[] {name}, new SearchMapper());
 	} 
 	
+	public List<Skill> skillLevels(String name) {
+		name += ":*";
+		return this.jdbcTemplate.query("select * FROM Skill "
+				+ " WHERE (to_tsvector(name) @@ (plainto_tsquery(?))) ",
+				new Object[] {name}, new SkillMapper());
+	}
+	
 }

@@ -42,6 +42,7 @@
   <context:property-placeholder location="classpath:jdbc.properties"/>
   
   <mvc:resources mapping="/resources/**" location="/resources/" />
+  <mvc:resources mapping="/css/**" location="/css/" />
   <mvc:annotation-driven />
   
   <mvc:interceptors>
