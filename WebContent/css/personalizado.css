@@ -1,10 +1,120 @@
-.imagenDeFondo {
-	background-image: url("src/WebContent/resources/img/background.jpg");
-  	background-repeat: no-repeat;
-	background-position: center center;
-	background-attachment: fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+.semitrasparente-input {
+   background-color: rgba(255, 255, 255, 20);
+   border:none;
+}
+
+.valign  {
+	display: flex;
+	align-items: center
+}
+
+.split-container {
+  display: flex;
+}
+
+.split-item {
+  flex: 1;
+}
+
+.split-item-h {
+  flex: 1;
+}
+
+.split-item-v{
+  flex: 1;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.center-content-v{
+	display: flex;
+	align-items: center;
+}
+
+.center-content-h{
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+}
+
+
+.panel-default {
+	width: 400px;	
+	opacity: 0.9;
+	margin-top:30px;
+	flex: 3;
+}
+
+.btn-login {
+	width: 100%;	
+	
+	display: inline-block;
+	
+	font-size: 18px;
+	color: #fff;
+	opacity: 
+	font-weight: normal;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	
+	cursor: pointer;
+	background-color: #111;
+	border: 2px solid;
+	border-radius: 25px;
+	opacity: 1.0;
+}
+
+.link {
+	font-size: 15px;
+	color: #fff;
+	text-align: center;
+}
+
+.round-shadow {
+    border-radius: 150px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background: #111;
+    opacity: 0.5;
+}
+
+.postbox {
+	height: 135px;
+	background: #fff;
+	border-top: 1px solid;
+	border-color: #ece8ec;
+}
+
+.post-title {
+	font-size: 19px;
+	color: #111;
+	text-align: left;
+	padding-left: 30px;
+}
+
+.post-description {
+	font-size: 14px;
+	color: #111;
+	text-align: left;
+	padding-left: 30px;
+	padding-right: 10px;
+}
+
+.post-date {
+	font-size: 11px;
+	color: #111;
+	opacity: 0.6;
+	text-align: right;
+	padding-right: 10px;
+}
+
+.img-circle-thumbnail {
+   border-radius: 50%;
+   
+   padding: 2px;
+   line-height: 1.42857143;
+   background-color: #eafff3;
+   border: 4px double #ddd;
 }
