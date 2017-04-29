@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import es.uji.ei102716cdg.dao.SkillDao;
 import es.uji.ei102716cdg.domain.skill.Skill;
 import es.uji.ei102716cdg.domain.skill.SkillWrapper;
+import es.uji.ei102716cdg.util.Encoding;
 import es.uji.ei102716cdg.validator.SkillValidator;
 
 @Controller
@@ -75,13 +76,7 @@ public class SkillController {
 	@RequestMapping(value="/delete/{name}")
 	public String processDelete(@PathVariable String name){
 		for (Skill skill : skillDao.getSkills()){
-			String nameUTF8 = "";
-			try {
-				nameUTF8 = new String(name.getBytes("ISO-8859-1"), "UTF-8");
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-			if(skill.getName().equals(nameUTF8)){
+			if(skill.getName().equals(Encoding.convertToUTF8(name))){
 				skillDao.deleteSkill(skill.getSkill_id());
 			}
 		}

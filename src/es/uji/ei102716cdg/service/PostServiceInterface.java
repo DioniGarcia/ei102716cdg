@@ -6,6 +6,7 @@ import es.uji.ei102716cdg.domain.chat.Chat;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.collaboration.Request;
 import es.uji.ei102716cdg.domain.skill.Skill;
+import es.uji.ei102716cdg.domain.user.User;
 
 public interface PostServiceInterface {
 	
@@ -38,5 +39,19 @@ public interface PostServiceInterface {
 	 * @return listado de chats
 	 */
 	public List<Chat> getChats();
+	
+	/** Devuelve las skills asociadas a una lista de ofertas
+	 * 
+	 * @param list: list de ofertas 
+	 * @return lista de skills
+	 */
+	public List<Skill> getSkillsByOffers(List<Offer> list);
+	
+	public List<User> getUsersByOffers(List<Offer> list);
+	
+	public List<Offer> getRecentOffers();
+	
+	
+	
 	
 }

@@ -17,6 +17,7 @@ import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.collaboration.Request;
 import es.uji.ei102716cdg.domain.skill.Skill;
 import es.uji.ei102716cdg.domain.user.Student;
+import es.uji.ei102716cdg.domain.user.User;
 
 @Service
 public class PostService implements PostServiceInterface {
@@ -54,7 +55,7 @@ public class PostService implements PostServiceInterface {
 	@Override
 	public List<Skill> getActiveSkills() {
 		
-		List<Skill> skillList = new ArrayList<>();
+		List<Skill> skillList = new ArrayList<Skill>();
 		for(Skill skill : skillDao.getSkills()){
 			if(skill.isActive()){
 				skillList.add(skill);
@@ -65,7 +66,7 @@ public class PostService implements PostServiceInterface {
 	
 	@Override
 	public List<Offer> getActiveOffers() {
-		List<Offer> offerList = new ArrayList<>();
+		List<Offer> offerList = new ArrayList<Offer>();
 		for(Offer offer : offerDao.getOffers()){
 			if(offer.isActive()){
 				offerList.add(offer);
@@ -76,7 +77,7 @@ public class PostService implements PostServiceInterface {
 
 	@Override
 	public List<Request> getActiveRequests() {
-		List<Request> requestList = new ArrayList<>();
+		List<Request> requestList = new ArrayList<Request>();
 		for(Request request : requestDao.getRequests()){
 			if(request.isActive()){
 				requestList.add(request);
@@ -94,5 +95,31 @@ public class PostService implements PostServiceInterface {
 		}
 		return chatList;
 	}
+
+	@Override
+	public List<Skill> getSkillsByOffers(List<Offer> list) {
+		List<Skill> listSkill = new ArrayList<Skill>();
+		for (Offer offer : list){
+			listSkill.add(skillDao.getSkill(offer.getSkill_Id()));
+		}
+		
+		return listSkill;
+	}
+	
+	@Override
+	public List<User> getUsersByOffers(List<Offer> list) {
+		List<User> listUser = new ArrayList<User>();
+		for (Offer offer : list){
+			listUser.add(studentDao.getStudent(offer.getStudent_nick()));
+		}
+		return listUser;
+	}
+	@Override
+	public List<Offer> getRecentOffers(){
+		return offerDao.getRecentOffers();
+	}
+
+
+	
 
 }

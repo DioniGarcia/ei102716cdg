@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 import es.uji.ei102716cdg.domain.user.User;
 
 @Repository
-public class UserProvider implements UserDao {
+public class UserProvider implements UserDao, AdminDao {
 
 	private JdbcTemplate jdbcTemplate;
 	
@@ -52,10 +52,33 @@ public class UserProvider implements UserDao {
 		}
 		
 	}
-
+	
+	@Override
+	public User loadAdminByUsername(String username, String password) {
+		// Get user from the database
+		User user = getAdminFromDatabase(username);
+		// Check if the user is in the database
+		if ( user == null ){
+			return null; 
+		}
+		// If it is, check password
+		//if (passwordEncoder().matches(password, user.getPasswd())){
+		if ( password.equals( user.getPasswd() ) ){
+			user.setPasswd("");
+			return user;
+		} else {
+			return null;
+		}
+		
+	}
 
 	public User getUserFromDatabase(String username){
 		return this.jdbcTemplate.queryForObject("SELECT * FROM Student WHERE nick = ?",
+				new Object[] {username}, new UserMapper());
+	}
+	
+	public User getAdminFromDatabase(String username){
+		return this.jdbcTemplate.queryForObject("SELECT * FROM Administrator WHERE nick = ?",
 				new Object[] {username}, new UserMapper());
 	}
 	
@@ -75,4 +98,16 @@ public class UserProvider implements UserDao {
 		}
 		
 	}
+	@Override
+	public boolean existsAdmin(String username) {
+		try {
+			this.jdbcTemplate.queryForObject("SELECT * FROM Administrator WHERE nick = ?",
+				new Object[] {username}, new UserMapper());
+			return true;
+		} catch (EmptyResultDataAccessException  e){
+			return false;
+		}
+		
+	}
+	
 }
