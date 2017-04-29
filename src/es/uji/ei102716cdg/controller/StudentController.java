@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei102716cdg.dao.StudentDao;
-import es.uji.ei102716cdg.domain.Student;
+import es.uji.ei102716cdg.domain.user.Student;
+import es.uji.ei102716cdg.validator.StudentValidator;
 
 
 @Controller
-@RequestMapping("/student")
+@RequestMapping("db_test/student")
 public class StudentController {
 	private StudentDao studentDao;
 	
@@ -26,43 +27,47 @@ public class StudentController {
 	@RequestMapping("/list")
 	public String listStudents(Model model){
 		model.addAttribute("students", studentDao.getStudents());
-		return "student/list";
+		return "db_test/student/list";
 	}
 	
 	@RequestMapping("/add")
 	public String addStudent(Model model){
 		model.addAttribute("student",new Student());
-		return "student/add";
+		return "db_test/student/add";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String processAddSubmit(@ModelAttribute("student") Student student,
 													BindingResult bindingResult){
+		StudentValidator studentValidator = new StudentValidator();
+		studentValidator.validate(student, bindingResult);
 		if(bindingResult.hasErrors())
-			return "student/add";
+			return "db_test/student/add";
 		studentDao.addStudent(student);
 		return "redirect:list.html";
 	}
 	
-	@RequestMapping(value="/update/{userName}", method=RequestMethod.GET)
-	public String editStudent(Model model, @PathVariable String userName){
-		model.addAttribute("student", studentDao.getStudent(userName));
-		return "student/update";
+	@RequestMapping(value="/update/{nick}", method=RequestMethod.GET)
+	public String editStudent(Model model, @PathVariable String nick){
+		model.addAttribute("student", studentDao.getStudent(nick));
+		return "db_test/student/update";
 	}
 	
-	@RequestMapping(value="/update/{userName}", method = RequestMethod.POST)
-	public String processUpdateSubmit(@PathVariable String userName,
+	@RequestMapping(value="/update/{nick}", method = RequestMethod.POST)
+	public String processUpdateSubmit(@PathVariable String nick,
 								@ModelAttribute("student") Student student,
 								BindingResult bindingResult){
+		StudentValidator studentValidator = new StudentValidator();
+		studentValidator.validate(student, bindingResult);
 		if (bindingResult.hasErrors())
-			return "student/update";
+			return "db_test/student/update";
 		studentDao.updateStudent(student);
 		return "redirect:../list.html";
 	}
 	
-	@RequestMapping(value="/delete/{userName}")
-	public String processDelete(@PathVariable String userName){
-		studentDao.deleteStudent(userName);
+	@RequestMapping(value="/delete/{nick}")
+	public String processDelete(@PathVariable String nick){
+		studentDao.deleteStudent(nick);
 		return "redirect:../list.html";
 	}
 	
