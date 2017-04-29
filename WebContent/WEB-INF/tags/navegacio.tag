@@ -8,7 +8,7 @@
   	
   	<!-- Titulo-->
   	<div class="navbar-header col-md-2">
-      <a class="navbar-brand" href="#">SkillSharing</a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}/index.html">SkillSharing</a>
     </div>
     
     <!-- Search-->
@@ -35,7 +35,7 @@
     
     <!-- Offers-->
   	<div class= "col-md-1">
-      <a href="${pageContext.request.contextPath}/index.jsp">Ofertas</a>
+      <a href="${pageContext.request.contextPath}/my/offers/list.html">Ofertas</a>
     </div>
     
     <!-- Requests-->
@@ -58,10 +58,10 @@
     
     <!-- Perfil-->
   	<div class:="col-md-2">
-  		<a href="${pageContext.request.contextPath}/index.jsp">
+  		
 				<img src="${pageContext.request.contextPath}/resources/img/background.jpg" class="img-circle" alt="" width="40" height="40">
-				Nombre del usuario 
- 		</a> 
+				<t:logininfo/>
+ 		
     </div>
     
   </div>

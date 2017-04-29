@@ -11,25 +11,24 @@
 
 <!-- Bootstrap -->
 	<link href="${pageContext.request.contextPath}/css/bootstrap.css"
-	    rel="stylesheet">
+	    rel="stylesheet"/>
 	<link
 	    href="${pageContext.request.contextPath}/css/bootstrap-theme.min.css"
-	    rel="stylesheet">
+	    rel="stylesheet"/>
     
 <!-- Estils propis -->
 	<link
 	    href="${pageContext.request.contextPath}/css/personalizado.css"
-	    rel="stylesheet">
-
-<!-- JS -->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	    rel="stylesheet"/>
+	<link 
+		href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" 
+		rel="stylesheet" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/my/offer.css" />
 </head>
 
 
 <body>
     <t:navegacio />
-    <div class="loggeduser"><t:logininfo /></div>
     <div class="container">
         <jsp:doBody />
     </div>
@@ -40,4 +39,21 @@
     </p>
     </footer>
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/select-skill.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/moment-with-locales.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" charset="UTF-8">
+    	moment.locale("es");
+    	var fechas = document.getElementsByClassName("post-date");
+    	for (i = 0; i < fechas.length; i++) {
+    		var fecha = fechas[i].textContent.split(",");
+    		var fechaIni = moment(fecha[0], "YYYY-MM-DD").format('L');
+    		var fechaFin = moment(fecha[1], "YYYY-MM-DD").format('L');
+    		fechas[i].textContent = fechaIni + "-" + fechaFin;	
+    	}
+    	
+    </script> 
 </html>

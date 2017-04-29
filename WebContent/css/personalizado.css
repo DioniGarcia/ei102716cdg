@@ -1,3 +1,5 @@
+body { margin-top: 60px;}
+
 .semitrasparente-input {
    background-color: rgba(255, 255, 255, 20);
    border:none;

@@ -71,7 +71,6 @@ $('#tipo').select2({
 });
 
 $('#prueba').on('select2:select', function (evt) {
-	console.dir(evt.params.data);
 	axios.get('http://localhost:8080/ei102716cdg/api/skill/levels?name=' + evt.params.data.text)
 	.then(function (response) {
       var tipos = response.data;
@@ -87,9 +86,5 @@ $('#prueba').on('select2:select', function (evt) {
 	.catch(function (error) {
 	  console.log(error);
 	});
-});
-
-$('#tipo').on('select2:select', function (evt) {
-	console.dir(evt.params.data.id);
 });
 
