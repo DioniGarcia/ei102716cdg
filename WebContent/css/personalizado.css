@@ -28,6 +28,18 @@ body { margin-top: 60px;}
   flex-wrap: wrap;
 }
 
+.split-item-v-foto{
+  flex: 1 1 0px;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.split-item-v-texto{
+  flex: 5 1 0px;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
 .center-content-v{
 	display: flex;
 	align-items: center;
@@ -83,7 +95,7 @@ body { margin-top: 60px;}
 }
 
 .postbox {
-	height: 135px;
+	height: 150px;
 	background: #fff;
 	border-top: 1px solid;
 	border-color: #ece8ec;

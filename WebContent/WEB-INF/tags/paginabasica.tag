@@ -45,7 +45,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/select-skill.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/moment-with-locales.min.js" charset="UTF-8"></script>
-    <script type="text/javascript" charset="UTF-8">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.dotdotdot.min.js"></script>
+    <script type="text/javascript">
     	moment.locale("es");
     	var fechas = document.getElementsByClassName("post-date");
     	for (i = 0; i < fechas.length; i++) {
@@ -54,6 +55,21 @@
     		var fechaFin = moment(fecha[1], "YYYY-MM-DD").format('L');
     		fechas[i].textContent = fechaIni + "-" + fechaFin;	
     	}
+    	
+    	$(document).ready(function() {
+    		$(".acortar-texto").dotdotdot({
+    			height: 60,
+    			watch: window,
+    			after: "a.readmore",
+    			callback	: function( isTruncated, orgContent ) {
+    				if ( isTruncated ) { $(this).find("a")
+    												.css("display","inline"); 
+    				}
+    			},
+    		});
+    	});
+    	
+    	
     	
     </script> 
 </html>

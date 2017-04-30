@@ -15,13 +15,6 @@
     			postDate="${offer.startDate },${offer.endDate }">
     	</t:offerbox>
     	</c:forEach>
-    	<!--  
-    	<div class="offer"><span class="titulo-oferta">Oferta de ${skills[status.index].name } - ${skills[status.index].description }</span>
-    						<span class="fecha-inicio">${offer.startDate }</span>
-    						<p>${offer.description}</p>
-    	</div>
-    	-->
-    	
     </div>
 </jsp:body>
 </t:paginabasica>

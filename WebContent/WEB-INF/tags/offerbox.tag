@@ -1,13 +1,14 @@
 <%@ tag description="Estructura d'una pàgina normal"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ attribute name="postId" required="false"%>
 <%@ attribute name="postTitle" required="false"%>
 <%@ attribute name="postDescription" required="false"%>
 <%@ attribute name="postDate" required="false"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
 <div class="postbox split-container">
-	<div class="split-item-v split-container">
+	<div class="split-item-v-foto split-container">
 		<div class="split-item"></div>
 		
 		<div class="split-item">
@@ -21,16 +22,16 @@
 		<div class="split-item"></div>
 	</div>
 		
-	<div>
+	<div class="split-item-v-texto">
 		
-		<h2 class="post-title">${postTitle }</h2>
-		<p class="post-description">${ postDescription}</p>
+		<h2 class="post-title"><a href="${ pageContext.request.contextPath }/all/offers/${postId}">${postTitle }</a></h2>
+		<div class="acortar-texto">
+			<p class="post-description">
+				${ postDescription}
+				<a style="display:none;" class="readmore" href="${ pageContext.request.contextPath }/all/offers/${postId}">+ info</a>
+			</p>
+		</div>
 		<p class="post-date">${ postDate}</p>
-		<!--  <h2 class="post-title">Matemáticas experto: algebra cuántico nazi</h2>
-		<p class="post-description">Descripción Lopus lopulopusblabalbalablabalbalablablab
-		bsalbdlsabd bsdka lbdd bsaldn lnd askjdljsldjlaskj jaslk
-		sadbasjdaslkjdl qsd lslk a lopus no es lupus.</p>
-		<p class="post-date">12/02/07 - 13/03/07</p>-->
 	</div>
 </div>
 
