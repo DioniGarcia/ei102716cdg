@@ -114,14 +114,14 @@ public class SkillDao {
 	public List<String> searchSkill(String name) {
 		name += ":*";
 		return this.jdbcTemplate.query("select DISTINCT name FROM Skill "
-				+ " WHERE (to_tsvector(name) @@ (to_tsquery(?))) ",
+				+ " WHERE (to_tsvector(name) @@ (to_tsquery(?))) AND active = true",
 				new Object[] {name}, new SearchMapper());
 	} 
 	
 	public List<Skill> skillLevels(String name) {
 		name += ":*";
 		return this.jdbcTemplate.query("select * FROM Skill "
-				+ " WHERE (to_tsvector(name) @@ (plainto_tsquery(?))) ",
+				+ " WHERE (to_tsvector(name) @@ (plainto_tsquery(?))) AND active = true",
 				new Object[] {name}, new SkillMapper());
 	}
 	

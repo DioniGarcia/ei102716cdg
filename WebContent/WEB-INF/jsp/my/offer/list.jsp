@@ -10,6 +10,7 @@
     <div class="center">
     	<c:forEach varStatus="status" items="${offers}" var="offer"> 
     	<t:offerbox 
+    			postId="${offer.id }"
     			postTitle="Oferta de ${skills[status.index].name } - ${skills[status.index].description}" 
     			postDescription="${offer.description}" 
     			postDate="${offer.startDate },${offer.endDate }">

@@ -2,7 +2,7 @@ $.fn.select2.amd.define('select2/i18n/es',[],function () {
 	  // Spanish
 	  return {
 	    errorLoading: function () {
-	      return 'La carga falló';
+	      return 'La carga fallÃ³';
 	    },
 	    
 	    inputTooShort: function (args) {
@@ -11,7 +11,7 @@ $.fn.select2.amd.define('select2/i18n/es',[],function () {
 	      var message = 'Por favor, introduzca ' + remainingChars + ' car';
 
 	      if (remainingChars == 1) {
-	        message += 'ácter';
+	        message += 'Ã¡cter';
 	      } else {
 	        message += 'acteres';
 	      }
@@ -19,10 +19,10 @@ $.fn.select2.amd.define('select2/i18n/es',[],function () {
 	      return message;
 	    },
 	    loadingMore: function () {
-	      return 'Cargando más resultados…';
+	      return 'Cargando mÃ¡s resultados...';
 	    },
 	    maximumSelected: function (args) {
-	      var message = 'Sólo puede seleccionar ' + args.maximum + ' elemento';
+	      var message = 'SÃ³lo puede seleccionar ' + args.maximum + ' elemento';
 
 	      if (args.maximum != 1) {
 	        message += 's';
@@ -34,7 +34,7 @@ $.fn.select2.amd.define('select2/i18n/es',[],function () {
 	      return 'No se encontraron resultados';
 	    },
 	    searching: function () {
-	      return 'Buscando…';
+	      return 'Buscando...';
 	    }
 	  };
 	});
