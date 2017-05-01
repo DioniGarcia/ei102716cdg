@@ -6,6 +6,7 @@ import es.uji.ei102716cdg.domain.chat.Chat;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.collaboration.Request;
 import es.uji.ei102716cdg.domain.skill.Skill;
+import es.uji.ei102716cdg.domain.user.Student;
 import es.uji.ei102716cdg.domain.user.User;
 
 public interface PostServiceInterface {
@@ -51,7 +52,9 @@ public interface PostServiceInterface {
 	
 	public List<Offer> getRecentOffers();
 	
+	public Skill getSkillById(int id);
 	
+	public Student getStudentByNick(String nick);
 	
 	
 }
