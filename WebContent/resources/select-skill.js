@@ -44,9 +44,9 @@ $("#prueba").select2({
 	  width: "200px",
 	  placeholder: "Habilidad",
 	  ajax: {
-	    url: "http://localhost:8080/ei102716cdg/api/skill/search",
+	    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/search",
 	    dataType: 'json',
-	    delay: 250,
+	    delay: 300,
 	    data: function (params) {
 	      return {
 	        name: params.term, // search term
@@ -60,7 +60,7 @@ $("#prueba").select2({
 	    },
 	    cache: true
 	  },
-	  minimumInputLength: 3
+	  minimumInputLength: 1
 });
 
 $('#tipo').select2({
@@ -71,7 +71,7 @@ $('#tipo').select2({
 });
 
 $('#prueba').on('select2:select', function (evt) {
-	axios.get('http://localhost:8080/ei102716cdg/api/skill/levels?name=' + evt.params.data.text)
+	axios.get(window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/levels?name=" + evt.params.data.text)
 	.then(function (response) {
       var tipos = response.data;
 	  console.log(tipos);

@@ -42,8 +42,8 @@ private SkillDao skillDao;
 		result += "[";
 		for(Skill skill : skills){
 			result += "{\"id\": \"" + skill.getSkill_id() + "\", "
-					+ "\"text\": \"" + 	Encoding.convertFromUTF8(skill.getDescription()) + " - Nivel " +
-										Encoding.convertFromUTF8(skill.getLevel()) + "\"},";
+					+ "\"text\": \"" + 	Encoding.convertFromUTF8(skill.getLevel()) + ": " +
+										Encoding.convertFromUTF8(skill.getDescription()) + "\"},";
 		}
 		return result.substring(0, result.length()-1) + "]";
 	}
@@ -68,7 +68,9 @@ private SkillDao skillDao;
 		result += "[";
 		for(Skill skill : skills){
 			result += "{\"id\": \"" + skill.getSkill_id() + "\", "
-					+ "\"text\": \"" + Encoding.convertFromUTF8(skill.getName()) + "\"}, ";
+					+ "\"name\": \"" + Encoding.convertFromUTF8(skill.getName()) + "\"}, "
+					+ "\"description\": \"" + Encoding.convertFromUTF8(skill.getDescription()) + "\"}, "
+					+ "\"level\": \"" + Encoding.convertFromUTF8(skill.getLevel()) + "\"}, ";
 		}
 		return result.substring(0, result.length()-2) + "]";
 	}
