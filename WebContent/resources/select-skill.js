@@ -74,9 +74,7 @@ $('#prueba').on('select2:select', function (evt) {
 	axios.get(window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/levels?name=" + evt.params.data.text)
 	.then(function (response) {
       var tipos = response.data;
-	  console.log(tipos);
 	  var select = $("#tipo");
-	  console.dir(select);
 	  $("#tipo").html("");
 	  $(tipos).each(function(k, o) {
 	      select.append($("<option></option>").attr("value", o.id).html(o.text));

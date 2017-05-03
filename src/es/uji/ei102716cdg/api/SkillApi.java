@@ -68,8 +68,8 @@ private SkillDao skillDao;
 		result += "[";
 		for(Skill skill : skills){
 			result += "{\"id\": \"" + skill.getSkill_id() + "\", "
-					+ "\"name\": \"" + Encoding.convertFromUTF8(skill.getName()) + "\"}, "
-					+ "\"description\": \"" + Encoding.convertFromUTF8(skill.getDescription()) + "\"}, "
+					+ "\"name\": \"" + Encoding.convertFromUTF8(skill.getName()) + "\", "
+					+ "\"description\": \"" + Encoding.convertFromUTF8(skill.getDescription()) + "\", "
 					+ "\"level\": \"" + Encoding.convertFromUTF8(skill.getLevel()) + "\"}, ";
 		}
 		return result.substring(0, result.length()-2) + "]";
