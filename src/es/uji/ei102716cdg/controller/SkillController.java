@@ -76,7 +76,7 @@ public class SkillController {
 	@RequestMapping(value="/delete/{name}")
 	public String processDelete(@PathVariable String name){
 		for (Skill skill : skillDao.getSkills()){
-			if(skill.getName().equals(Encoding.convertToUTF8(name))){
+			if(skill.getName().equals(Encoding.convertLatinToUTF8(name))){
 				skillDao.deleteSkill(skill.getSkill_id());
 			}
 		}

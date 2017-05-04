@@ -24,16 +24,25 @@ private SkillDao skillDao;
 		this.skillDao=skillDao;
 	}
 	
-
+	/**Para una sola skill, genera una cadena en formato Json
+	 * 
+	 * @param id 	Identificador único de la Skill en un nivel concreto
+	 * @return		Cadena con la skill en formato Json 
+	 */
 	@RequestMapping( method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String getById(@RequestParam("id") int id){
 		Skill skill = skillDao.getSkill(id);
 		return "{\"id\": \"" + id + "\", "
-				+ "\"name\": \"" + Encoding.convertFromUTF8(skill.getName()) + "\", "
+				+ "\"name\": \"" + Encoding.convertUTF8ToLatin(skill.getName()) + "\", "
 				+ "\"level\": \"" + skill.getLevel() + "\", "
-				+ "\"description\": \"" + Encoding.convertFromUTF8(skill.getDescription()) + "\"}";
+				+ "\"description\": \"" + Encoding.convertUTF8ToLatin(skill.getDescription()) + "\"}";
 	}
 	
+	/**Para todos los niveles de una skill, genera una cadena en formato Json
+	 * 
+	 * @param name	Nombre de la skill
+	 * @return		Cadena con los distintos niveles de la skill en formato Json
+	 */
 	@RequestMapping(value = "/levels", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String getSkillLevels(@RequestParam("name") String name){
 		String result = "";
@@ -42,21 +51,22 @@ private SkillDao skillDao;
 		result += "[";
 		for(Skill skill : skills){
 			result += "{\"id\": \"" + skill.getSkill_id() + "\", "
-					+ "\"text\": \"" + 	Encoding.convertFromUTF8(skill.getLevel()) + ": " +
-										Encoding.convertFromUTF8(skill.getDescription()) + "\"},";
+					+ "\"text\": \"" + 	Encoding.convertUTF8ToLatin(skill.getLevel()) + ": " +
+										Encoding.convertUTF8ToLatin(skill.getDescription()) + "\"},";
 		}
 		return result.substring(0, result.length()-1) + "]";
 	}
 	
+	
 	@RequestMapping(value="/search", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String searchSkill(@RequestParam("name") String name){
 		String result = "";
-		List<String> skills = skillDao.searchSkill(Encoding.convertToUTF8(name));
+		List<String> skills = skillDao.searchSkill(Encoding.convertLatinToUTF8(name));
 		if (skills.isEmpty()) return "[]";
 		result += "[";
 		for(String skill : skills){
-			result += "{\"id\": \"" + Encoding.convertFromUTF8(skill) + "\", "
-					+ "\"text\": \"" + Encoding.convertFromUTF8(skill) + "\"},";
+			result += "{\"id\": \"" + Encoding.convertUTF8ToLatin(skill) + "\", "
+					+ "\"text\": \"" + Encoding.convertUTF8ToLatin(skill) + "\"},";
 		}
 		return result.substring(0, result.length()-1) + "]";
 	}
@@ -68,9 +78,9 @@ private SkillDao skillDao;
 		result += "[";
 		for(Skill skill : skills){
 			result += "{\"id\": \"" + skill.getSkill_id() + "\", "
-					+ "\"name\": \"" + Encoding.convertFromUTF8(skill.getName()) + "\", "
-					+ "\"description\": \"" + Encoding.convertFromUTF8(skill.getDescription()) + "\", "
-					+ "\"level\": \"" + Encoding.convertFromUTF8(skill.getLevel()) + "\"}, ";
+					+ "\"name\": \"" + Encoding.convertUTF8ToLatin(skill.getName()) + "\", "
+					+ "\"description\": \"" + Encoding.convertUTF8ToLatin(skill.getDescription()) + "\", "
+					+ "\"level\": \"" + Encoding.convertUTF8ToLatin(skill.getLevel()) + "\"}, ";
 		}
 		return result.substring(0, result.length()-2) + "]";
 	}

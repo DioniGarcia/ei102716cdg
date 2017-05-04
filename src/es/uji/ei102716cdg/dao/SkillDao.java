@@ -59,7 +59,7 @@ public class SkillDao {
 	/**Busca en la base de datos todos los niveles de una skill asociada a un nombre 
 	 * 
 	 * @param 	name
-	 * @return 	lista con una skill en todos los niveles
+	 * @return 	lista con una skill para cada uno de los niveles
 	 */
 	public List<Skill> getSkillAllLevels(String name) {
 		return this.jdbcTemplate.query("select skill_id, name, description, level, active from Skill WHERE name = ?",
@@ -111,13 +111,25 @@ public class SkillDao {
 		this.jdbcTemplate.update("DELETE FROM Skill WHERE skill_id = ?", skill_id);
 	}
 	
-	public List<String> searchSkill(String name) {
-		name += ":*";
+	//TODO Convertir en un servicio, a ser posible
+	/**Busca todas las skills que contengan en su nombre la cadena dada
+	 * 
+	 * @param 	nameSubstring: Parte del nombre que se está buscando
+	 * @return	Lista de skills que contienen nameSubstring en su nombre
+	 */
+	public List<String> searchSkill(String nameSubstring) {
+		nameSubstring += ":*";
 		return this.jdbcTemplate.query("select DISTINCT name FROM Skill "
 				+ " WHERE (to_tsvector(name) @@ (to_tsquery(?))) AND active = true",
-				new Object[] {name}, new SearchMapper());
+				new Object[] {nameSubstring}, new SearchMapper());
 	} 
 	
+	//TODO Convertir en un servicio, a ser posible
+	/**Devuelve los niveles activos de la skill deseada	
+	 * 
+	 * @param 	name: Nombre de la skill deseada
+	 * @return 	Lista de skills para los niveles activos
+	 */
 	public List<Skill> skillLevels(String name) {
 		name += ":*";
 		return this.jdbcTemplate.query("select * FROM Skill "

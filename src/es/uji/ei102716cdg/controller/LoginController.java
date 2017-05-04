@@ -52,8 +52,8 @@ public class LoginController {
 			return "login/login";
 		}
 		
-		user.setNick(Encoding.convertToUTF8(user.getNick()));
-		user.setPasswd(Encoding.convertToUTF8(user.getPasswd()));
+		user.setNick(Encoding.convertLatinToUTF8(user.getNick()));
+		user.setPasswd(Encoding.convertLatinToUTF8(user.getPasswd()));
 		
 	       // Comprova que el login siga correcte 
 		// intentant carregar les dades de l'usuari 
