@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="${pageContext.request.contextPath}/css/dataTables.fontAwesome.css"
 	    rel="stylesheet"/>
-<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="container">
@@ -18,6 +18,9 @@
          <th>Nombre</th>
          <th>Descripcion</th>
          <th>Nivel</th>
+         <th>Ofertas</th>
+         <th>Demandas</th>
+         <th>Activa</th>
       </tr>
    </thead>
 </table>
@@ -31,6 +34,7 @@
 <script src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
 <script src="https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+<script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.4/js/dataTables.checkboxes.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	   var table = $('#example').DataTable({
@@ -47,6 +51,7 @@ $(document).ready(function(){
 	  	  'columnDefs': [
 	  	      		{
 	  	         		'targets': 1,
+	  	         		"width": "30%",
 	  	         		'createdCell':  function (td, cellData, rowData, row, col) {
 	  	            			$(td).attr('id', 'description-' + rowData.id); 
 	  	            			$(td).attr('class', "editar-descripcion");
@@ -55,17 +60,29 @@ $(document).ready(function(){
 	  	      		},
 	  	      		{
 	  	         		'targets': 0,
+	  	         		"width": "30%",
 	  	         		'createdCell':  function (td, cellData, rowData, row, col) {
 	  	            			$(td).attr('id', 'name-' + rowData.id); 
 	  	            			$(td).attr('class', "editar-nombre");
 	  	            			$( td ).wrapInner( "<a href='#' data-pk=" + rowData.id + "></a>");
 	  	         		}
+	  	      		},
+	  	      		{
+	  	         		'targets': 5,
+	  	         		"width": "5%",
+	  	         		'render': function ( data, type, full, meta ) {
+	  	         			return '<input type=\"checkbox\" class="' + full.id + '" ' + (full.active ? 'checked' : '') + '>';
+	  	         	    }
 	  	      		}
+	  	      		
 	  	  ],
 	      columns: [
 	                { data: 'name' },
 	                { data: 'description' },
-	                { data: 'level' }
+	                { data: 'level' },
+	                { data: 'offers' },
+	                { data: 'requests' },
+	                { data: 'active' }
 	      ],
 	      language:{
 	    	    "sProcessing":     "Procesando...",
@@ -119,6 +136,19 @@ $(document).ready(function(){
 				    url: '/pos',
 				    title: 'Enter username'
 				});
+	    	    
+	    	    $('input[type="checkbox"]').on('change', function() {
+	    		    var skillId = this.getAttribute('class');
+	    		    console.dir(skillId);
+	    		      $.ajax({
+	    		         url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/active",
+	    		         data: { id: skillId, active: this.checked },
+	    		         success: function(res) {
+	    		             console.log(res);
+	    		         }
+	    		      });
+	    	    	
+	    			});
 	    	}
 	   });
 	   

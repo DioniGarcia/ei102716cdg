@@ -26,7 +26,7 @@ private SkillDao skillDao;
 	
 	/**Para una sola skill, genera una cadena en formato Json
 	 * 
-	 * @param id 	Identificador único de la Skill en un nivel concreto
+	 * @param id 	Identificador Ãºnico de la Skill en un nivel concreto
 	 * @return		Cadena con la skill en formato Json 
 	 */
 	@RequestMapping( method = RequestMethod.GET, produces = "application/json")
@@ -77,11 +77,21 @@ private SkillDao skillDao;
 		List<Skill> skills = skillDao.getSkills();
 		result += "[";
 		for(Skill skill : skills){
+			int numberOffers = skillDao.getNumberOfOffers(skill.getSkill_id());
+			int numberRequests = skillDao.getNumberOfRequests(skill.getSkill_id());
 			result += "{\"id\": \"" + skill.getSkill_id() + "\", "
 					+ "\"name\": \"" + Encoding.convertUTF8ToLatin(skill.getName()) + "\", "
 					+ "\"description\": \"" + Encoding.convertUTF8ToLatin(skill.getDescription()) + "\", "
-					+ "\"level\": \"" + Encoding.convertUTF8ToLatin(skill.getLevel()) + "\"}, ";
+					+ "\"offers\": \"" + Encoding.convertUTF8ToLatin(Integer.toString(numberOffers)) + "\", "
+					+ "\"requests\": \"" + Encoding.convertUTF8ToLatin(Integer.toString(numberRequests)) + "\", "
+					+ "\"level\": \"" + Encoding.convertUTF8ToLatin(skill.getLevel()) + "\", "
+					+ "\"active\": " + (skill.isActive() ? "true" : "false") + "}, ";
 		}
 		return result.substring(0, result.length()-2) + "]";
+	}
+	
+	@RequestMapping(value="/active", produces = "application/json")
+	public @ResponseBody String setActive(@RequestParam("id") int id, @RequestParam("active") boolean active){
+		return Integer.toString(skillDao.setActive(id, active));
 	}
 }

@@ -111,10 +111,17 @@ public class SkillDao {
 		this.jdbcTemplate.update("DELETE FROM Skill WHERE skill_id = ?", skill_id);
 	}
 	
+	/*
+	 * 
+	 */
+	public int setActive(int id, boolean active){
+		return this.jdbcTemplate.update("update Skill set active = ? where skill_id = ?", active, id);
+	}
+	
 	//TODO Convertir en un servicio, a ser posible
 	/**Busca todas las skills que contengan en su nombre la cadena dada
 	 * 
-	 * @param 	nameSubstring: Parte del nombre que se est· buscando
+	 * @param 	nameSubstring: Parte del nombre que se est√° buscando
 	 * @return	Lista de skills que contienen nameSubstring en su nombre
 	 */
 	public List<String> searchSkill(String nameSubstring) {
@@ -136,5 +143,23 @@ public class SkillDao {
 				+ " WHERE (to_tsvector(name) @@ (plainto_tsquery(?))) AND active = true",
 				new Object[] {name}, new SkillMapper());
 	}
+	
+	/**
+	 * 
+	 * 
+	 */
+	public int getNumberOfOffers(int id){
+		return this.jdbcTemplate.queryForObject("select count(*) from offer where skill_id = ?", new Object[] {id}, Integer.class);
+	}
+	
+	/**
+	 * 
+	 * 
+	 */
+	public int getNumberOfRequests(int id){
+		return this.jdbcTemplate.queryForObject("select count(*) from request where skill_id = ?", new Object[] {id}, Integer.class);
+	}
+	
+	 
 	
 }
