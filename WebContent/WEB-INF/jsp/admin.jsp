@@ -8,15 +8,59 @@
 <link href="${pageContext.request.contextPath}/css/dataTables.fontAwesome.css"
 	    rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+<style type="text/css">
+.center {
+	text-align: center;
+    vertical-align: middle;
+}
+</style>
 </head>
 <body>
 <div class="container">
-<button id="addRow">Añadir habilidad</button>
+
+<div class="alert alert-success" role="alert" style="display:none;">Se ha guardado correctamente<a class="close" onclick="$('.alert').hide()">×</a></div>
+<div class="alert alert-danger" role="alert" style="display:none;">Ha habido un error<a class="close" onclick="$('.alert').hide()">×</a></div>
+
+<button id="show-form">Nueva habilidad</button>
+
+<form id="form-skill" style="display:none;">
+<table class="dataTable no-footer">
+	<thead>
+	  <tr>
+         <th>Nombre</th>
+         <th>Descripción</th>
+         <th>Nivel</th>
+         <th>Activa</th>
+      </tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td rowspan="3"><input type="text"/></td>
+			<td><input type="text"/></td>
+			<td>Iniciado</td>
+			<td class="center"><input type="checkbox" checked/></td>
+		</tr>
+		<tr>
+			<td><input type="text"/></td>
+			<td>Medio</td>
+			<td class="center"><input type="checkbox" checked/></td>
+		</tr>
+		<tr>
+			<td><input type="text"/></td>
+			<td>Experto</td>
+			<td class="center"><input type="checkbox" checked/></td>
+		</tr>
+	</tbody>
+</table>
+<button id="add-skill" type="submit">Añadir habilidad</button>
+<button id="cancelar">Cancelar</button>
+</form>
+
 <table id="example" class="display" cellspacing="0" width="100%">
    <thead>
       <tr>
          <th>Nombre</th>
-         <th>Descripcion</th>
+         <th>Descripción</th>
          <th>Nivel</th>
          <th>Ofertas</th>
          <th>Demandas</th>
@@ -30,7 +74,6 @@
 </html>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-3.2.1.min.js"></script> 
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
 <script src="https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
@@ -72,7 +115,10 @@ $(document).ready(function(){
 	  	         		"width": "5%",
 	  	         		'render': function ( data, type, full, meta ) {
 	  	         			return '<input type=\"checkbox\" class="' + full.id + '" ' + (full.active ? 'checked' : '') + '>';
-	  	         	    }
+	  	         	    },
+	  	         	 	'createdCell':  function (td, cellData, rowData, row, col) {
+	            			$(td).attr('class', 'center'); 
+	         			}
 	  	      		}
 	  	      		
 	  	  ],
@@ -113,28 +159,42 @@ $(document).ready(function(){
 	    	    $('.editar-descripcion a').editable({
 	    	    	params: function(params) {
 	    	            var data = {};
-	    	            data['pk'] = params.pk;
-	    	            data['value'] = params.value;
-	    	            data['originalValue'] = $(this).text();
+	    	            data['id'] = params.pk;
+	    	            data['description'] = params.value;
 	    	            return data;
 	    	        },
 				    type: 'text',
 				    name: 'username',
-				    url: '/post',
-				    title: 'Enter username'
+				    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/description",
+				    success: function(response, newValue) {
+				    	$('.alert-success').slideDown(200);
+						$(".alert-success").delay(4000).slideUp(200);
+				    },
+				    error: function(res) {
+   		        	 	$('.alert-danger').slideDown(200);
+						$(".alert-danger").delay(4000).slideUp(200);
+   		             console.log(res);
+   		         }
 				});
 	    	    $('.editar-nombre a').editable({
 	    	    	params: function(params) {
 	    	            var data = {};
-	    	            data['pk'] = params.pk;
-	    	            data['value'] = params.value;
-	    	            data['originalValue'] = $(this).text();
+	    	            data['name'] = params.value;
+	    	            data['original'] = $(this).text();
 	    	            return data;
 	    	        },
 				    type: 'text',
 				    name: 'username',
-				    url: '/pos',
-				    title: 'Enter username'
+				    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/title",
+				    success: function(response, newValue) {
+				    	$('.alert-success').slideDown(200);
+						$(".alert-success").delay(4000).slideUp(200);
+				    },
+				    error: function(res) {
+   		        	 	$('.alert-danger').slideDown(200);
+						 $(".alert-danger").delay(4000).slideUp(200);
+   		             console.log(res);
+   		         }
 				});
 	    	    
 	    	    $('input[type="checkbox"]').on('change', function() {
@@ -144,6 +204,13 @@ $(document).ready(function(){
 	    		         url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/active",
 	    		         data: { id: skillId, active: this.checked },
 	    		         success: function(res) {
+	    		        	 $('.alert-success').slideDown(200);
+	 						 $(".alert-success").delay(4000).slideUp(200);
+	    		             console.log(res);
+	    		         },
+	    		         error: function(res) {
+	    		        	 $('.alert-danger').slideDown(200);
+	 						 $(".alert-danger").delay(4000).slideUp(200);
 	    		             console.log(res);
 	    		         }
 	    		      });
@@ -152,7 +219,21 @@ $(document).ready(function(){
 	    	}
 	   });
 	   
-	   $('#addRow').on( 'click', function () {
+	   $('#show-form').on('click', function(){
+		  $('#form-skill').show(); 
+		  $('.alert-success').slideDown(200);
+		  $(".alert").delay(4000).slideUp(200);
+	   });
+	   
+	   $('#cancelar').on('click', function(e){
+		      e.preventDefault();
+			  $('#form-skill').hide(); 
+		   });
+	   
+	   
+	   
+	   $('#addRow').on( 'click', function (e) {
+		   	e.preventDefault();
 	        table.rows.add([
 			{
 			    "name":"",
