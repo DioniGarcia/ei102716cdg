@@ -35,20 +35,20 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td rowspan="3"><input type="text"/></td>
-			<td><input type="text"/></td>
+			<td rowspan="3"><input name="name" type="text"/></td>
+			<td><input name="description-1" type="text"/></td>
 			<td>Iniciado</td>
-			<td class="center"><input type="checkbox" checked/></td>
+			<td class="center"><input name="active-1" type="checkbox" checked/></td>
 		</tr>
 		<tr>
-			<td><input type="text"/></td>
+			<td><input name="description-2" type="text"/></td>
 			<td>Medio</td>
-			<td class="center"><input type="checkbox" checked/></td>
+			<td class="center"><input name="active-2" type="checkbox" checked/></td>
 		</tr>
 		<tr>
-			<td><input type="text"/></td>
+			<td><input name="description-3" type="text"/></td>
 			<td>Experto</td>
-			<td class="center"><input type="checkbox" checked/></td>
+			<td class="center"><input name="active-3" type="checkbox" checked/></td>
 		</tr>
 	</tbody>
 </table>
@@ -199,8 +199,8 @@ $(document).ready(function(){
 	    	    
 	    	    $('input[type="checkbox"]').on('change', function() {
 	    		    var skillId = this.getAttribute('class');
-	    		    console.dir(skillId);
-	    		      $.ajax({
+	    		    if (skillId == null) return;
+	    		     $.ajax({
 	    		         url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/active",
 	    		         data: { id: skillId, active: this.checked },
 	    		         success: function(res) {
@@ -221,8 +221,6 @@ $(document).ready(function(){
 	   
 	   $('#show-form').on('click', function(){
 		  $('#form-skill').show(); 
-		  $('.alert-success').slideDown(200);
-		  $(".alert").delay(4000).slideUp(200);
 	   });
 	   
 	   $('#cancelar').on('click', function(e){
@@ -231,6 +229,17 @@ $(document).ready(function(){
 		   });
 	   
 	   
+	   $("#form-skill").submit(function(event) {
+
+		      /* stop form from submitting normally */
+		      event.preventDefault();
+			  var url =  window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/add";
+		      /* Send the data using post with element id name and name2*/
+		      $.post( url, $("#form-skill").serialize() )
+		      .done(function( data ) {
+		        location.reload();
+		      });
+		    });
 	   
 	   $('#addRow').on( 'click', function (e) {
 		   	e.preventDefault();

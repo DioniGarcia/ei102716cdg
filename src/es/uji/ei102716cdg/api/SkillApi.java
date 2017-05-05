@@ -105,4 +105,28 @@ private SkillDao skillDao;
 	public @ResponseBody String setName(@RequestParam("name") String name, @RequestParam("original") String original){
 		return Integer.toString(skillDao.setName(original, name));
 	}
+	
+	@RequestMapping(value="/add", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody String addSkill(	@RequestParam("name") String name, 
+											@RequestParam("description-1") String descriptionLow,
+											@RequestParam("description-2") String descriptionMed,
+											@RequestParam("description-3") String descriptionHigh,
+											@RequestParam(value="active-1", required = false) String activeLow,
+											@RequestParam(value="active-2", required = false) String activeMed,
+											@RequestParam(value="active-3", required = false) String activeHigh){
+		String[] description = {descriptionLow, descriptionMed, descriptionHigh};
+		String[] active = {activeLow, activeMed, activeHigh};
+		String[] levelName = {"Iniciado", "Medio", "Experto"};
+		Skill skill;
+		for(int i = 0; i<3; i++){
+			skill = new Skill();
+			skill.setName(name);
+			skill.setDescription(description[i]);
+			skill.setLevel(levelName[i]);
+			skill.setActive(active[i] != null);
+			skillDao.addSkill(skill);
+		}
+		return "1";
+	}
+	
 }
