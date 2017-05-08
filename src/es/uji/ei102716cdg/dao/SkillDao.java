@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei102716cdg.domain.skill.Skill;
+import es.uji.ei102716cdg.domain.skill.SkillWithStats;
 
 
 @Repository
@@ -45,6 +46,20 @@ public class SkillDao {
 		}
 	}
 	
+	private static final class SkillWithStatsMapper implements RowMapper<SkillWithStats>{
+		public SkillWithStats mapRow(ResultSet rs, int rowNum) throws SQLException {
+			SkillWithStats skill = new SkillWithStats();
+			skill.setSkill_id(rs.getInt("skill_id"));
+			skill.setName(rs.getString("name"));
+			skill.setDescription(rs.getString("description"));
+			skill.setLevel(rs.getString("level"));
+			skill.setActive(rs.getBoolean("active"));
+			skill.setNumberOffers(rs.getInt("off"));
+			skill.setNumberRequests(rs.getInt("req"));
+			return skill;
+		}
+	}
+	
 	/**Genera una lista con los tipos de habilidad (skill) de la base de datos
 	 * 
 	 * La lista contiene, para cada skill: su id, nombre, descripci�n, nivel y su estado (activo o no, en el sistema) 
@@ -56,10 +71,21 @@ public class SkillDao {
 				new SkillMapper());
 	}
 	
+	/**Genera una lista con los tipos de habilidad (skill) de la base de datos más el numero  de ofertas y demandas
+	 * 
+	 * La lista contiene, para cada skill: su id, nombre, descripción, nivel y su estado (activo o no, en el sistema) 
+	 * 
+	 * @return Lista de skills con stats
+	 * */
+	public List<SkillWithStats> getSkillsWithStats() {
+		return this.jdbcTemplate.query("select skill_id, name, description, level, active, (select count(*) from offer where skill_id = o.skill_id) as off, (select count(*) from request where skill_id = o.skill_id) as req from Skill o order by skill_id",
+				new SkillWithStatsMapper());
+	}
+	
 	/**Busca en la base de datos todos los niveles de una skill asociada a un nombre 
 	 * 
 	 * @param 	name
-	 * @return 	lista con una skill en todos los niveles
+	 * @return 	lista con una skill para cada uno de los niveles
 	 */
 	public List<Skill> getSkillAllLevels(String name) {
 		return this.jdbcTemplate.query("select skill_id, name, description, level, active from Skill WHERE name = ?",
@@ -111,18 +137,48 @@ public class SkillDao {
 		this.jdbcTemplate.update("DELETE FROM Skill WHERE skill_id = ?", skill_id);
 	}
 	
-	public List<String> searchSkill(String name) {
-		name += ":*";
+	/*
+	 * Actualiza el atributo de la habilidad en la base de datos.
+	 */
+	public int setActive(int id, boolean active){
+		return this.jdbcTemplate.update("update Skill set active = ? where skill_id = ?", active, id);
+	}
+	
+
+	public int setName(String original, String name){
+		original += ":*";
+		return this.jdbcTemplate.update("update Skill set name = ? where (to_tsvector(name) @@ (plainto_tsquery(?)))", name, original);
+	}
+	
+	public int setDescription(int id, String description){
+		return this.jdbcTemplate.update("update Skill set description = ? where skill_id = ?", description, id);
+	}
+	
+	//TODO Convertir en un servicio, a ser posible
+	/**Busca todas las skills que contengan en su nombre la cadena dada
+	 * 
+	 * @param 	nameSubstring: Parte del nombre que se está buscando
+	 * @return	Lista de skills que contienen nameSubstring en su nombre
+	 */
+	public List<String> searchSkill(String nameSubstring) {
+		nameSubstring += ":*";
 		return this.jdbcTemplate.query("select DISTINCT name FROM Skill "
-				+ " WHERE (to_tsvector(name) @@ (to_tsquery(?))) ",
-				new Object[] {name}, new SearchMapper());
+				+ " WHERE (to_tsvector(name) @@ (to_tsquery(?))) AND active = true",
+				new Object[] {nameSubstring}, new SearchMapper());
 	} 
 	
+	//TODO Convertir en un servicio, a ser posible
+	/**Devuelve los niveles activos de la skill deseada	
+	 * 
+	 * @param 	name: Nombre de la skill deseada
+	 * @return 	Lista de skills para los niveles activos
+	 */
 	public List<Skill> skillLevels(String name) {
 		name += ":*";
 		return this.jdbcTemplate.query("select * FROM Skill "
-				+ " WHERE (to_tsvector(name) @@ (plainto_tsquery(?))) ",
+				+ " WHERE (to_tsvector(name) @@ (plainto_tsquery(?))) AND active = true",
 				new Object[] {name}, new SkillMapper());
 	}
+	
 	
 }

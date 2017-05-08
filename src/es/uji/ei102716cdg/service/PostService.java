@@ -118,7 +118,16 @@ public class PostService implements PostServiceInterface {
 	public List<Offer> getRecentOffers(){
 		return offerDao.getRecentOffers();
 	}
-
+	
+	@Override
+	public Skill getSkillById(int id){
+		return skillDao.getSkill(id);
+	}
+	
+	@Override
+	public Student getStudentByNick(String nick){
+		return studentDao.getStudent(nick);
+	}
 
 	
 

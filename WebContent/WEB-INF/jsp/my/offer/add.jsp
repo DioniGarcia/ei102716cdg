@@ -1,15 +1,10 @@
 <%@page contentType="text/html; charset=iso-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<title>Skill Sharing - Añadir Oferta</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
-</head>
-<body>
+<t:paginabasica>
+<jsp:body> 
     <h2>Añadir Oferta</h2>
     <form:form method="post" modelAttribute="offer">
         <table>
@@ -29,8 +24,8 @@
             
             <tr>
                 <td><form:label path="description">Descripcion de la oferta</form:label></td>
-                <td colspan="3">
-                	<form:input  path="description" /><br>
+                <td colspan="1">
+                	<form:input class="form-control" type="text" path="description" /><br>
                 	<form:errors class="error" path="description"/>	
                 </td>
             </tr>
@@ -41,7 +36,7 @@
             
             <tr>
                 <td><form:label path="startDate">Fecha de inicio</form:label></td>
-                <td><form:input type="date" path="startDate" /></td>
+                <td><form:input class="form-control" type="date" path="startDate" /></td>
             </tr>
             			 
             <tr>
@@ -51,23 +46,19 @@
             
             <tr>
                 <td><form:label path="endDate">Fecha final</form:label></td>
-                <td><form:input type="date" path="endDate" /></td>
+                <td><form:input class="form-control" type="date" path="endDate" /></td>
             </tr>
             
             <form:input type="hidden" path="active" value="true"></form:input>
             <tr></tr>
             
             <tr>
-                <td colspan="2"><input type="submit" value="Añadir" />
+                <td colspan="2"><input type="submit" class="btn btn-primary" value="Añadir" />
                 </td>
             </tr>
         </table>
     </form:form>
     
     
-</body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-3.2.1.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/select-skill.js"></script>
-</html>
+</jsp:body>
+</t:paginabasica>

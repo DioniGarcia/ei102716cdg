@@ -43,6 +43,7 @@
   
   <mvc:resources mapping="/resources/**" location="/resources/" />
   <mvc:resources mapping="/css/**" location="/css/" />
+  <mvc:resources mapping="/fonts/**" location="/fonts/" />
   <mvc:annotation-driven />
   
   <mvc:interceptors>

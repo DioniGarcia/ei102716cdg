@@ -2,7 +2,7 @@ $.fn.select2.amd.define('select2/i18n/es',[],function () {
 	  // Spanish
 	  return {
 	    errorLoading: function () {
-	      return 'La carga falló';
+	      return 'La carga fallÃ³';
 	    },
 	    
 	    inputTooShort: function (args) {
@@ -11,7 +11,7 @@ $.fn.select2.amd.define('select2/i18n/es',[],function () {
 	      var message = 'Por favor, introduzca ' + remainingChars + ' car';
 
 	      if (remainingChars == 1) {
-	        message += 'ácter';
+	        message += 'Ã¡cter';
 	      } else {
 	        message += 'acteres';
 	      }
@@ -19,10 +19,10 @@ $.fn.select2.amd.define('select2/i18n/es',[],function () {
 	      return message;
 	    },
 	    loadingMore: function () {
-	      return 'Cargando más resultados…';
+	      return 'Cargando mÃ¡s resultados...';
 	    },
 	    maximumSelected: function (args) {
-	      var message = 'Sólo puede seleccionar ' + args.maximum + ' elemento';
+	      var message = 'SÃ³lo puede seleccionar ' + args.maximum + ' elemento';
 
 	      if (args.maximum != 1) {
 	        message += 's';
@@ -34,7 +34,7 @@ $.fn.select2.amd.define('select2/i18n/es',[],function () {
 	      return 'No se encontraron resultados';
 	    },
 	    searching: function () {
-	      return 'Buscando…';
+	      return 'Buscando...';
 	    }
 	  };
 	});
@@ -44,9 +44,9 @@ $("#prueba").select2({
 	  width: "200px",
 	  placeholder: "Habilidad",
 	  ajax: {
-	    url: "http://localhost:8080/ei102716cdg/api/skill/search",
+	    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/search",
 	    dataType: 'json',
-	    delay: 250,
+	    delay: 300,
 	    data: function (params) {
 	      return {
 	        name: params.term, // search term
@@ -60,7 +60,7 @@ $("#prueba").select2({
 	    },
 	    cache: true
 	  },
-	  minimumInputLength: 3
+	  minimumInputLength: 1
 });
 
 $('#tipo').select2({
@@ -71,13 +71,10 @@ $('#tipo').select2({
 });
 
 $('#prueba').on('select2:select', function (evt) {
-	console.dir(evt.params.data);
-	axios.get('http://localhost:8080/ei102716cdg/api/skill/levels?name=' + evt.params.data.text)
+	axios.get(window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/levels?name=" + evt.params.data.text)
 	.then(function (response) {
       var tipos = response.data;
-	  console.log(tipos);
 	  var select = $("#tipo");
-	  console.dir(select);
 	  $("#tipo").html("");
 	  $(tipos).each(function(k, o) {
 	      select.append($("<option></option>").attr("value", o.id).html(o.text));
@@ -87,9 +84,5 @@ $('#prueba').on('select2:select', function (evt) {
 	.catch(function (error) {
 	  console.log(error);
 	});
-});
-
-$('#tipo').on('select2:select', function (evt) {
-	console.dir(evt.params.data.id);
 });
 
