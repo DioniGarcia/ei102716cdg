@@ -13,13 +13,26 @@
 	text-align: center;
     vertical-align: middle;
 }
+.alert-fixed {
+    position:fixed; 
+    bottom: 0px; 
+    left: 0px; 
+    width: 100%;
+    z-index:9999; 
+    border-radius:0px
+}
 </style>
 </head>
 <body>
 <div class="container">
-
-<div class="alert alert-success" role="alert" style="display:none;">Se ha guardado correctamente<a class="close" onclick="$('.alert').hide()">×</a></div>
-<div class="alert alert-danger" role="alert" style="display:none;">Ha habido un error<a class="close" onclick="$('.alert').hide()">×</a></div>
+<div style="display:flex;justify-content: space-between;align-items: center;">
+	<h3>Página de administrador</h3>
+	<a href="#">Informes/Estadísticas</a>
+	<a href="${pageContext.request.contextPath}/logout.html">Salir</a>
+</div>
+<div id="alert-container" class="alert-fixed"></div>
+<div class="alert alert-success alert-fixed" role="alert" style="display:none;">Se ha guardado correctamente<a class="close" onclick="$('.alert').hide()">×</a></div>
+<div class="alert alert-danger alert-fixed" role="alert" style="display:none;">Ha habido un error<a class="close" onclick="$('.alert').hide()">×</a></div>
 
 <button id="show-form">Nueva habilidad</button>
 
@@ -56,7 +69,7 @@
 <button id="cancelar">Cancelar</button>
 </form>
 
-<table id="example" class="display" cellspacing="0" width="100%">
+<table id="skill-table" class="display" cellspacing="0" width="100%">
    <thead>
       <tr>
          <th>Nombre</th>
@@ -79,8 +92,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 <script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.4/js/dataTables.checkboxes.min.js"></script>
 <script type="text/javascript">
+function showalert(message,alerttype) {
+
+    $('#alert-container').append('<div id="alertdiv" class="alert ' +  alerttype + '"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
+
+    setTimeout(function() { 
+
+
+      $("#alertdiv").remove();
+
+    }, 4000);
+  }
 $(document).ready(function(){
-	   var table = $('#example').DataTable({
+	   var table = $('#skill-table').DataTable({
 	      'ajax': {
 	    	  url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/all",
 	    	  dataSrc: ''
@@ -167,13 +191,11 @@ $(document).ready(function(){
 				    name: 'username',
 				    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/description",
 				    success: function(response, newValue) {
-				    	$('.alert-success').slideDown(200);
-						$(".alert-success").delay(4000).slideUp(200);
+				    	showalert("<strong>Descripción</strong> actualizada correctamente" ,"alert-success");
 				    },
 				    error: function(res) {
-   		        	 	$('.alert-danger').slideDown(200);
-						$(".alert-danger").delay(4000).slideUp(200);
-   		             console.log(res);
+				    	showalert("Ha habido un problema al actualizar la <strong>descripción</strong>","alert-danger");
+   		                console.log(res);
    		         }
 				});
 	    	    $('.editar-nombre a').editable({
@@ -187,12 +209,10 @@ $(document).ready(function(){
 				    name: 'username',
 				    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/title",
 				    success: function(response, newValue) {
-				    	$('.alert-success').slideDown(200);
-						$(".alert-success").delay(4000).slideUp(200);
+				    	showalert("<strong>Nombre de la habilidad</strong> actualizado correctamente","alert-success");
 				    },
 				    error: function(res) {
-   		        	 	$('.alert-danger').slideDown(200);
-						 $(".alert-danger").delay(4000).slideUp(200);
+				    	showalert("Ha habido un problema al actualizar el <strong>nombre de la habilidad</strong>","alert-danger");
    		             console.log(res);
    		         }
 				});
@@ -204,13 +224,10 @@ $(document).ready(function(){
 	    		         url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/active",
 	    		         data: { id: skillId, active: this.checked },
 	    		         success: function(res) {
-	    		        	 $('.alert-success').slideDown(200);
-	 						 $(".alert-success").delay(4000).slideUp(200);
-	    		             console.log(res);
+	    		        	 showalert("El <strong>Estado de la habilidad</strong> se ha actualizado correctamente","alert-success");
 	    		         },
 	    		         error: function(res) {
-	    		        	 $('.alert-danger').slideDown(200);
-	 						 $(".alert-danger").delay(4000).slideUp(200);
+	    		        	 showalert("Ha habido un problema al actualizar el <strong>estado de la habilidad</strong>","alert-danger");
 	    		             console.log(res);
 	    		         }
 	    		      });
@@ -237,30 +254,11 @@ $(document).ready(function(){
 		      /* Send the data using post with element id name and name2*/
 		      $.post( url, $("#form-skill").serialize() )
 		      .done(function( data ) {
-		        location.reload();
+		    	  showalert("Se ha añadido correctamente la habilidad", "alert-success");
+		    	  table.ajax.reload();
+		    	  table.order( [[ 0, 'desc' ]] ).draw( false );
 		      });
 		    });
-	   
-	   $('#addRow').on( 'click', function (e) {
-		   	e.preventDefault();
-	        table.rows.add([
-			{
-			    "name":"",
-			    "description":"Hola",
-			    "level":"Iniciado"
-			},
-			{
-			    "name":"",
-			    "description":"Hola",
-			    "level":"Medio"
-			},
-	        {
-	            "name":"",
-	            "description":"Hola",
-	            "level":"Experto"
-	        }
-	        ]).draw( true );
-	    } );
 	   
 	   
 	});

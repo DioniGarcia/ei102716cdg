@@ -34,6 +34,8 @@ public class HomeController {
 	
 	@RequestMapping("/index")
 	public String index(Model model, HttpSession session, @ModelAttribute("user") User user) {
+		if (session.getAttribute("admin") != null)
+			return "redirect:admin/index.html";
 		if (session.getAttribute("user") == null)
 			return "login/login";
 		model.addAttribute("user", new User());
