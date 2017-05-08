@@ -24,6 +24,7 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" 
 		rel="stylesheet" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/my/offer.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/themes/bootstrap-stars.css" />
 </head>
 
 
@@ -46,7 +47,16 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/select-skill.js" charset="UTF-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/moment-with-locales.min.js" charset="UTF-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.dotdotdot.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.barrating.min.js"></script>  
     <script type="text/javascript">
+    $(document).ready(function(){
+    	
+    	      $('#example').barrating({
+    	    	  theme: 'bootstrap-stars'
+    	      });
+    	   
+    	$(".br-widget").css("display","inline");
+    
     	moment.locale("es");
     	var fechas = document.getElementsByClassName("post-date");
     	for (i = 0; i < fechas.length; i++) {
@@ -69,7 +79,7 @@
     		});
     	});
     	
-    	
+    });	
     	
     </script> 
 </html>

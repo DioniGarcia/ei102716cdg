@@ -45,7 +45,7 @@
     
     <!-- Colabortions-->
   	<div class= "col-md-1">
-      <a href="${pageContext.request.contextPath}/index.jsp">Colaboraciones</a>
+      <a href="${pageContext.request.contextPath}/my/collaborations/list.html">Colaboraciones</a>
     </div>
     
     <!-- Correo-->
