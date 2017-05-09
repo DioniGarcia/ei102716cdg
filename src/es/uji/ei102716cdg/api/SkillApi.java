@@ -47,7 +47,7 @@ private SkillDao skillDao;
 	@RequestMapping(value = "/levels", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String getSkillLevels(@RequestParam("name") String name){
 		String result = "";
-		List<Skill> skills = skillDao.skillLevels(name);
+		List<Skill> skills = skillDao.skillLevels(Encoding.convertLatinToUTF8(name));
 		if (skills.isEmpty()) return "[]";
 		result += "[";
 		for(Skill skill : skills){
@@ -108,9 +108,9 @@ private SkillDao skillDao;
 	
 	@RequestMapping(value="/add", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody String addSkill(	@RequestParam("name") String name, 
-											@RequestParam("description-1") String descriptionLow,
-											@RequestParam("description-2") String descriptionMed,
-											@RequestParam("description-3") String descriptionHigh,
+											@RequestParam(value="description-1", required = false) String descriptionLow,
+											@RequestParam(value="description-2", required = false) String descriptionMed,
+											@RequestParam(value="description-3", required = false) String descriptionHigh,
 											@RequestParam(value="active-1", required = false) String activeLow,
 											@RequestParam(value="active-2", required = false) String activeMed,
 											@RequestParam(value="active-3", required = false) String activeHigh){
@@ -121,7 +121,7 @@ private SkillDao skillDao;
 		for(int i = 0; i<3; i++){
 			skill = new Skill();
 			skill.setName(name);
-			skill.setDescription(description[i]);
+			skill.setDescription(description[i]!=null ? description[i] : "");
 			skill.setLevel(levelName[i]);
 			skill.setActive(active[i] != null);
 			skillDao.addSkill(skill);
