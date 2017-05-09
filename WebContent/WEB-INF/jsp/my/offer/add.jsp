@@ -12,8 +12,9 @@
         	<tr>
                 <td><form:label path="skill_Id">Skill</form:label></td>
                 <td>
-               		<select id="prueba"></select>
-					<form:select path="skill_Id" id="tipo"></form:select>
+               		<select id="nombre"><option></option></select>
+					<form:select path="skill_Id" id="tipo"></form:select><br>
+					<form:errors class="error" path="skill_Id"/>	
 				</td>
             </tr>
             
@@ -23,9 +24,9 @@
             </tr>
             
             <tr>
-                <td><form:label path="description">Descripcion de la oferta</form:label></td>
-                <td colspan="1">
-                	<form:input class="form-control" type="text" path="description" /><br>
+                <td><form:label path="description">Descripción</form:label></td>
+                <td>
+                	<form:textarea class="form-control" type="text" path="description" /><br>
                 	<form:errors class="error" path="description"/>	
                 </td>
             </tr>
@@ -35,8 +36,12 @@
             </tr>
             
             <tr>
-                <td><form:label path="startDate">Fecha de inicio</form:label></td>
-                <td><form:input class="form-control" type="date" path="startDate" /></td>
+                <td><form:label path="startDate">Fecha inicio</form:label></td>
+                <td>
+                	<form:input data-toggle="datepicker" class="form-control" path="startDate" placeholder="dd/mm/yyyy" />
+					<div data-toggle="datepicker"></div>
+					<form:errors class="error" path="startDate"/>	
+                </td>
             </tr>
             			 
             <tr>
@@ -45,8 +50,12 @@
             </tr>
             
             <tr>
-                <td><form:label path="endDate">Fecha final</form:label></td>
-                <td><form:input class="form-control" type="date" path="endDate" /></td>
+                <td><form:label path="endDate">Fecha fin</form:label></td>
+                <td>
+                	<form:input data-toggle="datepicker" class="form-control" path="endDate" placeholder="dd/mm/yyyy" />
+					<div data-toggle="datepicker"></div>
+					<form:errors class="error" path="endDate"/>	
+                </td>
             </tr>
             
             <form:input type="hidden" path="active" value="true"></form:input>

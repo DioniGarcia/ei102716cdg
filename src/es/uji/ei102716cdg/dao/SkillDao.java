@@ -167,6 +167,12 @@ public class SkillDao {
 				new Object[] {nameSubstring}, new SearchMapper());
 	} 
 	
+	public List<String> skillNames() {
+		return this.jdbcTemplate.query("select DISTINCT name FROM Skill "
+				+ " WHERE active = true",
+				new Object[] {}, new SearchMapper());
+	} 
+	
 	//TODO Convertir en un servicio, a ser posible
 	/**Devuelve los niveles activos de la skill deseada	
 	 * 

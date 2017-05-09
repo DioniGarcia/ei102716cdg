@@ -1,5 +1,7 @@
 package es.uji.ei102716cdg.controller.my;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +21,7 @@ import es.uji.ei102716cdg.dao.OfferDao;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.user.User;
 import es.uji.ei102716cdg.service.PostServiceInterface;
+import es.uji.ei102716cdg.util.CustomSqlDateEditor;
 import es.uji.ei102716cdg.validator.OfferValidator;
 
 
@@ -36,6 +41,14 @@ public class MyOfferController {
 	public void setOfferDao(OfferDao offerDao){
 		this.offerDao=offerDao;
 	}
+	
+	@InitBinder("offer")
+    public void customizeBinding(WebDataBinder binder) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormatter.setLenient(false);
+        binder.registerCustomEditor(Date.class, 
+                                    new CustomSqlDateEditor(dateFormatter, true,10));
+    }
 	
 	@RequestMapping("/add")
 	public String addOffer(Model model){

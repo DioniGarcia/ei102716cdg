@@ -47,7 +47,7 @@ private SkillDao skillDao;
 	@RequestMapping(value = "/levels", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String getSkillLevels(@RequestParam("name") String name){
 		String result = "";
-		List<Skill> skills = skillDao.skillLevels(Encoding.convertLatinToUTF8(name));
+		List<Skill> skills = skillDao.skillLevels(name);
 		if (skills.isEmpty()) return "[]";
 		result += "[";
 		for(Skill skill : skills){
@@ -58,6 +58,18 @@ private SkillDao skillDao;
 		return result.substring(0, result.length()-1) + "]";
 	}
 	
+	@RequestMapping(value="/names", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String skillNames(){
+		String result = "";
+		List<String> skills = skillDao.skillNames();
+		if (skills.isEmpty()) return "[]";
+		result += "[";
+		for(String skill : skills){
+			result += "{\"id\": \"" + skill + "\", "
+					+ "\"text\": \"" + skill + "\"},";
+		}
+		return result.substring(0, result.length()-1) + "]";
+	}
 	
 	@RequestMapping(value="/search", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String searchSkill(@RequestParam("name") String name){

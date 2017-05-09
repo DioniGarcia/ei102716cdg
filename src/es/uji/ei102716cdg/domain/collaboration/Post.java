@@ -2,6 +2,8 @@ package es.uji.ei102716cdg.domain.collaboration;
 
 import java.sql.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * <h1>Representa una oferta de ayuda por parte de un estudiante</h1>
  * Cada cliente puede publicar tantas ofertas como quiera
@@ -13,8 +15,10 @@ public class Post {
 	String student_nick;	//Identificador del estudiante que realiza el post
 	int  skill_Id;			//Identificador del Tipo de habilidad al que se refiere la oferta 
 	Date startDate;			//Fecha de inicio de una posible colaboracion 
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date endDate;			//Fecha limite para la colaboracion
-	String description;		//Pequeña descripcion complementaria
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	String description;		//Pequeï¿½a descripcion complementaria
 	boolean active;			//Estado del Post (Activo o Inactivo)
 	
 	//GETTERS & SETTERS
