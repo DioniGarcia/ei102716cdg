@@ -32,6 +32,9 @@
 	<link 
 		href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" 
 		rel="stylesheet" />
+
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/datepicker.min.css" />
+
 </head>
 
 
@@ -55,6 +58,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/select-skill.js" charset="UTF-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/moment-with-locales.min.js" charset="UTF-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.dotdotdot.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/datepicker.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/datepicker.es-ES.js"></script>
     <script type="text/javascript">
     	moment.locale("es");
     	var fechas = document.getElementsByClassName("post-date");

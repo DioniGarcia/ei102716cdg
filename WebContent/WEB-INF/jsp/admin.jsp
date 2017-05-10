@@ -26,55 +26,50 @@
 <body>
 <div class="container">
 <div style="display:flex;justify-content: space-between;align-items: center;">
-	<h3>Página de administrador</h3>
+	<h3>PÃ¡gina de administrador</h3>
 	<a href="${pageContext.request.contextPath}/logout.html">Salir</a>
 </div>
 <div id="alert-container" class="alert-fixed"></div>
-<div class="alert alert-success alert-fixed" role="alert" style="display:none;">Se ha guardado correctamente<a class="close" onclick="$('.alert').hide()">×</a></div>
-<div class="alert alert-danger alert-fixed" role="alert" style="display:none;">Ha habido un error<a class="close" onclick="$('.alert').hide()">×</a></div>
+<div class="alert alert-success alert-fixed" role="alert" style="display:none;">Se ha guardado correctamente<a class="close" onclick="$('.alert').hide()">Ã—</a></div>
+<div class="alert alert-danger alert-fixed" role="alert" style="display:none;">Ha habido un error<a class="close" onclick="$('.alert').hide()">Ã—</a></div>
 
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
   <div class="btn-group" role="group">
   	<button type="button" class="btn btn-default" id="show-form">Nueva habilidad</button>
   </div>
   <div class="btn-group" role="group">
-  	<button type="button" class="btn btn-default" id="#">Informes/Estadísticas</button>
+  	<button type="button" class="btn btn-default" id="#">Informes/EstadÃ­sticas</button>
   </div>
 </div>
 
 <br><br>
-
-
-
-
-
 
 <form id="form-skill" style="display:none;">
 <table class="dataTable no-footer">
 	<thead>
 	  <tr>
          <th>Nombre</th>
-         <th>Descripción</th>
-         <th>Nivel</th>
          <th>Activa</th>
+         <th>Nivel</th>
+         <th>DescripciÃ³n</th>
       </tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td rowspan="3"><input name="name" type="text"/></td>
-			<td><input name="description-1" type="text"/></td>
+			<td class="center"><input name="active-1" type="checkbox"/></td>
 			<td>Iniciado</td>
-			<td class="center"><input name="active-1" type="checkbox" checked/></td>
+			<td><input name="description-1" type="text" disabled/></td>
 		</tr>
 		<tr>
-			<td><input name="description-2" type="text"/></td>
+			<td class="center"><input name="active-2" type="checkbox"/></td>
 			<td>Medio</td>
-			<td class="center"><input name="active-2" type="checkbox" checked/></td>
+			<td><input name="description-2" type="text" disabled/></td>
 		</tr>
 		<tr>
-			<td><input name="description-3" type="text"/></td>
+			<td class="center"><input name="active-3" type="checkbox"/></td>
 			<td>Experto</td>
-			<td class="center"><input name="active-3" type="checkbox" checked/></td>
+			<td><input name="description-3" type="text" disabled/></td>
 		</tr>
 	</tbody>
 </table>
@@ -85,7 +80,7 @@
    <thead>
       <tr>
          <th>Nombre</th>
-         <th>Descripción</th>
+         <th>DescripciÃ³n</th>
          <th>Nivel</th>
          <th>Ofertas</th>
          <th>Demandas</th>
@@ -108,7 +103,7 @@
 <script type="text/javascript">
 function showalert(message,alerttype) {
 
-    $('#alert-container').append('<div id="alertdiv" class="alert ' +  alerttype + '"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
+    $('#alert-container').append('<div id="alertdiv" class="alert ' +  alerttype + '"><a class="close" data-dismiss="alert">Ã—</a><span>'+message+'</span></div>')
 
     setTimeout(function() { 
 
@@ -117,6 +112,72 @@ function showalert(message,alerttype) {
 
     }, 4000);
   }
+  
+var myCallback = function () { 
+	$.fn.editable.defaults.mode = 'inline';   
+    $('.editar-descripcion a').editable({
+    	params: function(params) {
+            var data = {};
+            data['id'] = params.pk;
+            data['description'] = params.value;
+            return data;
+        },
+	    type: 'text',
+	    emptytext: 'VacÃ­o', 
+	    name: 'username',
+	    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/description",
+	    success: function(response, newValue) {
+	    	showalert("<strong>DescripciÃ³n</strong> actualizada correctamente" ,"alert-success");
+	    },
+	    error: function(res) {
+	    	showalert("Ha habido un problema al actualizar la <strong>descripciÃ³n</strong>","alert-danger");
+               console.log(res);
+        }
+	});
+    $('.editar-nombre a').editable({
+    	params: function(params) {
+            var data = {};
+            data['name'] = params.value;
+            data['original'] = $(this).text();
+            return data;
+        },
+	    type: 'text',
+	    emptytext: 'VacÃ­o', 
+	    name: 'username',
+	    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/title",
+	    success: function(response, newValue) {
+	    	showalert("<strong>Nombre de la habilidad</strong> actualizado correctamente","alert-success");
+	    },
+	    error: function(res) {
+	    	showalert("Ha habido un problema al actualizar el <strong>nombre de la habilidad</strong>","alert-danger");
+            console.log(res);
+        }
+	});
+    
+    $('input[type="checkbox"]').on('change', function() {
+	    var skillId = this.getAttribute('class');
+	    if (skillId == null){
+	    	if (!$(this).is(':checked'))
+	    		$('input[name="description-' + $(this).attr("name").slice(-1) + '"]').prop('disabled', true);
+    		else
+	    		$('input[name="description-' + $(this).attr("name").slice(-1) + '"]').prop('disabled', false);
+	    	return;
+	    }
+	     $.ajax({
+	         url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/active",
+	         data: { id: skillId, active: this.checked },
+	         success: function(res) {
+	        	 showalert("El <strong>Estado de la habilidad</strong> se ha actualizado correctamente","alert-success");
+	         },
+	         error: function(res) {
+	        	 showalert("Ha habido un problema al actualizar el <strong>estado de la habilidad</strong>","alert-danger");
+	             console.log(res);
+	         }
+	      });
+    	
+		});
+	
+};
 $(document).ready(function(){
 	   var table = $('#skill-table').DataTable({
 	      'ajax': {
@@ -162,17 +223,17 @@ $(document).ready(function(){
 	  	  ],
 	      columns: [
 	                { data: 'name' },
-	                { data: 'description' },
-	                { data: 'level' },
-	                { data: 'offers' },
-	                { data: 'requests' },
-	                { data: 'active' }
+	                { data: 'description', "orderable" : false  },
+	                { data: 'level' , "orderable" : false },
+	                { data: 'offers' , "orderable" : false },
+	                { data: 'requests' , "orderable" : false },
+	                { data: 'active' , "orderable" : false }
 	      ],
 	      language:{
 	    	    "sProcessing":     "Procesando...",
 	    	    "sLengthMenu":     "Mostrar _MENU_ registros",
 	    	    "sZeroRecords":    "No se encontraron resultados",
-	    	    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+	    	    "sEmptyTable":     "NingÃºn dato disponible en esta tabla",
 	    	    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
 	    	    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
 	    	    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
@@ -183,7 +244,7 @@ $(document).ready(function(){
 	    	    "sLoadingRecords": "Cargando...",
 	    	    "oPaginate": {
 	    	        "sFirst":    "Primero",
-	    	        "sLast":     "Último",
+	    	        "sLast":     "Ãšltimo",
 	    	        "sNext":     "Siguiente",
 	    	        "sPrevious": "Anterior"
 	    	    },
@@ -192,89 +253,33 @@ $(document).ready(function(){
 	    	        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
 	    	    }
 	    	},
-	    	"initComplete": function(settings, json) {
-	    		$.fn.editable.defaults.mode = 'inline';   
-	    	    $('.editar-descripcion a').editable({
-	    	    	params: function(params) {
-	    	            var data = {};
-	    	            data['id'] = params.pk;
-	    	            data['description'] = params.value;
-	    	            return data;
-	    	        },
-				    type: 'text',
-				    name: 'username',
-				    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/description",
-				    success: function(response, newValue) {
-				    	showalert("<strong>Descripción</strong> actualizada correctamente" ,"alert-success");
-				    },
-				    error: function(res) {
-				    	showalert("Ha habido un problema al actualizar la <strong>descripción</strong>","alert-danger");
-   		                console.log(res);
-   		         }
-				});
-	    	    $('.editar-nombre a').editable({
-	    	    	params: function(params) {
-	    	            var data = {};
-	    	            data['name'] = params.value;
-	    	            data['original'] = $(this).text();
-	    	            return data;
-	    	        },
-				    type: 'text',
-				    name: 'username',
-				    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/title",
-				    success: function(response, newValue) {
-				    	showalert("<strong>Nombre de la habilidad</strong> actualizado correctamente","alert-success");
-				    },
-				    error: function(res) {
-				    	showalert("Ha habido un problema al actualizar el <strong>nombre de la habilidad</strong>","alert-danger");
-   		             console.log(res);
-   		         }
-				});
-	    	    
-	    	    $('input[type="checkbox"]').on('change', function() {
-	    		    var skillId = this.getAttribute('class');
-	    		    if (skillId == null) return;
-	    		     $.ajax({
-	    		         url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/active",
-	    		         data: { id: skillId, active: this.checked },
-	    		         success: function(res) {
-	    		        	 showalert("El <strong>Estado de la habilidad</strong> se ha actualizado correctamente","alert-success");
-	    		         },
-	    		         error: function(res) {
-	    		        	 showalert("Ha habido un problema al actualizar el <strong>estado de la habilidad</strong>","alert-danger");
-	    		             console.log(res);
-	    		         }
-	    		      });
-	    	    	
-	    			});
-	    	}
+	    	"initComplete": myCallback
 	   });
 	   
 	   $('#show-form').on('click', function(){
 		   $('#form-skill').toggle(); 
 	   });
 	   
-	   
 	   $("#form-skill").submit(function(event) {
 
 		      /* stop form from submitting normally */
 		      event.preventDefault();
+		      if ($(this).find('input[name="name"]').val() == ''){
+		    	  showalert("Error al crear habilidad: el campo del <strong>nombre de la habilidad</strong> esta vacÃ­o", "alert-danger");
+		      	  return;
+		      }
 			  var url =  window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/add";
 		      /* Send the data using post with element id name and name2*/
 		      $.post( url, $("#form-skill").serialize() )
 		      .done(function( data ) {
-		    	  showalert("Se ha añadido correctamente la habilidad", "alert-success");
-		    	  table.ajax.reload();
+		    	  showalert("Se ha aÃ±adido correctamente la habilidad", "alert-success");
+		    	  table.ajax.reload(myCallback);
 		    	  table.order( [[ 0, 'desc' ]] ).draw( false );
+		    	  $( this ).trigger('reset');
 		      });
 		    });
 	   
 	   
 	});
-
-
-
-
-
 
 </script>

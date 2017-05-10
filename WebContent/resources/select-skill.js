@@ -39,29 +39,20 @@ $.fn.select2.amd.define('select2/i18n/es',[],function () {
 	  };
 	});
 
-$("#prueba").select2({
-	  language: "es",
-	  width: "200px",
-	  placeholder: "Habilidad",
-	  ajax: {
-	    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/search",
-	    dataType: 'json',
-	    delay: 300,
-	    data: function (params) {
-	      return {
-	        name: params.term, // search term
-	      };
-	    },
-	    processResults: function (data, params) {
-	
-	      return {
-	        results: data
-	      };
-	    },
-	    cache: true
-	  },
-	  minimumInputLength: 1
+$.ajax({
+    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/names",
+    dataType: 'json',
+    success: function(data) {
+    	$("#nombre").select2({
+    		  language: "es",
+    		  width: "200px",
+    		  data: data,
+    		  placeholder: "Habilidad"
+    	});
+    }
 });
+
+
 
 $('#tipo').select2({
 	language: "es",
@@ -70,7 +61,7 @@ $('#tipo').select2({
 	placeholder: "Nivel"
 });
 
-$('#prueba').on('select2:select', function (evt) {
+$('#nombre').on('select2:select', function (evt) {
 	axios.get(window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/levels?name=" + evt.params.data.text)
 	.then(function (response) {
       var tipos = response.data;
@@ -85,4 +76,9 @@ $('#prueba').on('select2:select', function (evt) {
 	  console.log(error);
 	});
 });
-
+$(document).ready(function(){
+	$('[data-toggle="datepicker"]').datepicker({
+		language: 'es-ES',
+		autoHide: true
+	});	
+});
