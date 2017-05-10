@@ -27,14 +27,27 @@
 <div class="container">
 <div style="display:flex;justify-content: space-between;align-items: center;">
 	<h3>Página de administrador</h3>
-	<a href="#">Informes/Estadísticas</a>
 	<a href="${pageContext.request.contextPath}/logout.html">Salir</a>
 </div>
 <div id="alert-container" class="alert-fixed"></div>
 <div class="alert alert-success alert-fixed" role="alert" style="display:none;">Se ha guardado correctamente<a class="close" onclick="$('.alert').hide()">×</a></div>
 <div class="alert alert-danger alert-fixed" role="alert" style="display:none;">Ha habido un error<a class="close" onclick="$('.alert').hide()">×</a></div>
 
-<button id="show-form">Nueva habilidad</button>
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+  	<button type="button" class="btn btn-default" id="show-form">Nueva habilidad</button>
+  </div>
+  <div class="btn-group" role="group">
+  	<button type="button" class="btn btn-default" id="#">Informes/Estadísticas</button>
+  </div>
+</div>
+
+<br><br>
+
+
+
+
+
 
 <form id="form-skill" style="display:none;">
 <table class="dataTable no-footer">
@@ -65,8 +78,7 @@
 		</tr>
 	</tbody>
 </table>
-<button id="add-skill" type="submit">Añadir habilidad</button>
-<button id="cancelar">Cancelar</button>
+<button id="add-skill" type="submit">Validar</button>
 </form>
 
 <table id="skill-table" class="display" cellspacing="0" width="100%">
@@ -82,6 +94,7 @@
    </thead>
 </table>
 </div>
+<br><br>
 
 </body>
 </html>
@@ -91,6 +104,7 @@
 <script src="https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 <script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.4/js/dataTables.checkboxes.min.js"></script>
+
 <script type="text/javascript">
 function showalert(message,alerttype) {
 
@@ -237,13 +251,8 @@ $(document).ready(function(){
 	   });
 	   
 	   $('#show-form').on('click', function(){
-		  $('#form-skill').show(); 
+		   $('#form-skill').toggle(); 
 	   });
-	   
-	   $('#cancelar').on('click', function(e){
-		      e.preventDefault();
-			  $('#form-skill').hide(); 
-		   });
 	   
 	   
 	   $("#form-skill").submit(function(event) {
