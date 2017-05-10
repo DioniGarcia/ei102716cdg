@@ -15,7 +15,7 @@
 					<!-- Botón Crear oferta -->
 					
 					<div class="jumbotron">
-						<a href="my/offer/add" role="button">
+						<a href="${pageContext.request.contextPath}/my/offers/add.html">
 							<br>
 							<br>
 							<br>
@@ -48,7 +48,7 @@
 					<!-- Botón Crear demandas -->
 					
 					<div class="jumbotron">
-						<a href="my/offer/add" role="button">
+						<a href="my/offer/add.html" role="button">
 							
 							<br>
 							<br>
