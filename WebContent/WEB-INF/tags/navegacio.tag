@@ -19,8 +19,8 @@
 	            	<span id="search_concept">Filtrar</span> <span class="caret"></span>
 	            </button>
 	            <ul class="dropdown-menu" role="menu">
-	              <li><a href="#contains">Oferta</a></li>
-	              <li><a href="#its_equal">Demanda</a></li>
+	              <li><a href="#offer">Oferta</a></li>
+	              <li><a href="#request">Demanda</a></li>
 	              <li class="divider"></li>
 	              <li><a href="#all">Todo</a></li>
 	            </ul>
@@ -34,18 +34,13 @@
     </div>
     
     <!-- Offers-->
-  	<div class= "col-md-1">
-      <a href="${pageContext.request.contextPath}/my/offers/list.html">Ofertas</a>
+  	<div class= "col-md-2">
+      <a href="${pageContext.request.contextPath}/my/offers/list.html">Ver todas las ofertas</a>
     </div>
     
     <!-- Requests-->
-  	<div class= "col-md-1">
-      <a href="${pageContext.request.contextPath}/index.jsp">Demandas</a>
-    </div>
-    
-    <!-- Colabortions-->
-  	<div class= "col-md-1">
-      <a href="${pageContext.request.contextPath}/index.jsp">Colaboraciones</a>
+  	<div class= "col-md-2">
+      <a href="${pageContext.request.contextPath}/my/requests/list.html">Ver todas las demandas</a>
     </div>
     
     <!-- Correo-->
@@ -57,8 +52,7 @@
     </div>
     
     <!-- Perfil-->
-  	<div class:="col-md-2">
-  		
+  	<div class="col-md-2">
 				<img src="${pageContext.request.contextPath}/resources/img/background.jpg" class="img-circle" alt="" width="40" height="40">
 				<t:logininfo/>
  		
