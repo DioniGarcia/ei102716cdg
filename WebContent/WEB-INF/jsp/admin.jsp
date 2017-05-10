@@ -26,19 +26,19 @@
 <body>
 <div class="container">
 <div style="display:flex;justify-content: space-between;align-items: center;">
-	<h3>PÃ¡gina de administrador</h3>
+	<h3>Página de administrador</h3>
 	<a href="${pageContext.request.contextPath}/logout.html">Salir</a>
 </div>
 <div id="alert-container" class="alert-fixed"></div>
-<div class="alert alert-success alert-fixed" role="alert" style="display:none;">Se ha guardado correctamente<a class="close" onclick="$('.alert').hide()">Ã—</a></div>
-<div class="alert alert-danger alert-fixed" role="alert" style="display:none;">Ha habido un error<a class="close" onclick="$('.alert').hide()">Ã—</a></div>
+<div class="alert alert-success alert-fixed" role="alert" style="display:none;">Se ha guardado correctamente<a class="close" onclick="$('.alert').hide()">×</a></div>
+<div class="alert alert-danger alert-fixed" role="alert" style="display:none;">Ha habido un error<a class="close" onclick="$('.alert').hide()">×—</a></div>
 
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
   <div class="btn-group" role="group">
   	<button type="button" class="btn btn-default" id="show-form">Nueva habilidad</button>
   </div>
   <div class="btn-group" role="group">
-  	<button type="button" class="btn btn-default" id="#">Informes/EstadÃ­sticas</button>
+  	<button type="button" class="btn btn-default" id="#">Informes/Estadísticas</button>
   </div>
 </div>
 
@@ -51,7 +51,7 @@
          <th>Nombre</th>
          <th>Activa</th>
          <th>Nivel</th>
-         <th>DescripciÃ³n</th>
+         <th>Descripción</th>
       </tr>
 	</thead>
 	<tbody>
@@ -80,7 +80,7 @@
    <thead>
       <tr>
          <th>Nombre</th>
-         <th>DescripciÃ³n</th>
+         <th>Descripción</th>
          <th>Nivel</th>
          <th>Ofertas</th>
          <th>Demandas</th>
@@ -103,7 +103,7 @@
 <script type="text/javascript">
 function showalert(message,alerttype) {
 
-    $('#alert-container').append('<div id="alertdiv" class="alert ' +  alerttype + '"><a class="close" data-dismiss="alert">Ã—</a><span>'+message+'</span></div>')
+    $('#alert-container').append('<div id="alertdiv" class="alert ' +  alerttype + '"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
 
     setTimeout(function() { 
 
@@ -113,8 +113,8 @@ function showalert(message,alerttype) {
     }, 4000);
   }
   
+$.fn.editable.defaults.mode = 'inline';   
 var myCallback = function () { 
-	$.fn.editable.defaults.mode = 'inline';   
     $('.editar-descripcion a').editable({
     	params: function(params) {
             var data = {};
@@ -123,14 +123,14 @@ var myCallback = function () {
             return data;
         },
 	    type: 'text',
-	    emptytext: 'VacÃ­o', 
+	    emptytext: 'Vacío', 
 	    name: 'username',
 	    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/description",
 	    success: function(response, newValue) {
-	    	showalert("<strong>DescripciÃ³n</strong> actualizada correctamente" ,"alert-success");
+	    	showalert("<strong>Descripción</strong> actualizada correctamente" ,"alert-success");
 	    },
 	    error: function(res) {
-	    	showalert("Ha habido un problema al actualizar la <strong>descripciÃ³n</strong>","alert-danger");
+	    	showalert("Ha habido un problema al actualizar la <strong>descripción</strong>","alert-danger");
                console.log(res);
         }
 	});
@@ -142,7 +142,7 @@ var myCallback = function () {
             return data;
         },
 	    type: 'text',
-	    emptytext: 'VacÃ­o', 
+	    emptytext: 'Vacío', 
 	    name: 'username',
 	    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/title",
 	    success: function(response, newValue) {
@@ -233,7 +233,7 @@ $(document).ready(function(){
 	    	    "sProcessing":     "Procesando...",
 	    	    "sLengthMenu":     "Mostrar _MENU_ registros",
 	    	    "sZeroRecords":    "No se encontraron resultados",
-	    	    "sEmptyTable":     "NingÃºn dato disponible en esta tabla",
+	    	    "sEmptyTable":     "Ningún dato disponible en esta tabla",
 	    	    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
 	    	    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
 	    	    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
@@ -244,7 +244,7 @@ $(document).ready(function(){
 	    	    "sLoadingRecords": "Cargando...",
 	    	    "oPaginate": {
 	    	        "sFirst":    "Primero",
-	    	        "sLast":     "Ãšltimo",
+	    	        "sLast":     "Último",
 	    	        "sNext":     "Siguiente",
 	    	        "sPrevious": "Anterior"
 	    	    },
@@ -253,7 +253,8 @@ $(document).ready(function(){
 	    	        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
 	    	    }
 	    	},
-	    	"initComplete": myCallback
+	    	"initComplete": myCallback,
+	    	"drawCallback": myCallback
 	   });
 	   
 	   $('#show-form').on('click', function(){
@@ -265,14 +266,14 @@ $(document).ready(function(){
 		      /* stop form from submitting normally */
 		      event.preventDefault();
 		      if ($(this).find('input[name="name"]').val() == ''){
-		    	  showalert("Error al crear habilidad: el campo del <strong>nombre de la habilidad</strong> esta vacÃ­o", "alert-danger");
+		    	  showalert("Error al crear habilidad: el campo del <strong>nombre de la habilidad</strong> esta vacío", "alert-danger");
 		      	  return;
 		      }
 			  var url =  window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/add";
 		      /* Send the data using post with element id name and name2*/
 		      $.post( url, $("#form-skill").serialize() )
 		      .done(function( data ) {
-		    	  showalert("Se ha aÃ±adido correctamente la habilidad", "alert-success");
+		    	  showalert("Se ha añadido correctamente la habilidad", "alert-success");
 		    	  table.ajax.reload(myCallback);
 		    	  table.order( [[ 0, 'desc' ]] ).draw( false );
 		    	  $( this ).trigger('reset');
