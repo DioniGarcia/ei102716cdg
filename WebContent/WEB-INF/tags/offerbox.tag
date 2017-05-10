@@ -1,4 +1,4 @@
-<%@ tag description="Estructura d'una pàgina normal"
+<%@ tag description="Estructura de un bloque Post"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ attribute name="postId" required="false"%>
@@ -7,7 +7,7 @@
 <%@ attribute name="postDate" required="false"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
-<div class="postbox split-container">
+<div class="post-box split-container">
 	<div class="split-item-v-foto split-container">
 		<div class="split-item"></div>
 		

@@ -26,15 +26,23 @@
 <body>
 <div class="container">
 <div style="display:flex;justify-content: space-between;align-items: center;">
-	<h3>Página de administrador</h3>
-	<a href="#">Informes/Estadísticas</a>
+	<h3>PÃ¡gina de administrador</h3>
 	<a href="${pageContext.request.contextPath}/logout.html">Salir</a>
 </div>
 <div id="alert-container" class="alert-fixed"></div>
-<div class="alert alert-success alert-fixed" role="alert" style="display:none;">Se ha guardado correctamente<a class="close" onclick="$('.alert').hide()">×</a></div>
-<div class="alert alert-danger alert-fixed" role="alert" style="display:none;">Ha habido un error<a class="close" onclick="$('.alert').hide()">×</a></div>
+<div class="alert alert-success alert-fixed" role="alert" style="display:none;">Se ha guardado correctamente<a class="close" onclick="$('.alert').hide()">Ã—</a></div>
+<div class="alert alert-danger alert-fixed" role="alert" style="display:none;">Ha habido un error<a class="close" onclick="$('.alert').hide()">Ã—</a></div>
 
-<button id="show-form">Nueva habilidad</button>
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+  	<button type="button" class="btn btn-default" id="show-form">Nueva habilidad</button>
+  </div>
+  <div class="btn-group" role="group">
+  	<button type="button" class="btn btn-default" id="#">Informes/EstadÃ­sticas</button>
+  </div>
+</div>
+
+<br><br>
 
 <form id="form-skill" style="display:none;">
 <table class="dataTable no-footer">
@@ -43,7 +51,7 @@
          <th>Nombre</th>
          <th>Activa</th>
          <th>Nivel</th>
-         <th>Descripción</th>
+         <th>DescripciÃ³n</th>
       </tr>
 	</thead>
 	<tbody>
@@ -65,15 +73,14 @@
 		</tr>
 	</tbody>
 </table>
-<button id="add-skill" type="submit">Añadir habilidad</button>
-<button id="cancelar">Cancelar</button>
+<button id="add-skill" type="submit">Validar</button>
 </form>
 
 <table id="skill-table" class="display" cellspacing="0" width="100%">
    <thead>
       <tr>
          <th>Nombre</th>
-         <th>Descripción</th>
+         <th>DescripciÃ³n</th>
          <th>Nivel</th>
          <th>Ofertas</th>
          <th>Demandas</th>
@@ -82,6 +89,7 @@
    </thead>
 </table>
 </div>
+<br><br>
 
 </body>
 </html>
@@ -91,10 +99,11 @@
 <script src="https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 <script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.4/js/dataTables.checkboxes.min.js"></script>
+
 <script type="text/javascript">
 function showalert(message,alerttype) {
 
-    $('#alert-container').append('<div id="alertdiv" class="alert ' +  alerttype + '"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
+    $('#alert-container').append('<div id="alertdiv" class="alert ' +  alerttype + '"><a class="close" data-dismiss="alert">Ã—</a><span>'+message+'</span></div>')
 
     setTimeout(function() { 
 
@@ -114,14 +123,14 @@ var myCallback = function () {
             return data;
         },
 	    type: 'text',
-	    emptytext: 'Vacío', 
+	    emptytext: 'VacÃ­o', 
 	    name: 'username',
 	    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/description",
 	    success: function(response, newValue) {
-	    	showalert("<strong>Descripción</strong> actualizada correctamente" ,"alert-success");
+	    	showalert("<strong>DescripciÃ³n</strong> actualizada correctamente" ,"alert-success");
 	    },
 	    error: function(res) {
-	    	showalert("Ha habido un problema al actualizar la <strong>descripción</strong>","alert-danger");
+	    	showalert("Ha habido un problema al actualizar la <strong>descripciÃ³n</strong>","alert-danger");
                console.log(res);
         }
 	});
@@ -133,7 +142,7 @@ var myCallback = function () {
             return data;
         },
 	    type: 'text',
-	    emptytext: 'Vacío', 
+	    emptytext: 'VacÃ­o', 
 	    name: 'username',
 	    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/title",
 	    success: function(response, newValue) {
@@ -224,7 +233,7 @@ $(document).ready(function(){
 	    	    "sProcessing":     "Procesando...",
 	    	    "sLengthMenu":     "Mostrar _MENU_ registros",
 	    	    "sZeroRecords":    "No se encontraron resultados",
-	    	    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+	    	    "sEmptyTable":     "NingÃºn dato disponible en esta tabla",
 	    	    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
 	    	    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
 	    	    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
@@ -235,7 +244,7 @@ $(document).ready(function(){
 	    	    "sLoadingRecords": "Cargando...",
 	    	    "oPaginate": {
 	    	        "sFirst":    "Primero",
-	    	        "sLast":     "Último",
+	    	        "sLast":     "Ãšltimo",
 	    	        "sNext":     "Siguiente",
 	    	        "sPrevious": "Anterior"
 	    	    },
@@ -248,30 +257,22 @@ $(document).ready(function(){
 	   });
 	   
 	   $('#show-form').on('click', function(){
-		  $(this).hide(); 
-		  $('#form-skill').show(); 
+		   $('#form-skill').toggle(); 
 	   });
-	   
-	   $('#cancelar').on('click', function(e){
-		      e.preventDefault();
-			  $('#form-skill').hide(); 
-			  $('#show-form').show();
-		   });
-	   
 	   
 	   $("#form-skill").submit(function(event) {
 
 		      /* stop form from submitting normally */
 		      event.preventDefault();
 		      if ($(this).find('input[name="name"]').val() == ''){
-		    	  showalert("Error al crear habilidad: el campo del <strong>nombre de la habilidad</strong> esta vacío", "alert-danger");
+		    	  showalert("Error al crear habilidad: el campo del <strong>nombre de la habilidad</strong> esta vacÃ­o", "alert-danger");
 		      	  return;
 		      }
 			  var url =  window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/add";
 		      /* Send the data using post with element id name and name2*/
 		      $.post( url, $("#form-skill").serialize() )
 		      .done(function( data ) {
-		    	  showalert("Se ha añadido correctamente la habilidad", "alert-success");
+		    	  showalert("Se ha aÃ±adido correctamente la habilidad", "alert-success");
 		    	  table.ajax.reload(myCallback);
 		    	  table.order( [[ 0, 'desc' ]] ).draw( false );
 		    	  $( this ).trigger('reset');
@@ -280,10 +281,5 @@ $(document).ready(function(){
 	   
 	   
 	});
-
-
-
-
-
 
 </script>

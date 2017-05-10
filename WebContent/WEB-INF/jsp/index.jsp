@@ -10,8 +10,24 @@
 		<div class="split-container">
 		
 			<div class="split-item" >
-				<div align="center"  >
-					<h2 class="">Ofertas</h2>
+				<div align="center" >
+					
+					<!-- Botón Crear oferta -->
+					
+					<div class="jumbotron">
+						<a href="${pageContext.request.contextPath}/my/offers/add.html">
+							<br>
+							<br>
+							<br>
+							<br>
+							<h2>Crear Oferta</h2> 
+							<p>Ofrece ayuda a otros usuarios</p>
+							<br>							
+						</a> 
+					</div>		
+					
+					
+					<!-- Listado de ofertas destacadas -->
 					<c:forEach varStatus="status" items="${offers}" var="offer"> 
     				<t:offerbox 
     					postId="${offer.id }"
@@ -24,12 +40,36 @@
 				
 			</div>
 			
-			<div class="split-item" align="center">
-				<h2>Demandas</h2>
-				<t:offerbox/>
-				<t:offerbox/>
-				<t:offerbox/>
+			
+			
+			<div style="margin-left: 15px; margin-right: 15px;" class="split-item" >
+				<div align="center" >
+					
+					<!-- Botón Crear demandas -->
+					
+					<div class="jumbotron">
+						<a href="my/offer/add.html" role="button">
+							
+							<br>
+							<br>
+							<br>
+							<br>
+							<h2>Crear Demanda</h2> 
+							<p>Recibe ayuda de otros miembros</p>
+							<br>	
+						</a> 
+					</div>		
+					
+					
+					<!-- Listado de demandas destacadas -->
+					<t:offerbox/>
+					<t:offerbox/>
+					<t:offerbox/>
+				</div>
+				
 			</div>
+			
+
 		
 		</div>
 		

@@ -3,6 +3,7 @@
 <%@ attribute name="title" required="false"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -20,16 +21,25 @@
 	<link
 	    href="${pageContext.request.contextPath}/css/personalizado.css"
 	    rel="stylesheet"/>
+	<link
+	    href="${pageContext.request.contextPath}/css/my/offer.css"
+	    rel="stylesheet"/>
+	    
+	<link
+	    href="${pageContext.request.contextPath}/css/my/sidenav.css"
+	    rel="stylesheet"/>
+	    
 	<link 
 		href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" 
 		rel="stylesheet" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/my/offer.css" />
+
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/datepicker.min.css" />
+
 </head>
 
 
 <body>
-    <t:navegacio />
+    <t:navegacio/>
     <div class="container">
         <jsp:doBody />
     </div>
@@ -40,6 +50,7 @@
     </p>
     </footer>
 </body>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
