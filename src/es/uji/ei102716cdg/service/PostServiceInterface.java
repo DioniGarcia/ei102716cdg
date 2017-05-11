@@ -56,5 +56,5 @@ public interface PostServiceInterface {
 	
 	public Student getStudentByNick(String nick);
 	
-	
+	public List<Request> getRequestsBySkillId(String nick, int skillId);
 }

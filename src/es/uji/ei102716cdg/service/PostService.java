@@ -129,6 +129,14 @@ public class PostService implements PostServiceInterface {
 		return studentDao.getStudent(nick);
 	}
 
-	
+	@Override
+	public List<Request> getRequestsBySkillId(String nick, int skillId){
+		List<Request> requestBySkill = new ArrayList<Request>();
+		for (Request req : requestDao.getRequestsByNick(nick)){
+			if (req.getSkill_Id() == skillId)
+				requestBySkill.add(req);
+		}
+		return requestBySkill;
+	}
 
 }

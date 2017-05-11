@@ -25,5 +25,7 @@
     <div>
     	<p class="post-date" style="font-size:15px; font-weight:bold;"><c:out value="${offer.startDate }, ${offer.endDate } "></c:out></p>
     </div>
+    
+    <a href="${ pageContext.request.contextPath }/my/collaborations/add?offerId=${offer.id }&skillId=${skill.skill_id }">Collab</a>
 </jsp:body>
 </t:paginabasica>
