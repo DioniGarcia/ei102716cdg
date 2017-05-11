@@ -8,6 +8,14 @@
 <style>
     *{margin: 0;padding:0px}
 
+	.logo-icon {
+	  padding: 14px 14px;
+	  text-align: left;
+	  font-size: 22px;
+	  font-family: 'Pacifico', cursive;
+	  font-style: italic;
+	}
+
     .header{
         width: 100%;
         background-color: #0d77b6 !important;
@@ -120,7 +128,7 @@
   	
   	<!-- Titulo-->
   	<div class="navbar-header col-md-2">
-      <a class="navbar-brand" href="${pageContext.request.contextPath}/index.html">SkillSharing</a>
+      <a class="navbar-brand logo-icon" href="${pageContext.request.contextPath}/index.html">SkillSharing</a>
     </div>
     
     <!-- Search-->
