@@ -43,7 +43,7 @@ public class OfferDao {
 	/**Genera una lista con las ofertas de la base de datos
 	 * 
 	 * La lista contiene, para cada oferta: su id, el nick del estudiante que la ha piblicado, la id de la skill a la que hace referencia
-	 * la fecha en la que empieza, la fecha en la que acaba, una breve descripción de la oferta, y si esta activa o inactiva.
+	 * la fecha en la que empieza, la fecha en la que acaba, una breve descripciï¿½n de la oferta, y si esta activa o inactiva.
 	 * 
 	 * @return Lista de ofertas
 	 * */
@@ -111,9 +111,9 @@ public class OfferDao {
 	 *  @return lista de ofertas
 	 */
 	
-	public List<Offer> getOffersByNick(String nick){
+	public List<Offer> getOffersByNick(String student_nick){
 		return this.jdbcTemplate.query("SELECT * FROM Offer WHERE student_nick = ?",
-				new Object[] {nick}, new OfferMapper());
+				new Object[] {student_nick}, new OfferMapper());
 	}
 
 }

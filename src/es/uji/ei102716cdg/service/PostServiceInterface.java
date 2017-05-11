@@ -4,6 +4,7 @@ import java.util.List;
 
 import es.uji.ei102716cdg.domain.chat.Chat;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
+import es.uji.ei102716cdg.domain.collaboration.Post;
 import es.uji.ei102716cdg.domain.collaboration.Request;
 import es.uji.ei102716cdg.domain.skill.Skill;
 import es.uji.ei102716cdg.domain.user.Student;
@@ -41,20 +42,38 @@ public interface PostServiceInterface {
 	 */
 	public List<Chat> getChats();
 	
-	/** Devuelve las skills asociadas a una lista de ofertas
+	/** Devuelve las skills asociadas a una lista de posts (Ofertas o Demandas)
 	 * 
-	 * @param list: list de ofertas 
+	 * @param list: list de ofertas o demandas 
 	 * @return lista de skills
 	 */
-	public List<Skill> getSkillsByOffers(List<Offer> list);
+	public List<Skill> getSkillsByPost(List<? extends Post> list);
 	
-	public List<User> getUsersByOffers(List<Offer> list);
+	/** Devuelde un listado de usuarios correspondiente a una lista de posts
+	 * 
+	 * Los indices de la lista devuelta corresponden con 
+	 * los indices de la lista de la lista de posts dada
+	 * 
+	 * @param 	list: Lista de ofertas o demandas
+	 * @return	lista de usuarios que han publicado las ofertas
+	 */
+	public List<User> getUsersByPost(List<? extends Post> list);
 	
+	/**Devuelve las ofertas ordenadas de más a menos recientes
+	 * 
+	 * @return	lista de ofertas de más a menos reciente
+	 */
 	public List<Offer> getRecentOffers();
+	
+	/**Devuelve las demandas ordenadas de más a menos recientes
+	 * 
+	 * @return	lista de demandas de más a menos reciente
+	 */
+	List<Request> getRecentRequests();
 	
 	public Skill getSkillById(int id);
 	
 	public Student getStudentByNick(String nick);
-	
+
 	
 }

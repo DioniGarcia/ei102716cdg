@@ -42,7 +42,7 @@ public class RequestDao {
 	/**Genera una lista con las ofertas de la base de datos
 	 * 
 	 * La lista contiene, para cada oferta: su id, el nick del estudiante que la ha piblicado, la id de la skill a la que hace referencia
-	 * la fecha en la que empieza, la fecha en la que acaba, una breve descripción de la oferta, y si esta activa o inactiva.
+	 * la fecha en la que empieza, la fecha en la que acaba, una breve descripciï¿½n de la oferta, y si esta activa o inactiva.
 	 * 
 	 * @return Lista de ofertas
 	 * */
@@ -104,9 +104,9 @@ public class RequestDao {
 	 *  @return lista de demandas
 	 */
 	
-	public List<Request> getRequestsByNick(String nick){
-		return this.jdbcTemplate.query("SELECT * FROM Request WHERE nick = ?",
-				new Object[] {nick}, new RequestMapper());
+	public List<Request> getRequestsByNick(String student_nick){
+		return this.jdbcTemplate.query("SELECT * FROM Request WHERE student_nick = ?",
+				new Object[] {student_nick}, new RequestMapper());
 	}
 
 }

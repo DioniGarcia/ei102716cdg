@@ -34,8 +34,8 @@ public class AllOfferController {
 	public String listOffers(Model model){
 		List<Offer> recentOffers = postService.getRecentOffers();
 		model.addAttribute("offers", recentOffers);
-		model.addAttribute("skills", postService.getSkillsByOffers(recentOffers));
-		model.addAttribute("users", postService.getUsersByOffers(recentOffers));
+		model.addAttribute("skills", postService.getSkillsByPost(recentOffers));
+		model.addAttribute("users", postService.getUsersByPost(recentOffers));
 		return "all/offer/list";
 	}
 	
