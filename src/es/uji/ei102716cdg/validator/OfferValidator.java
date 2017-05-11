@@ -1,5 +1,7 @@
 package es.uji.ei102716cdg.validator;
 
+import java.util.Date;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -16,28 +18,40 @@ public class OfferValidator implements Validator {
 	public void validate(Object obj, Errors errs) {
 		Offer offer = (Offer)obj;
 		
+		//Check ID
 		if (offer.getSkill_Id() == 0)
 			errs.rejectValue("skill_Id", "skill",
 					"Debes seleccionar una habilidad");
 
+		//Check Descripción
 		if (offer.getDescription().trim().equals(""))
 			errs.rejectValue("description", "obligatorio",
 					"La oferta debe tener una descripción");
 		
-		if (offer.getStartDate() == null){
+		//Check Fechas
+		if (offer.getStartDate() == null)
 			errs.rejectValue("startDate", "posterior",
 					"Debes introducir una fecha de inicio");
-		}
+		
+		//Fecha inicio antes que hoy
+		else if( offer.getStartDate().before(new Date()))
+			errs.rejectValue("startDate", "inicioGeHoy",
+					"La fecha de inicio debe ser posterior o igual a la fecha de hoy: ");
 		
 		if (offer.getEndDate() == null){
 			errs.rejectValue("endDate", "posterior",
 					"Debes introducir una fecha fin");
 		}
 		
-		if ((offer.getStartDate() != null && offer.getEndDate() != null) && offer.getStartDate().after(offer.getEndDate()))
-			errs.rejectValue("endDate", "posterior",
-					"La fecha fin debe ser posterior a fecha inicio");
-
+		if (offer.getStartDate() != null && offer.getEndDate() != null){
+			
+			//Fecha fin antes que fecha inicio
+			if( offer.getEndDate().before(offer.getStartDate()) )
+				errs.rejectValue("endDate", "finalGtInicio",
+						"La fecha fin debe ser posterior a fecha inicio");
+			
+		}
+		
 	}
 	
 }
