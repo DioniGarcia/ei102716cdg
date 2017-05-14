@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 
 import es.uji.ei102716cdg.dao.BanDao;
 import es.uji.ei102716cdg.dao.ChatDao;
+import es.uji.ei102716cdg.dao.CollaborationDao;
 import es.uji.ei102716cdg.dao.OfferDao;
 import es.uji.ei102716cdg.dao.RequestDao;
 import es.uji.ei102716cdg.dao.SkillDao;
 import es.uji.ei102716cdg.dao.StudentDao;
 import es.uji.ei102716cdg.domain.chat.Chat;
+import es.uji.ei102716cdg.domain.collaboration.Collaboration;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.collaboration.Request;
 import es.uji.ei102716cdg.domain.skill.Skill;
@@ -39,6 +41,9 @@ public class PostService implements PostServiceInterface {
 	
 	@Autowired
 	RequestDao requestDao;
+	
+	@Autowired
+	CollaborationDao collaborationDao;
 	
 	@Override
 	public List<String> getActiveStudentsNick() {
@@ -138,5 +143,70 @@ public class PostService implements PostServiceInterface {
 		}
 		return requestBySkill;
 	}
+
+	@Override
+	public List<Offer> getOffersBySkillId(String nick, int skillId) {
+		List<Offer> offerBySkill = new ArrayList<Offer>();
+		for (Offer off : offerDao.getOffersByNick(nick)){
+			if (off.getSkill_Id() == skillId)
+				offerBySkill.add(off);
+		}
+		return offerBySkill;
+	}
+
+	@Override
+	public void addCollaboration(int offerId, int requestId) {
+		collaborationDao.addCollaboration(new Collaboration(offerId, requestId));
+	}
+	
+	@Override
+	public int addRequestAndGetId(Request request){
+		return requestDao.addRequestAndGetId(request);
+	}
+	
+	@Override
+	public int addOfferAndGetId(Offer offer){
+		return offerDao.addOfferAndGetId(offer);
+	}
+
+	@Override
+	public Offer getOffer(int id) {
+		return offerDao.getOffer(id);
+	}
+
+	@Override
+	public Request getRequest(int id) {
+		return requestDao.getRequest(id);
+	}
+
+	@Override
+	public List<Collaboration> getCollaborations(String nick) {
+		return collaborationDao.getAllCollaborationsByNick(nick);
+	}
+
+	@Override
+	public List<Collaboration> getActiveCollaborations(String nick) {
+		return collaborationDao.getActiveCollaborationsByNick(nick);
+	}
+
+	@Override
+	public List<Collaboration> getOldCollaborations(String nick) {
+		return collaborationDao.getOldCollaborationsByNick(nick);
+	}
+
+	@Override
+	public List<Collaboration> getEvalCollaborations(String nick) {
+		return collaborationDao.getEvalCollaborationsByNick(nick);
+	}
+
+	@Override
+	public List<Skill> getSkillsByCollabs(List<Collaboration> collabs) {
+		List<Skill> skills = new ArrayList<Skill>();
+		for (Collaboration col : collabs){
+			skills.add(getSkillById(getOffer(col.getOffer_id()).getSkill_Id()));
+		}
+		return skills;
+	}
+	
 
 }

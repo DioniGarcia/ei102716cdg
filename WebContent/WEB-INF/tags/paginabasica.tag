@@ -51,7 +51,12 @@
     <script type="text/javascript">
     $(document).ready(function(){
     	
-    	      $('#example').barrating({
+    	      $('.star-readonly').barrating({
+    	    	  theme: 'bootstrap-stars',
+    	    	  readonly: true
+    	      });
+    	      
+    	      $('.star-rating').barrating({
     	    	  theme: 'bootstrap-stars'
     	      });
     	   

@@ -14,9 +14,21 @@ public class Post {
 	int  skill_Id;			//Identificador del Tipo de habilidad al que se refiere la oferta 
 	Date startDate;			//Fecha de inicio de una posible colaboracion 
 	Date endDate;			//Fecha limite para la colaboracion
-	String description;		//Pequeña descripcion complementaria
+	String description;		//Pequeï¿½a descripcion complementaria
 	boolean active;			//Estado del Post (Activo o Inactivo)
 	
+	public Post() {};
+	
+	public Post(String student_nick, int skill_Id, Date startDate,
+			Date endDate, String description, boolean active) {
+		super();
+		this.student_nick = student_nick;
+		this.skill_Id = skill_Id;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.description = description;
+		this.active = active;
+	}
 	//GETTERS & SETTERS
 	public int getId() {
 		return id;

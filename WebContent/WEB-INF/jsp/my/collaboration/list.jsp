@@ -7,9 +7,18 @@
 <jsp:body>   
 
 	<div class="center">
-	<t:collabbox></t:collabbox>
-	
-	
+	<form action="">
+		<button type="submit" name="filter" value="active">Activas</button>
+		<button type="submit" name="filter" value="eval">Para evaluar</button>
+		<button type="submit" name="filter" value="old">Ya realizadas</button>
+	</form>
+	<c:forEach varStatus="status" items="${collabs}" var="collab"> 
+    	<t:collabbox 
+    			collabId="${collab.collaboration_id }"
+    			collabTitle="Colaboración de ${skills[status.index].name } - ${skills[status.index].description}" 
+    			collabTotalHours="${collab.totalHours}">
+    	</t:collabbox>
+    	</c:forEach>
 	</div>
 
 </jsp:body>

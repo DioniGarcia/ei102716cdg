@@ -9,8 +9,16 @@ public class Collaboration {
 	private int offer_id;			//Identificador de la oferta
 	private int request_id;			//Identificador de la demanda
 	private short rating;			//Puntuacion por parte del demandante entre 1 y 5
-	private short totalHours;		//Computo total de horas destinadas a la colaboración
+	private short totalHours;		//Computo total de horas destinadas a la colaboraciï¿½n
 	private String comments;		//Comentario escrito por el demandante de la colaboracion
+	
+	public Collaboration() {}
+	
+	public Collaboration(int offerId, int requestId){
+		this.offer_id = offerId;
+		this.request_id = requestId;
+		this.rating = 1;
+	}
 	
 	//GETTERS & SETTERS
 	public int getCollaboration_id() {
