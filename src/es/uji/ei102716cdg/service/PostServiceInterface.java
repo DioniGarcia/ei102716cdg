@@ -3,6 +3,7 @@ package es.uji.ei102716cdg.service;
 import java.util.List;
 
 import es.uji.ei102716cdg.domain.chat.Chat;
+import es.uji.ei102716cdg.domain.collaboration.Collaboration;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.collaboration.Post;
 import es.uji.ei102716cdg.domain.collaboration.Request;
@@ -74,6 +75,28 @@ public interface PostServiceInterface {
 	public Skill getSkillById(int id);
 	
 	public Student getStudentByNick(String nick);
+	
+	public List<Request> getRequestsBySkillId(String nick, int skillId);
+
+	public List<Offer> getOffersBySkillId(String nick, int skillId);
+	
+	public void addCollaboration(int offerId, int requestId);
+	
+	public int addRequestAndGetId(Request request);
+	
+	public int addOfferAndGetId(Offer offer);
 
 	
+	public Offer getOffer(int id);
+	
+	public Request getRequest(int id);
+	
+	public List<Collaboration> getCollaborations(String nick);
+	public List<Collaboration> getActiveCollaborations(String nick);
+	public List<Collaboration> getOldCollaborations(String nick);
+	public List<Collaboration> getEvalCollaborations(String nick);
+
+	public List<Skill> getSkillsByCollabs(List<Collaboration> collabs);
+
+	public List<String> getCollabEndDates(List<Collaboration> collabs);
 }

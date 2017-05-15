@@ -4,14 +4,20 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei102716cdg.domain.collaboration.Request;
 
 import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 @Repository
@@ -107,6 +113,35 @@ public class RequestDao {
 	public List<Request> getRequestsByNick(String student_nick){
 		return this.jdbcTemplate.query("SELECT * FROM Request WHERE student_nick = ?",
 				new Object[] {student_nick}, new RequestMapper());
+
+	}
+	
+	public int addRequestAndGetId(Request request) {
+		
+		KeyHolder holder = new GeneratedKeyHolder();
+		
+		final Request req = request;
+		
+		this.jdbcTemplate.update(
+				new PreparedStatementCreator() {           
+
+	                @Override
+	                public PreparedStatement createPreparedStatement(Connection connection)
+	                        throws SQLException {
+	                	String sql = "insert into Request(student_nick, skill_id, startDate, endDate, description, active) "
+	            				+ "values(?, ?, ?, ?, ?, ?)";
+	                    PreparedStatement ps = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+	                    ps.setString(1, req.getStudent_nick());
+	                    ps.setInt(2, req.getSkill_Id());
+	                    ps.setDate(3, req.getStartDate());
+	                    ps.setDate(4, req.getEndDate());
+	                    ps.setString(5, req.getDescription());
+	                    ps.setBoolean(6, req.isActive());
+	                    return ps;
+	                }
+	            }, holder);
+		
+		return (Integer)holder.getKeys().get("request_id");
 	}
 
 }

@@ -14,13 +14,25 @@ public class Post {
 	int  id;				//Identificador unico de la oferta
 	String student_nick;	//Identificador del estudiante que realiza el post
 	int  skill_Id;			//Identificador del Tipo de habilidad al que se refiere la oferta 
+  @DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date startDate;			//Fecha de inicio de una posible colaboracion 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date endDate;			//Fecha limite para la colaboracion
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	String description;		//Peque�a descripcion complementaria
+	String description;		//Pequeña descripcion complementaria
 	boolean active;			//Estado del Post (Activo o Inactivo)
 	
+	public Post() {};
+	
+	public Post(String student_nick, int skill_Id, Date startDate,
+			Date endDate, String description, boolean active) {
+		super();
+		this.student_nick = student_nick;
+		this.skill_Id = skill_Id;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.description = description;
+		this.active = active;
+	}
 	//GETTERS & SETTERS
 	public int getId() {
 		return id;

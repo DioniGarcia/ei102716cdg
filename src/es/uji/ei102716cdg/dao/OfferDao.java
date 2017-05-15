@@ -4,15 +4,21 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei102716cdg.domain.collaboration.Offer;
+import es.uji.ei102716cdg.domain.collaboration.Request;
 
 import java.util.List;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 @Repository
@@ -115,5 +121,34 @@ public class OfferDao {
 		return this.jdbcTemplate.query("SELECT * FROM Offer WHERE student_nick = ?",
 				new Object[] {student_nick}, new OfferMapper());
 	}
+	
+	public int addOfferAndGetId(Offer offer) {
+		
+		KeyHolder holder = new GeneratedKeyHolder();
+		
+		final Offer off = offer;
+		
+		this.jdbcTemplate.update(
+				new PreparedStatementCreator() {           
+
+	                @Override
+	                public PreparedStatement createPreparedStatement(Connection connection)
+	                        throws SQLException {
+	                	String sql = "insert into Offer(student_nick, skill_id, startDate, endDate, description, active) "
+	            				+ "values(?, ?, ?, ?, ?, ?)";
+	                    PreparedStatement ps = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+	                    ps.setString(1, off.getStudent_nick());
+	                    ps.setInt(2, off.getSkill_Id());
+	                    ps.setDate(3, off.getStartDate());
+	                    ps.setDate(4, off.getEndDate());
+	                    ps.setString(5, off.getDescription());
+	                    ps.setBoolean(6, off.isActive());
+	                    return ps;
+	                }
+	            }, holder);
+		
+		return holder.getKey().intValue();
+	}
+	
 
 }

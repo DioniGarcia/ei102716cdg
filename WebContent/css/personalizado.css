@@ -98,6 +98,12 @@ body { margin-top: 60px;}
 	border-radius: 4px;
 }
 
+.collabbox {
+	background: #fff;
+	border-top: 1px solid;
+	border-color: #ece8ec;
+}
+
 .post-title {
 	font-size: 19px;
 	color: #111;
@@ -127,4 +133,8 @@ body { margin-top: 60px;}
    line-height: 1.42857143;
    background-color: #eafff3;
    border: 4px double #ddd;
+}
+
+.split-item .br-theme-bootstrap-stars .br-widget a:after {
+  font-size: small;
 }

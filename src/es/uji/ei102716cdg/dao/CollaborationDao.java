@@ -69,4 +69,44 @@ public class CollaborationDao {
 	public void deleteCollaboration(int collaboration_id) {
 		this.jdbcTemplate.update("DELETE FROM Collaboration WHERE collaboration_id = ?", collaboration_id);
 	}
+	
+	public List<Collaboration> getAllCollaborationsByNick(String nick) {
+		return this.jdbcTemplate.query("select * from Collaboration WHERE offer_id IN "
+				+ "(SELECT offer_id FROM offer WHERE student_nick = ?)"
+				+ "OR request_id IN (SELECT request_id FROM request WHERE student_nick = ?)",
+				new Object[] {nick, nick}, new CollaborationMapper());
+	}
+	
+	public List<Collaboration> getActiveCollaborationsByNick(String nick) {
+		return this.jdbcTemplate.query("select * from Collaboration WHERE (offer_id IN "
+				+ "(SELECT offer_id FROM offer WHERE student_nick = ?)"
+				+ "OR request_id IN (SELECT request_id FROM request WHERE student_nick = ?))"
+				+ " AND "
+				+ "(offer_id IN (SELECT offer_id FROM offer WHERE endDate >= current_date )"
+				+ "AND request_id IN (SELECT request_id FROM request WHERE endDate >= current_date ) )",
+				new Object[] {nick, nick}, new CollaborationMapper());
+	}
+	
+	public List<Collaboration> getOldCollaborationsByNick(String nick) {
+		return this.jdbcTemplate.query("select * from Collaboration WHERE (offer_id IN "
+				+ "(SELECT offer_id FROM offer WHERE student_nick = ?)"
+				+ "OR request_id IN (SELECT request_id FROM request WHERE student_nick = ?))"
+				+ " AND "
+				+ "(offer_id IN (SELECT offer_id FROM offer WHERE endDate < current_date )"
+				+ "OR request_id IN (SELECT request_id FROM request WHERE endDate < current_date ) )"
+				+ "AND (totalHours != 0 AND rating != 0)",
+				new Object[] {nick, nick}, new CollaborationMapper());
+	}
+	
+	public List<Collaboration> getEvalCollaborationsByNick(String nick) {
+		return this.jdbcTemplate.query("select * from Collaboration WHERE (offer_id IN "
+				+ "(SELECT offer_id FROM offer WHERE student_nick = ?)"
+				+ "OR request_id IN (SELECT request_id FROM request WHERE student_nick = ?))"
+				+ " AND "
+				+ "(offer_id IN (SELECT offer_id FROM offer WHERE endDate < current_date )"
+				+ "OR request_id IN (SELECT request_id FROM request WHERE endDate < current_date ) )"
+				+ "AND (totalHours = 0 AND rating = 0)",
+				new Object[] {nick, nick}, new CollaborationMapper());
+	}
+	
 }

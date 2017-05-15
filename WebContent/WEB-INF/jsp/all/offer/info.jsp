@@ -11,7 +11,16 @@
 		</div>
 		<div class="split-item-v-texto">
 			<h3><c:out value="Nombre: ${student.name }"></c:out></h2>
-			<div>* * * * *</div>
+			<div>
+			<select class="star-readonly">
+			<option value="0">0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3" selected="selected">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			</select>
+			</div>
 		</div>
 	</div>
 	<hr/>
@@ -25,5 +34,7 @@
     <div>
     	<p class="post-date" style="font-size:15px; font-weight:bold;"><c:out value="${offer.startDate }, ${offer.endDate } "></c:out></p>
     </div>
+    
+    <a href="${ pageContext.request.contextPath }/my/collaborations/add?offerId=${offer.id }&skillId=${skill.skill_id }">Collab</a>
 </jsp:body>
 </t:paginabasica>

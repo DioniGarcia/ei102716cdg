@@ -18,22 +18,22 @@
 	    rel="stylesheet"/>
     
 <!-- Estils propis -->
-	<link
-	    href="${pageContext.request.contextPath}/css/personalizado.css"
-	    rel="stylesheet"/>
-	<link
-	    href="${pageContext.request.contextPath}/css/my/offer.css"
-	    rel="stylesheet"/>
+
+	<link 
+		href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" 
+		rel="stylesheet" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/my/offer.css" />
 	    
 	<link
 	    href="${pageContext.request.contextPath}/css/my/sidenav.css"
 	    rel="stylesheet"/>
-	    
-	<link 
-		href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" 
-		rel="stylesheet" />
+	   
 
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/datepicker.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/themes/bootstrap-stars.css" />
+	<link
+	    href="${pageContext.request.contextPath}/css/personalizado.css"
+	    rel="stylesheet"/>
 
 </head>
 
@@ -60,7 +60,35 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.dotdotdot.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/datepicker.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/datepicker.es-ES.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.barrating.min.js"></script>  
+
     <script type="text/javascript">
+    $(document).ready(function(){
+    	
+    	      $('.star-readonly').barrating({
+    	    	  theme: 'bootstrap-stars',
+    	    	  readonly: true,
+    	    	  emptyValue: 0
+    	      });
+    	      
+    	      $('.star-rating').barrating({
+    	    	  theme: 'bootstrap-stars',
+    	    	  emptyValue: 0
+    	      });
+    	   
+    	$(".br-widget").css("display","inline");
+    	
+    	$('#confirm-delete').on('show.bs.modal', function(e) {
+    	    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    	});
+    	
+    	$('#confirmar-radio').click(function(e) {
+    		   if(! $('.radio-collab').is(':checked')) { 
+    			   e.preventDefault();
+    			   alert("No has elegido ninguna opción!"); 
+    		   }
+    	});
+    
     	moment.locale("es");
     	var fechas = document.getElementsByClassName("post-date");
     	for (i = 0; i < fechas.length; i++) {
@@ -68,6 +96,12 @@
     		var fechaIni = moment(fecha[0], "YYYY-MM-DD").format('L');
     		var fechaFin = moment(fecha[1], "YYYY-MM-DD").format('L');
     		fechas[i].textContent = fechaIni + "-" + fechaFin;	
+    	}
+    	
+    	var collabFechas = document.getElementsByClassName("collabEndDate");
+    	for (j = 0; j < collabFechas.length; j++) {
+    		var collabEndDate = moment(collabFechas[j].textContent, "YYYY-MM-DD").add(1,'days').fromNow();
+    		collabFechas[j].textContent = "Termina " + collabEndDate;	
     	}
     	
     	$(document).ready(function() {
@@ -83,7 +117,7 @@
     		});
     	});
     	
-    	
+    });	
     	
     </script> 
 </html>

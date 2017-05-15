@@ -16,7 +16,14 @@
 		</div>
 		
 		<div class="split-item">
-			* * * * *
+			<select class="star-readonly">
+			<option value="0">0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3" selected="selected">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			</select>
 		</div>
 		
 		<div class="split-item"></div>
