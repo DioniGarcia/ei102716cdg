@@ -17,14 +17,15 @@
 	    rel="stylesheet"/>
     
 <!-- Estils propis -->
-	<link
-	    href="${pageContext.request.contextPath}/css/personalizado.css"
-	    rel="stylesheet"/>
+	
 	<link 
 		href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" 
 		rel="stylesheet" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/my/offer.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/themes/bootstrap-stars.css" />
+	<link
+	    href="${pageContext.request.contextPath}/css/personalizado.css"
+	    rel="stylesheet"/>
 </head>
 
 

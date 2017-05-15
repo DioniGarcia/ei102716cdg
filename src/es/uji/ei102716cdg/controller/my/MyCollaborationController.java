@@ -103,7 +103,7 @@ public class MyCollaborationController {
 			
 			postService.addCollaboration(offerId, requestId);
 			
-			return "redirect:/my/collaborations/list.html";
+			return "redirect:/my/collaborations/list.html?success=new";
 		}
 		
 		if (offerId != null){ // Viene desde una oferta
@@ -133,7 +133,7 @@ public class MyCollaborationController {
 		if (bindingResult.hasErrors())
 			return "my/collaboration/edit";
 		collaborationDao.updateCollaboration(collaboration);
-		return "redirect:/my/collaborations/list.html";
+		return "redirect:/my/collaborations/list.html?success=update";
 	}
 	
 }

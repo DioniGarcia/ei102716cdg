@@ -6,6 +6,23 @@
 <t:paginabasica>
 <jsp:body>   
 
+	<c:if test="${not empty param.success }">
+		<c:if test="${ param.success eq 'update' }">
+			<div class="alert alert-success alert-dismissable">
+		  		<a href="#" class="close" data-dismiss="alert">&times;</a>
+		  		La colaboración se ha guardado con éxito.
+			</div>
+		</c:if>
+		<c:if test="${ param.success eq 'new' }">
+			<div class="alert alert-success alert-dismissable">
+		  		<a href="#" class="close" data-dismiss="alert">&times;</a>
+		  		La colaboración se ha creado con éxito.
+			</div>
+		</c:if>
+		
+		
+	</c:if>
+
 	<div class="center">
 	<form action="">
 	<div class="btn-group">

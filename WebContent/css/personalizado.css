@@ -138,3 +138,7 @@ body { margin-top: 60px;}
    background-color: #eafff3;
    border: 4px double #ddd;
 }
+
+.split-item .br-theme-bootstrap-stars .br-widget a:after {
+  font-size: small;
+}
