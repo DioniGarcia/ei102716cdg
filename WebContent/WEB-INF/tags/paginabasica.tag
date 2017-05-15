@@ -3,6 +3,7 @@
 <%@ attribute name="title" required="false"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -17,20 +18,28 @@
 	    rel="stylesheet"/>
     
 <!-- Estils propis -->
-	
+
 	<link 
 		href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" 
 		rel="stylesheet" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/my/offer.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/themes/bootstrap-stars.css" />
+	    
+	<link
+	    href="${pageContext.request.contextPath}/css/my/sidenav.css"
+	    rel="stylesheet"/>
+	   
+
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/datepicker.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/themes/bootstrap-stars.css" />
 	<link
 	    href="${pageContext.request.contextPath}/css/personalizado.css"
 	    rel="stylesheet"/>
+
 </head>
 
 
 <body>
-    <t:navegacio />
+    <t:navegacio/>
     <div class="container">
         <jsp:doBody />
     </div>
@@ -41,6 +50,7 @@
     </p>
     </footer>
 </body>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -48,7 +58,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/select-skill.js" charset="UTF-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/moment-with-locales.min.js" charset="UTF-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.dotdotdot.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/datepicker.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/datepicker.es-ES.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.barrating.min.js"></script>  
+
     <script type="text/javascript">
     $(document).ready(function(){
     	

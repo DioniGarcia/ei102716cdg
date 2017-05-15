@@ -117,9 +117,9 @@ public class OfferDao {
 	 *  @return lista de ofertas
 	 */
 	
-	public List<Offer> getOffersByNick(String nick){
+	public List<Offer> getOffersByNick(String student_nick){
 		return this.jdbcTemplate.query("SELECT * FROM Offer WHERE student_nick = ?",
-				new Object[] {nick}, new OfferMapper());
+				new Object[] {student_nick}, new OfferMapper());
 	}
 	
 	public int addOfferAndGetId(Offer offer) {

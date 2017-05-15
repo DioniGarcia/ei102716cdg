@@ -1,6 +1,7 @@
 package es.uji.ei102716cdg.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import es.uji.ei102716cdg.dao.StudentDao;
 import es.uji.ei102716cdg.domain.chat.Chat;
 import es.uji.ei102716cdg.domain.collaboration.Collaboration;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
+import es.uji.ei102716cdg.domain.collaboration.Post;
 import es.uji.ei102716cdg.domain.collaboration.Request;
 import es.uji.ei102716cdg.domain.skill.Skill;
 import es.uji.ei102716cdg.domain.user.Student;
@@ -102,26 +104,60 @@ public class PostService implements PostServiceInterface {
 	}
 
 	@Override
-	public List<Skill> getSkillsByOffers(List<Offer> list) {
+	public List<Skill> getSkillsByPost(List<? extends Post> list) {
 		List<Skill> listSkill = new ArrayList<Skill>();
-		for (Offer offer : list){
-			listSkill.add(skillDao.getSkill(offer.getSkill_Id()));
+		for (Post post : list){
+			listSkill.add(skillDao.getSkill(post.getSkill_Id()));
 		}
 		
 		return listSkill;
 	}
 	
 	@Override
-	public List<User> getUsersByOffers(List<Offer> list) {
+	public List<User> getUsersByPost(List<? extends Post> list) {
 		List<User> listUser = new ArrayList<User>();
-		for (Offer offer : list){
-			listUser.add(studentDao.getStudent(offer.getStudent_nick()));
+		for (Post post : list){
+			listUser.add(studentDao.getStudent(post.getStudent_nick()));
 		}
 		return listUser;
 	}
+	
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Offer> getRecentOffers(){
-		return offerDao.getRecentOffers();
+		
+		List<Offer> list = offerDao.getOffers(); 
+		list = (List<Offer>) sortPostByStartDate(list);
+		
+		return list;
+	}
+	
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Request> getRecentRequests(){
+		
+		List<Request> list = requestDao.getRequests(); 
+		list = (List<Request>) sortPostByStartDate(list);
+		
+		return list;
+	}
+	
+	/**Ordena una lista de post, las más recientes primero
+	 * 
+	 * @param 	list: Lista de Posts (Ofertas o Demandas)
+	 * @return	lista ordenada de más a menos reciente
+	 */
+	private List<? extends Post> sortPostByStartDate(List<? extends Post> list){
+
+		Comparator<Post> comparatorPost = new Comparator<Post>() {
+			@Override
+			public int compare(Post p1, Post p2) {
+				 return p2.getStartDate().compareTo(p1.getStartDate());				
+			}
+		};
+		list.sort(comparatorPost);
+		return list;
 	}
 	
 	@Override

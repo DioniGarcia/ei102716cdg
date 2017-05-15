@@ -110,9 +110,10 @@ public class RequestDao {
 	 *  @return lista de demandas
 	 */
 	
-	public List<Request> getRequestsByNick(String nick){
+	public List<Request> getRequestsByNick(String student_nick){
 		return this.jdbcTemplate.query("SELECT * FROM Request WHERE student_nick = ?",
-				new Object[] {nick}, new RequestMapper());
+				new Object[] {student_nick}, new RequestMapper());
+
 	}
 	
 	public int addRequestAndGetId(Request request) {

@@ -40,7 +40,7 @@ public class LoginController {
 	@RequestMapping("/login")
 	public String login(Model model, HttpSession session) {
 		if (session.getAttribute("user") != null)
-			return "redirect:index.jsp";
+			return "redirect:index.html";
 		model.addAttribute("user", new User());
 		return "login/login";
 	}

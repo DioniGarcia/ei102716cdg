@@ -5,8 +5,8 @@
 
 <t:paginabasica>
 <jsp:body> 
-    <h2>Añadir Oferta</h2>
-    <form:form method="post" modelAttribute="offer">
+    <h2>Añadir Demanda</h2>
+    <form:form method="post" modelAttribute="request">
         <table>
         
         	<tr>
