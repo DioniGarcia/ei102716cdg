@@ -166,7 +166,7 @@
     
     <!-- Correo-->
   	<div class= "col-md-2">
-      	<a href="${pageContext.request.contextPath}/index.jsp">
+      	<a href="${pageContext.request.contextPath}/indexDbTest.jsp">
 			<span class="glyphicon glyphicon-envelope"></span>Correo 
 			<span class="badge">10</span>
 		</a> 
@@ -186,11 +186,11 @@
                     </ul>
                     <!-- Menu -->
                     <div id="myDropdown" class="dropdown-content">
-                        <a href="#">Perfil</a>
-                        <a href="#">Mis Ofertas</a>
-                        <a href="#">Mis Demandas</a>
-                        <a href="#">Mis Colaboraciones</a>
-                        <a href="#">Balance de puntos</a>
+                        <a href="${pageContext.request.contextPath}/my/profile/index.html">Perfil</a>
+                        <a href="${pageContext.request.contextPath}/my/offers/list.html">Mis Ofertas</a>
+                        <a href="${pageContext.request.contextPath}/my/requests/list.html">Mis Demandas</a>
+                        <a href="${pageContext.request.contextPath}/my/collaborations/list.html">Mis Colaboraciones</a>
+                        <a href="${pageContext.request.contextPath}/my/profile/points.html">Balance de puntos</a>
                         <hr/>
                         <a href="${pageContext.request.contextPath}/logout.html">Salir</a>
                     </div>
