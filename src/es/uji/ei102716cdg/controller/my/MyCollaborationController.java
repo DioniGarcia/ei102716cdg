@@ -53,16 +53,19 @@ public class MyCollaborationController {
 			switch (filter) {
 			case "active":
 				collabs = postService.getActiveCollaborations(nick);
+				model.addAttribute("collabEndDates", postService.getCollabEndDates(collabs));
 				break;
 			
 			case "eval":
 				collabs = postService.getEvalCollaborations(nick);
+				model.addAttribute("evalBtn", true);
 				break;
 				
 			case "old":
 				collabs = postService.getOldCollaborations(nick);
 				break;
 			default:
+				collabs = postService.getCollaborations(nick);
 				break;
 			}
 			
@@ -100,7 +103,7 @@ public class MyCollaborationController {
 			
 			postService.addCollaboration(offerId, requestId);
 			
-			return "redirect:/index.html";
+			return "redirect:/my/collaborations/list.html";
 		}
 		
 		if (offerId != null){ // Viene desde una oferta
@@ -130,7 +133,7 @@ public class MyCollaborationController {
 		if (bindingResult.hasErrors())
 			return "my/collaboration/edit";
 		collaborationDao.updateCollaboration(collaboration);
-		return "redirect:/index.html";
+		return "redirect:/my/collaborations/list.html";
 	}
 	
 }

@@ -5,9 +5,13 @@
 <%@ attribute name="collabId" required="false"%>
 <%@ attribute name="collabTitle" required="false"%>
 <%@ attribute name="collabTotalHours" required="false"%>
-<%@ attribute name="postDate" required="false"%>
+<%@ attribute name="collabRating" required="false"%>
+<%@ attribute name="collabComments" required="false"%>
+<%@ attribute name="collabEndDate" required="false"%>
+<%@ attribute name="collabEvalBtn" required="false" type="java.lang.Boolean"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<div class="postbox split-container">
+<div class="collabbox split-container">
 	<div class="split-item-v-foto split-container">
 		<div class="split-item"></div>
 		
@@ -25,13 +29,26 @@
 		<p>Horas : ${collabTotalHours }</p>
 		<p>Puntuación :  
 			<select class="star-readonly">
- 				<option value="1">1</option>
- 				<option value="2">2</option>
- 				<option value="3">3</option>
- 				<option value="4">4</option>
- 				<option value="5">5</option>
+				<c:forEach begin="0" end="5" var="val">
+    				<c:choose>
+    					<c:when test="${collabRating eq val }">
+    						<option value="${val }" selected="selected"><c:out value="${val}"/></option>
+    					</c:when>
+    					<c:otherwise>
+    						<option value="${val }"><c:out value="${val}"/></option>
+    					</c:otherwise>
+    				</c:choose>
+				</c:forEach>
 			</select>
 		</p>
+		
+		<p>Comentarios: ${collabComments }</p>
+		
+		<c:if test="${not empty collabEndDate }">
+		<p class="collabEndDate">${collabEndDate}</p>
+		</c:if>
+		
+		<c:if test="${collabEvalBtn }"><button class="btn btn-primary">Evaluar</button></c:if>
 		
 	</div>
 </div>

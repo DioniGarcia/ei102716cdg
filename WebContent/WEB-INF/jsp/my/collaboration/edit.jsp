@@ -17,6 +17,7 @@
                 <td><form:label path="rating">Puntuación</form:label></td>
                 <td>
                 	<form:select cssClass="star-rating" path="rating">
+						<form:option value="0" />
 						<form:option value="1" />
 						<form:option value="2" />
 						<form:option value="3" />

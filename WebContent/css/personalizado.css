@@ -101,6 +101,12 @@ body { margin-top: 60px;}
 	border-color: #ece8ec;
 }
 
+.collabbox {
+	background: #fff;
+	border-top: 1px solid;
+	border-color: #ece8ec;
+}
+
 .post-title {
 	font-size: 19px;
 	color: #111;

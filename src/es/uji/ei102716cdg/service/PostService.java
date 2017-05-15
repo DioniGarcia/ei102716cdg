@@ -207,6 +207,20 @@ public class PostService implements PostServiceInterface {
 		}
 		return skills;
 	}
+
+	@Override
+	public List<String> getCollabEndDates(List<Collaboration> collabs) {
+		List<String> dates = new ArrayList<String>();
+		for (Collaboration col : collabs){
+			Offer offer = offerDao.getOffer(col.getOffer_id());
+			Request request = requestDao.getRequest(col.getRequest_id());
+			if (offer.getEndDate().before(request.getEndDate()))
+				dates.add(offer.getEndDate().toString());
+			else
+				dates.add(request.getEndDate().toString());
+		}
+		return dates;
+	}
 	
 
 }

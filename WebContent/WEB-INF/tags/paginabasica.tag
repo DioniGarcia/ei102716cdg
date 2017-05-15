@@ -53,14 +53,27 @@
     	
     	      $('.star-readonly').barrating({
     	    	  theme: 'bootstrap-stars',
-    	    	  readonly: true
+    	    	  readonly: true,
+    	    	  emptyValue: 0
     	      });
     	      
     	      $('.star-rating').barrating({
-    	    	  theme: 'bootstrap-stars'
+    	    	  theme: 'bootstrap-stars',
+    	    	  emptyValue: 0
     	      });
     	   
     	$(".br-widget").css("display","inline");
+    	
+    	$('#confirm-delete').on('show.bs.modal', function(e) {
+    	    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    	});
+    	
+    	$('#confirmar-radio').click(function(e) {
+    		   if(! $('.radio-collab').is(':checked')) { 
+    			   e.preventDefault();
+    			   alert("No has elegido ninguna opción!"); 
+    		   }
+    	});
     
     	moment.locale("es");
     	var fechas = document.getElementsByClassName("post-date");
@@ -69,6 +82,12 @@
     		var fechaIni = moment(fecha[0], "YYYY-MM-DD").format('L');
     		var fechaFin = moment(fecha[1], "YYYY-MM-DD").format('L');
     		fechas[i].textContent = fechaIni + "-" + fechaFin;	
+    	}
+    	
+    	var collabFechas = document.getElementsByClassName("collabEndDate");
+    	for (j = 0; j < collabFechas.length; j++) {
+    		var collabEndDate = moment(collabFechas[j].textContent, "YYYY-MM-DD").add(1,'days').fromNow();
+    		collabFechas[j].textContent = "Termina " + collabEndDate;	
     	}
     	
     	$(document).ready(function() {

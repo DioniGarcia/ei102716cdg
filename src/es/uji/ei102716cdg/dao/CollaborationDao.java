@@ -82,8 +82,8 @@ public class CollaborationDao {
 				+ "(SELECT offer_id FROM offer WHERE student_nick = ?)"
 				+ "OR request_id IN (SELECT request_id FROM request WHERE student_nick = ?))"
 				+ " AND "
-				+ "(offer_id IN (SELECT offer_id FROM offer WHERE endDate >= NOW() )"
-				+ "AND request_id IN (SELECT request_id FROM request WHERE endDate >= NOW() ) )",
+				+ "(offer_id IN (SELECT offer_id FROM offer WHERE endDate >= current_date )"
+				+ "AND request_id IN (SELECT request_id FROM request WHERE endDate >= current_date ) )",
 				new Object[] {nick, nick}, new CollaborationMapper());
 	}
 	
@@ -92,8 +92,9 @@ public class CollaborationDao {
 				+ "(SELECT offer_id FROM offer WHERE student_nick = ?)"
 				+ "OR request_id IN (SELECT request_id FROM request WHERE student_nick = ?))"
 				+ " AND "
-				+ "(offer_id IN (SELECT offer_id FROM offer WHERE endDate < NOW() )"
-				+ "OR request_id IN (SELECT request_id FROM request WHERE endDate < NOW() ) )",
+				+ "(offer_id IN (SELECT offer_id FROM offer WHERE endDate < current_date )"
+				+ "OR request_id IN (SELECT request_id FROM request WHERE endDate < current_date ) )"
+				+ "AND (totalHours != 0 AND rating != 0)",
 				new Object[] {nick, nick}, new CollaborationMapper());
 	}
 	
@@ -102,9 +103,9 @@ public class CollaborationDao {
 				+ "(SELECT offer_id FROM offer WHERE student_nick = ?)"
 				+ "OR request_id IN (SELECT request_id FROM request WHERE student_nick = ?))"
 				+ " AND "
-				+ "(offer_id IN (SELECT offer_id FROM offer WHERE endDate < NOW() )"
-				+ "OR request_id IN (SELECT request_id FROM request WHERE endDate < NOW() ) )"
-				+ "AND totalHours = 0",
+				+ "(offer_id IN (SELECT offer_id FROM offer WHERE endDate < current_date )"
+				+ "OR request_id IN (SELECT request_id FROM request WHERE endDate < current_date ) )"
+				+ "AND (totalHours = 0 AND rating = 0)",
 				new Object[] {nick, nick}, new CollaborationMapper());
 	}
 	

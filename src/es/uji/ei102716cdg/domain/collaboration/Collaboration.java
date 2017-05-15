@@ -17,7 +17,7 @@ public class Collaboration {
 	public Collaboration(int offerId, int requestId){
 		this.offer_id = offerId;
 		this.request_id = requestId;
-		this.rating = 1;
+		this.rating = 0;
 	}
 	
 	//GETTERS & SETTERS

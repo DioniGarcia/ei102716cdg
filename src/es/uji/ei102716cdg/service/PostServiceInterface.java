@@ -77,4 +77,6 @@ public interface PostServiceInterface {
 	public List<Collaboration> getEvalCollaborations(String nick);
 
 	public List<Skill> getSkillsByCollabs(List<Collaboration> collabs);
+
+	public List<String> getCollabEndDates(List<Collaboration> collabs);
 }
