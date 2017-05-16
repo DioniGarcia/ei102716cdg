@@ -19,14 +19,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei102716cdg.dao.RequestDao;
 import es.uji.ei102716cdg.domain.collaboration.Request;
+
 import es.uji.ei102716cdg.domain.user.User;
 import es.uji.ei102716cdg.service.PostServiceInterface;
 import es.uji.ei102716cdg.util.CustomSqlDateEditor;
 import es.uji.ei102716cdg.validator.RequestValidator;
 
 
+
 @Controller
-@RequestMapping("my/request")
+@RequestMapping("my/requests")
 public class MyRequestController {
 	@Autowired
 	private RequestDao requestDao;
@@ -79,6 +81,36 @@ public class MyRequestController {
 		model.addAttribute("skills", postService.getSkillsByPost(requestsByNick));
 		return "my/request/list";
 	}
+	
+	@RequestMapping("/{id}")
+	public String showRequest(Model model,  @PathVariable int id){
+		Request request = requestDao.getRequest(id);
+		model.addAttribute("request", request);
+		model.addAttribute("skill", postService.getSkillById(request.getSkill_Id()));
+		model.addAttribute("student", postService.getStudentByNick(request.getStudent_nick()));
+		return "my/request/info";
+	}
+	
+	@RequestMapping(value="/update/{id}", method=RequestMethod.GET)
+	public String editRequest(Model model, @PathVariable int id){
+		model.addAttribute("request", requestDao.getRequest(id));
+		model.addAttribute("nick_list", postService.getActiveStudentsNick());
+		model.addAttribute("skill_list", postService.getActiveSkills());
+		return "my/request/update";
+	}
+	
+	@RequestMapping(value="/update/{id}", method = RequestMethod.POST)
+	public String processUpdateSubmit(@PathVariable String id,
+								@ModelAttribute("request") Request request,
+								BindingResult bindingResult){
+		RequestValidator requestValidator = new RequestValidator();
+		requestValidator.validate(request, bindingResult);
+		if (bindingResult.hasErrors())
+			return "my/request/update";
+		requestDao.updateRequest(request);
+		return "redirect:../list.html";
+	}
+	
 	
 	@RequestMapping(value="/delete/{id}")
 	public String processDelete(@PathVariable int id){

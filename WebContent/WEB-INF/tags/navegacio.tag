@@ -155,12 +155,12 @@
     
     <!-- Offers-->
   	<div class= "col-md-2">
-      <a href="${pageContext.request.contextPath}/my/offers/list.html">Ver todas las ofertas</a>
+      <a href="${pageContext.request.contextPath}/all/offers/list.html">Ver todas las ofertas</a>
     </div>
     
     <!-- Requests-->
   	<div class= "col-md-2">
-      <a href="${pageContext.request.contextPath}/my/requests/list.html">Ver todas las demandas</a>
+      <a href="${pageContext.request.contextPath}/all/requests/list.html">Ver todas las demandas</a>
 
     </div>
     

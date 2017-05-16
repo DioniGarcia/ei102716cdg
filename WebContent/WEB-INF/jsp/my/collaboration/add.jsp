@@ -39,7 +39,7 @@
 				       		 <c:forEach varStatus="status" items="${requests}" var="request">
 				       		 	<input style="float:left;" type="radio" class="radio-collab" name="requestId" value="${request.id }"/> 
 						    	<t:offerbox 
-						    			postId="${request.id }"
+						    			postLink="#"
 						    			postDescription="${request.description}" 
 						    			postDate="${request.startDate },${request.endDate }">
 						    	</t:offerbox>
@@ -54,7 +54,7 @@
 	    				<h4>Existe una demanda compatible con la oferta seleccionada:</h4>
 	    				<form action="${ pageContext.request.contextPath }/my/collaborations/add">
 					    	<t:offerbox 
-					    			postId="${requests[0].id }"
+					    			postLink="#"
 					    			postDescription="${requests[0].description}" 
 					    			postDate="${requests[0].startDate },${requests[0].endDate }">
 					    	</t:offerbox>
@@ -77,7 +77,7 @@
 				       		 <c:forEach varStatus="status" items="${offers}" var="offer">
 				       		 	<input type="radio" name="offerId" value="${offer.id }"/> 
 						    	<t:offerbox 
-						    			postId="${offer.id }"
+						    			postLink="#"
 						    			postDescription="${offer.description}" 
 						    			postDate="${offer.startDate },${offer.endDate }">
 						    	</t:offerbox>
@@ -92,7 +92,7 @@
 	    				<h4>Existe una oferta compatible con la demanda seleccionada:</h4>
 	    				<form action="${ pageContext.request.contextPath }/my/collaborations/add">
 					    	<t:offerbox 
-					    			postId="${offers[0].id }"
+					    			postLink="#"
 					    			postDescription="${offers[0].description}" 
 					    			postDate="${offers[0].startDate },${offers[0].endDate }">
 					    	</t:offerbox>

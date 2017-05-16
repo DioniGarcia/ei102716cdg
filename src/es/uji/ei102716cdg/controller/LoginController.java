@@ -64,7 +64,7 @@ public class LoginController {
 			}
 			user = adminDao.loadAdminByUsername(user.getNick(), user.getPasswd());
 			if (user == null) {
-				bindingResult.rejectValue("passwd", "badpw", "Contrasenya incorrecta"); 
+				bindingResult.rejectValue("passwd", "badpw", "Contraseña incorrecta"); 
 				return "login/login";
 			}
 			
@@ -84,7 +84,7 @@ public class LoginController {
 		user = userDao.loadUserByUsername(user.getNick(),user.getPasswd()); 
 		
 		if (user == null) {
-			bindingResult.rejectValue("passwd", "badpw", "Contrasenya incorrecta"); 
+			bindingResult.rejectValue("passwd", "badpw", "Contraseña incorrecta"); 
 			return "login/login";
 		}
 		// Autenticats correctament. 

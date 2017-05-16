@@ -30,7 +30,7 @@
 					<!-- Listado de ofertas destacadas -->
 					<c:forEach varStatus="status" items="${offers}" var="offer"> 
     				<t:offerbox 
-    					postId="${offer.id }"
+    					postLink="${ pageContext.request.contextPath }/all/offers/${offer.id }"
     					postTitle="Oferta de ${skillsOf[status.index].name } - ${skillsOf[status.index].description}" 
     					postDescription="${offer.description}" 
     					postDate="${offer.startDate },${offer.endDate }">
@@ -48,7 +48,7 @@
 					<!-- Botón Crear demandas -->
 					
 					<div class="jumbotron">
-						<a href="${pageContext.request.contextPath}/my/request/add.html">
+						<a href="${pageContext.request.contextPath}/my/requests/add.html">
 							<br>
 							<br>
 							<br>
@@ -63,7 +63,7 @@
 					<!-- Listado de demandas destacadas -->
 					<c:forEach varStatus="status" items="${requests}" var="request"> 
     				<t:offerbox 
-    					postId="${request.id }"
+    					postLink="${ pageContext.request.contextPath }/all/requests/${request.id }"
     					postTitle="Demanda de ${skillsRq[status.index].name } - ${skillsRq[status.index].description}" 
     					postDescription="${request.description}" 
     					postDate="${request.startDate },${request.endDate }">

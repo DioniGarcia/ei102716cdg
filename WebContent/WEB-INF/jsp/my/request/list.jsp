@@ -5,13 +5,13 @@
 
 <t:paginabasica>
 <jsp:body>    
-    <a href="add.html">Añadir demanda</a><br>
     
     <div class="center">
     	<c:forEach varStatus="status" items="${requests}" var="request"> 
+    	<!--  offerbox substituir KaKa -->
     	<t:offerbox 
-    			postId="${request.id }"
-    			postTitle="Oferta de ${skills[status.index].name } - ${skills[status.index].description}" 
+    			postLink="${ pageContext.request.contextPath }/my/requests/${request.id }"
+    			postTitle="Demanda de ${skills[status.index].name } - ${skills[status.index].description}" 
     			postDescription="${request.description}" 
     			postDate="${request.startDate },${request.endDate }">
     	</t:offerbox>

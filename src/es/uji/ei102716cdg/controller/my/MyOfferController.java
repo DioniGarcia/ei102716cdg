@@ -80,6 +80,36 @@ public class MyOfferController {
 		return "my/offer/list";
 	}
 	
+	@RequestMapping("/{id}")
+	public String showOffer(Model model,  @PathVariable int id){
+		Offer offer = offerDao.getOffer(id);
+		model.addAttribute("offer", offer);
+		model.addAttribute("skill", postService.getSkillById(offer.getSkill_Id()));
+		model.addAttribute("student", postService.getStudentByNick(offer.getStudent_nick()));
+		return "my/offer/info";
+	}
+	
+	@RequestMapping(value="/update/{id}", method=RequestMethod.GET)
+	public String editOffer(Model model, @PathVariable int id){
+		model.addAttribute("offer", offerDao.getOffer(id));
+		model.addAttribute("nick_list", postService.getActiveStudentsNick());
+		model.addAttribute("skill_list", postService.getActiveSkills());
+		return "my/offer/update";
+	}
+	
+	@RequestMapping(value="/update/{id}", method = RequestMethod.POST)
+	public String processUpdateSubmit(@PathVariable String id,
+								@ModelAttribute("offer") Offer offer,
+								BindingResult bindingResult){
+		OfferValidator offerValidator = new OfferValidator();
+		offerValidator.validate(offer, bindingResult);
+		if (bindingResult.hasErrors())
+			return "my/offer/update";
+		offerDao.updateOffer(offer);
+		return "redirect:../list.html";
+	}
+	
+	
 	@RequestMapping(value="/delete/{id}")
 	public String processDelete(@PathVariable int id){
 		offerDao.deleteOffer(id);

@@ -1,7 +1,7 @@
 <%@ tag description="Estructura de un bloque Post"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ attribute name="postId" required="false"%>
+<%@ attribute name="postLink" required="false"%>
 <%@ attribute name="postTitle" required="false"%>
 <%@ attribute name="postDescription" required="false"%>
 <%@ attribute name="postDate" required="false"%>
@@ -31,7 +31,7 @@
 		
 	<div class="split-item-v-texto">
 		
-		<h2 class="post-title"><a href="${ pageContext.request.contextPath }/all/offers/${postId}">${postTitle }</a></h2>
+		<h2 class="post-title"><a href="${postLink}">${postTitle }</a></h2>
 		<div class="acortar-texto">
 			<p class="post-description">
 				${ postDescription}
