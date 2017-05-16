@@ -30,7 +30,7 @@
 	   
 
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/datepicker.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/themes/bootstrap-stars.css" />
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/themes/bootstrap-stars.css" />
 	<link
 	    href="${pageContext.request.contextPath}/css/personalizado.css"
 	    rel="stylesheet"/>

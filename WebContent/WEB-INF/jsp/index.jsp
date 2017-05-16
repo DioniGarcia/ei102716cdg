@@ -14,18 +14,14 @@
 					
 					<!-- Botón Crear oferta -->
 					
-					<div class="jumbotron">
-						<a href="${pageContext.request.contextPath}/my/offers/add.html">
-							<br>
-							<br>
-							<br>
-							<br>
-							<h2>Crear Oferta</h2> 
-							<p>Ofrece ayuda a otros usuarios</p>
-							<br>							
-						</a> 
-					</div>		
-					
+					<div class="jumbotron banner offer-banner">
+					  <div>
+					    <h2 class="banner-text" style="color: #375d70;">Ayuda a otros usuarios</h2>
+					    <p><a class="btn btn-primary btn-lg banner-btn-offer" href="${pageContext.request.contextPath}/my/offers/add.html" >
+					    	Crear Oferta
+				    	</a></p>
+					  </div>
+					</div>
 					
 					<!-- Listado de ofertas destacadas -->
 					<c:forEach varStatus="status" items="${offers}" var="offer"> 
@@ -47,18 +43,15 @@
 					
 					<!-- Botón Crear demandas -->
 					
-					<div class="jumbotron">
-						<a href="${pageContext.request.contextPath}/my/requests/add.html">
-							<br>
-							<br>
-							<br>
-							<br>
-							<h2>Crear Demanda</h2> 
-							<p>Recibe ayuda de otros miembros</p>
-							<br>	
-						</a> 
-					</div>		
 					
+					<div class="jumbotron banner request-banner">
+					  <div>
+					    <h2 class="banner-text" style="color: #445736;">¿Necesitas ayuda?</h2>
+					    <p><a class="btn btn-primary btn-lg banner-btn-request" href="${pageContext.request.contextPath}/my/request/add.html" >
+					    	Crear Demanda
+				    	</a></p>
+					  </div>
+					</div>
 					
 					<!-- Listado de demandas destacadas -->
 					<c:forEach varStatus="status" items="${requests}" var="request"> 

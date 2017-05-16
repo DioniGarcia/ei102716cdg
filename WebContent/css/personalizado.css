@@ -138,3 +138,98 @@ body { margin-top: 60px;}
 .split-item .br-theme-bootstrap-stars .br-widget a:after {
   font-size: small;
 }
+
+<!-- Botones oferta y demanda, Inicio -->
+
+.banner {
+	
+}
+
+.offer-banner {
+	  background-image: url("../resources/img/banners/banner_offer.png");
+	  background-size:  cover;
+	  
+	  margin-top: 20px;
+	  height: 300px;
+	  width: 100%;
+	  max-height: 50%;
+	  max-width: 100%;
+	  min-height: 20%;
+	  min-width: 30%;
+	  
+	  padding-top: 140px;
+}
+
+.request-banner {
+	  background-image: url("../resources/img/banners/banner_request.png");
+	  background-size:  cover;
+	  
+	  margin-top: 20px;
+	  height: 300px;
+	  width: 100%;
+	  max-height: 50%;
+	  max-width: 100%;
+	  min-height: 20%;
+	  min-width: 30%;
+	  
+	  padding-top: 140px;
+}
+
+.banner-text{
+	width: 80%;
+	
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: 8px;
+	padding-top: 6px;
+	padding-bottom: 6px;	
+}
+
+.banner-btn-offer {
+	width: 80%;	
+	
+	display: inline-block;
+	
+	font-size: 18px;
+	color: #fff;
+	line-height: 1.42857143;
+	text-align: center;
+	
+	cursor: pointer;
+	border: 2px solid;
+	border-color: white;
+	border-radius: 25px;
+	opacity: 1.0;
+	
+	background-image: linear-gradient(to bottom,#7cb0cb 0,#3b6478 100%);
+}
+
+.banner-btn-offer:hover {
+	background-color: #3e6579;
+	border-color: #3e6579;
+}
+
+
+.banner-btn-request {
+	width: 80%;	
+	
+	display: inline-block;
+	
+	font-size: 18px;
+	color: #fff;
+	line-height: 1.42857143;
+	text-align: center;
+	
+	cursor: pointer;
+	border: 2px solid;
+	border-color: white;
+	border-radius: 25px;
+	opacity: 1.0;
+	
+	background-image: linear-gradient(to bottom,#a2ca84 0,#4a5e3b 100%);
+}
+
+.banner-btn-request:hover {
+	background-color: #4B613A;
+	border-color: #4B613A;
+}
+

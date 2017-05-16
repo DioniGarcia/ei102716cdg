@@ -8,7 +8,7 @@
 	   <div class="form-horizontal">
 			<div class="panel-default center">
                 
-                <div class="panel-body ">
+                <div class="panel-body">
                     <form:form method="post" modelAttribute="user" action="${pageContext.request.contextPath}/login.html" 
                     class="form-horizontal" role="form">
                     <div class="form-group">
