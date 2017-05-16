@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
-<t:paginabasica>
+<t:paginaperfil>
 <jsp:body>    
     <a href="add.html">Añadir oferta</a><br>
     
@@ -18,4 +18,4 @@
     	</c:forEach>
     </div>
 </jsp:body>
-</t:paginabasica>
+</t:paginaperfil>

@@ -35,6 +35,6 @@
     	<p class="post-date" style="font-size:15px; font-weight:bold;"><c:out value="${offer.startDate }, ${offer.endDate } "></c:out></p>
     </div>
     
-    <a href="${ pageContext.request.contextPath }/my/offers/update/${offer.id }}">Edit</a>
+    <a href="${ pageContext.request.contextPath }/my/offers/update/${offer.id }">Edit</a>
 </jsp:body>
 </t:paginabasica>

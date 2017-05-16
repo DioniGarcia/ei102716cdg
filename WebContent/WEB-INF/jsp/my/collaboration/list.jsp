@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
-<t:paginabasica>
+<t:paginaperfil>
 <jsp:body>   
 
 	<c:if test="${not empty param.success }">
@@ -48,4 +48,4 @@
 	</div>
 
 </jsp:body>
-</t:paginabasica>
+</t:paginaperfil>

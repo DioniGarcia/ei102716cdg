@@ -47,7 +47,7 @@
 					<div class="jumbotron banner request-banner">
 					  <div>
 					    <h2 class="banner-text" style="color: #445736;">¿Necesitas ayuda?</h2>
-					    <p><a class="btn btn-primary btn-lg banner-btn-request" href="${pageContext.request.contextPath}/my/request/add.html" >
+					    <p><a class="btn btn-primary btn-lg banner-btn-request" href="${pageContext.request.contextPath}/my/requests/add.html" >
 					    	Crear Demanda
 				    	</a></p>
 					  </div>
