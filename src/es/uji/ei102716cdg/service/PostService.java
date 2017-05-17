@@ -289,6 +289,68 @@ public class PostService implements PostServiceInterface {
 	public int getRequestsPageCount(int size) {
 		return requestDao.getRequests().size() % size;
 	}
+
+	@Override
+	public int getUserPoints(String nick) {
+		int sum = 20;
+		Offer offer = null;
+		List<Collaboration> collabs = collaborationDao.getAllCollaborationsByNick(nick);
+		for (Collaboration col : collabs){
+			offer = offerDao.getOffer(col.getOffer_id());
+			
+			short totalHours = col.getTotalHours();
+			
+			if ( offer.getStudent_nick().equals(nick)){
+				short rating = col.getRating();
+				if (rating >= 3)
+					sum += totalHours * Math.pow(1.12,  rating - 3); // factor beneficioso 
+				else
+					sum += totalHours * Math.pow(0.88,  3 - rating); // factor penalizador
+			
+			} else { // demandante
+				sum -= totalHours;
+			}
+		}
+		
+		sum += offerDao.getOffersByNick(nick).size() * 2;
+		
+		return sum;
+	}
+
+	@Override
+	public int getReceivedHours(String nick) {
+		
+		int sum = 0;
+		
+		Request request = null;
+		List<Collaboration> collabs = collaborationDao.getAllCollaborationsByNick(nick);
+		for (Collaboration col : collabs){
+			request = requestDao.getRequest(col.getRequest_id());
+			
+			if (  request.getStudent_nick().equals(nick)){
+				sum += col.getTotalHours();
+			} 
+		}
+		
+		return sum;
+	}
+
+	@Override
+	public int getOfferedHours(String nick) {
+		int sum = 0;
+		
+		Offer offer = null;
+		List<Collaboration> collabs = collaborationDao.getAllCollaborationsByNick(nick);
+		for (Collaboration col : collabs){
+			offer = offerDao.getOffer(col.getOffer_id());
+			
+			if ( offer.getStudent_nick().equals(nick)){
+				sum += col.getTotalHours();
+			} 
+		}
+		
+		return sum;
+	}
 	
 
 }

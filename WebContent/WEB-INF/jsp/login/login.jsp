@@ -35,11 +35,11 @@
                 </div>
                 <div class="split-container center-content-h">
                 	<div class="split-item-h ">
-                		<a href="login/forget_passwd.jsp" class="link">¿Has olvidado la contraseña?</a>
+                		<a href="404.jsp" class="link">¿Has olvidado la contraseña?</a>
 					</div>
 					
 					<div class="split-item-h ">
-						<a href="login/register.jsp" class="link">Registra</a>
+						<a href="signup.html" class="link">Registra</a>
 					</div>
 				</div>
             </div>

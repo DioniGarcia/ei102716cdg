@@ -117,4 +117,11 @@ public interface PostServiceInterface {
 	
 	public int getOffersPageCount(int size);
 	public int getRequestsPageCount(int size);
+	
+	public int getUserPoints(String nick);
+	
+	public int getReceivedHours(String nick);
+	public int getOfferedHours(String nick);
+	
+	
 }

@@ -40,7 +40,8 @@ public class AllOfferController {
 		
 		int pageCount = postService.getOffersPageCount(pageSize);
 		
-		List<Offer> recentOffers = postService.getPaginatedOffers(pageSize, page);
+		//List<Offer> recentOffers = postService.getPaginatedOffers(pageSize, page);
+		List<Offer> recentOffers = postService.getActiveOffers();
 		model.addAttribute("offers", recentOffers);
 		model.addAttribute("skills", postService.getSkillsByPost(recentOffers));
 		model.addAttribute("users", postService.getUsersByPost(recentOffers));
