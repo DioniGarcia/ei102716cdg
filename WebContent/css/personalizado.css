@@ -173,18 +173,6 @@ div.postbox.requestbox:hover{
 .split-item .br-theme-bootstrap-stars .br-widget a:after {
   font-size: small;
 }
-
-<!-- Botones oferta y demanda, Inicio -->
-
-div.banner {
-	  
-}
-
-div.offer-banner {
-	  background-image: url("../resources/img/banners/banner_offer.png");
-	  background-size:  cover;
-	  margin-top: 10px;
-	  height: 280px;
 	  
 /* Botones oferta y demanda, Inicio */
 div.banner {

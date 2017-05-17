@@ -178,7 +178,7 @@
     
     <!-- Correo-->
   	<div class= "col-md-2">
-      	<a class="nav_link" href="404.jsp">
+      	<a class="nav_link" href="${pageContext.request.contextPath}/404.jsp">
 			<span class="glyphicon glyphicon-envelope"></span>Correo 
 			<span class="badge">10</span>
 		</a> 
