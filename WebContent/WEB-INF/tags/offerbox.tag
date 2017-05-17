@@ -7,7 +7,7 @@
 <%@ attribute name="postDate" required="false"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
-<div class="post-box split-container">
+<div class="postbox  split-container offerbox" onclick="location.href='${postLink}';">
 	<div class="split-item-v-foto split-container">
 		<div class="split-item"></div>
 		
@@ -31,7 +31,7 @@
 		
 	<div class="split-item-v-texto">
 		
-		<h2 class="post-title"><a href="${postLink}">${postTitle }</a></h2>
+		<h2 class="post-title offerText">${postTitle }</h2>
 		<div class="acortar-texto">
 			<p class="post-description">
 				${ postDescription}

@@ -1,6 +1,6 @@
 body { margin-top: 60px;}
 
-<!-- FlexBox -->
+/* FlexBox */
 .valign  {
 	display: flex;
 	align-items: center;
@@ -89,14 +89,48 @@ body { margin-top: 60px;}
     opacity: 0.5;
 }
 
-<!-- Post -->
-.post-box {
-	height: 140px;
-	background: #000;
-	border: 4px solid;
-	border-color: #c8dcdf;
-	border-radius: 4px;
-	background: blue;
+/* Post */
+div.postbox {
+	border: 1px solid;
+	border-radius: 8px;
+	padding: 6px;
+	margin-bottom: 6px;
+	
+	width: 600px;
+    height: 120px;
+}
+
+div.postbox.offerbox{
+	background: linear-gradient(to top, #dde8f1, white);	
+	border-color: #dde8f1;
+	cursor: pointer;
+}
+
+div.postbox.offerbox:hover{
+	background: linear-gradient(to top,#7db8d5, #dde8f1);	
+	border-color: #dde8f1;
+	cursor: pointer;
+}
+
+.offerText{
+	color: #3e6579;
+}
+
+
+div.postbox.requestbox{
+	background: linear-gradient(to top,#ebf9e0, white);	
+	border-color: #ebf9e0;
+	cursor: pointer;
+}
+
+div.postbox.requestbox:hover{
+	background: linear-gradient(to top,#95be72, #ebf9e0);	
+	border-color: #ebf9e0;
+	cursor: pointer;
+}
+
+.requestText{
+	color: #445736;
 }
 
 .collabbox {
@@ -151,18 +185,9 @@ div.offer-banner {
 	  background-size:  cover;
 	  margin-top: 10px;
 	  height: 280px;
-	  width: 100%;
-	  max-height: 50%;
-	  max-width: 100%;
-	  min-height: 20%;
-	  min-width: 30%;
 	  
-	  padding-top: 130px;
-}
-
-div.request-banner {
-	  background-image: url("../resources/img/banners/banner_request.png");
-	  background-size:  cover;
+/* Botones oferta y demanda, Inicio */
+div.banner {
 	  margin-top: 10px;
 	  height: 280px;
 	  width: 100%;
@@ -172,6 +197,16 @@ div.request-banner {
 	  min-width: 30%;
 	  
 	  padding-top: 130px;
+}
+
+div.offer-banner {
+	  background-image: url("../resources/img/banners/banner_offer.png");
+	  background-size:  cover;
+}
+
+div.request-banner {
+	  background-image: url("../resources/img/banners/banner_request.png");
+	  background-size:  cover;
 }
 
 .banner-text {

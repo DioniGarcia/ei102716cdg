@@ -10,7 +10,7 @@
 			<img src="${ pageContext.request.contextPath }/resources/img/background.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
 		</div>
 		<div class="split-item-v-texto">
-			<h3><c:out value="Nombre: ${student.name }"></c:out></h2>
+			<h2><c:out value="Nombre: ${student.name }"></c:out></h2>
 			<div>
 			<select class="star-readonly">
 			<option value="0">0</option>

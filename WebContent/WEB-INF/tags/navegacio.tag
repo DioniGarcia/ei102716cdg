@@ -10,10 +10,22 @@
 
 	.logo-icon {
 	  padding: 14px 14px;
+	  padding-left: 30px;
 	  text-align: left;
-	  font-size: 22px;
+	  font-size: 24px;
 	  font-family: 'Pacifico', cursive;
 	  font-style: italic;
+	}
+
+	.nav_link {
+		color: #666;
+		font-size: 15px;
+		padding-left: 20px;
+	}
+	
+	.nav_link:hover{
+		color: #000;
+		text-decoration: none;
 	}
 
     .header{
@@ -128,7 +140,7 @@
   	
   	<!-- Titulo-->
   	<div class="navbar-header col-md-2">
-      <a class="navbar-brand logo-icon" href="${pageContext.request.contextPath}/index.html">SkillSharing</a>
+      <a class="navbar-brand logo-icon" href="${pageContext.request.contextPath}/index.html">SkillSharing!</a>
     </div>
     
     <!-- Search-->
@@ -155,18 +167,18 @@
     
     <!-- Offers-->
   	<div class= "col-md-2">
-      <a href="${pageContext.request.contextPath}/all/offers/list.html">Ver todas las ofertas</a>
+      <a class="nav_link" href="${pageContext.request.contextPath}/all/offers/list.html">Ver todas las ofertas</a>
     </div>
     
     <!-- Requests-->
   	<div class= "col-md-2">
-      <a href="${pageContext.request.contextPath}/all/requests/list.html">Ver todas las demandas</a>
+      <a class="nav_link" href="${pageContext.request.contextPath}/all/requests/list.html">Ver todas las demandas</a>
 
     </div>
     
     <!-- Correo-->
   	<div class= "col-md-2">
-      	<a href="${pageContext.request.contextPath}/indexDbTest.jsp">
+      	<a class="nav_link" href="${pageContext.request.contextPath}/indexDbTest.jsp">
 			<span class="glyphicon glyphicon-envelope"></span>Correo 
 			<span class="badge">10</span>
 		</a> 
@@ -200,5 +212,3 @@
     
   </div>
 </nav>
-
-

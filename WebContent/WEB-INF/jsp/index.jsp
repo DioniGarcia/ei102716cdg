@@ -55,12 +55,12 @@
 					
 					<!-- Listado de demandas destacadas -->
 					<c:forEach varStatus="status" items="${requests}" var="request"> 
-    				<t:offerbox 
+    				<t:requestbox
     					postLink="${ pageContext.request.contextPath }/all/requests/${request.id }"
     					postTitle="Demanda de ${skillsRq[status.index].name } - ${skillsRq[status.index].description}" 
     					postDescription="${request.description}" 
     					postDate="${request.startDate },${request.endDate }">
-    				</t:offerbox>
+    				</t:requestbox>
     				</c:forEach>
 				</div>
 				

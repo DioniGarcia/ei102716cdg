@@ -11,6 +11,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title}</title>
+<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto:400,700" rel="stylesheet"> 
 
 <!-- Bootstrap -->
 	<link href="${pageContext.request.contextPath}/css/bootstrap.css"
