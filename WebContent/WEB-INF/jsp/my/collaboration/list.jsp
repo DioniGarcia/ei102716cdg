@@ -29,7 +29,7 @@
 		<button type="submit" name="filter" value="all" class="btn btn-default">Todas</button>
 		<button type="submit" name="filter" value="active" class="btn btn-default">Activas</button>
 		<button type="submit" name="filter" value="eval" class="btn btn-default">Para evaluar</button>
-		<button type="submit" name="filter" value="old" class="btn btn-default">Ya realizadas</button>
+		<button type="submit" name="filter" value="old" class="btn btn-default">Evaluadas</button>
 	</div>
 	</form>
 	<c:forEach varStatus="status" items="${collabs}" var="collab"> 

@@ -257,6 +257,38 @@ public class PostService implements PostServiceInterface {
 		}
 		return dates;
 	}
+
+	@Override
+	public List<Offer> getPaginatedOffers(int pageSize, int page) {
+		int indice = page-1;
+		List<Offer> offers = offerDao.getOffers();
+		List<Offer> ret = new ArrayList<Offer>();
+		for (int i = indice*pageSize; i< indice+pageSize; i++){
+			ret.add(offers.get(i));
+		}
+		return ret;
+	}
+
+	@Override
+	public List<Request> getPaginatedRequests(int pageSize, int page) {
+		int indice = page-1;
+		List<Request> offers = requestDao.getRequests();
+		List<Request> ret = new ArrayList<Request>();
+		for (int i = indice*pageSize; i< indice+pageSize; i++){
+			ret.add(offers.get(i));
+		}
+		return ret;
+	}
+
+	@Override
+	public int getOffersPageCount(int size) {
+		return offerDao.getOffers().size() % size;
+	}
+
+	@Override
+	public int getRequestsPageCount(int size) {
+		return requestDao.getRequests().size() % size;
+	}
 	
 
 }

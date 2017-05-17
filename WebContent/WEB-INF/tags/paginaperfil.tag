@@ -23,6 +23,7 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" 
 		rel="stylesheet" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/my/offer.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/my/profile.css" />
 	    
 	<link
 	    href="${pageContext.request.contextPath}/css/my/sidenav.css"

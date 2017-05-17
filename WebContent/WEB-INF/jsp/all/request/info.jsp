@@ -35,6 +35,6 @@
     	<p class="post-date" style="font-size:15px; font-weight:bold;"><c:out value="${request.startDate }, ${request.endDate } "></c:out></p>
     </div>
     
-    <a href="${ pageContext.request.contextPath }/my/collaborations/add?requestId=${request.id }&skillId=${skill.skill_id }">Collab</a>
+    <a href="${ pageContext.request.contextPath }/my/collaborations/add?requestId=${request.id }&skillId=${skill.skill_id }"><button class="btn btn-primary">Establecer collaboración</button></a>
 </jsp:body>
 </t:paginabasica>

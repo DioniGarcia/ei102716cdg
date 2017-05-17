@@ -93,9 +93,9 @@ public class MyRequestController {
 	
 	@RequestMapping(value="/update/{id}", method=RequestMethod.GET)
 	public String editRequest(Model model, @PathVariable int id){
-		model.addAttribute("request", requestDao.getRequest(id));
-		model.addAttribute("nick_list", postService.getActiveStudentsNick());
-		model.addAttribute("skill_list", postService.getActiveSkills());
+		Request request = requestDao.getRequest(id);
+		model.addAttribute("request", request);
+		model.addAttribute("skill", postService.getSkillById(request.getSkill_Id()));
 		return "my/request/update";
 	}
 	

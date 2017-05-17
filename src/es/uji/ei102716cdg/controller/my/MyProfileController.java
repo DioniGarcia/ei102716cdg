@@ -35,6 +35,14 @@ public class MyProfileController {
 		return "my/profile/index";
 	}
 	
+	@RequestMapping("/points")
+	public String getPointsPage(Model model, HttpSession session){
+		User user = (User) session.getAttribute("user");
+		Student student = studentDao.getStudent(user.getNick());
+		model.addAttribute("student", student);
+		return "my/profile/points";
+	}
+	
 	@RequestMapping("/add")
 	public String addStudent(Model model){
 		model.addAttribute("student",new Student());

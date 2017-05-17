@@ -1,0 +1,45 @@
+.profile-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.profile-photo {
+	flex: 1;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+} 
+
+.profile-details {
+	flex: 6;
+	margin-left: 40px;
+	display: flex; 
+	row-direction: column;
+	flex-grow:6; 
+	align-items: center;
+}
+
+.points-container {
+	display: flex;
+}
+
+.points-main {
+	flex: 1;
+}
+
+.points-help {
+	flex:1;
+}
+
+.points-hours {
+	margin-top: 20px;
+	font-size: 20px;
+}
+
+.points-balance{
+	margin-top: 10px;
+}
+
+
+

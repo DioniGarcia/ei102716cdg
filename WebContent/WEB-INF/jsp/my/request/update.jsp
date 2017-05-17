@@ -3,18 +3,16 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
-<t:paginabasica>
+<t:paginaperfil>
 <jsp:body> 
     <h2>Editar Demanda</h2>
     <form:form method="post" modelAttribute="request">
         <table>
         
         	<tr>
-                <td><form:label path="skill_Id">Skill</form:label></td>
+                <td><b>Skill:</b></td>
                 <td>
-               		<select id="nombre"><option></option></select>
-					<form:select path="skill_Id" id="tipo"></form:select><br>
-					<form:errors class="error" path="skill_Id"/>	
+               		${ skill.name } - ${ skill.description }
 				</td>
             </tr>
             
@@ -70,4 +68,4 @@
     
     
 </jsp:body>
-</t:paginabasica>
+</t:paginaperfil>

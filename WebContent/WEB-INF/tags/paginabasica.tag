@@ -60,7 +60,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.dotdotdot.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/datepicker.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/datepicker.es-ES.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.barrating.min.js"></script>  
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.barrating.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.twbsPagination.min.js"></script>  
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -76,6 +77,15 @@
     	    	  emptyValue: 0
     	      });
     	   
+   	      $('#pagination').twbsPagination({
+   	          totalPages: 2,
+   	          visiblePages: 5,
+   	          onPageClick: function (event, page) {
+   	        	  console.dir(event);
+   	              window.location.href = window.location.origin + "/" + window.location.pathname.split("/")[1] + "/all/offers/list?page="+page;
+   	          }
+   	      });
+    	      
     	$(".br-widget").css("display","inline");
     	
     	$('#confirm-delete').on('show.bs.modal', function(e) {
