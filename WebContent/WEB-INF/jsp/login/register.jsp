@@ -54,7 +54,7 @@
                 </div>
                 <div class="split-container center-content-h">
                 	<div class="split-item-h ">
-                		<a href="#" class="link">¿Has olvidado la contraseña?</a>
+                		<a href="404.jsp" class="link">¿Has olvidado la contraseña?</a>
 					</div>
 					
 					<div class="split-item-h ">
