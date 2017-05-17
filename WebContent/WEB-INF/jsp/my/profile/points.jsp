@@ -29,8 +29,8 @@
 			</div>
 			
 			<div class="points-hours">
-			<div>Numero de horas recibidas : 5</div>
-			<div>Numero de horas prestadas : 10</div>
+			<div>Numero de horas recibidas : ${receivedHours}</div>
+			<div>Numero de horas prestadas : ${offeredHours}</div>
 			
 			</div>
 			
@@ -40,16 +40,35 @@
 				  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ffffff" stroke-width="3"></circle>
 				
 				  <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#7cb518" stroke-width="3" stroke-dashoffset="24" stroke-dasharray="32 1" ></circle>
-				  <text x="50%" y="50%" text-anchor="middle" stroke="#000000" stroke-width="0.01em" dy=".18em">5</text>
+				  <text x="50%" y="50%" text-anchor="middle" stroke="#000000" stroke-width="0.01em" dy=".18em">${totalHours }</text>
 				  <text font-size="5" x="50%" y="50%" text-anchor="middle" stroke="#000000" stroke-width="0.005em" dy="1.6em">puntos</text>
 				</svg>
 			</div>
 		</div>
 		
-		<div class="points-help">
+		<div class="points-help" >
+			
 			<fieldset>
-			<legend>Title</legend>
-			Lorem epfjepfojsp feps ofjefsoefsidvnsoefi ogihso isoiñnñoinvosn oehs noeisoh ishnoisno insnoñie
+			<legend>Sistema de Puntuación </legend>
+			<p style="color:white;">Presentamos un ingenioso sistema de puntuación basado en la colaboración altruista entre la comunidad de estudiantes universitarios.<br>
+			<br>La idea parte de la base de mantener un balance de puntos el cual variará en función de la actividad resgitrada en el sistema.
+			Seguir estos breves consejos, ayudará seguro a tener una mejor experiecia de uso de la aplicación. 
+			
+			<br><br>-Consulta periódicamente tu balance de puntos desde el menu de perfil.
+			
+			<br><br>-La cantidad inicial de puntos serán de 20. ! Un muy buen inicio !
+			
+			<br><br>-Para poder recibir ayuda debe nuestro saldo de puntos ser superior a 0.
+			
+			<br><br>-Seran premiadas aquellas colaboraciones prestadas en función de la cantidad de horas de servicio teniendo en cuenta como puntuen 
+			las personas que reciben la ayuda, en un rango de 1 a 5.
+			<br><br>-Por servicio recibido serán restados una cantidad de puntos equivalente al número de horas recibidas. 
+			
+			<br><br>-Por cada oferta publicada se sumarán dos puntos al balance. La gente sin puntos, puede reengancharse a la aplicación con buena voluntad!
+			
+			<br><br>Hacer un uso responsable del sistema, permite disfrutar de una herramienta que promueva el intercambio de conocimiento entre estudiantes sin coste económico.
+			</p>
+			
 			</fieldset>
 		</div>
 	

@@ -48,7 +48,7 @@ public class StudentValidator implements Validator {
 		//Check password
 		if (student.getPasswd().trim().length()<6)
 			errs.rejectValue("passwd", "obligatorio",
-					"Contraseña demasiado corta");
+					"ContraseÃ±a demasiado corta");
 		
 	}
 	
@@ -56,14 +56,14 @@ public class StudentValidator implements Validator {
 	//Funciones complementarias:
 	/**Comprueba si el Dni dado es valido
 	 * 
-	 * Los numeros del Dni se establecen en función a ciertos parametros:
-	 *  - Está compuesto por 9 elementos 
+	 * Los numeros del Dni se establecen en funciï¿½n a ciertos parametros:
+	 *  - Estï¿½ compuesto por 9 elementos 
 	 *  - Los primero 8 elementos son numeros, el ultimo es una letra
 	 *  - La letra debe estar contenida entre las siguientes: T, R, W, A, G, M, Y, F, P, D, X, B, N, J, Z, S, Q, V, H, L, C, K, E
-	 *  - La letra se calcula dividiendo los ocho dígitos entre 23, el resto indica qué letra corresponde
+	 *  - La letra se calcula dividiendo los ocho dï¿½gitos entre 23, el resto indica quï¿½ letra corresponde
 	 * 
 	 * @param 	dni: Dni que se desea validar
-	 * @return	true si el Dni cumple las condiciones de validación 
+	 * @return	true si el Dni cumple las condiciones de validaciï¿½n 
 	 */
 	private void validateDni(String dni, Errors errs){
 		int 		numDni 		= 0;							//Numero completo que forman parte del Dni 
@@ -78,10 +78,10 @@ public class StudentValidator implements Validator {
 				
 		
 		
-		//Se comprueba que el dni esté compuesto por 9 caracteres
+		//Se comprueba que el dni estï¿½ compuesto por 9 caracteres
 		if(dni.length() != 9 ){
 			errs.rejectValue("dni", "obligatorio",
-					"El Dni debe estar compuesto por 9 caracteres, prueba a añadir un 0 en la primera posición");
+					"El Dni debe estar compuesto por 9 caracteres, prueba a aÃ±adir un 0 en la primera posiciÃ³n");
 			return;
 		}
 			
@@ -99,12 +99,12 @@ public class StudentValidator implements Validator {
 			
 			if(!isANumber){
 				errs.rejectValue("dni", "ocho_numeros",
-						"Los 8 primeros valores del Dni deben ser números entre 0 y 9");
+						"Los 8 primeros valores del Dni deben ser nÃºmeros entre 0 y 9");
 				return;
 			}
 		}
 		
-		//Se comprueba si la letra concuerda con la opción correcta
+		//Se comprueba si la letra concuerda con la opciï¿½n correcta
 		numDni = Integer.parseInt(dni.substring(0, dni.length()-1)); 
 		module = numDni%23;
 		

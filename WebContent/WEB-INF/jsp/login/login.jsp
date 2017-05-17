@@ -39,7 +39,7 @@
 					</div>
 					
 					<div class="split-item-h ">
-						<a href="login/register.jsp" class="link">Registra</a>
+						<a href="signup.html" class="link">Registra</a>
 					</div>
 				</div>
             </div>

@@ -43,7 +43,7 @@ public class StudentDao {
 	
 	/**Genera una lista con los estudiantes de la base de datos
 	 * 
-	 * La lista contiene, para cada estudiante, nick, email, contraseña, nombre y apellidos, dni, 
+	 * La lista contiene, para cada estudiante, nick, email, contraseï¿½a, nombre y apellidos, dni, 
 	 * y la cantidad de puntos que tiene actualmente
 	 * 
 	 * @return Lista de estudiantes
@@ -92,7 +92,7 @@ public class StudentDao {
 
 	/**Borra de la base de datos al estudiante asociado a un nombre de usuario dado
 	 * 
-	 * @param nick: Nombre de usuario único del estudiante que se desea borrar
+	 * @param nick: Nombre de usuario ï¿½nico del estudiante que se desea borrar
 	 */
 	public void deleteStudent(String nick) {
 		this.jdbcTemplate.update("DELETE FROM Student WHERE nick = ?" , nick);

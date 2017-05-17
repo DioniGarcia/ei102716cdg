@@ -12,11 +12,10 @@
 } 
 
 .profile-details {
-	flex: 6;
 	margin-left: 40px;
 	display: flex; 
 	row-direction: column;
-	flex-grow:6; 
+	flex-grow:1; 
 	align-items: center;
 }
 
@@ -25,11 +24,12 @@
 }
 
 .points-main {
-	flex: 1;
+	flex: 4;
 }
 
 .points-help {
-	flex:1;
+	flex:6;
+	background-color:rgba(8,8,8,0.5);
 }
 
 .points-hours {
@@ -39,7 +39,10 @@
 
 .points-balance{
 	margin-top: 10px;
+	align-items: center;
 }
+
+legend { color: white;}
 
 
 

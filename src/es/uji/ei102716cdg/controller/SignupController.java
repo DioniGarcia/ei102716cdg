@@ -40,7 +40,7 @@ public class SignupController {
 		if (session.getAttribute("user") != null)
 			return "redirect:index.jsp";
 		model.addAttribute("student", new Student());
-		return "login/signup";
+		return "login/register";
 	}
 	
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
@@ -52,8 +52,8 @@ public class SignupController {
 			bindingResult.rejectValue("nick", "existe",
 					"El nombre de usuario ya existe");
 		if(bindingResult.hasErrors())
-			return "login/signup";
+			return "login/register";
 		studentDao.addStudent(student);
-		return "redirect:index.jsp";
+		return "redirect:index.html";
 	}
 }
