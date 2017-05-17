@@ -91,9 +91,9 @@ public class MyOfferController {
 	
 	@RequestMapping(value="/update/{id}", method=RequestMethod.GET)
 	public String editOffer(Model model, @PathVariable int id){
+		Offer offer = offerDao.getOffer(id);
 		model.addAttribute("offer", offerDao.getOffer(id));
-		model.addAttribute("nick_list", postService.getActiveStudentsNick());
-		model.addAttribute("skill_list", postService.getActiveSkills());
+		model.addAttribute("skill", postService.getSkillById(offer.getSkill_Id()));
 		return "my/offer/update";
 	}
 	

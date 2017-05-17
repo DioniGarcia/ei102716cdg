@@ -66,10 +66,25 @@ public interface PostServiceInterface {
 	 */
 	public List<Offer> getRecentOffers();
 	
+	/**Devuelve una lista de ofertas paginada
+	 * 
+	 * @return lista de ofertas paginada
+	 */
+	
+	public List<Offer> getPaginatedOffers(int pageSize, int offset);
+	
+	/**Devuelve una lista de demandas paginada
+	 * 
+	 * @return lista de demandas paginada
+	 */
+	
+	public List<Request> getPaginatedRequests(int pageSize, int offset);
+	
 	/**Devuelve las demandas ordenadas de más a menos recientes
 	 * 
 	 * @return	lista de demandas de más a menos reciente
 	 */
+	
 	List<Request> getRecentRequests();
 	
 	public Skill getSkillById(int id);
@@ -99,4 +114,7 @@ public interface PostServiceInterface {
 	public List<Skill> getSkillsByCollabs(List<Collaboration> collabs);
 
 	public List<String> getCollabEndDates(List<Collaboration> collabs);
+	
+	public int getOffersPageCount(int size);
+	public int getRequestsPageCount(int size);
 }

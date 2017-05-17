@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei102716cdg.dao.OfferDao;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
@@ -31,11 +32,19 @@ public class AllOfferController {
 	}
 	
 	@RequestMapping("/list")
-	public String listOffers(Model model){
-		List<Offer> recentOffers = postService.getRecentOffers();
+	public String listOffers(Model model, 	@RequestParam(value="page", required=false) Integer page,
+											@RequestParam(value="pageSize", required=false) Integer pageSize){
+		
+		if (pageSize == null) pageSize = 4;
+		if (page == null) page = 1;
+		
+		int pageCount = postService.getOffersPageCount(pageSize);
+		
+		List<Offer> recentOffers = postService.getPaginatedOffers(pageSize, page);
 		model.addAttribute("offers", recentOffers);
 		model.addAttribute("skills", postService.getSkillsByPost(recentOffers));
 		model.addAttribute("users", postService.getUsersByPost(recentOffers));
+		model.addAttribute("pageCount", pageCount);
 		return "all/offer/list";
 	}
 	

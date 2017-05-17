@@ -16,5 +16,6 @@
     	</t:offerbox>
     	</c:forEach>
     </div>
+    <ul id="pagination" class="pagination-sm"></ul>
 </jsp:body>
 </t:paginabasica>

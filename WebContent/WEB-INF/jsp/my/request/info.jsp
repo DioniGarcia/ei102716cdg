@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
-<t:paginabasica>
+<t:paginaperfil>
 <jsp:body>
 	<div class="split-container">
 		<div class="split-item-v-foto split-container">
@@ -35,6 +35,6 @@
     	<p class="post-date" style="font-size:15px; font-weight:bold;"><c:out value="${request.startDate }, ${request.endDate } "></c:out></p>
     </div>
     
-    <a href="${ pageContext.request.contextPath }/my/requests/update/${request.id }">Edit</a>
+    <a href="${ pageContext.request.contextPath }/my/requests/update/${request.id }"><button class="btn btn-primary">Editar</button></a>
 </jsp:body>
-</t:paginabasica>
+</t:paginaperfil>

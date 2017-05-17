@@ -5,8 +5,6 @@
 
 <t:paginaperfil>
 <jsp:body>    
-    <a href="add.html">Añadir oferta</a><br>
-    
     <div class="center">
     	<c:forEach varStatus="status" items="${offers}" var="offer"> 
     	<t:offerbox 
