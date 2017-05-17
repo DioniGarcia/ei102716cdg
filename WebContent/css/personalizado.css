@@ -1,8 +1,9 @@
 body { margin-top: 60px;}
 
+<!-- FlexBox -->
 .valign  {
 	display: flex;
-	align-items: center
+	align-items: center;
 }
 
 .split-container {
@@ -45,7 +46,6 @@ body { margin-top: 60px;}
 	flex-direction: column;
 	justify-items: center;
 }
-
 
 .panel-default {
 	width: 400px;	
@@ -96,6 +96,7 @@ body { margin-top: 60px;}
 	border: 4px solid;
 	border-color: #c8dcdf;
 	border-radius: 4px;
+	background: blue;
 }
 
 .collabbox {
@@ -141,43 +142,40 @@ body { margin-top: 60px;}
 
 <!-- Botones oferta y demanda, Inicio -->
 
-.banner {
-	
+div.banner {
+	  
 }
 
-.offer-banner {
+div.offer-banner {
 	  background-image: url("../resources/img/banners/banner_offer.png");
 	  background-size:  cover;
-	  
-	  margin-top: 20px;
-	  height: 300px;
+	  margin-top: 10px;
+	  height: 280px;
 	  width: 100%;
 	  max-height: 50%;
 	  max-width: 100%;
 	  min-height: 20%;
 	  min-width: 30%;
 	  
-	  padding-top: 140px;
+	  padding-top: 130px;
 }
 
-.request-banner {
+div.request-banner {
 	  background-image: url("../resources/img/banners/banner_request.png");
 	  background-size:  cover;
-	  
-	  margin-top: 20px;
-	  height: 300px;
+	  margin-top: 10px;
+	  height: 280px;
 	  width: 100%;
 	  max-height: 50%;
 	  max-width: 100%;
 	  min-height: 20%;
 	  min-width: 30%;
 	  
-	  padding-top: 140px;
+	  padding-top: 130px;
 }
 
-.banner-text{
+.banner-text {
 	width: 80%;
-	
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 8px;
 	padding-top: 6px;
@@ -207,7 +205,10 @@ body { margin-top: 60px;}
 	background-color: #3e6579;
 	border-color: #3e6579;
 }
-
+.banner-btn-offer:focus {
+	background-color: #3e6579;
+	border-color: #3e6579;
+}
 
 .banner-btn-request {
 	width: 80%;	
@@ -233,3 +234,7 @@ body { margin-top: 60px;}
 	border-color: #4B613A;
 }
 
+.banner-btn-request:focus {
+	background-color: #4B613A;
+	border-color: #4B613A;
+}

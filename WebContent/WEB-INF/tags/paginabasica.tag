@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ attribute name="title" required="false"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 
 <html lang="es">
@@ -19,6 +21,8 @@
     
 <!-- Estils propis -->
 
+	<link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto:400,700" rel="stylesheet"> 
+
 	<link 
 		href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" 
 		rel="stylesheet" />
@@ -34,13 +38,27 @@
 	<link
 	    href="${pageContext.request.contextPath}/css/personalizado.css"
 	    rel="stylesheet"/>
-
+		
+<style>
+	.image-bg {
+		position: relative;
+		opacity: 1.0;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		  
+	 	background-position: center;
+		  
+		border-radius: 10px;
+	}
+</style>
+	
 </head>
 
 
-<body>
+<body class="image-bg">
     <t:navegacio/>
-    <div class="container">
+    <div class="container ">
         <jsp:doBody />
     </div>
     <footer>
