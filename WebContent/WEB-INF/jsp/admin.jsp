@@ -15,12 +15,38 @@
 }
 .alert-fixed {
     position:fixed; 
-    bottom: 0px; 
+    font-size: 28px;
+    
     left: 0px; 
     width: 100%;
     z-index:9999; 
     border-radius:0px
 }
+button#add-skill{
+    border: 1px solid;
+    border-top: none;
+    border-color: #ccc;
+    border-radius: 0px 0px 10px 10px;
+
+    color: #333;
+	background-color: #fff;
+    
+    font-size: 16px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 66px;
+    padding-right: 66px;
+    margin-left: 83%;
+}
+
+button#add-skill:HOVER{
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
+
+
 </style>
 </head>
 <body>
