@@ -35,13 +35,12 @@ public class AllOfferController {
 	public String listOffers(Model model, 	@RequestParam(value="page", required=false) Integer page,
 											@RequestParam(value="pageSize", required=false) Integer pageSize){
 		
-		if (pageSize == null) pageSize = 4;
+		if (pageSize == null) pageSize = 5;
 		if (page == null) page = 1;
 		
 		int pageCount = postService.getOffersPageCount(pageSize);
 		
-		//List<Offer> recentOffers = postService.getPaginatedOffers(pageSize, page);
-		List<Offer> recentOffers = postService.getActiveOffers();
+		List<Offer> recentOffers = postService.getPaginatedOffers(pageSize, page);
 		model.addAttribute("offers", recentOffers);
 		model.addAttribute("skills", postService.getSkillsByPost(recentOffers));
 		model.addAttribute("users", postService.getUsersByPost(recentOffers));

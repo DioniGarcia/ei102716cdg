@@ -15,12 +15,12 @@
 }
 .alert-fixed {
     position:fixed; 
-    font-size: 28px;
-    
+    font-size: 20px;
+    top: 0px;
     left: 0px; 
     width: 100%;
     z-index:9999; 
-    border-radius:0px
+    border-radius:0px;
 }
 button#add-skill{
     border: 1px solid;

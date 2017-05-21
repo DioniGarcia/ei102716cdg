@@ -29,10 +29,7 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" 
 		rel="stylesheet" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/my/offer.css" />
-	    
-	<link
-	    href="${pageContext.request.contextPath}/css/my/sidenav.css"
-	    rel="stylesheet"/>
+	
 	   
 
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/datepicker.min.css" />
@@ -81,7 +78,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/datepicker.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/datepicker.es-ES.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.barrating.min.js"></script> 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.twbsPagination.min.js"></script>  
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -97,14 +93,11 @@
     	    	  emptyValue: 0
     	      });
     	   
-   	      $('#pagination').twbsPagination({
-   	          totalPages: 2,
-   	          visiblePages: 5,
-   	          onPageClick: function (event, page) {
-   	        	  console.dir(event);
-   	              window.location.href = window.location.origin + "/" + window.location.pathname.split("/")[1] + "/all/offers/list?page="+page;
-   	          }
-   	      });
+    	      
+    	      $('#selectPageCount').change(function() {
+    	    	  // set the window's location property to the value of the option the user has selected
+    	    	  window.location = $(this).val();
+    	    	});
     	      
     	$(".br-widget").css("display","inline");
     	

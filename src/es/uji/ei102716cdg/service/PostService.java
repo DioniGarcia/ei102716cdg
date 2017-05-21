@@ -263,7 +263,7 @@ public class PostService implements PostServiceInterface {
 		int indice = page-1;
 		List<Offer> offers = offerDao.getOffers();
 		List<Offer> ret = new ArrayList<Offer>();
-		for (int i = indice*pageSize; i< indice+pageSize; i++){
+		for (int i = indice*pageSize; i < offers.size() && i< indice+pageSize; i++){
 			ret.add(offers.get(i));
 		}
 		return ret;
@@ -272,22 +272,22 @@ public class PostService implements PostServiceInterface {
 	@Override
 	public List<Request> getPaginatedRequests(int pageSize, int page) {
 		int indice = page-1;
-		List<Request> offers = requestDao.getRequests();
+		List<Request> requests = requestDao.getRequests();
 		List<Request> ret = new ArrayList<Request>();
-		for (int i = indice*pageSize; i< indice+pageSize; i++){
-			ret.add(offers.get(i));
+		for (int i = indice*pageSize; i < requests.size() && i< indice+pageSize; i++){
+			ret.add(requests.get(i));
 		}
 		return ret;
 	}
 
 	@Override
 	public int getOffersPageCount(int size) {
-		return offerDao.getOffers().size() % size;
+		return (offerDao.getOffers().size() + size - 1) / size; // ceil the division offers.size / size
 	}
 
 	@Override
 	public int getRequestsPageCount(int size) {
-		return requestDao.getRequests().size() % size;
+		return (requestDao.getRequests().size() + size - 1) / size; // ceil the division requests.size / size
 	}
 
 	@Override
