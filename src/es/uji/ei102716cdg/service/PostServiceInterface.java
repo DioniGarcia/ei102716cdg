@@ -24,6 +24,12 @@ public interface PostServiceInterface {
 	 * @return listado de skills
 	 */
 	public List<Skill> getActiveSkills();
+	/**Devuelve un listado con el numero de skills activas seleccionado
+	 * 
+	 * @return listado de skills
+	 */
+	public List<Skill> getActiveSkills(int number);
+
 	
 	/**Devuelve un listado con todas las ofertas activas en el sistema
 	 * 
@@ -122,6 +128,7 @@ public interface PostServiceInterface {
 	
 	public int getReceivedHours(String nick);
 	public int getOfferedHours(String nick);
+
 	
 	
 }

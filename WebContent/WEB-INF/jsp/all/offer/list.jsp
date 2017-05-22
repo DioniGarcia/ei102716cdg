@@ -32,7 +32,7 @@
     
      <t:pagination 
      	page="${page }" 
-     	totalPages="${pageCount }" 
+     	totalPages="${pageCount}" 
      	baseURL="${ pageContext.request.contextPath }/all/offers/list.html">
      </t:pagination>
      

@@ -50,7 +50,7 @@ public class PostService implements PostServiceInterface {
 	@Override
 	public List<String> getActiveStudentsNick() {
 		
-		List<String> nickList = new ArrayList<String>();
+		List<String> nickList = new ArrayList<>();
 		
 		for(Student student : studentDao.getStudents()){
 			nickList.add(student.getNick());
@@ -62,7 +62,7 @@ public class PostService implements PostServiceInterface {
 	@Override
 	public List<Skill> getActiveSkills() {
 		
-		List<Skill> skillList = new ArrayList<Skill>();
+		List<Skill> skillList = new ArrayList<>();
 		for(Skill skill : skillDao.getSkills()){
 			if(skill.isActive()){
 				skillList.add(skill);
@@ -72,8 +72,24 @@ public class PostService implements PostServiceInterface {
 	}
 	
 	@Override
+	public List<Skill> getActiveSkills(int number) {
+		
+		List<Skill> skillList = new ArrayList<>();
+		
+		for(Skill skill : skillDao.getSkills()){
+			if(skill.isActive()){
+				skillList.add(skill);
+			}
+			if (skillList.size() == number) {
+				break;
+			}
+		}
+		return skillList;
+	}
+	
+	@Override
 	public List<Offer> getActiveOffers() {
-		List<Offer> offerList = new ArrayList<Offer>();
+		List<Offer> offerList = new ArrayList<>();
 		for(Offer offer : offerDao.getOffers()){
 			if(offer.isActive()){
 				offerList.add(offer);
@@ -84,7 +100,7 @@ public class PostService implements PostServiceInterface {
 
 	@Override
 	public List<Request> getActiveRequests() {
-		List<Request> requestList = new ArrayList<Request>();
+		List<Request> requestList = new ArrayList<>();
 		for(Request request : requestDao.getRequests()){
 			if(request.isActive()){
 				requestList.add(request);
@@ -95,7 +111,7 @@ public class PostService implements PostServiceInterface {
 
 	@Override
 	public List<Chat> getChats() {
-		List<Chat> chatList = new ArrayList<Chat>();
+		List<Chat> chatList = new ArrayList<>();
 		
 		for(Chat chat : chatDao.getChats()){
 			chatList.add(chat);
@@ -105,7 +121,7 @@ public class PostService implements PostServiceInterface {
 
 	@Override
 	public List<Skill> getSkillsByPost(List<? extends Post> list) {
-		List<Skill> listSkill = new ArrayList<Skill>();
+		List<Skill> listSkill = new ArrayList<>();
 		for (Post post : list){
 			listSkill.add(skillDao.getSkill(post.getSkill_Id()));
 		}
@@ -115,7 +131,7 @@ public class PostService implements PostServiceInterface {
 	
 	@Override
 	public List<User> getUsersByPost(List<? extends Post> list) {
-		List<User> listUser = new ArrayList<User>();
+		List<User> listUser = new ArrayList<>();
 		for (Post post : list){
 			listUser.add(studentDao.getStudent(post.getStudent_nick()));
 		}
@@ -149,13 +165,8 @@ public class PostService implements PostServiceInterface {
 	 * @return	lista ordenada de más a menos reciente
 	 */
 	private List<? extends Post> sortPostByStartDate(List<? extends Post> list){
-
-		Comparator<Post> comparatorPost = new Comparator<Post>() {
-			@Override
-			public int compare(Post p1, Post p2) {
-				 return p2.getStartDate().compareTo(p1.getStartDate());				
-			}
-		};
+		Comparator<Post> comparatorPost =  (p1, p2) ->  (p2).getStartDate().compareTo(p1.getStartDate());				
+		
 		list.sort(comparatorPost);
 		return list;
 	}
@@ -172,7 +183,7 @@ public class PostService implements PostServiceInterface {
 
 	@Override
 	public List<Request> getRequestsBySkillId(String nick, int skillId){
-		List<Request> requestBySkill = new ArrayList<Request>();
+		List<Request> requestBySkill = new ArrayList<>();
 		for (Request req : requestDao.getRequestsByNick(nick)){
 			if (req.getSkill_Id() == skillId)
 				requestBySkill.add(req);
@@ -182,7 +193,7 @@ public class PostService implements PostServiceInterface {
 
 	@Override
 	public List<Offer> getOffersBySkillId(String nick, int skillId) {
-		List<Offer> offerBySkill = new ArrayList<Offer>();
+		List<Offer> offerBySkill = new ArrayList<>();
 		for (Offer off : offerDao.getOffersByNick(nick)){
 			if (off.getSkill_Id() == skillId)
 				offerBySkill.add(off);
@@ -237,7 +248,7 @@ public class PostService implements PostServiceInterface {
 
 	@Override
 	public List<Skill> getSkillsByCollabs(List<Collaboration> collabs) {
-		List<Skill> skills = new ArrayList<Skill>();
+		List<Skill> skills = new ArrayList<>();
 		for (Collaboration col : collabs){
 			skills.add(getSkillById(getOffer(col.getOffer_id()).getSkill_Id()));
 		}
@@ -246,7 +257,7 @@ public class PostService implements PostServiceInterface {
 
 	@Override
 	public List<String> getCollabEndDates(List<Collaboration> collabs) {
-		List<String> dates = new ArrayList<String>();
+		List<String> dates = new ArrayList<>();
 		for (Collaboration col : collabs){
 			Offer offer = offerDao.getOffer(col.getOffer_id());
 			Request request = requestDao.getRequest(col.getRequest_id());
@@ -262,7 +273,7 @@ public class PostService implements PostServiceInterface {
 	public List<Offer> getPaginatedOffers(int pageSize, int page) {
 		int indice = page-1;
 		List<Offer> offers = offerDao.getOffers();
-		List<Offer> ret = new ArrayList<Offer>();
+		List<Offer> ret = new ArrayList<>();
 		for (int i = indice*pageSize; i < offers.size() && i< indice+pageSize; i++){
 			ret.add(offers.get(i));
 		}
@@ -273,7 +284,7 @@ public class PostService implements PostServiceInterface {
 	public List<Request> getPaginatedRequests(int pageSize, int page) {
 		int indice = page-1;
 		List<Request> requests = requestDao.getRequests();
-		List<Request> ret = new ArrayList<Request>();
+		List<Request> ret = new ArrayList<>();
 		for (int i = indice*pageSize; i < requests.size() && i< indice+pageSize; i++){
 			ret.add(requests.get(i));
 		}
@@ -303,9 +314,9 @@ public class PostService implements PostServiceInterface {
 			if ( offer.getStudent_nick().equals(nick)){
 				short rating = col.getRating();
 				if (rating >= 3)
-					sum += totalHours * Math.pow(1.12,  rating - 3); // factor beneficioso 
+					sum += totalHours * Math.pow(1.12,  rating - 3f); // factor beneficioso 
 				else
-					sum += totalHours * Math.pow(0.88,  3 - rating); // factor penalizador
+					sum += totalHours * Math.pow(0.88,  3f - rating); // factor penalizador
 			
 			} else { // demandante
 				sum -= totalHours;
