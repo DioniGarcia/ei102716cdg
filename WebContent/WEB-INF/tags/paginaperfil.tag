@@ -47,25 +47,34 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-image: linear-gradient(to top,#fff 0,#f8f8f8 100%);
+    background-repeat: repeat-x;
+    background-color: #f8f8f8;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);    
+    border-right: 1px solid;
+    border-color: #e7e7e7;
     overflow-x: hidden;
-    padding-top: 60px;
+    padding-top: 62px;
 }
 
 .sidenav a {
-    padding: 16px 32px 16px 32px;
+    padding: 25px 0px 16px 32px;
     text-decoration: none;
     text-align:	left;
     font-size: 21px;
-    color: #818181;
+    color: gray;
     display: block;
 }
 
 .sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
-    text-decoration: none;
-    font-weight: bold;
+    background-color: #f1f1f1
+}
 
+.sidenav a:active {
+  	color: #fff;
+    background-color: #939393;
+    border-right: 1px solid;
+  	border-color: #939393;
 }
 
 .otherside {
