@@ -1,5 +1,9 @@
 body { margin-top: 60px;}
 
+footer > p{
+	text-align: center;
+}
+
 .center {
 	display:block;
 	margin-left: auto;
