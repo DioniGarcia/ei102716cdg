@@ -167,12 +167,12 @@
     
     <!-- Offers-->
   	<div class= "col-md-2">
-      <a class="nav_link" href="${pageContext.request.contextPath}/all/offers/list.html">Ver todas las ofertas</a>
+      <a class="nav_link" href="${pageContext.request.contextPath}/all/offers/list.html">Listado de ofertas</a>
     </div>
     
     <!-- Requests-->
   	<div class= "col-md-2">
-      <a class="nav_link" href="${pageContext.request.contextPath}/all/requests/list.html">Ver todas las demandas</a>
+      <a class="nav_link" href="${pageContext.request.contextPath}/all/requests/list.html">Listado de demandas</a>
 
     </div>
     

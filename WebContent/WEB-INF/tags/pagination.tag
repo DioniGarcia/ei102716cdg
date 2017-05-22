@@ -6,8 +6,8 @@
 <%@ attribute name="baseURL" required="false"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
-<nav aria-label="Page navigation">
-  <ul class="pagination">
+<nav aria-label="Page navigation" class="text-center">
+  <ul class="pagination pagination-sm custom-pagination">
     <li>
       <c:choose>
 		<c:when test="${page eq 1 }">

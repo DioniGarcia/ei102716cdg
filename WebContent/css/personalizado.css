@@ -1,5 +1,11 @@
 body { margin-top: 60px;}
 
+.center {
+	display:block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 /* FlexBox */
 .valign  {
 	display: flex;
@@ -93,8 +99,8 @@ body { margin-top: 60px;}
 div.postbox {
 	border: 1px solid;
 	border-radius: 8px;
-	padding: 6px;
-	margin-bottom: 6px;
+	padding: 7px;
+	margin-bottom: 9px;
 	
 	width: 600px;
     height: 120px;
@@ -177,6 +183,7 @@ div.postbox.requestbox:hover{
 /* Botones oferta y demanda, Inicio */
 div.banner {
 	  margin-top: 10px;
+	  margin-bottom: 22px;
 	  height: 280px;
 	  width: 100%;
 	  max-height: 50%;
@@ -261,3 +268,63 @@ div.request-banner {
 	background-color: #4B613A;
 	border-color: #4B613A;
 }
+
+/*Custom pagination*/
+.custom-pagination {
+	margin:20px 0;
+}
+.custom-pagination > ul {}
+.custom-pagination > li {}
+
+.custom-pagination > li > a,
+.custom-pagination > li > span {
+  color: #a0a0a0;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: rgba(100, 100, 100, 0.05);
+  border: 2px solid #ddd;
+}
+.custom-pagination > li:first-child > a,
+.custom-pagination > li:first-child > span {
+  margin-left: 0;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.custom-pagination > li:last-child > a,
+.custom-pagination > li:last-child > span {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.custom-pagination > li > a:hover,
+.custom-pagination > li > span:hover,
+.custom-pagination > li > a:focus,
+.custom-pagination > li > span:focus {
+  color: #5b5b5b;
+  background-color: rgba(100, 100, 100, 0.15);
+  border-color: #ddd;
+}
+.custom-pagination > .active > a,
+.custom-pagination > .active > span,
+.custom-pagination > .active > a:hover,
+.custom-pagination > .active > span:hover,
+.custom-pagination > .active > a:focus,
+.custom-pagination > .active > span:focus {
+  z-index: 2;
+  color: #fff;
+  cursor: default;
+  background-color: #939393;
+  border-color: #939393;
+}
+.custom-pagination > .disabled > span,
+.custom-pagination > .disabled > span:hover,
+.custom-pagination > .disabled > span:focus,
+.custom-pagination > .disabled > a,
+.custom-pagination > .disabled > a:hover,
+.custom-pagination > .disabled > a:focus {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd;
+}
+
+
