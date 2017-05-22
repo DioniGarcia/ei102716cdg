@@ -79,23 +79,34 @@
     .dropdown {
         position: absolute;
         display: inline-block;
-        right: 0.4em;
+        right: 0.6em;
     }
 
     .dropdown-content {
         display: none;
         position: relative;
-        margin-top: 60px;
-        background-color: #f9f9f9;
-        min-width: 160px;
+        margin-top: 62px;
+        margin-right: 45px;
+        padding-bottom: 15px;
+        padding-top: 	15px;
+        
+        background-image: linear-gradient(to top,#fff 0,#f8f8f8 100%);
+        
+        background-color: #f8f8f8;
+        border-top: 1px solid;
+        border-right: 1px solid;
+        border-color: #e7e7e7;
+        min-width: 220px;
         overflow: auto;
+        border-radius: 32px 0px 32px 32px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
+        
     }
 
     .dropdown-content a {
         color: gray;
-        padding: 8px 32px 8px 32px;
+        padding: 12px 0px 8px 32px;
         
         font-size: 18px;
         text-decoration: none;
