@@ -27,8 +27,16 @@
   	
   	select#selectPageCount {
   		border-radius: 12px;
-  		padding-left:  4px; 
+  		padding-left:   4px; 
+  		padding-right:  4px;
   	}
+  	
+  	@-moz-document url-prefix() {
+	    select#selectPageCount {
+	    	border-radius: 12px 5px 5px 12px;
+	    	padding-right: 20px;
+	    }
+	}
 	
 </style>
 
@@ -42,6 +50,20 @@
 	<div class="list-background center">
 	    
 	    <div class="pageCount">
+			<!-- Fecha inicio y fecha fin  -->
+			<c:set var="page" value="${(empty param.page) ? 1 : param.page}" />
+			<label style="margin-bottom:15px; float: left;">
+		     Mostrar
+		     <select id="selectPageCount">
+		   		 <option value="#">5</option>
+		    	 <option value="${ pageContext.request.contextPath }/all/offers/list.html?page=${page }&pageCount=10">10</option>
+		    	 <option value="${ pageContext.request.contextPath }/all/offers/list.html?page=${page }&pageCount=25">25</option>
+		    	 <option value="${ pageContext.request.contextPath }/all/offers/list.html?page=${page }&pageCount=50">50</option>
+		    	 <option value="${ pageContext.request.contextPath }/all/offers/list.html?page=${page }&pageCount=100">100</option>
+			 </select>
+			 ofertas
+			 </label>
+			
 			<c:set var="page" value="${(empty param.page) ? 1 : param.page}" />
 			<label style="margin-bottom:15px; float: left;">
 		     Mostrar
