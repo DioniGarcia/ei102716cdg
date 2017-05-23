@@ -315,6 +315,11 @@ $(document).ready(function(){
 		      	  return;
 		      }
 		      
+		      if ($(this).find('input[name="name"]').val().length > 17){
+		    	  showalert("Error al crear habilidad: el campo del <strong>nombre de la habilidad</strong> solo puede tener 17 caracteres", "alert-danger");
+		      	  return;
+		      }
+		      
 		      if ( nombres.indexOf($("#form-skill").find('input[name="name"]').val()) > -1){
 		    	  showalert("Error al crear habilidad: el campo del <strong>nombre de la habilidad</strong> ya existe", "alert-danger");
 		    	  return;
@@ -325,6 +330,10 @@ $(document).ready(function(){
 		    		  showalert("Error al crear habilidad: el campo de <strong>descripción</strong> de nivel <strong>iniciado</strong> está vacío","alert-danger")
 		    		  return;
 		    	  }
+		    	  if ($(this).find('input[name="description-1"]').val().length > 20){
+		    		  showalert("Error al crear habilidad: el campo de <strong>descripción</strong> de nivel <strong>iniciado</strong> solo puede tener 20 caracteres","alert-danger")
+		    		  return;
+		    	  }
 		      }
 		      
 			  if (! $("#form-skill").find('input[name="description-2"]').prop('disabled')){
@@ -332,11 +341,19 @@ $(document).ready(function(){
 		    		  showalert("Error al crear habilidad: el campo de <strong>descripción</strong> de nivel <strong>medio</strong> está vacío","alert-danger")
 		    		  return;
 		    	  }
+				  if ($(this).find('input[name="description-2"]').val().length > 20){
+		    		  showalert("Error al crear habilidad: el campo de <strong>descripción</strong> de nivel <strong>iniciado</strong> solo puede tener 20 caracteres","alert-danger")
+		    		  return;
+		    	  }
 		      }
 		      
 			  if (! $("#form-skill").find('input[name="description-3"]').prop('disabled')){
 				  if ($(this).find('input[name="description-3"]').val() == ''){
 		    		  showalert("Error al crear habilidad: el campo de <strong>descripción</strong> de nivel <strong>experto</strong> está vacío","alert-danger")
+		    		  return;
+		    	  }
+				  if ($(this).find('input[name="description-3"]').val().length > 20){
+		    		  showalert("Error al crear habilidad: el campo de <strong>descripción</strong> de nivel <strong>iniciado</strong> solo puede tener 20 caracteres","alert-danger")
 		    		  return;
 		    	  }
  			  }

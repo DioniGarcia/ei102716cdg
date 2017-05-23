@@ -27,7 +27,7 @@
 					<c:forEach varStatus="status" items="${offers}" var="offer"> 
     				<t:offerbox 
     					postLink="${ pageContext.request.contextPath }/all/offers/${offer.id }"
-    					postTitle="Oferta de ${skillsOf[status.index].name } - ${skillsOf[status.index].description}" 
+    					postTitle="${skillsOf[status.index].name } - ${skillsOf[status.index].description}" 
     					postDescription="${offer.description}" 
     					postDate="${offer.startDate },${offer.endDate }">
     				</t:offerbox>
@@ -57,7 +57,7 @@
 					<c:forEach varStatus="status" items="${requests}" var="request"> 
     				<t:requestbox
     					postLink="${ pageContext.request.contextPath }/all/requests/${request.id }"
-    					postTitle="Demanda de ${skillsRq[status.index].name } - ${skillsRq[status.index].description}" 
+    					postTitle="${skillsRq[status.index].name } - ${skillsRq[status.index].description}" 
     					postDescription="${request.description}" 
     					postDate="${request.startDate },${request.endDate }">
     				</t:requestbox>

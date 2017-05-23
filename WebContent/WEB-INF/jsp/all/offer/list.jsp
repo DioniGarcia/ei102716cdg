@@ -50,19 +50,6 @@
 	<div class="list-background center">
 	    
 	    <div class="pageCount">
-			<!-- Fecha inicio y fecha fin  -->
-			<c:set var="page" value="${(empty param.page) ? 1 : param.page}" />
-			<label style="margin-bottom:15px; float: left;">
-		     Mostrar
-		     <select id="selectPageCount">
-		   		 <option value="#">5</option>
-		    	 <option value="${ pageContext.request.contextPath }/all/offers/list.html?page=${page }&pageCount=10">10</option>
-		    	 <option value="${ pageContext.request.contextPath }/all/offers/list.html?page=${page }&pageCount=25">25</option>
-		    	 <option value="${ pageContext.request.contextPath }/all/offers/list.html?page=${page }&pageCount=50">50</option>
-		    	 <option value="${ pageContext.request.contextPath }/all/offers/list.html?page=${page }&pageCount=100">100</option>
-			 </select>
-			 ofertas
-			 </label>
 			
 			<c:set var="page" value="${(empty param.page) ? 1 : param.page}" />
 			<label style="margin-bottom:15px; float: left;">
@@ -83,7 +70,7 @@
 	    	<c:forEach varStatus="status" items="${offers}" var="offer"> 
 	    	<t:offerbox 
 	    			postLink="${ pageContext.request.contextPath }/all/offers/${offer.id }"
-	    			postTitle="Oferta de ${skills[status.index].name } - ${skills[status.index].description}" 
+	    			postTitle="${skills[status.index].name } - ${skills[status.index].description}" 
 	    			postDescription="${offer.description}" 
 	    			postDate="${offer.startDate },${offer.endDate }">
 	    	</t:offerbox>

@@ -34,15 +34,14 @@ public class HomeController {
 			return "login/login";
 		model.addAttribute("user", new User());
 		
-		//TODO No es escalable, si hay tiempo esto lo deberiamos solucionar
 		//Se añaden los datos necesarios para la oferta
-		List<Offer> recentOffers = postService.getRecentOffers();
+		List<Offer> recentOffers = postService.getActiveRecentOffers(2, user.getNick());
 		model.addAttribute("offers", recentOffers);
 		model.addAttribute("skillsOf", postService.getSkillsByPost(recentOffers));
 		model.addAttribute("usersOf", postService.getUsersByPost(recentOffers));
 		
 		//Se añaden los datos necesarios para la demanda
-		List<Request> recentRequest = postService.getRecentRequests();
+		List<Request> recentRequest = postService.getActiveRecentRequests(2, user.getNick());
 		model.addAttribute("requests", recentRequest);
 		model.addAttribute("skillsRq", postService.getSkillsByPost(recentRequest));
 		model.addAttribute("usersRq", postService.getUsersByPost(recentRequest));

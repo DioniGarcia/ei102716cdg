@@ -25,11 +25,15 @@ public class SkillValidator implements Validator {
 		if (skill.getName().trim().equals(""))
 			errs.rejectValue("name", "obligatorio",
 					"El nombre de la skill es obligatorio");
-
-		//TODO validar Skill no repetida. Ahora mismo el sistema lo bloquea, pero no informa al usuario
-		List<Skill> lista = skillDao.getSkillAllLevels(skill.getName());
-		System.out.println("Skill: "+lista);
 		
+		if (skill.getName().length() > 16)
+			errs.rejectValue("name", "obligatorio",
+					"El nombre de la skill es obligatorio");
+		
+		//Check skill name
+		if (skill.getName().trim().equals(""))
+			errs.rejectValue("name", "obligatorio",
+					"El nombre de la skill es obligatorio");
 
 	}
 	
