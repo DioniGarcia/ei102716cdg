@@ -3,6 +3,7 @@ package es.uji.ei102716cdg.service;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,7 +99,7 @@ public class PostService implements PostServiceInterface {
 		}
 		return offerList;
 	}
-
+	
 	@Override
 	public List<Request> getActiveRequests() {
 		List<Request> requestList = new ArrayList<>();
@@ -149,7 +150,42 @@ public class PostService implements PostServiceInterface {
 		return list;
 	}
 	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Offer> getActiveRecentOffers(int number , String nick) {
+		List<Offer> offerList = new ArrayList<>();
+		
+		Date today = new Date();
+		
+		for(Offer offer : offerDao.getOffers()){
+			if(offer.getEndDate().after(today) && offer.isActive() && !offer.getStudent_nick().equals(nick)){
+				offerList.add(offer);
+			}
+			if(offerList.size() == number){
+				break;
+			}
+		}
+		return (List<Offer>) sortPostByStartDate(offerList);
+	}
 	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Request> getActiveRecentRequests(int number, String nick) {
+		List<Request> requestList = new ArrayList<>();
+		
+		Date today = new Date();
+		
+		for(Request request : requestDao.getRequests()){
+			if(request.getEndDate().after(today) && request.isActive() && !request.getStudent_nick().equals(nick)){
+				requestList.add(request);
+			}
+			if(requestList.size() == number){
+				break;
+			}
+		}
+		return (List<Request>) sortPostByStartDate(requestList);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Request> getRecentRequests(){
@@ -159,6 +195,7 @@ public class PostService implements PostServiceInterface {
 		
 		return list;
 	}
+	
 	
 	/**Ordena una lista de post, las más recientes primero
 	 * 

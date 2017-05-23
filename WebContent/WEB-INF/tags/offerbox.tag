@@ -31,11 +31,12 @@
 		
 	<div class="split-item-v-texto">
 		
-		<h2 class="post-title offerText">${postTitle }</h2>
-		<div class="acortar-texto">
-			<p class="post-description">
+		<div>
+			<h2 class="post-title offerText">${postTitle }</h2>
+		</div>
+		<div>
+			<p class="post-description cortar">
 				${ postDescription}
-				<a style="display:none;" class="readmore" href="${ pageContext.request.contextPath }/all/offers/${postId}">+ info</a>
 			</p>
 		</div>
 		<p class="post-date">${ postDate}</p>

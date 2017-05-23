@@ -27,8 +27,16 @@
   	
   	select#selectPageCount {
   		border-radius: 12px;
-  		padding-left:  4px; 
+  		padding-left:   4px; 
+  		padding-right:  4px;
   	}
+  	
+  	@-moz-document url-prefix() {
+	    select#selectPageCount {
+	    	border-radius: 12px 5px 5px 12px;
+	    	padding-right: 20px;
+	    }
+	}
 	
 </style>
 
@@ -42,6 +50,7 @@
 	<div class="list-background center">
 	    
 	    <div class="pageCount">
+			
 			<c:set var="page" value="${(empty param.page) ? 1 : param.page}" />
 			<label style="margin-bottom:15px; float: left;">
 		     Mostrar
@@ -61,7 +70,7 @@
 	    	<c:forEach varStatus="status" items="${offers}" var="offer"> 
 	    	<t:offerbox 
 	    			postLink="${ pageContext.request.contextPath }/all/offers/${offer.id }"
-	    			postTitle="Oferta de ${skills[status.index].name } - ${skills[status.index].description}" 
+	    			postTitle="${skills[status.index].name } - ${skills[status.index].description}" 
 	    			postDescription="${offer.description}" 
 	    			postDate="${offer.startDate },${offer.endDate }">
 	    	</t:offerbox>

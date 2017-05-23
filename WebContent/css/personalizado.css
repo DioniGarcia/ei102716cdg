@@ -110,13 +110,13 @@ div.postbox {
     height: 120px;
 }
 
-div.postbox.offerbox{
+div.postbox.offerbox {
 	background: linear-gradient(to top, #dde8f1, white);	
 	border-color: #dde8f1;
 	cursor: pointer;
 }
 
-div.postbox.offerbox:hover{
+div.postbox.offerbox:hover {
 	background: linear-gradient(to top,#7db8d5, #dde8f1);	
 	border-color: #dde8f1;
 	cursor: pointer;
@@ -149,11 +149,24 @@ div.postbox.requestbox:hover{
 	border-color: #ece8ec;
 }
 
+.cortar{
+  width:486px;
+  height:30px;
+  text-overflow:ellipsis;
+  white-space:nowrap; 
+  overflow:hidden;
+  -o-text-overflow: ellipsis; /* para versiones de Opera inferiores a la 11*/
+  -ms-text-overflow: ellipsis; /* para IE8*/
+}
+
 .post-title {
 	font-size: 19px;
 	color: #111;
 	text-align: left;
 	padding-left: 30px;
+	white-space: nowrap;
+	text-overflow: ellipsi;
+	overflow:hidden;
 }
 
 .post-description {

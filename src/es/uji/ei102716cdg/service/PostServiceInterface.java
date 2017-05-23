@@ -129,6 +129,9 @@ public interface PostServiceInterface {
 	public int getReceivedHours(String nick);
 	public int getOfferedHours(String nick);
 
+	List<Offer> getActiveRecentOffers(int number, String nick);
+	List<Request> getActiveRecentRequests(int number, String nick);
+	
 	public int[] getPostStats();
 
 	public int[][] getGeneralStats();
