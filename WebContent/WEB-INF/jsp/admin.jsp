@@ -45,6 +45,10 @@ button#add-skill:HOVER{
     border-color: #adadad;
 }
 
+#form-skill{
+	margin-bottom: 30px;
+}
+
 
 
 </style>
@@ -52,7 +56,7 @@ button#add-skill:HOVER{
 <body>
 <div class="container">
 <div style="display:flex;justify-content: space-between;align-items: center;">
-	<h3>Página de administrador</h3>
+	<h3 style="margin-bottom: 30px;">Página de administrador</h3>
 	<a href="${pageContext.request.contextPath}/logout.html">Salir</a>
 </div>
 <div id="alert-container" class="alert-fixed"></div>
@@ -127,6 +131,9 @@ button#add-skill:HOVER{
 <script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.4/js/dataTables.checkboxes.min.js"></script>
 
 <script type="text/javascript">
+var nombres;
+var datos;
+
 function showalert(message,alerttype) {
 
     $('#alert-container').append('<div id="alertdiv" class="alert ' +  alerttype + '"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
@@ -141,6 +148,8 @@ function showalert(message,alerttype) {
   
 $.fn.editable.defaults.mode = 'inline';   
 var myCallback = function () { 
+	datos = $('#skill-table').dataTable().fnGetData();
+	nombres = datos.map(function(a) {return a.name;});
     $('.editar-descripcion a').editable({
     	params: function(params) {
             var data = {};
@@ -285,6 +294,16 @@ $(document).ready(function(){
 	   
 	   $('#show-form').on('click', function(){
 		   $('#form-skill').toggle(); 
+		   if ($(this).text() != "Cerrar"){
+		   		$(this).text("Cerrar");
+		        $(this).css("background-color", "#e6e6e6");
+		        $(this).css("border-color", "#adadad");
+		   }
+		   else{
+			   $(this).text("Nueva habilidad");
+			   $(this).css("background-color", "#fff");
+		       $(this).css("border-color", "#ccc");
+		   }
 	   });
 	   
 	   $("#form-skill").submit(function(event) {
@@ -295,6 +314,32 @@ $(document).ready(function(){
 		    	  showalert("Error al crear habilidad: el campo del <strong>nombre de la habilidad</strong> esta vacío", "alert-danger");
 		      	  return;
 		      }
+		      
+		      if ( nombres.indexOf($("#form-skill").find('input[name="name"]').val()) > -1){
+		    	  showalert("Error al crear habilidad: el campo del <strong>nombre de la habilidad</strong> ya existe", "alert-danger");
+		    	  return;
+		      }
+		      
+		      if (! $("#form-skill").find('input[name="description-1"]').prop('disabled')){
+		    	  if ($(this).find('input[name="description-1"]').val() == ''){
+		    		  showalert("Error al crear habilidad: el campo de <strong>descripción</strong> de nivel <strong>iniciado</strong> está vacío","alert-danger")
+		    		  return;
+		    	  }
+		      }
+		      
+			  if (! $("#form-skill").find('input[name="description-2"]').prop('disabled')){
+				  if ($(this).find('input[name="description-2"]').val() == ''){
+		    		  showalert("Error al crear habilidad: el campo de <strong>descripción</strong> de nivel <strong>medio</strong> está vacío","alert-danger")
+		    		  return;
+		    	  }
+		      }
+		      
+			  if (! $("#form-skill").find('input[name="description-3"]').prop('disabled')){
+				  if ($(this).find('input[name="description-3"]').val() == ''){
+		    		  showalert("Error al crear habilidad: el campo de <strong>descripción</strong> de nivel <strong>experto</strong> está vacío","alert-danger")
+		    		  return;
+		    	  }
+ 			  }
 			  var url =  window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/add";
 		      /* Send the data using post with element id name and name2*/
 		      $.post( url, $("#form-skill").serialize() )
@@ -302,7 +347,7 @@ $(document).ready(function(){
 		    	  showalert("Se ha añadido correctamente la habilidad", "alert-success");
 		    	  table.ajax.reload(myCallback);
 		    	  table.order( [[ 0, 'desc' ]] ).draw( false );
-		    	  $( this ).trigger('reset');
+		    	  $("#form-skill").trigger('reset');
 		      });
 		    });
 	   
