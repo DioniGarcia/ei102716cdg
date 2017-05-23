@@ -68,7 +68,7 @@ button#add-skill:HOVER{
   	<button type="button" class="btn btn-default" id="show-form">Nueva habilidad</button>
   </div>
   <div class="btn-group" role="group">
-  	<a href="404.jsp"><button type="button" class="btn btn-default" id="#">Informes/Estadísticas</button></a>
+  	<a href="${pageContext.request.contextPath}/admin/stats.html"><button type="button" class="btn btn-default" id="#">Informes/Estadísticas</button></a>
   </div>
 </div>
 

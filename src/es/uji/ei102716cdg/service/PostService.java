@@ -1,5 +1,6 @@
 package es.uji.ei102716cdg.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -218,12 +219,29 @@ public class PostService implements PostServiceInterface {
 
 	@Override
 	public Offer getOffer(int id) {
+		
 		return offerDao.getOffer(id);
+	}
+	
+	
+	public Offer getOffer(List<Offer> offers, int id) {
+		for (Offer offer : offers)
+			if (offer.getId() == id)
+				return offer;
+		return null;
 	}
 
 	@Override
 	public Request getRequest(int id) {
 		return requestDao.getRequest(id);
+	}
+	
+	
+	public Request getRequest(List<Request> requests, int id) {
+		for (Request request : requests)
+			if (request.getId() == id)
+				return request;
+		return null;
 	}
 
 	@Override
@@ -362,6 +380,71 @@ public class PostService implements PostServiceInterface {
 		
 		return sum;
 	}
+
+	@Override
+	public int[] getPostStats() {
+		int[] ret = new int[2];
+		ret[0] = offerDao.getOffers().size();
+		ret[1] = requestDao.getRequests().size();
+		return ret;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see es.uji.ei102716cdg.service.PostServiceInterface#getGeneralStats()
+	 */
+	
+	@Override
+	public int[][] getGeneralStats() {
+		int[][] matrizStatsPorMeses = new int[3][11];
+		String[] meses = 	{"Septiembre", "Octubre", "Noviembre", "Diciembre",
+							 "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"};
+		int[] mesesInt = 	{8, 9, 10, 11,
+				 0, 1, 2, 3, 4, 5, 6};
+		List<Offer> offers = offerDao.getOffers();
+		List<Request> requests = requestDao.getRequests();
+		List<Collaboration> collabs = collaborationDao.getCollaborations();
+		
+		List<Offer> temp = new ArrayList<Offer>();
+		for (int i = 0 ; i < 11 ; i++){
+			for (Offer offer : offers){
+				if (offer.getStartDate().getMonth() == mesesInt[i])
+					temp.add(offer);
+			}
+			matrizStatsPorMeses[0][i] = temp.size();
+			temp.clear();
+		}
+		
+		List<Collaboration> temp2 = new ArrayList<Collaboration>();
+		for (int i = 0 ; i < 11 ; i++){
+			for (Collaboration collaboration : collabs){
+				Date offerDate = this.getOffer(offers,collaboration.getOffer_id()).getStartDate();
+				Date requestDate = this.getRequest(requests,collaboration.getRequest_id()).getStartDate();
+				if (offerDate.after(requestDate)){
+					if (offerDate.getMonth() == mesesInt[i])
+						temp2.add(collaboration);
+				} else {
+					if (requestDate.getMonth() == mesesInt[i])
+						temp2.add(collaboration);
+				}
+			}
+			matrizStatsPorMeses[1][i] = temp2.size();
+			temp2.clear();
+		}
+		
+		List<Request> temp3 = new ArrayList<Request>();
+		for (int i = 0 ; i < 11 ; i++){
+			for (Request request : requests){
+				if (request.getStartDate().getMonth() == mesesInt[i])
+					temp3.add(request);
+			}
+			matrizStatsPorMeses[2][i] = temp3.size();
+			temp3.clear();
+		}
+		return matrizStatsPorMeses;
+	}
+
+	
 	
 
 }
