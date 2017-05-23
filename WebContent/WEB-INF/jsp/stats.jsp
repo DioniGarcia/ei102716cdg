@@ -31,11 +31,28 @@
   </div>
 </div>
 
+
 <div id="chartGeneral" style="height: 300px; width: 100%;margin-top: 30px;">
 	</div>
 	
-<div id="chartPosts" style="height: 300px; width: 300px;margin-top: 30px;">
+<div>
+<h2 style="text-align: center; padding-top: 40px; margin-bottom: 50px;">Numero de usuarios: ${numeroUsuarios }</h2>
+<h2  style="text-align: center;margin-bottom: 50px;">Media de puntos: ${mediaPuntos }</h2>
+</div>
+	
+<div id="chartCirculos" >
+	<div id="chartHotSkills" style="display: inline-block;height: 400px; width: 33%;margin-top: 30px;">
 	</div>
+	
+	<div id="chartPosts" style="display: inline-block;height: 400px; width: 33%;margin-top: 30px;">
+	</div>
+	
+	<div id="chartColdSkills" style="display: inline-block;height: 400px; width: 33%;margin-top: 30px;">
+	</div>
+</div>	
+	
+	
+
 
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-3.2.1.min.js"></script> 
@@ -44,6 +61,8 @@
 window.onload = function () {
 		var datos;
 		var posts;
+		var hotSkills;
+		var coldSkills;
 
 	  $.ajax({
 	    type: 'GET',
@@ -62,6 +81,26 @@ window.onload = function () {
 		    dataType: 'json',
 		    success: function(data) {
 		      	posts = data;
+		    }
+		  });
+	  
+	  $.ajax({
+		    type: 'GET',
+		    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/stats/hotSkills",
+		    async: false,
+		    dataType: 'json',
+		    success: function(data) {
+		      	hotSkills = data;
+		    }
+		  });
+	  
+	  $.ajax({
+		    type: 'GET',
+		    url: window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/stats/coldSkills",
+		    async: false,
+		    dataType: 'json',
+		    success: function(data) {
+		      	coldSkills = data;
 		    }
 		  });
 
@@ -107,6 +146,38 @@ window.onload = function () {
 					}
 		        });
 				chart2.render();
+				
+		var chart3 = new CanvasJS.Chart("chartHotSkills",
+				{
+					theme: "theme3",
+		                        animationEnabled: true,
+					title:{
+						text: "Habilidades más usadas",
+						fontSize: 24
+					},		
+					data: hotSkills,
+					legend: {
+						maxWidth: 400,
+						itemWidth: 280
+					}
+		        });
+				chart3.render();
+				
+		var chart4 = new CanvasJS.Chart("chartColdSkills",
+				{
+					theme: "theme3",
+		                        animationEnabled: true,
+					title:{
+						text: "Habilidades menos usadas",
+						fontSize: 24
+					},		
+					data: coldSkills,
+					legend: {
+						maxWidth: 350,
+						itemWidth: 120
+					}
+		        });
+				chart4.render();
 }
 
 

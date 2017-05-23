@@ -136,6 +136,14 @@ public interface PostServiceInterface {
 
 	public int[][] getGeneralStats();
 
+	public List<String> getHotSkills();
+
+	public List<String> getColdSkills();
+
+	public Integer getNumeroUsuarios();
+
+	public Integer getMediaPuntos();
+
 
 	
 	

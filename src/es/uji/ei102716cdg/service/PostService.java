@@ -3,8 +3,13 @@ package es.uji.ei102716cdg.service;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.PriorityQueue;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.lang.Integer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -155,7 +160,7 @@ public class PostService implements PostServiceInterface {
 	public List<Offer> getActiveRecentOffers(int number , String nick) {
 		List<Offer> offerList = new ArrayList<>();
 		
-		Date today = new Date();
+		Date today = (Date) new java.util.Date();
 		
 		for(Offer offer : offerDao.getOffers()){
 			if(offer.getEndDate().after(today) && offer.isActive() && !offer.getStudent_nick().equals(nick)){
@@ -173,7 +178,7 @@ public class PostService implements PostServiceInterface {
 	public List<Request> getActiveRecentRequests(int number, String nick) {
 		List<Request> requestList = new ArrayList<>();
 		
-		Date today = new Date();
+		Date today = (Date) new java.util.Date();
 		
 		for(Request request : requestDao.getRequests()){
 			if(request.getEndDate().after(today) && request.isActive() && !request.getStudent_nick().equals(nick)){
@@ -212,6 +217,14 @@ public class PostService implements PostServiceInterface {
 	@Override
 	public Skill getSkillById(int id){
 		return skillDao.getSkill(id);
+	}
+	
+	public Skill getSkillById(List<Skill> skills, int id){
+		for (Skill skill : skills){
+			if (skill.getSkill_id() == id)
+				return skill;
+		}
+		return null;
 	}
 	
 	@Override
@@ -480,8 +493,147 @@ public class PostService implements PostServiceInterface {
 		}
 		return matrizStatsPorMeses;
 	}
+	
+	
+
+	@Override
+	public List<String> getHotSkills() {
+		List<Collaboration> collabs = collaborationDao.getCollaborations();
+		List<Skill> skills = skillDao.getSkills();
+		List<Offer> offers = offerDao.getOffers();
+		List<String> ret = new ArrayList<String>();
+		
+		SortedMap<Integer, Integer> hotSkills = new TreeMap<Integer, Integer>();
+		
+		for (Collaboration collab : collabs){
+			Integer skillId = this.getOffer(offers, collab.getOffer_id()).getSkill_Id();
+			Integer count = hotSkills.get(skillId);
+		      if (count != null) {
+		    	  hotSkills.put(skillId, count + 1);
+		      } else {
+		    	  hotSkills.put(skillId, 1);
+		      }
+		}
+		
+		List<Entry<Integer, Integer>> greatest = findGreatest(hotSkills, 5);
+		Skill skill;
+		for (Entry<Integer, Integer> entry : greatest)
+        {
+			skill = this.getSkillById(skills, entry.getKey());
+            ret.add(skill.getName() + ": " + skill.getDescription() +"#"+ entry.getValue());
+        }
+		return ret;
+	}
+
+	@Override
+	public List<String> getColdSkills() {
+		List<Collaboration> collabs = collaborationDao.getCollaborations();
+		List<Skill> skills = skillDao.getSkills();
+		List<Offer> offers = offerDao.getOffers();
+		List<String> ret = new ArrayList<String>();
+		
+		SortedMap<Integer, Integer> hotSkills = new TreeMap<Integer, Integer>();
+		
+		for (Collaboration collab : collabs){
+			Integer skillId = this.getOffer(offers, collab.getOffer_id()).getSkill_Id();
+			Integer count = hotSkills.get(skillId);
+		      if (count != null) {
+		    	  hotSkills.put(skillId, count + 1);
+		      } else {
+		    	  hotSkills.put(skillId, 1);
+		      }
+		}
+		
+		List<Entry<Integer, Integer>> greatest = findLowest(hotSkills, 5);
+		Skill skill;
+		for (Entry<Integer, Integer> entry : greatest)
+        {
+			skill = this.getSkillById(skills, entry.getKey());
+            ret.add(skill.getName() + ": " + skill.getDescription() +"#"+ entry.getValue());
+        }
+		return ret;
+	}
 
 	
+	private static <K, V extends Comparable<? super V>> List<Entry<K, V>> 
+    findGreatest(Map<K, V> map, int n)
+	{
+	    Comparator<? super Entry<K, V>> comparator = 
+	        new Comparator<Entry<K, V>>()
+	    {
+	        @Override
+	        public int compare(Entry<K, V> e0, Entry<K, V> e1)
+	        {
+	            V v0 = e0.getValue();
+	            V v1 = e1.getValue();
+	            return v0.compareTo(v1);
+	        }
+	    };
+	    PriorityQueue<Entry<K, V>> highest = 
+	        new PriorityQueue<Entry<K,V>>(n, comparator);
+	    for (Entry<K, V> entry : map.entrySet())
+	    {
+	        highest.offer(entry);
+	        while (highest.size() > n)
+	        {
+	            highest.poll();
+	        }
+	    }
+
+	    List<Entry<K, V>> result = new ArrayList<Map.Entry<K,V>>();
+	    while (highest.size() > 0)
+	    {
+	        result.add(highest.poll());
+	    }
+	    return result;
+}
+	
+	private static <K, V extends Comparable<? super V>> List<Entry<K, V>> 
+    findLowest(Map<K, V> map, int n)
+	{
+	    Comparator<? super Entry<K, V>> comparator = 
+	        new Comparator<Entry<K, V>>()
+	    {
+	        @Override
+	        public int compare(Entry<K, V> e0, Entry<K, V> e1)
+	        {
+	            V v0 = e0.getValue();
+	            V v1 = e1.getValue();
+	            return -v0.compareTo(v1);
+	        }
+	    };
+	    PriorityQueue<Entry<K, V>> highest = 
+	        new PriorityQueue<Entry<K,V>>(n, comparator);
+	    for (Entry<K, V> entry : map.entrySet())
+	    {
+	        highest.offer(entry);
+	        while (highest.size() > n)
+	        {
+	            highest.poll();
+	        }
+	    }
+
+	    List<Entry<K, V>> result = new ArrayList<Map.Entry<K,V>>();
+	    while (highest.size() > 0)
+	    {
+	        result.add(highest.poll());
+	    }
+	    return result;
+}
+
+	@Override
+	public Integer getNumeroUsuarios() {
+		return studentDao.getStudents().size();
+	}
+
+	@Override
+	public Integer getMediaPuntos() {
+		List<Student> students = studentDao.getStudents();
+		int suma = 0;
+		for (Student student : students)
+			suma += this.getUserPoints(student.getNick());
+		return suma / students.size();
+	}	
 	
 
 }
