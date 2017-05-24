@@ -160,7 +160,7 @@ public class PostService implements PostServiceInterface {
 	public List<Offer> getActiveRecentOffers(int number , String nick) {
 		List<Offer> offerList = new ArrayList<>();
 		
-		Date today = (Date) new java.util.Date();
+		Date today = new java.sql.Date(new java.util.Date().getTime());
 		
 		for(Offer offer : offerDao.getOffers()){
 			if(offer.getEndDate().after(today) && offer.isActive() && !offer.getStudent_nick().equals(nick)){
@@ -178,7 +178,7 @@ public class PostService implements PostServiceInterface {
 	public List<Request> getActiveRecentRequests(int number, String nick) {
 		List<Request> requestList = new ArrayList<>();
 		
-		Date today = (Date) new java.util.Date();
+		Date today = new java.sql.Date(new java.util.Date().getTime());
 		
 		for(Request request : requestDao.getRequests()){
 			if(request.getEndDate().after(today) && request.isActive() && !request.getStudent_nick().equals(nick)){
