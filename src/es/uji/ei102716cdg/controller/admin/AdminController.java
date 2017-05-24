@@ -5,18 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import es.uji.ei102716cdg.service.PostServiceInterface;
+import es.uji.ei102716cdg.service.StatsServiceInterface;
 
 @Controller
 @RequestMapping("admin")
 public class AdminController {
-
-	private PostServiceInterface postService;
 	
 	@Autowired
-	public void setPostService(PostServiceInterface postService){
-		this.postService = postService;
-	}
+	private StatsServiceInterface statsService;
+	
 	
 	@RequestMapping("/index")
 	public String listSkills(Model model){
@@ -25,8 +22,8 @@ public class AdminController {
 	
 	@RequestMapping("/stats")
 	public String getStats(Model model){
-		model.addAttribute("numeroUsuarios",postService.getNumeroUsuarios());
-		model.addAttribute("mediaPuntos", postService.getMediaPuntos());
+		model.addAttribute("numeroUsuarios",statsService.getNumeroUsuarios());
+		model.addAttribute("mediaPuntos", statsService.getMediaPuntos());
 		return "stats";
 	}
 }

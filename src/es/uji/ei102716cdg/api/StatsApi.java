@@ -8,25 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import es.uji.ei102716cdg.service.PostServiceInterface;
+import es.uji.ei102716cdg.service.StatsServiceInterface;
 
 @Controller
 @RequestMapping("api/stats")
 public class StatsApi {
 
-	private PostServiceInterface postService;
-	
 	@Autowired
-	public void setPostService(PostServiceInterface postService){
-		this.postService = postService;
-	}
+	private StatsServiceInterface statsService;
 	
 	@RequestMapping(value="/hotSkills", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String hotSkills(){
 		String result = "";
 		String skillName = "";
 		String num = "";
-		List<String> hotSkills = postService.getHotSkills();
+		List<String> hotSkills = statsService.getHotSkills();
 		if (hotSkills.isEmpty()){
 			hotSkills.add("Vacío#1");
 		}
@@ -54,7 +50,7 @@ public class StatsApi {
 		String result = "";
 		String skillName = "";
 		String num = "";
-		List<String> coldSkills = postService.getColdSkills();
+		List<String> coldSkills = statsService.getColdSkills();
 		if (coldSkills.isEmpty()){
 			coldSkills.add("Vacío#1");
 		}
@@ -78,7 +74,7 @@ public class StatsApi {
 	@RequestMapping(value="/postStats", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String postStats(){
 		String result = "";
-		int[] postStats = postService.getPostStats();
+		int[] postStats = statsService.getPostStats();
 		result += "[";
 		result += "{\"type\": \"pie\","
 				+ "\"name\": \"Ofertas\","
@@ -96,7 +92,7 @@ public class StatsApi {
 		String result = "";
 		String[] meses = 	{"Septiembre", "Octubre", "Noviembre", "Diciembre",
 				 			 "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"};
-		int[][] stats = postService.getGeneralStats();
+		int[][] stats = statsService.getGeneralStats();
 		result += "[";
 		result += "{\"type\": \"column\","
 				+ "\"name\": \"Ofertas\","

@@ -93,18 +93,60 @@ public interface PostServiceInterface {
 	
 	List<Request> getRecentRequests();
 	
+	/**Devuelve la skill con el id pasado
+	 * 
+	 * @param id
+	 * @return skill 
+	 */
+	
 	public Skill getSkillById(int id);
 	
+	
+	/**Devuelve el estudiante a partir de su nick
+	 * 
+	 * @param nick
+	 * @return estudiante con el nick pasado
+	 */
 	public Student getStudentByNick(String nick);
 	
-	public List<Request> getRequestsBySkillId(String nick, int skillId);
-
-	public List<Offer> getOffersBySkillId(String nick, int skillId);
 	
+	/**Devuelve las demandas de un estudiante que tienen la skillId igual a la skillid pasada
+	 * 
+	 * @param nick
+	 * @param skillId
+	 * @return lista de demandas
+	 */
+	public List<Request> getRequestsBySkillId(String nick, int skillId);
+	
+	
+	/**Devuelve las ofertas de un estudiante que tienen la skillId igual a la skillId pasada
+	 * 
+	 * @param nick
+	 * @param skillId
+	 * @return lista de ofertas
+	 */
+	public List<Offer> getOffersBySkillId(String nick, int skillId);
+
+	/**Crea una colaboracion a partir del id de oferta y demanda
+	 * 
+	 * @param offerId
+	 * @param requestId
+	 */
 	public void addCollaboration(int offerId, int requestId);
 	
+	
+	/** Anyade una demanda y ademas devuelve el id de esa demanda en la bbdd
+	 * 
+	 * @param request: objeto oferta sin atributo id setteado
+	 * @return id de la demanda creada
+	 */
 	public int addRequestAndGetId(Request request);
 	
+	/** Anyade una oferta y ademas devuelve el id de esa demanda en la bbdd
+	 * 
+	 * @param offer: objeto demanda sin atributo id setteado
+	 * @return id de la demanda creada
+	 */
 	public int addOfferAndGetId(Offer offer);
 
 	
@@ -117,32 +159,31 @@ public interface PostServiceInterface {
 	public List<Collaboration> getOldCollaborations(String nick);
 	public List<Collaboration> getEvalCollaborations(String nick);
 
+	
+	/**Devuelve las habilidades asociadas a una lista de colaboraciones
+	 * 
+	 * @param collabs
+	 * @return
+	 */
 	public List<Skill> getSkillsByCollabs(List<Collaboration> collabs);
 
+	
+	/**Devuelve las fechas fin asociadas a una lista de colaboraciones
+	 * 
+	 * @param collabs
+	 * @return
+	 */
 	public List<String> getCollabEndDates(List<Collaboration> collabs);
 	
 	public int getOffersPageCount(int size);
 	public int getRequestsPageCount(int size);
 	
-	public int getUserPoints(String nick);
 	
-	public int getReceivedHours(String nick);
-	public int getOfferedHours(String nick);
 
 	List<Offer> getActiveRecentOffers(int number, String nick);
 	List<Request> getActiveRecentRequests(int number, String nick);
 	
-	public int[] getPostStats();
-
-	public int[][] getGeneralStats();
-
-	public List<String> getHotSkills();
-
-	public List<String> getColdSkills();
-
-	public Integer getNumeroUsuarios();
-
-	public Integer getMediaPuntos();
+	
 
 
 	
