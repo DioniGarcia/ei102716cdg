@@ -36,5 +36,6 @@
     </div>
     
     <a href="${ pageContext.request.contextPath }/my/collaborations/add?requestId=${request.id }&skillId=${skill.skill_id }"><button class="btn btn-primary">Establecer collaboración</button></a>
+    <a href="${ pageContext.request.contextPath }/chat/new?with=${request.student_nick }"><button class="btn btn-primary">Chat</button></a>
 </jsp:body>
 </t:paginabasica>

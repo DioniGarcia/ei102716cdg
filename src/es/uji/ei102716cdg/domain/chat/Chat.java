@@ -2,34 +2,34 @@ package es.uji.ei102716cdg.domain.chat;
 
 public class Chat {
 
-	private int chat_id;			//Identificador del chat
-	private String nick_user_one;	//Nombre del primer usuario participante del chat, alfabeticamente
-	private String nick_user_two;	//Nombre del segundo usuario participante del chat, alfabeticamente
+	private int chatId;			//Identificador del chat
+	private String nickUserOne;	//Nombre del primer usuario participante del chat, alfabeticamente
+	private String nickUserTwo;	//Nombre del segundo usuario participante del chat, alfabeticamente
 	
 	//Getter & Setter
-	public int getChat_id() {
-		return chat_id;
+	public int getChatId() {
+		return chatId;
 	}
-	public void setChat_id(int chat_id) {
-		this.chat_id = chat_id;
+	public void setChatId(int chatId) {
+		this.chatId = chatId;
 	}
-	public String getNick_user_one() {
-		return nick_user_one;
+	public String getNickUserOne() {
+		return nickUserOne;
 	}
-	public void setNick_user_one(String nick_user_one) {
-		this.nick_user_one = nick_user_one;
+	public void setNickUserOne(String nickUserOne) {
+		this.nickUserOne = nickUserOne;
 	}
-	public String getNick_user_two() {
-		return nick_user_two;
+	public String getNickUserTwo() {
+		return nickUserTwo;
 	}
-	public void setNick_user_two(String nick_user_two) {
-		this.nick_user_two = nick_user_two;
+	public void setNickUserTwo(String nickUserOne) {
+		this.nickUserTwo = nickUserOne;
 	}
 
 	//To String
 	@Override
 	public String toString() {
-		return "Chat [chat_id=" + chat_id + ", nick_user_one=" + nick_user_one + ", nick_user_two=" + nick_user_two
+		return "Chat [chat_id=" + chatId + ", nick_user_one=" + nickUserOne + ", nick_user_two=" + nickUserTwo
 				+ "]";
 	}
 	

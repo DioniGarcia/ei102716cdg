@@ -147,7 +147,7 @@ public class OfferDao {
 	                }
 	            }, holder);
 		
-		return holder.getKey().intValue();
+		return (Integer)holder.getKeys().get("offer_id");
 	}
 	
 

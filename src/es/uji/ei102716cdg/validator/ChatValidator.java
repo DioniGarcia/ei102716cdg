@@ -17,7 +17,7 @@ public class ChatValidator implements Validator {
 		Chat chat = (Chat)obj;
 		
 		//Check student nicks
-		if (chat.getNick_user_one() == chat.getNick_user_two()){
+		if (chat.getNickUserOne() == chat.getNickUserTwo()){
 			errs.rejectValue("student nicks", "sameNick",
 					"El chat debe establecerse entre dos usuarios distintos, no pude existir un canal con uno mismo");
 		}

@@ -12,22 +12,22 @@ public class Message {
 	private boolean active;		//True si ha sido leido, False si no
 	
 	//Getters & Setters
-	public int getMessage_id() {
+	public int getMessageId() {
 		return message_id;
 	}
-	public void setMessage_id(int message_id) {
+	public void setMessageId(int message_id) {
 		this.message_id = message_id;
 	}
-	public int getChat_id() {
+	public int getChatId() {
 		return chat_id;
 	}
-	public void setChat_id(int chat_id) {
+	public void setChatId(int chat_id) {
 		this.chat_id = chat_id;
 	}
-	public String getSender_nick() {
+	public String getSenderNick() {
 		return sender_nick;
 	}
-	public void setSender_nick(String sender_nick) {
+	public void setSenderNick(String sender_nick) {
 		this.sender_nick = sender_nick;
 	}
 	public String getContent() {

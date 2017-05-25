@@ -1,0 +1,79 @@
+package es.uji.ei102716cdg.controller.chat;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import es.uji.ei102716cdg.domain.chat.Message;
+import es.uji.ei102716cdg.domain.user.User;
+import es.uji.ei102716cdg.service.ChatService;
+
+
+@Controller
+@RequestMapping("chat")
+public class MyChatController {
+
+	private ChatService chatService;
+
+	@Autowired
+	public void setPostService(ChatService chatService){
+		this.chatService = chatService;
+	}
+	
+	@RequestMapping("new")
+	public String newChat(Model model, HttpSession session, @RequestParam("with") String with){
+		
+		String nick= ((User) session.getAttribute("user")).getNick();
+		
+		int chatId = chatService.newChat(nick, with);
+		
+		model.addAttribute("chats", chatService.getMyChats(nick));
+		return "redirect:" + chatId;
+	}
+	
+	
+	@RequestMapping("")
+	public String listChats(Model model, HttpSession session){
+		
+		String nick= ((User) session.getAttribute("user")).getNick();
+		
+		model.addAttribute("chats", chatService.getMyChats(nick));
+		return "chat";
+	}
+	
+	@RequestMapping("/{id}")
+	public String getChat(Model model, HttpSession session, @PathVariable int id){
+		
+		String nick= ((User) session.getAttribute("user")).getNick();
+		
+		model.addAttribute("chats", chatService.getMyChats(nick));
+		model.addAttribute("messages", chatService.getMessages(id));
+		model.addAttribute("nick", nick);
+		return "chat";
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.POST)
+	public String addMessage(Model model, HttpSession session, @PathVariable int id, @RequestParam("content") String content){
+		
+		
+		String nick= ((User) session.getAttribute("user")).getNick();
+		
+		Message message = new Message();
+		message.setChatId(id);
+		message.setContent(content);
+		message.setSenderNick(nick);
+		message.setSendingDate(new java.sql.Date(new java.util.Date().getTime()));
+		chatService.sendMessage(message);
+		
+		model.addAttribute("chats", chatService.getMyChats(nick));
+		model.addAttribute("messages", chatService.getMessages(id));
+		model.addAttribute("nick", nick);
+		return "chat";
+	}
+}

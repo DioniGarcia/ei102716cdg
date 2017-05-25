@@ -1,14 +1,20 @@
 package es.uji.ei102716cdg.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei102716cdg.domain.chat.Chat;
@@ -27,9 +33,9 @@ private JdbcTemplate jdbcTemplate;
 	private static final class ChatMapper implements RowMapper<Chat>{
 		public Chat mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Chat chat = new Chat();
-			chat.setChat_id(rs.getInt("chat_id"));
-			chat.setNick_user_one(rs.getString("user_one"));
-			chat.setNick_user_two(rs.getString("user_two"));
+			chat.setChatId(rs.getInt("chat_id"));
+			chat.setNickUserOne(rs.getString("user_one"));
+			chat.setNickUserTwo(rs.getString("user_two"));
 			return chat;
 		}
 	}
@@ -47,7 +53,7 @@ private JdbcTemplate jdbcTemplate;
 	
 	/**Busca en la base de datos el chat asociado a una id dada
 	 * 
-	 * @param 	chat_id: Identificador único del chat
+	 * @param 	chat_id: Identificador ï¿½nico del chat
 	 * @return 	chat asociado a la id
 	 */
 	public Chat getChat(int chat_id) {
@@ -63,7 +69,7 @@ private JdbcTemplate jdbcTemplate;
 	public void addChat(Chat chat) {
 		this.jdbcTemplate.update("insert into Chat( user_one, user_two) "
 				+ "values(?, ?)",
-				chat.getNick_user_one(), chat.getNick_user_two() );
+				chat.getNickUserOne(), chat.getNickUserTwo() );
 	}
 
 	/**Modifica un chat existente
@@ -76,7 +82,7 @@ private JdbcTemplate jdbcTemplate;
 				+ "set user_one = ?,"
 				+ " user_two = ?"
 				+ " where chat_id = ?",
-				chat.getNick_user_one(), chat.getNick_user_two(), chat.getChat_id() );
+				chat.getNickUserOne(), chat.getNickUserTwo(), chat.getChatId() );
 	}
 
 	/**Borra de la base de datos el chat asociado a la id dada
@@ -85,5 +91,29 @@ private JdbcTemplate jdbcTemplate;
 	 */
 	public void deleteChat(int chat_id) {
 		this.jdbcTemplate.update("DELETE FROM Chat WHERE chat_id = ?", chat_id);
+	}
+	
+	
+	public int addChatAndReturnId(Chat ch){
+		KeyHolder holder = new GeneratedKeyHolder();
+		
+		final Chat chat = ch;
+		
+		this.jdbcTemplate.update(
+				new PreparedStatementCreator() {           
+
+	                @Override
+	                public PreparedStatement createPreparedStatement(Connection connection)
+	                        throws SQLException {
+	                	String sql = "insert into Chat( user_one, user_two) "
+	            				+ "values(?, ?)";
+	                    PreparedStatement ps = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+	                    ps.setString(1, chat.getNickUserOne());
+	                    ps.setString(2, chat.getNickUserTwo());
+	                    return ps;
+	                }
+	            }, holder);
+		
+		return (Integer)holder.getKeys().get("chat_id");
 	}
 }
