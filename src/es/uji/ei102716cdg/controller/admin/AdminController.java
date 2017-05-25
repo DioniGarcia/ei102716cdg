@@ -5,15 +5,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import es.uji.ei102716cdg.service.PointsServiceInterface;
 import es.uji.ei102716cdg.service.StatsServiceInterface;
 
 @Controller
 @RequestMapping("admin")
 public class AdminController {
 	
-	@Autowired
 	private StatsServiceInterface statsService;
 	
+	@Autowired
+	public void setStatsService(StatsServiceInterface statsService){
+		this.statsService = statsService;
+	}
 	
 	@RequestMapping("/index")
 	public String listSkills(Model model){

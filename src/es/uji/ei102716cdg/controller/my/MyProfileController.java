@@ -20,7 +20,7 @@ public class MyProfileController {
 	private PointsServiceInterface pointsService;
 	
 	@Autowired
-	public void setPostService(PointsServiceInterface pointsService){
+	public void setPointsService(PointsServiceInterface pointsService){
 		this.pointsService = pointsService;
 	}
 	

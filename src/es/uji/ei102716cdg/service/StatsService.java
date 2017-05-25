@@ -11,6 +11,7 @@ import java.util.TreeMap;
 import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import es.uji.ei102716cdg.dao.BanDao;
 import es.uji.ei102716cdg.dao.ChatDao;
@@ -25,6 +26,7 @@ import es.uji.ei102716cdg.domain.collaboration.Request;
 import es.uji.ei102716cdg.domain.skill.Skill;
 import es.uji.ei102716cdg.domain.user.Student;
 
+@Service
 public class StatsService implements StatsServiceInterface{
 	
 	@Autowired
