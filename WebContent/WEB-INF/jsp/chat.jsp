@@ -8,27 +8,36 @@
 
 <div class="chat">
 
-	<div class="messages">
-		<c:forEach items="${messages }" var="message">
-			<c:choose>
-				<c:when test="${message.senderNick eq nick }">
-					<div class="message">Tú: ${message.content}</div>
-				</c:when>
-				<c:otherwise>
-					<div class="message">${message.senderNick }: ${message.content}</div>
-				</c:otherwise>
-			</c:choose>
-			
-		</c:forEach>
-	</div>
+	<c:choose>
+	<c:when test="${ chatIndex }">
+		Selecciona un chat para comenzar
+	</c:when>	
+	<c:otherwise>
+		<div class="messages">
+			<c:forEach items="${messages }" var="message">
+				<c:choose>
+					<c:when test="${message.senderNick eq nick }">
+						<div class="message">Tú: ${message.content}<c:if test="${message.active}">(Leido)</c:if></div>
+					</c:when>
+					<c:otherwise>
+						<div class="message">${message.senderNick }: ${message.content}</div>
+					</c:otherwise>
+				</c:choose>
+				
+			</c:forEach>
+		</div>
+		
+		
+		<div class="send-message-box">
+			<form action="" method="POST">
+				<textarea name="content" rows="2" cols="120"></textarea>
+				<button type="submit">Enviar</button>
+			</form>
+		</div>
+	</c:otherwise>
+	</c:choose>
 	
 	
-	<div class="send-message-box">
-		<form action="" method="POST">
-			<textarea name="content" rows="2" cols="120"></textarea>
-			<button type="submit">Enviar</button>
-		</form>
-	</div>
 </div>
 
 </jsp:body>

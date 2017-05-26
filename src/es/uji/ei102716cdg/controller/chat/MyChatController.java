@@ -1,5 +1,7 @@
 package es.uji.ei102716cdg.controller.chat;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import es.uji.ei102716cdg.domain.chat.Chat;
 import es.uji.ei102716cdg.domain.chat.Message;
 import es.uji.ei102716cdg.domain.user.User;
 import es.uji.ei102716cdg.service.ChatService;
@@ -43,7 +46,11 @@ public class MyChatController {
 		
 		String nick= ((User) session.getAttribute("user")).getNick();
 		
-		model.addAttribute("chats", chatService.getMyChats(nick));
+		List<Chat> chats = chatService.getMyChats(nick);
+		
+		model.addAttribute("chats", chats);
+		model.addAttribute("chatUnread", chatService.getNumberUnreadMessages(chats, nick));
+		model.addAttribute("chatIndex", true);
 		return "chat";
 	}
 	
@@ -51,10 +58,14 @@ public class MyChatController {
 	public String getChat(Model model, HttpSession session, @PathVariable int id){
 		
 		String nick= ((User) session.getAttribute("user")).getNick();
+		chatService.setUnreadMessages(nick, id);
+		List<Chat> chats = chatService.getMyChats(nick);
 		
-		model.addAttribute("chats", chatService.getMyChats(nick));
+		model.addAttribute("chats", chats);
+		model.addAttribute("chatUnread", chatService.getNumberUnreadMessages(chats, nick));
 		model.addAttribute("messages", chatService.getMessages(id));
 		model.addAttribute("nick", nick);
+		model.addAttribute("activeChat", id);
 		return "chat";
 	}
 	
@@ -68,12 +79,8 @@ public class MyChatController {
 		message.setChatId(id);
 		message.setContent(content);
 		message.setSenderNick(nick);
-		message.setSendingDate(new java.sql.Date(new java.util.Date().getTime()));
 		chatService.sendMessage(message);
 		
-		model.addAttribute("chats", chatService.getMyChats(nick));
-		model.addAttribute("messages", chatService.getMessages(id));
-		model.addAttribute("nick", nick);
-		return "chat";
+		return "redirect:" + id;
 	}
 }

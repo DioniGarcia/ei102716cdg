@@ -1,6 +1,6 @@
 package es.uji.ei102716cdg.domain.chat;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Message {
 
@@ -8,7 +8,7 @@ public class Message {
 	private int chat_id; 		//Id del chat al que pertenece el mensaje
 	private String sender_nick;	//Nick del estudiante que envia el mensaje
 	private String content;		//Contenido del mensaje
-	private Date sendingDate;	//Fecha en la que fue enviado el mensaje
+	private Timestamp sendingDate;	//Fecha en la que fue enviado el mensaje
 	private boolean active;		//True si ha sido leido, False si no
 	
 	//Getters & Setters
@@ -36,10 +36,10 @@ public class Message {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getSendingDate() {
+	public Timestamp getSendingDate() {
 		return sendingDate;
 	}
-	public void setSendingDate(Date sendingDate) {
+	public void setSendingDate(Timestamp sendingDate) {
 		this.sendingDate = sendingDate;
 	}
 	public boolean isActive() {

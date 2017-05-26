@@ -74,11 +74,12 @@
 }
 
 .sidenav a:hover, .offcanvas a:focus{
-    background-color: #f1f1f1
+    background-color: #f1f1f1;
+    color: gray !important;
 }
 
-.sidenav a:active {
-  	color: #fff;
+.sidenav a:active , .active{
+  	color: #fff !important;
     background-color: #939393;
     border-right: 1px solid;
   	border-color: #939393;
@@ -103,13 +104,21 @@
 <body>
 	<t:navegacio/>
 		<div id="mySidenav" class="sidenav">
-			<c:forEach items="${chats }" var="chat">
+			<c:forEach varStatus="status" items="${chats }" var="chat">
 				<c:choose>
 					<c:when test="${chat.nickUserOne eq user.nick }">
-				  		<a href="${pageContext.request.contextPath}/chat/${chat.chatId}.html">${chat.nickUserTwo}</a>
+				  		<a href="${pageContext.request.contextPath}/chat/${chat.chatId}.html" <c:if test="${activeChat eq chat.chatId }"> class="active" </c:if>  >${chat.nickUserTwo}
+				  			<c:if test="${chatUnread[status.index] ne 0}">
+				  				<span class="badge" style="background-color: #e11;">${chatUnread[status.index]}</span>
+				  			</c:if>
+				  		</a>
 					</c:when>
 					<c:otherwise>
-						<a href="${pageContext.request.contextPath}/chat/${chat.chatId}.html">${chat.nickUserOne}</a>
+						<a href="${pageContext.request.contextPath}/chat/${chat.chatId}.html" <c:if test="${activeChat eq chat.chatId }"> class="active" </c:if>  >${chat.nickUserOne}
+							<c:if test="${chatUnread[status.index] ne 0}">
+					  				<span class="badge" style="background-color: #e11;">${chatUnread[status.index]}</span>
+					  		</c:if>
+						</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>

@@ -31,7 +31,7 @@ private JdbcTemplate jdbcTemplate;
 			message.setChatId(rs.getInt("chat_id"));
 			message.setSenderNick(rs.getString("sender_id"));
 			message.setContent(rs.getString("content"));
-			message.setSendingDate(rs.getDate("sendingDate"));
+			message.setSendingDate(rs.getTimestamp("sendingDate"));
 			message.setActive(rs.getBoolean("active"));
 			return message;
 		}
@@ -45,7 +45,7 @@ private JdbcTemplate jdbcTemplate;
 	 * @return Lista de mensajes
 	 * */
 	public List<Message> getMessages() {
-		return this.jdbcTemplate.query("select message_id, chat_id, sender_id, content, sendingDate, active from Message",
+		return this.jdbcTemplate.query("select message_id, chat_id, sender_id, content, sendingDate, active from Message ORDER BY sendingDate",
 				new MessageMapper());
 	}
 	
@@ -66,8 +66,8 @@ private JdbcTemplate jdbcTemplate;
 	 */
 	public void addMessage(Message message) {
 		this.jdbcTemplate.update("insert into Message(chat_id, sender_id, content, sendingDate, active) "
-				+ "values(?, ?, ?, ?, ?)",
-				message.getChatId(), message.getSenderNick(), message.getContent(), message.getSendingDate(), message.isActive() );
+				+ "values(?, ?, ?, NOW(), ?)",
+				message.getChatId(), message.getSenderNick(), message.getContent(), message.isActive() );
 	}
 
 	/**Modifica un mensaje existente

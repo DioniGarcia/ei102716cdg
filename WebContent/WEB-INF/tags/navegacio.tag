@@ -191,7 +191,7 @@
   	<div class= "col-md-2">
       	<a class="nav_link" href="${pageContext.request.contextPath}/chat.html">
 			<span class="glyphicon glyphicon-envelope"></span>Correo 
-			<span class="badge">10</span>
+			<t:notifications/>
 		</a> 
     </div>
     

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import es.uji.ei102716cdg.dao.ChatDao;
 import es.uji.ei102716cdg.dao.MessageDao;
+import es.uji.ei102716cdg.dao.UnreadMessageDao;
 import es.uji.ei102716cdg.domain.chat.Chat;
 import es.uji.ei102716cdg.domain.chat.Message;
 
@@ -19,6 +20,9 @@ public class ChatService {
 	
 	@Autowired
 	private MessageDao messageDao;
+	
+	@Autowired
+	private UnreadMessageDao unreadMessageDao;
 	
 	public int newChat(String userOne, String userTwo){
 		List<Chat> chats = chatDao.getChats();
@@ -73,5 +77,31 @@ public class ChatService {
 		
 		return myChats;
 	}
+	
+	
+	public int getNumberUnreadMessages(String nick) {
+		return unreadMessageDao.getUnreadMessages(nick).size();
+	}
+	
+	public List<Integer> getNumberUnreadMessages(List<Chat> chats, String nick) {
+		List<Integer> listUnread = new ArrayList<Integer>();
+		List<Message> messages = unreadMessageDao.getUnreadMessages(nick);
+		
+		for (Chat chat : chats){
+			int suma = 0;
+			for (Message message : messages ){
+				if (message.getChatId() == chat.getChatId())
+					suma++;
+			}
+			listUnread.add(suma);
+		}
+		
+		return listUnread;
+	}
+	
+	public void setUnreadMessages(String nick, int chatId){
+		unreadMessageDao.setReadMessages(nick, chatId);
+	}
+	
 
 }
