@@ -17,3 +17,30 @@
   	flex: 1 1 5%;
 }
 
+
+.message {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	justify-content: flex-end;
+  	display: flex;
+  	font-size: 18px;
+}
+
+.my-message {
+	background-color: #5c5;
+	color: white;
+	padding: 5px 8px;
+	border-radius: 7px;
+}
+
+.his-message {
+	background-color: #55c;
+	color: white;
+	padding: 5px 8px;
+	border-radius: 7px;
+	margin-right: auto;
+}
+
+.glyphicon.glyphicon-ok {
+    font-size: 9px;
+}
