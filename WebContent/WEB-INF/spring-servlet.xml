@@ -29,7 +29,7 @@
   <context:component-scan base-package="es.uji.ei102716cdg.validator"/> 
   <context:component-scan base-package="es.uji.ei102716cdg.service"/>   
   <context:component-scan base-package="es.uji.ei102716cdg.api"/>   
-    
+  
   <!-- Font de dades -->
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
   <property name="driverClassName" value="${jdbc.driverClassName}"/>
@@ -49,6 +49,10 @@
   <mvc:interceptors>
   	<mvc:interceptor>
             <mvc:mapping path="/my/**"/>
+            <mvc:mapping path="/all/**"/>
+            <mvc:mapping path="/chat.html"/>
+            <mvc:mapping path="/index.html"/>
+            <mvc:mapping path="/chat/**"/>
             <bean class="es.uji.ei102716cdg.controller.my.NotLoggedInterceptor"/>
     </mvc:interceptor>
   	<mvc:interceptor>

@@ -27,11 +27,11 @@ private JdbcTemplate jdbcTemplate;
 	private static final class MessageMapper implements RowMapper<Message>{
 		public Message mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Message message = new Message();
-			message.setMessage_id(rs.getInt("message_id"));
-			message.setChat_id(rs.getInt("chat_id"));
-			message.setSender_nick(rs.getString("sender_id"));
+			message.setMessageId(rs.getInt("message_id"));
+			message.setChatId(rs.getInt("chat_id"));
+			message.setSenderNick(rs.getString("sender_id"));
 			message.setContent(rs.getString("content"));
-			message.setSendingDate(rs.getDate("sendingDate"));
+			message.setSendingDate(rs.getTimestamp("sendingDate"));
 			message.setActive(rs.getBoolean("active"));
 			return message;
 		}
@@ -40,18 +40,18 @@ private JdbcTemplate jdbcTemplate;
 	/**Genera una lista con los mensajes almacenados en la base de datos
 	 * 
 	 * La lista contiene, para cada mensaje: su id, la id del chat al que pertenece, el nick del estudiante
-	 * que envió el mensaje, el contenido del mensaje, la fecha en que se envió y si ha sido o no leido.
+	 * que enviï¿½ el mensaje, el contenido del mensaje, la fecha en que se enviï¿½ y si ha sido o no leido.
 	 *  
 	 * @return Lista de mensajes
 	 * */
 	public List<Message> getMessages() {
-		return this.jdbcTemplate.query("select message_id, chat_id, sender_id, content, sendingDate, active from Message",
+		return this.jdbcTemplate.query("select message_id, chat_id, sender_id, content, sendingDate, active from Message ORDER BY sendingDate",
 				new MessageMapper());
 	}
 	
 	/**Busca en la base de datos el message asociado a una id dada
 	 * 
-	 * @param 	message_id: Identificador único del message
+	 * @param 	message_id: Identificador ï¿½nico del message
 	 * @return 	mensaje asociado a la id
 	 */
 	public Message getMessage(int message_id) {
@@ -66,8 +66,8 @@ private JdbcTemplate jdbcTemplate;
 	 */
 	public void addMessage(Message message) {
 		this.jdbcTemplate.update("insert into Message(chat_id, sender_id, content, sendingDate, active) "
-				+ "values(?, ?, ?, ?, ?)",
-				message.getChat_id(), message.getSender_nick(), message.getContent(), message.getSendingDate(), message.isActive() );
+				+ "values(?, ?, ?, NOW(), ?)",
+				message.getChatId(), message.getSenderNick(), message.getContent(), message.isActive() );
 	}
 
 	/**Modifica un mensaje existente
@@ -83,7 +83,7 @@ private JdbcTemplate jdbcTemplate;
 				+ " sendingDate = ?,"
 				+ " active = ?"
 				+ " where message_id = ?",
-				message.getChat_id(), message.getSender_nick(), message.getContent(), message.getSendingDate(), message.isActive(), message.getMessage_id() );
+				message.getChatId(), message.getSenderNick(), message.getContent(), message.getSendingDate(), message.isActive(), message.getMessageId() );
 	}
 
 	/**Borra de la base de datos el mensaje asociado a la id dada

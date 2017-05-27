@@ -1,0 +1,94 @@
+.chat {
+	display:flex;
+	flex-direction: column;
+	height: 100%;
+	flex: 1 1 auto;
+}
+
+.messages{
+	flex: 1 1 95%;
+	align-items: flex-start;
+  	align-content: flex-start;
+  	overflow: auto;
+}
+
+.send-message-box{
+	display: flex;
+  	flex: 1 1 5%;
+}
+
+
+.message {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	justify-content: flex-end;
+  	display: flex;
+  	font-size: 18px;
+}
+
+.my-message {
+	background-color: #5c5;
+	color: white;
+	padding: 5px 8px;
+	border-radius: 7px;
+}
+
+.his-message {
+	background-color: #55c;
+	color: white;
+	padding: 5px 8px;
+	border-radius: 7px;
+	margin-right: auto;
+}
+
+.glyphicon.glyphicon-ok {
+    font-size: 9px;
+}
+
+.sameDateGroup {
+	background-color: #939393;
+	color: white;
+	padding: 3px 25px;
+	border-radius: 7px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+button {
+	background: transparent;
+  border: 0;
+  cursor: pointer;
+  flex: 0 0 auto;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding: 0;
+  position: relative;
+  outline: none;
+}
+
+button .enviar{
+	background: #008a7c;
+  	border-radius: 50%;
+	color: white;
+	position: relative;
+ 	width: 36px;
+  	height: 36px;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+}
+
+input {
+	 border: 0;
+	 outline: none;
+	 color: white;
+	 background-color: #5c5;
+	 padding: 3px 8px;
+	 border-radius: 4px;
+	 font-size: 18px;
+}
+
+input::-webkit-input-placeholder {
+    color: white;
+    font-size: 18px;
+}
