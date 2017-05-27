@@ -350,20 +350,21 @@ public class PostService implements PostServiceInterface {
 	}
 
 	@Override
-	public List<Offer> getPaginatedOffers(int pageSize, int page) {
+	public List<Offer> getPaginatedOffers(int pageSize, int page, String nick) {
 		int indice = page-1;
-		List<Offer> offers = offerDao.getOffers();
-		List<Offer> ret = new ArrayList<>();
+		List<Offer> offers = getActiveRecentOffers(0, nick);
+		List<Offer> pagedOffers = new ArrayList<>();
 		for (int i = indice*pageSize; i < offers.size() && i< indice+pageSize; i++){
-			ret.add(offers.get(i));
+			pagedOffers.add(offers.get(i));
 		}
-		return ret;
+		return pagedOffers;
+		
 	}
 
 	@Override
-	public List<Request> getPaginatedRequests(int pageSize, int page) {
+	public List<Request> getPaginatedRequests(int pageSize, int page, String nick) {
 		int indice = page-1;
-		List<Request> requests = requestDao.getRequests();
+		List<Request> requests = getActiveRecentRequests(0, nick);
 		List<Request> ret = new ArrayList<>();
 		for (int i = indice*pageSize; i < requests.size() && i< indice+pageSize; i++){
 			ret.add(requests.get(i));
@@ -372,13 +373,13 @@ public class PostService implements PostServiceInterface {
 	}
 
 	@Override
-	public int getOffersPageCount(int size) {
-		return (offerDao.getOffers().size() + size - 1) / size; // ceil the division offers.size / size
+	public int getOffersPageCount(int pageElements, String nick) {
+		return (getActiveRecentOffers(0, nick).size() + pageElements - 1) / pageElements; // ceil the division offers.size / size
 	}
 
 	@Override
-	public int getRequestsPageCount(int size) {
-		return (requestDao.getRequests().size() + size - 1) / size; // ceil the division requests.size / size
+	public int getRequestsPageCount(int pageElements, String nick) {
+		return (getActiveRecentRequests(0, nick).size() + pageElements - 1) / pageElements; // ceil the division requests.size / size
 	}
 
 	

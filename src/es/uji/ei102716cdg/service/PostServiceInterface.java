@@ -77,14 +77,14 @@ public interface PostServiceInterface {
 	 * @return lista de ofertas paginada
 	 */
 	
-	public List<Offer> getPaginatedOffers(int pageSize, int offset);
+	public List<Offer> getPaginatedOffers(int pageSize, int offset, String nick);
 	
 	/**Devuelve una lista de demandas paginada
 	 * 
 	 * @return lista de demandas paginada
 	 */
 	
-	public List<Request> getPaginatedRequests(int pageSize, int offset);
+	public List<Request> getPaginatedRequests(int pageSize, int offset, String nick);
 	
 	/**Devuelve las demandas ordenadas de más a menos recientes
 	 * 
@@ -175,8 +175,8 @@ public interface PostServiceInterface {
 	 */
 	public List<String> getCollabEndDates(List<Collaboration> collabs);
 	
-	public int getOffersPageCount(int size);
-	public int getRequestsPageCount(int size);
+	public int getOffersPageCount(int pageElements, String nick);
+	public int getRequestsPageCount(int pageElements, String nick);
 	
 	
 	/**Extrae de la Db las n ofertas con inicio más reciente, que sean activas y no pertenezcan al usuario
