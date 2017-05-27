@@ -157,10 +157,19 @@ public class PostService implements PostServiceInterface {
 		Date today = new java.sql.Date(new java.util.Date().getTime());
 		
 		for(Offer offer : offerDao.getOffers()){
-			if(offer.getEndDate().after(today) && offer.isActive() && !offer.getStudent_nick().equals(nick)){
-				offerList.add(offer);
+			if(offer.isActive()){
+				if(offer.getEndDate().after(today)){	
+					if(!offer.getStudent_nick().equals(nick)){
+						offerList.add(offer);
+					}
+				}
+				else {
+					offer.setActive(false);
+					offerDao.updateOffer(offer);
+				}
 			}
-			if(offerList.size() == number){
+			
+			if(number > 0 && offerList.size() == number){
 				break;
 			}
 		}
@@ -175,10 +184,19 @@ public class PostService implements PostServiceInterface {
 		Date today = new java.sql.Date(new java.util.Date().getTime());
 		
 		for(Request request : requestDao.getRequests()){
-			if(request.getEndDate().after(today) && request.isActive() && !request.getStudent_nick().equals(nick)){
-				requestList.add(request);
+			if(request.isActive()){
+				if(request.getEndDate().after(today)){	
+					if(!request.getStudent_nick().equals(nick)){
+						requestList.add(request);
+					}
+				}
+				else {
+					request.setActive(false);
+					requestDao.updateRequest(request);
+				}
 			}
-			if(requestList.size() == number){
+			
+			if(number > 0 && requestList.size() == number){
 				break;
 			}
 		}

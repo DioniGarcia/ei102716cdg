@@ -179,8 +179,24 @@ public interface PostServiceInterface {
 	public int getRequestsPageCount(int size);
 	
 	
-
+	/**Extrae de la Db las n ofertas con inicio más reciente, que sean activas y no pertenezcan al usuario
+	 * 
+	 * Si se quieren extraer todas las ofertas, "number" debe ser igual o inferior que 0
+	 * 
+	 * @param number:	Numero de ofertas a extraer, o number < 0 para extraer todas
+	 * @param nick:		Nick del usuario que verá las ofertas extraidas
+	 * @return
+	 */
 	List<Offer> getActiveRecentOffers(int number, String nick);
+	
+	/**Extrae de la Db las n demandas con inicio más reciente, que sean activas y no pertenezcan al usuario
+	 * 
+	 * Si se quieren extraer todas las demandas, "number" debe ser igual o inferior que 0
+	 * 
+	 * @param number:	Numero de demandas a extraer, o number < 0 para extraer todas
+	 * @param nick:		Nick del usuario que verá las demandas extraidas
+	 * @return
+	 */
 	List<Request> getActiveRecentRequests(int number, String nick);
 	
 	
