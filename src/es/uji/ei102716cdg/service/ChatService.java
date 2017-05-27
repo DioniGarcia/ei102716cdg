@@ -24,6 +24,12 @@ public class ChatService {
 	@Autowired
 	private UnreadMessageDao unreadMessageDao;
 	
+	/**Si no hay un chat creado, crea un nuevo chat. Si ya existe, devuelve el id  del chat existente
+	 * 
+	 * @param userOne 
+	 * @param userTwo
+	 * @return id del chat de los dos usuarios 
+	 */
 	public int newChat(String userOne, String userTwo){
 		List<Chat> chats = chatDao.getChats();
 		
@@ -66,6 +72,12 @@ public class ChatService {
 	}
 	
 	
+	/**Devuelve una lista con todos los chats del usuario nick
+	 * 
+	 * @param nick
+	 * @return Lista de chats del usuario
+	 */
+	
 	public List<Chat> getMyChats(String nick){
 		List<Chat> myChats = new ArrayList<Chat>();
 		
@@ -79,9 +91,22 @@ public class ChatService {
 	}
 	
 	
+	/**Devuelve el numero de mensajes no leidos por el usuario nick
+	 * 
+	 * @param nick
+	 * @return Numero de mensajes no leidos por nick
+	 */
+	
 	public int getNumberUnreadMessages(String nick) {
 		return unreadMessageDao.getUnreadMessages(nick).size();
 	}
+
+	/**Devuelve el numero de mensajes no leidos de su chat correspondiente
+	 * 
+	 * @param chats
+	 * @param nick
+	 * @return lista de numeros, correspodientes uno a uno con la lista de chats pasados 
+	 */
 	
 	public List<Integer> getNumberUnreadMessages(List<Chat> chats, String nick) {
 		List<Integer> listUnread = new ArrayList<Integer>();
@@ -98,6 +123,12 @@ public class ChatService {
 		
 		return listUnread;
 	}
+	
+	/**Marca los mensajes de un chat como leidos por el usuario nick
+	 * 
+	 * @param nick
+	 * @param chatId
+	 */
 	
 	public void setUnreadMessages(String nick, int chatId){
 		unreadMessageDao.setReadMessages(nick, chatId);

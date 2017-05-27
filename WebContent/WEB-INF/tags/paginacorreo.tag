@@ -182,8 +182,8 @@
     		var collabEndDate = moment(fechasChat[j].textContent, "DD/MM/YYYY").calendar(null,{
     		    lastDay : '[Ayer]',
     		    sameDay : '[Hoy]',
-    		    lastWeek : '[El] dddd [pasado]',
-    		    sameElse : 'LL'
+    		    lastWeek : 'dddd[, ] LL',
+    		    sameElse : 'dddd[, ] LL'
     		});
     		fechasChat[j].textContent = collabEndDate;	
     	}

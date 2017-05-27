@@ -16,6 +16,7 @@
 	<c:otherwise>
 		<c:if test="${not empty messages }">
 			<c:set var="previousDate"><fmt:formatDate value="${messages[0].sendingDate}" pattern="dd/MM/yyyy" /></c:set>
+			<div class="message"><span class="sameDateGroup">${previousDate }</span></div>
 		</c:if>
 		<div class="messages">
 			<c:forEach items="${messages }" var="message">
@@ -52,8 +53,8 @@
 		
 		<div class="send-message-box">
 			<form action="" method="POST">
-				<input name="content" size="120" required></input>
-				<button type="submit">Enviar</button>
+				<input name="content" size="100" placeholder="Escribe un mensaje..." autocomplete="off" autofocus required></input>
+				<button type="submit"><div class="enviar" title="Enviar"><span style="vertical-align:middle;margin-right: 2px;" class="glyphicon glyphicon-send"></span></div></button>
 			</form>
 		</div>
 	</c:otherwise>

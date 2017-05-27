@@ -48,8 +48,47 @@
 .sameDateGroup {
 	background-color: #939393;
 	color: white;
-	padding: 5px 8px;
+	padding: 3px 25px;
 	border-radius: 7px;
 	margin-right: auto;
 	margin-left: auto;
+}
+
+button {
+	background: transparent;
+  border: 0;
+  cursor: pointer;
+  flex: 0 0 auto;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding: 0;
+  position: relative;
+  outline: none;
+}
+
+button .enviar{
+	background: #008a7c;
+  	border-radius: 50%;
+	color: white;
+	position: relative;
+ 	width: 36px;
+  	height: 36px;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+}
+
+input {
+	 border: 0;
+	 outline: none;
+	 color: white;
+	 background-color: #5c5;
+	 padding: 3px 8px;
+	 border-radius: 4px;
+	 font-size: 18px;
+}
+
+input::-webkit-input-placeholder {
+    color: white;
+    font-size: 18px;
 }
