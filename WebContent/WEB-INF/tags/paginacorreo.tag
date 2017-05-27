@@ -177,23 +177,23 @@
     		fechas[i].textContent = fechaIni + "-" + fechaFin;	
     	}
     	
-    	var collabFechas = document.getElementsByClassName("collabEndDate");
-    	for (j = 0; j < collabFechas.length; j++) {
-    		var collabEndDate = moment(collabFechas[j].textContent, "YYYY-MM-DD").add(1,'days').fromNow();
-    		collabFechas[j].textContent = "Termina " + collabEndDate;	
+    	var fechasChat = document.getElementsByClassName("sameDateGroup");
+    	for (j = 0; j < fechasChat.length; j++) {
+    		var collabEndDate = moment(fechasChat[j].textContent, "DD/MM/YYYY").calendar(null,{
+    		    lastDay : '[Ayer]',
+    		    sameDay : '[Hoy]',
+    		    lastWeek : '[El] dddd [pasado]',
+    		    sameElse : 'LL'
+    		});
+    		fechasChat[j].textContent = collabEndDate;	
     	}
     	
+    	
     	$(document).ready(function() {
-    		$(".acortar-texto").dotdotdot({
-    			height: 60,
-    			watch: window,
-    			after: "a.readmore",
-    			callback	: function( isTruncated, orgContent ) {
-    				if ( isTruncated ) { $(this).find("a")
-    												.css("display","inline"); 
-    				}
-    			},
-    		});
+    		var myDiv = $(".messages");
+    		myDiv.animate({ scrollTop: myDiv.prop("scrollHeight") - myDiv.height() }, 500);
+    		
+    		
     	});
     	
     });	

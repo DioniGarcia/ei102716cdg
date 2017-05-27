@@ -44,3 +44,12 @@
 .glyphicon.glyphicon-ok {
     font-size: 9px;
 }
+
+.sameDateGroup {
+	background-color: #939393;
+	color: white;
+	padding: 5px 8px;
+	border-radius: 7px;
+	margin-right: auto;
+	margin-left: auto;
+}

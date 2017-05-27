@@ -14,8 +14,16 @@
 		Selecciona un chat para comenzar
 	</c:when>	
 	<c:otherwise>
+		<c:if test="${not empty messages }">
+			<c:set var="previousDate"><fmt:formatDate value="${messages[0].sendingDate}" pattern="dd/MM/yyyy" /></c:set>
+		</c:if>
 		<div class="messages">
 			<c:forEach items="${messages }" var="message">
+				<c:set var="thisDate"><fmt:formatDate value="${message.sendingDate}" pattern="dd/MM/yyyy" /></c:set>
+				<c:if test="${thisDate ne previousDate }">
+				<div class="message"><span class="sameDateGroup">${thisDate }</span></div>
+				</c:if>
+				<c:set var="previousDate"><fmt:formatDate value="${message.sendingDate}" pattern="dd/MM/yyyy" /></c:set>
 				<c:choose>
 					<c:when test="${message.senderNick eq nick }">
 						<div class="message">
@@ -25,7 +33,7 @@
 								</span>
 							</c:when>
 							<c:otherwise>
-								<span class="my-message">${message.content}&thinsp;<span style="font-size:11px;">17:31</span><span style="font-size:11px;margin-left:5px">&#10004;</span>
+								<span class="my-message">${message.content}&thinsp;<span style="font-size:11px;"><fmt:formatDate value="${message.sendingDate}" pattern="HH:mm" /></span><span style="font-size:11px;margin-left:5px">&#10004;</span>
 								</span>
 							</c:otherwise>
 							</c:choose>
@@ -44,7 +52,7 @@
 		
 		<div class="send-message-box">
 			<form action="" method="POST">
-				<textarea name="content" rows="2" cols="120"></textarea>
+				<input name="content" size="120" required></input>
 				<button type="submit">Enviar</button>
 			</form>
 		</div>
