@@ -52,7 +52,7 @@
             <mvc:mapping path="/all/**"/>
             <mvc:mapping path="/chat.html"/>
             <mvc:mapping path="/index.html"/>
-            <mvc:mapping path="/chat/**"/>
+            <mvc:mapping path="/chat/*"/>
             <bean class="es.uji.ei102716cdg.controller.my.NotLoggedInterceptor"/>
     </mvc:interceptor>
   	<mvc:interceptor>

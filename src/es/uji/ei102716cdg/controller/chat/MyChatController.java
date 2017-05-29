@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import es.uji.ei102716cdg.domain.chat.Chat;
 import es.uji.ei102716cdg.domain.chat.Message;
@@ -69,9 +70,8 @@ public class MyChatController {
 		return "chat";
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.POST)
-	public String addMessage(Model model, HttpSession session, @PathVariable int id, @RequestParam("content") String content){
-		
+	@RequestMapping(value="/{id}/send", method=RequestMethod.POST, produces = "application/json")
+	public @ResponseBody String addMessage(HttpSession session, @PathVariable int id, @RequestParam("content") String content){
 		
 		String nick= ((User) session.getAttribute("user")).getNick();
 		
@@ -81,6 +81,6 @@ public class MyChatController {
 		message.setSenderNick(nick);
 		chatService.sendMessage(message);
 		
-		return "redirect:" + id;
+		return "1";
 	}
 }
