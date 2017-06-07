@@ -49,7 +49,7 @@ public class StudentDao {
 	 * @return Lista de estudiantes
 	 * */
 	public List<Student> getStudents() {
-		return this.jdbcTemplate.query("select nick, email, passwd, name, dni, points from Student",
+		return this.jdbcTemplate.query("select nick, email, passwd, name, dni, avatar from Student",
 				new StudentMapper());
 	}
 	
@@ -85,7 +85,7 @@ public class StudentDao {
 				+ " passwd = ?,"
 				+ " name = ?,"
 				+ " dni = ?,"
-				+ " points = ?"
+				+ " avatar = ?"
 				+ " where nick = ?",
 				student.getNick(), student.getEmail(), student.getPasswd(), student.getName(), student.getDni(), student.getAvatar(), student.getNick());
 	}
