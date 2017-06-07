@@ -14,7 +14,7 @@
     			postTitle="Demanda de ${skills[status.index].name } - ${skills[status.index].description}" 
     			postDescription="${request.description}" 
     			postDate="${request.startDate },${request.endDate }"
-    			avatarId="${students[status.index].avatar}">
+    			avatarId="${myAvatarId}">
     	</t:requestbox>
     	</c:forEach>
     </div>

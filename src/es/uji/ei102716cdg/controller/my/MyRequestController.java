@@ -79,7 +79,6 @@ public class MyRequestController {
 		List<Request> requestsByNick = requestDao.getRequestsByNick(user.getNick());
 		model.addAttribute("requests", requestsByNick);
 		model.addAttribute("skills", postService.getSkillsByPost(requestsByNick));
-		model.addAttribute("student", postService.getStudentByNick(user.getNick()));
 		return "my/request/list";
 	}
 	

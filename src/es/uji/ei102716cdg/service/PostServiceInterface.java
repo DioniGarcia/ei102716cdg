@@ -2,7 +2,6 @@ package es.uji.ei102716cdg.service;
 
 import java.util.List;
 
-import es.uji.ei102716cdg.domain.chat.Chat;
 import es.uji.ei102716cdg.domain.collaboration.Collaboration;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.collaboration.Post;
@@ -43,11 +42,7 @@ public interface PostServiceInterface {
 	 */
 	public List<Request> getActiveRequests();
 
-	/**Devuelve un listado con todas los chats existentes en el sistema
-	 * 
-	 * @return listado de chats
-	 */
-	public List<Chat> getChats();
+	
 	
 	/** Devuelve las skills asociadas a una lista de posts (Ofertas o Demandas)
 	 * 

@@ -7,7 +7,7 @@
 <jsp:body>
 	<div class="split-container">
 		<div class="split-item-v-foto split-container">
-			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${student.avatar}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
+			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${myAvatarId}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
 		</div>
 		<div class="split-item-v-texto">
 			<h3><c:out value="Nombre: ${student.name }"></c:out></h2>

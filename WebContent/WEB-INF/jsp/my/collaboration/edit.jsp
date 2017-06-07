@@ -48,7 +48,7 @@
             <tr></tr>
             
             <tr>
-                <td colspan="2"><input type="submit" value="Editar" />
+                <td colspan="2"><input style="margin-top:30px;" class="btn btn-primary" type="submit" value="Editar" />
                 </td>
             </tr>
         </table>

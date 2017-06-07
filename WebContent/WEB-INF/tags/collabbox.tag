@@ -16,7 +16,7 @@
 		<div class="split-item"></div>
 		
 		<div class="split-item">
-			<img src="${ pageContext.request.contextPath }/resources/img/background.jpg" class="img-circle-thumbnail" alt="" width="80" height="80">
+			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${myAvatarId}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
 		</div>
 		
 		<div class="split-item"></div>

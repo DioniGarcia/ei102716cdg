@@ -48,7 +48,6 @@ public class NotLoggedInterceptor extends HandlerInterceptorAdapter {
 		
 		User user = (User) session.getAttribute("user");
 		session.setAttribute("notifications", chatService.getNumberUnreadMessages(user.getNick()));
-		System.out.println(studentDao.getStudent(user.getNick()).getAvatar());
 		session.setAttribute("myAvatarId", studentDao.getStudent(user.getNick()).getAvatar());
 	}
 }
