@@ -35,14 +35,33 @@
 			</div>
 			
 			<div class="points-balance">
+				<c:choose>
+					<c:when test="${totalHours ge 20 }">
+						<c:set var="pointsColor" value="#7cb518"></c:set>
+					</c:when>
+					<c:otherwise>
+						<c:choose>
+							<c:when test="${totalHours gt 5 }">
+								<c:set var="pointsColor" value="#fff200"></c:set>
+							</c:when>
+							<c:otherwise>
+								<c:set var="pointsColor" value="#ff0000"></c:set>
+							</c:otherwise>
+						</c:choose>
+					
+					</c:otherwise>
+				
+				</c:choose>
+				
 				<svg width="50%" height="50%" viewBox="0 0 42 42" class="donut">
 				  <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
 				  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ffffff" stroke-width="3"></circle>
 				
-				  <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#7cb518" stroke-width="3" stroke-dashoffset="24" stroke-dasharray="32 1" ></circle>
+				  <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="${pointsColor }" stroke-width="3" stroke-dashoffset="24" stroke-dasharray="32 1" ></circle>
 				  <text x="50%" y="50%" text-anchor="middle" stroke="#000000" stroke-width="0.01em" dy=".18em">${totalHours }</text>
 				  <text font-size="5" x="50%" y="50%" text-anchor="middle" stroke="#000000" stroke-width="0.005em" dy="1.6em">puntos</text>
 				</svg>
+				
 			</div>
 		</div>
 		
