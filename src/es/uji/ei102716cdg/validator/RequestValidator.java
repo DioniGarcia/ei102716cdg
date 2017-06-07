@@ -1,6 +1,6 @@
 package es.uji.ei102716cdg.validator;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -34,7 +34,7 @@ public class RequestValidator implements Validator {
 					"Debes introducir una fecha de inicio");
 		
 		//Fecha inicio antes que hoy
-		else if( request.getStartDate().before(new Date()))
+		else if( isBeforeToday(request.getStartDate()))
 			errs.rejectValue("startDate", "inicioGeHoy",
 					"La fecha de inicio debe ser posterior o igual a la fecha de hoy: ");
 		
@@ -51,6 +51,14 @@ public class RequestValidator implements Validator {
 						"La fecha fin debe ser posterior a fecha inicio");
 			
 		}
+		
+	}
+	
+	private boolean isBeforeToday(java.sql.Date date){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String today = formatter.format(new java.sql.Date(new java.util.Date().getTime()));
+		String date2 = formatter.format(date);
+		return date2.compareTo(today) < 0;	
 		
 	}
 
