@@ -24,6 +24,8 @@ public class NotLoggedInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 		HttpSession session = request.getSession(true);
 		
+		if (session.getAttribute("admin") != null) return true;
+		
 		if (session.getAttribute("user") == null){
 			session.setAttribute("lastURL", request.getServletPath());
 			response.sendRedirect(request.getContextPath() + "/login.html");
@@ -37,6 +39,8 @@ public class NotLoggedInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception{
 		HttpSession session = request.getSession(true);
+		
+		if (session.getAttribute("admin") != null) return;
 		
 		User user = (User) session.getAttribute("user");
 		session.setAttribute("notifications", chatService.getNumberUnreadMessages(user.getNick()));
