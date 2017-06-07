@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import es.uji.ei102716cdg.service.StatsServiceInterface;
+import es.uji.ei102716cdg.util.Encoding;
 
 @Controller
 @RequestMapping("api/stats")
@@ -29,19 +30,18 @@ public class StatsApi {
 		result += "[";
 		result += "{\"type\": \"pie\","
 				+ "\"name\": \"HotSkills\","
-				+ "\"legendText\": \"{indexLabel}\","
 				+ "\"showInLegend\": true,"
 				+ "\"dataPoints\": [";
 		for (int i = 0; i < hotSkills.size() - 1; i++){
 			String[] tupla = hotSkills.get(i).split("#");
 			skillName = tupla[0];
 			num = tupla[1];
-			result += "{\"indexLabel\":\"" + skillName + "\", \"y\": \"" + num + "\"}, \n ";
+			result += "{\"name\":\"" + Encoding.convertUTF8ToLatin(skillName) + "\", \"y\": \"" + num + "\"}, \n ";
 		}
 		String[] tupla = hotSkills.get(hotSkills.size()-1).split("#");
 		skillName = tupla[0];
 		num = tupla[1];
-		result += "{\"indexLabel\":\"" + skillName + "\", \"y\": \"" + num + "\"} \n ] } ]";
+		result += "{\"name\":\"" + Encoding.convertUTF8ToLatin(skillName) + "\", \"y\": \"" + num + "\"} \n ] } ]";
 		return result;
 	}
 	
@@ -57,16 +57,18 @@ public class StatsApi {
 		result += "[";
 		result += "{\"type\": \"pie\","
 				+ "\"name\": \"ColdSkills\","
-				+ "\"legendText\": \"{indexLabel}\","
 				+ "\"showInLegend\": true,"
 				+ "\"dataPoints\": [";
 		for (int i = 0; i < coldSkills.size() - 1; i++){
 			String[] tupla = coldSkills.get(i).split("#");
 			skillName = tupla[0];
 			num = tupla[1];
-			result += "{\"indexLabel\":\"" + skillName + "\", \"y\": \"" + num + "\"}, \n ";
+			result += "{\"name\":\"" + Encoding.convertUTF8ToLatin(skillName) + "\", \"y\": \"" + num + "\"}, \n ";
 		}
-		result += "{\"indexLabel\":\"" + skillName + "\", \"y\": \"" + num + "\"} \n ] } ]";
+		String[] tupla = coldSkills.get(coldSkills.size()-1).split("#");
+		skillName = tupla[0];
+		num = tupla[1];
+		result += "{\"name\":\"" + Encoding.convertUTF8ToLatin(skillName) + "\", \"y\": \"" + num + "\"} \n ] } ]";
 		return result;
 	}
 	
