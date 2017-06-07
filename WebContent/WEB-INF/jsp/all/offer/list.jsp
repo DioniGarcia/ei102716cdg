@@ -72,7 +72,8 @@
 	    			postLink="${ pageContext.request.contextPath }/all/offers/${offer.id }"
 	    			postTitle="${skills[status.index].name } - ${skills[status.index].description}" 
 	    			postDescription="${offer.description}" 
-	    			postDate="${offer.startDate },${offer.endDate }">
+	    			postDate="${offer.startDate },${offer.endDate }"
+	    			avatarId="${students[status.index].avatar}">
 	    	</t:offerbox>
 	    	</c:forEach>
 	    </div>

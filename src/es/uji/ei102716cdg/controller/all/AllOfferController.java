@@ -51,7 +51,7 @@ public class AllOfferController {
 		List<Offer> recentOffers = postService.getPaginatedOffers(pageSize, page, user.getNick());
 		model.addAttribute("offers", recentOffers);
 		model.addAttribute("skills", postService.getSkillsByPost(recentOffers));
-		model.addAttribute("users", postService.getUsersByPost(recentOffers));
+		model.addAttribute("students", postService.getStudentsByPost(recentOffers));
 		model.addAttribute("pageCount", pageCount);
 		return "all/offer/list";
 	}

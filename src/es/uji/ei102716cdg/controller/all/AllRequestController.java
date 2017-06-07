@@ -51,7 +51,7 @@ public class AllRequestController {
 		List<Request> recentRequests = postService.getPaginatedRequests(pageSize, page, user.getNick());
 		model.addAttribute("requests", recentRequests);
 		model.addAttribute("skills", postService.getSkillsByPost(recentRequests));
-		model.addAttribute("users", postService.getUsersByPost(recentRequests));
+		model.addAttribute("students", postService.getStudentsByPost(recentRequests));
 		model.addAttribute("pageCount", pageCount);
 		return "all/request/list";
 	}

@@ -140,6 +140,15 @@ public class PostService implements PostServiceInterface {
 	}
 	
 	@Override
+	public List<Student> getStudentsByPost(List<? extends Post> list) {
+		List<Student> listUser = new ArrayList<>();
+		for (Post post : list){
+			listUser.add(studentDao.getStudent(post.getStudent_nick()));
+		}
+		return listUser;
+	}
+	
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Offer> getRecentOffers(){
 		

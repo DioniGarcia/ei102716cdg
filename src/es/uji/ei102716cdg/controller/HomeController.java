@@ -40,13 +40,13 @@ public class HomeController {
 		List<Offer> recentOffers = postService.getActiveRecentOffers(2, user.getNick());
 		model.addAttribute("offers", recentOffers);
 		model.addAttribute("skillsOf", postService.getSkillsByPost(recentOffers));
-		model.addAttribute("usersOf", postService.getUsersByPost(recentOffers));
+		model.addAttribute("studentsOf", postService.getStudentsByPost(recentOffers));
 		
 		//Se añaden los datos necesarios para la demanda
 		List<Request> recentRequest = postService.getActiveRecentRequests(2, user.getNick());
 		model.addAttribute("requests", recentRequest);
 		model.addAttribute("skillsRq", postService.getSkillsByPost(recentRequest));
-		model.addAttribute("usersRq", postService.getUsersByPost(recentRequest));
+		model.addAttribute("studentsRq", postService.getStudentsByPost(recentRequest));
 		return "index";
 	}
 	

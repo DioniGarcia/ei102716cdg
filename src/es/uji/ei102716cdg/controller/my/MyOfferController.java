@@ -77,6 +77,7 @@ public class MyOfferController {
 		List<Offer> offersByNick = offerDao.getOffersByNick(user.getNick());
 		model.addAttribute("offers", offersByNick);
 		model.addAttribute("skills", postService.getSkillsByPost(offersByNick));
+		model.addAttribute("student", postService.getStudentByNick(user.getNick()));
 		return "my/offer/list";
 	}
 	

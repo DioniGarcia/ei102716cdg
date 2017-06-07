@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import es.uji.ei102716cdg.dao.StudentDao;
 import es.uji.ei102716cdg.domain.user.User;
 import es.uji.ei102716cdg.service.ChatService;
 
@@ -15,6 +16,9 @@ public class NotLoggedInterceptor extends HandlerInterceptorAdapter {
 
 	@Autowired
 	ChatService chatService;
+	
+	@Autowired
+	StudentDao studentDao;
 	
 	/**Comprueba que el usuario est� logueado 
 	 * 
@@ -44,6 +48,7 @@ public class NotLoggedInterceptor extends HandlerInterceptorAdapter {
 		
 		User user = (User) session.getAttribute("user");
 		session.setAttribute("notifications", chatService.getNumberUnreadMessages(user.getNick()));
-		
+		System.out.println(studentDao.getStudent(user.getNick()).getAvatar());
+		session.setAttribute("myAvatarId", studentDao.getStudent(user.getNick()).getAvatar());
 	}
 }

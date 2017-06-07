@@ -10,7 +10,7 @@
 		<div class="points-main">
 			<div class="profile-container">
 				<div class="profile-photo">
-					<img style="margin-bottom: 10px;" src="${ pageContext.request.contextPath }/resources/img/background.jpg" class="img-circle-thumbnail" alt="" width="80" height="80">
+					<img style="margin-bottom: 10px;" src="${ pageContext.request.contextPath }/resources/img/avatars/${student.avatar}.jpg" class="img-circle-thumbnail" alt="" width="80" height="80">
 					<span>Puntuación media:</span>
 					<select class="star-readonly">
 					<option value="0">0</option>

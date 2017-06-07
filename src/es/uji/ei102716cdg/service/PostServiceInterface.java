@@ -65,6 +65,7 @@ public interface PostServiceInterface {
 	 * @return	lista de usuarios que han publicado las ofertas
 	 */
 	public List<User> getUsersByPost(List<? extends Post> list);
+	public List<Student> getStudentsByPost(List<? extends Post> list);
 	
 	/**Devuelve las ofertas ordenadas de más a menos recientes
 	 * 

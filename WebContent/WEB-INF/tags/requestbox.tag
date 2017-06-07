@@ -5,6 +5,7 @@
 <%@ attribute name="postTitle" required="false"%>
 <%@ attribute name="postDescription" required="false"%>
 <%@ attribute name="postDate" required="false"%>
+<%@ attribute name="avatarId" required="false"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
 <div class="postbox  split-container requestbox" onclick="location.href='${postLink}';">
@@ -12,7 +13,7 @@
 		<div class="split-item"></div>
 		
 		<div class="split-item">
-			<img src="${ pageContext.request.contextPath }/resources/img/background.jpg" class="img-circle-thumbnail" alt="" width="80" height="80">
+			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${avatarId}.jpg" class="img-circle-thumbnail" alt="" width="80" height="80">
 		</div>
 		
 		<div class="split-item">
