@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei102716cdg.dao.RequestDao;
 import es.uji.ei102716cdg.domain.collaboration.Request;
-
 import es.uji.ei102716cdg.domain.user.User;
 import es.uji.ei102716cdg.service.PostServiceInterface;
 import es.uji.ei102716cdg.util.CustomSqlDateEditor;
@@ -61,12 +61,17 @@ public class MyRequestController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String addRequest(HttpSession session, @ModelAttribute("request") Request request,
+			@RequestParam("nombre") String nombre, Model model,
 			BindingResult bindingResult){
 		
 		RequestValidator requestValidator = new RequestValidator();
 		requestValidator.validate(request, bindingResult);
-		if(bindingResult.hasErrors())
+		if(bindingResult.hasErrors()){
+			if (nombre != null && !nombre.trim().equals("")){
+				model.addAttribute("nombre", nombre);
+			}
 			return "my/request/add";
+		}
 		User user = (User) session.getAttribute("user");
 		request.setStudent_nick(user.getNick());
 		requestDao.addRequest(request);

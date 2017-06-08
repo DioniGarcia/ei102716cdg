@@ -80,6 +80,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery.barrating.min.js"></script> 
 
     <script type="text/javascript">
+    
     $(document).ready(function(){
     	
     	      $('.star-readonly').barrating({
@@ -143,4 +144,5 @@
     });	
     	
     </script> 
+    
 </html>

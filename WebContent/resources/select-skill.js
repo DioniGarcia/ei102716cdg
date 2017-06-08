@@ -49,9 +49,12 @@ $.ajax({
     		  data: data,
     		  placeholder: "Habilidad"
     	});
+    	if (typeof nombreSkill !== "undefined"){
+    		$("#nombre").select2().val(nombreSkill).trigger("change");
+    		$("#nombre").select2().trigger("select2:select");
+    	}
     }
 });
-
 
 
 $('#tipo').select2({
@@ -62,7 +65,7 @@ $('#tipo').select2({
 });
 
 $('#nombre').on('select2:select', function (evt) {
-	axios.get(window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/levels?name=" + evt.params.data.text)
+	axios.get(window.location.origin + "/" + window.location.pathname.split("/")[1] + "/api/skill/levels?name=" + $("#nombre").select2().val())
 	.then(function (response) {
       var tipos = response.data;
 	  var select = $("#tipo");
@@ -71,6 +74,8 @@ $('#nombre').on('select2:select', function (evt) {
 	      select.append($("<option></option>").attr("value", o.id).html(o.text));
 	  });
 	  select.change();
+	  if (typeof skillId !== "undefined")
+	  	$("#tipo").select2().val(skillId).trigger("change");
 	})
 	.catch(function (error) {
 	  console.log(error);

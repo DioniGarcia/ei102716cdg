@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei102716cdg.dao.OfferDao;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
@@ -59,12 +60,17 @@ public class MyOfferController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String addOffer(HttpSession session, @ModelAttribute("offer") Offer offer,
+			@RequestParam("nombre") String nombre, Model model,
 			BindingResult bindingResult){
 		
 		OfferValidator offerValidator = new OfferValidator();
 		offerValidator.validate(offer, bindingResult);
-		if(bindingResult.hasErrors())
+		if(bindingResult.hasErrors()){
+			if (nombre != null && !nombre.trim().equals("")){
+				model.addAttribute("nombre", nombre);
+			}
 			return "my/offer/add";
+		}
 		User user = (User) session.getAttribute("user");
 		offer.setStudent_nick(user.getNick());
 		offerDao.addOffer(offer);

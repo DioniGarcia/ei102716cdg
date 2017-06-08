@@ -12,7 +12,7 @@
         	<tr>
                 <td><form:label path="skill_Id">Skill</form:label></td>
                 <td>
-               		<select id="nombre"><option></option></select>
+               		<select name="nombre" id="nombre"><option></option></select>
 					<form:select path="skill_Id" id="tipo"></form:select><br>
 					<form:errors class="error" path="skill_Id"/>	
 				</td>
@@ -68,6 +68,11 @@
         </table>
     </form:form>
     
-    
+    <c:if test="${not empty nombre}">
+    	<script type="text/javascript">
+    		var nombreSkill = "${nombre}";     
+    		var skillId = "${offer.skill_Id}";
+    	</script>
+    </c:if>
 </jsp:body>
 </t:paginabasica>
