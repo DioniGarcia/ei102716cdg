@@ -12,7 +12,8 @@
     			postTitle="Oferta de ${skills[status.index].name } - ${skills[status.index].description}" 
     			postDescription="${offer.description}" 
     			postDate="${offer.startDate },${offer.endDate }"
-    			avatarId="${myAvatarId}">
+    			avatarId="${myAvatarId}"
+    			rating="${rating}">
     	</t:offerbox>
     	</c:forEach>
     </div>

@@ -13,12 +13,7 @@
 			<h2><c:out value="Nombre: ${student.name }"></c:out></h2>
 			<div>
 			<select class="star-readonly">
-			<option value="0">0</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3" selected="selected">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
+			<t:rating rating="${rating}"></t:rating>
 			</select>
 			</div>
 		</div>

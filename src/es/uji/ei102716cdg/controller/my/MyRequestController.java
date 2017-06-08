@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei102716cdg.dao.RequestDao;
 import es.uji.ei102716cdg.domain.collaboration.Request;
+import es.uji.ei102716cdg.domain.user.Student;
 import es.uji.ei102716cdg.domain.user.User;
 import es.uji.ei102716cdg.service.PostServiceInterface;
 import es.uji.ei102716cdg.util.CustomSqlDateEditor;
@@ -84,15 +85,18 @@ public class MyRequestController {
 		List<Request> requestsByNick = requestDao.getRequestsByNick(user.getNick());
 		model.addAttribute("requests", requestsByNick);
 		model.addAttribute("skills", postService.getSkillsByPost(requestsByNick));
+		model.addAttribute("rating", postService.getRating(user.getNick()));
 		return "my/request/list";
 	}
 	
 	@RequestMapping("/{id}")
 	public String showRequest(Model model,  @PathVariable int id){
 		Request request = requestDao.getRequest(id);
+		Student student = postService.getStudentByNick(request.getStudent_nick());
 		model.addAttribute("request", request);
 		model.addAttribute("skill", postService.getSkillById(request.getSkill_Id()));
-		model.addAttribute("student", postService.getStudentByNick(request.getStudent_nick()));
+		model.addAttribute("student", student);
+		model.addAttribute("rating", postService.getRating(student.getNick()));
 		return "my/request/info";
 	}
 	

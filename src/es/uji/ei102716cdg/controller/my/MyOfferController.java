@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei102716cdg.dao.OfferDao;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
+import es.uji.ei102716cdg.domain.user.Student;
 import es.uji.ei102716cdg.domain.user.User;
 import es.uji.ei102716cdg.service.PostServiceInterface;
 import es.uji.ei102716cdg.util.CustomSqlDateEditor;
@@ -83,15 +84,18 @@ public class MyOfferController {
 		List<Offer> offersByNick = offerDao.getOffersByNick(user.getNick());
 		model.addAttribute("offers", offersByNick);
 		model.addAttribute("skills", postService.getSkillsByPost(offersByNick));
+		model.addAttribute("rating", postService.getRating(user.getNick()));
 		return "my/offer/list";
 	}
 	
 	@RequestMapping("/{id}")
 	public String showOffer(Model model,  @PathVariable int id){
 		Offer offer = offerDao.getOffer(id);
+		Student student = postService.getStudentByNick(offer.getStudent_nick());
 		model.addAttribute("offer", offer);
 		model.addAttribute("skill", postService.getSkillById(offer.getSkill_Id()));
-		model.addAttribute("student", postService.getStudentByNick(offer.getStudent_nick()));
+		model.addAttribute("student", student);
+		model.addAttribute("rating", postService.getRating(student.getNick()));
 		return "my/offer/info";
 	}
 	

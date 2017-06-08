@@ -372,8 +372,28 @@ public class PostService implements PostServiceInterface {
 		return (getActiveRecentRequests(0, nick).size() + pageElements - 1) / pageElements; // ceil the division requests.size / size
 	}
 
-	
+	@Override
+	public int getRating(String nick){
+		List<Collaboration> collabs = getCollaborations(nick);
+		int suma = 0, n = 0;
 		
-	
-
+		for (Collaboration collab : collabs){
+			Offer offer = getOffer(collab.getOffer_id());
+			if (offer.getStudent_nick().equals(nick)){
+				suma += collab.getRating();
+				n++;
+			}
+		}
+		
+		return n==0 ? 0 : suma/n;
+	}
+		
+	@Override
+	public List<Integer> getRatingByStudents(List<Student> students){
+		List<Integer> ratings = new ArrayList<Integer>();
+		for (Student student : students){
+			ratings.add(getRating(student.getNick()));
+		}
+		return ratings;
+	}
 }

@@ -196,8 +196,8 @@ public interface PostServiceInterface {
 	List<Request> getActiveRecentRequests(int number, String nick);
 	
 	
+	public int getRating(String nick);
 
-
-	
+	public List<Integer> getRatingByStudents(List<Student> students);
 	
 }
