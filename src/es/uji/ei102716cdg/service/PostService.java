@@ -396,4 +396,22 @@ public class PostService implements PostServiceInterface {
 		}
 		return ratings;
 	}
+	
+	private Student getCollabStudent(String nick, Collaboration collab){
+		Offer offer = getOffer(collab.getOffer_id());
+		Request request = getRequest(collab.getRequest_id());
+		if (offer.getStudent_nick().equals(nick))
+			return getStudentByNick(request.getStudent_nick());
+		else
+			return getStudentByNick(offer.getStudent_nick());
+	}
+	
+	@Override
+	public List<Student> getStudentsByCollabs(String nick, List<Collaboration> collabs){
+		List<Student> students = new ArrayList<Student>();
+		for (Collaboration collab : collabs){
+			students.add(getCollabStudent(nick, collab));
+		}
+		return students;
+	}
 }

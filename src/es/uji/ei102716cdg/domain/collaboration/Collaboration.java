@@ -11,6 +11,7 @@ public class Collaboration {
 	private short rating;			//Puntuacion por parte del demandante entre 1 y 5
 	private short totalHours;		//Computo total de horas destinadas a la colaboraci�n
 	private String comments;		//Comentario escrito por el demandante de la colaboracion
+	private String status;
 	
 	public Collaboration() {}
 	
@@ -58,11 +59,33 @@ public class Collaboration {
 		this.comments = comments;
 	}
 	
+	public void setStatus(String status){
+		this.status = status;
+	}
+	
+	public String getStatus(){
+		return status;
+	}
+	
+	public String getStatus(java.sql.Date offerEndDate, java.sql.Date requestEndDate){
+		java.sql.Date endDate = offerEndDate.before(requestEndDate) ? offerEndDate : requestEndDate;
+		if ( !endDate.before(new java.sql.Date(new java.util.Date().getTime()))){ // collab still active
+			return "active";
+		} else { // collab ended, needs eval or is old
+			if ( this.rating != 0 && this.totalHours != 0 ){ // already eval/old
+				return "finished";
+			} else { // not yet evaluated
+				return "pending";
+			}
+		}
+	}
+	
 	//To String
 	@Override
 	public String toString() {
 		return "Collaboration [collaboration_id=" + collaboration_id + ", offer_id=" + offer_id + ", request_id="
-				+ request_id + ", rating=" + rating + ", totalHours=" + totalHours + ", comments=" + comments + "]";
+				+ request_id + ", rating=" + rating + ", totalHours=" + totalHours + ", comments=" + comments +
+				", status= " + status + "]";
 	}
 	
 }

@@ -1,0 +1,12 @@
+.collab-info-students {
+	display: flex;
+	flex-direction: row;
+}
+
+.collab-info-student {
+	flex: 1;
+}
+
+.split-item-v-foto {
+	margin-right: 20px;
+}

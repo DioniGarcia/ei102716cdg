@@ -18,6 +18,8 @@ import es.uji.ei102716cdg.dao.CollaborationDao;
 import es.uji.ei102716cdg.domain.collaboration.Collaboration;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.collaboration.Request;
+import es.uji.ei102716cdg.domain.skill.Skill;
+import es.uji.ei102716cdg.domain.user.Student;
 import es.uji.ei102716cdg.domain.user.User;
 import es.uji.ei102716cdg.service.PostServiceInterface;
 
@@ -75,6 +77,7 @@ public class MyCollaborationController {
 		
 		model.addAttribute("collabs", collabs);
 		model.addAttribute("skills", postService.getSkillsByCollabs(collabs));
+		model.addAttribute("students", postService.getStudentsByCollabs(nick, collabs));
 		return "my/collaboration/list";
 	}
 	
@@ -119,10 +122,21 @@ public class MyCollaborationController {
 	}
 	
 	@RequestMapping(value="/edit/{collaboration_id}", method=RequestMethod.GET)
-	public String editCollaboration(Model model, @PathVariable int collaboration_id){
-		model.addAttribute("collaboration", collaborationDao.getCollaboration(collaboration_id));
-		model.addAttribute("offers", postService.getActiveOffers());
-		model.addAttribute("requests",postService.getActiveRequests());
+	public String editCollaboration(Model model, @PathVariable int collaboration_id, HttpSession session){
+		User user = (User) session.getAttribute("user");
+		Collaboration collab = collaborationDao.getCollaboration(collaboration_id);
+		model.addAttribute("collaboration", collab);
+		Offer offer = postService.getOffer(collab.getOffer_id());
+		Request request = postService.getRequest(collab.getRequest_id());
+		String collabStartDate  = offer.getStartDate().after(request.getStartDate()) 
+								? offer.getStartDate().toString() 
+								: request.getStartDate().toString();
+				
+		String collabEndDate 	= offer.getEndDate().before(request.getEndDate()) 
+								? offer.getEndDate().toString() 
+								: request.getEndDate().toString();
+								
+		
 		return "my/collaboration/edit";
 	}
 	
@@ -134,6 +148,35 @@ public class MyCollaborationController {
 			return "my/collaboration/edit";
 		collaborationDao.updateCollaboration(collaboration);
 		return "redirect:/my/collaborations/list.html?success=update";
+	}
+	
+	@RequestMapping("/{id}")
+	public String showCollaboration(Model model,  @PathVariable int id, HttpSession session){
+		User user = (User) session.getAttribute("user");
+		Collaboration collab = collaborationDao.getCollaboration(id);
+		Offer offer = postService.getOffer(collab.getOffer_id());
+		Request request = postService.getRequest(collab.getRequest_id());
+		Skill skill = postService.getSkillById(offer.getSkill_Id());
+		Student studentOf = postService.getStudentByNick(offer.getStudent_nick());
+		Student studentRq = postService.getStudentByNick(request.getStudent_nick());
+		String collabStartDate  = offer.getStartDate().after(request.getStartDate()) 
+								? offer.getStartDate().toString() 
+								: request.getStartDate().toString();
+								
+		String collabEndDate 	= offer.getEndDate().before(request.getEndDate()) 
+								? offer.getEndDate().toString() 
+								: request.getEndDate().toString();
+		model.addAttribute("collaboration", collab);
+		model.addAttribute("studentOf", studentOf);
+		model.addAttribute("studentRq", studentRq);
+		model.addAttribute("ratingOf", postService.getRating(studentOf.getNick()));
+		model.addAttribute("ratingRq", postService.getRating(studentRq.getNick()));
+		model.addAttribute("collabStatus", collab.getStatus(offer.getEndDate(), request.getEndDate()));
+		model.addAttribute("collabStartDate", collabStartDate);
+		model.addAttribute("collabEndDate", collabEndDate);
+		model.addAttribute("skill", skill);
+		model.addAttribute("evalBtn", request.getStudent_nick().equals(user.getNick()));
+		return "my/collaboration/info";
 	}
 	
 }

@@ -200,4 +200,7 @@ public interface PostServiceInterface {
 
 	public List<Integer> getRatingByStudents(List<Student> students);
 	
+		
+	public List<Student> getStudentsByCollabs(String nick, List<Collaboration> collabs);
+	
 }
