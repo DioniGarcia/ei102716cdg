@@ -1,6 +1,7 @@
 package es.uji.ei102716cdg.domain.collaboration;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -75,6 +76,13 @@ public class Post {
 	}
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	
+	public boolean isBeforeToday(){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String today = formatter.format(new java.sql.Date(new java.util.Date().getTime()));
+		String date2 = formatter.format(startDate);
+		return date2.compareTo(today) < 0;	
 	}
 	
 	//To String
