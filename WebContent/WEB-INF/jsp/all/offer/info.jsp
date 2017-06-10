@@ -35,19 +35,14 @@
 <jsp:body>
 	<div class="split-container">
 		<div class="split-item-v-foto split-container">
-			<img src="${ pageContext.request.contextPath }/resources/img/background.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
+			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${student.avatar}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
 		</div>
 		<div class="split-item-v-texto">
 			<h2> <b>Oferta ofrecida por: </b><c:out value="${student.name }"></c:out> </h2>
 			<div>
 			Puntuación media: 
 			<select class="star-readonly">
-			<option value="0">0</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3" selected="selected">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
+			<t:rating rating="${rating}"></t:rating>
 			</select>
 			</div>
 		</div>
