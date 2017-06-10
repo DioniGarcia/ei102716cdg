@@ -13,8 +13,6 @@ import java.util.Map.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.uji.ei102716cdg.dao.BanDao;
-import es.uji.ei102716cdg.dao.ChatDao;
 import es.uji.ei102716cdg.dao.CollaborationDao;
 import es.uji.ei102716cdg.dao.OfferDao;
 import es.uji.ei102716cdg.dao.RequestDao;
@@ -31,12 +29,6 @@ public class StatsService implements StatsServiceInterface{
 	
 	@Autowired
 	StudentDao studentDao;
-	
-	@Autowired
-	BanDao banDao;
-	
-	@Autowired
-	ChatDao chatDao;
 	
 	@Autowired
 	SkillDao skillDao;

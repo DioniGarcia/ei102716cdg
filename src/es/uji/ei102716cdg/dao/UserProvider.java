@@ -43,8 +43,8 @@ public class UserProvider implements UserDao, AdminDao {
 			return null; 
 		}
 		// If it is, check password
-		//if (passwordEncoder().matches(password, user.getPasswd())){
-		if ( password.equals( user.getPasswd() ) ){
+		if (passwordEncoder().matches(password, user.getPasswd())){
+		//if ( password.equals( user.getPasswd() ) ){
 			user.setPasswd("");
 			return user;
 		} else {
@@ -86,6 +86,10 @@ public class UserProvider implements UserDao, AdminDao {
 	    return new BCryptPasswordEncoder();
 	}
 
+	@Override
+	public String encodePassword(String passwd){
+		return passwordEncoder().encode(passwd);
+	}
 	
 	@Override
 	public boolean existsUsername(String username) {

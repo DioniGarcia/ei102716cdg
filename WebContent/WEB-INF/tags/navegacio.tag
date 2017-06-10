@@ -197,7 +197,6 @@
     
     <!-- Perfil-->
   	<div class="col-md-2">
-				<img src="${pageContext.request.contextPath}/resources/img/background.jpg" class="img-circle" alt="" width="40" height="40">
 				<t:logininfo/>
 				
 				<!-- Desplegable Perfil (Tres puntitos) -->

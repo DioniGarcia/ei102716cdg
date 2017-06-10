@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei102716cdg.dao.OfferDao;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
+import es.uji.ei102716cdg.domain.user.Student;
 import es.uji.ei102716cdg.domain.user.User;
 import es.uji.ei102716cdg.service.PostServiceInterface;
 
@@ -49,9 +50,11 @@ public class AllOfferController {
 		int pageCount = postService.getOffersPageCount(pageSize, user.getNick());
 		
 		List<Offer> recentOffers = postService.getPaginatedOffers(pageSize, page, user.getNick());
+		List<Student> students = postService.getStudentsByPost(recentOffers);
 		model.addAttribute("offers", recentOffers);
 		model.addAttribute("skills", postService.getSkillsByPost(recentOffers));
-		model.addAttribute("users", postService.getUsersByPost(recentOffers));
+		model.addAttribute("students", students);
+		model.addAttribute("ratings", postService.getRatingByStudents(students));
 		model.addAttribute("pageCount", pageCount);
 		return "all/offer/list";
 	}
@@ -59,9 +62,11 @@ public class AllOfferController {
 	@RequestMapping("/{id}")
 	public String showOffer(Model model,  @PathVariable int id){
 		Offer offer = offerDao.getOffer(id);
+		Student student = postService.getStudentByNick(offer.getStudent_nick());
 		model.addAttribute("offer", offer);
 		model.addAttribute("skill", postService.getSkillById(offer.getSkill_Id()));
-		model.addAttribute("student", postService.getStudentByNick(offer.getStudent_nick()));
+		model.addAttribute("student", student);
+		model.addAttribute("rating", postService.getRating(student.getNick()));
 		return "all/offer/info";
 	}
 

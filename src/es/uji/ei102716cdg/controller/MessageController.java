@@ -41,7 +41,6 @@ public class MessageController {
 	public String addMessage(Model model){
 		model.addAttribute("message",new Message());
 		model.addAttribute("nick_list", postService.getActiveStudentsNick());
-		model.addAttribute("chat_list", postService.getChats());
 		return "db_test/message/add";
 	}
 	
@@ -60,7 +59,6 @@ public class MessageController {
 	public String editStudent(Model model, @PathVariable int message_id){
 		model.addAttribute("message", messageDao.getMessage(message_id));
 		model.addAttribute("nick_list", postService.getActiveStudentsNick());
-		model.addAttribute("chat_list", postService.getChats());
 		return "db_test/message/update";
 	}
 	

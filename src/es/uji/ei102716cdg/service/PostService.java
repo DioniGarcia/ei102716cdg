@@ -8,14 +8,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.uji.ei102716cdg.dao.BanDao;
-import es.uji.ei102716cdg.dao.ChatDao;
 import es.uji.ei102716cdg.dao.CollaborationDao;
 import es.uji.ei102716cdg.dao.OfferDao;
 import es.uji.ei102716cdg.dao.RequestDao;
 import es.uji.ei102716cdg.dao.SkillDao;
 import es.uji.ei102716cdg.dao.StudentDao;
-import es.uji.ei102716cdg.domain.chat.Chat;
 import es.uji.ei102716cdg.domain.collaboration.Collaboration;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.collaboration.Post;
@@ -29,12 +26,6 @@ public class PostService implements PostServiceInterface {
 
 	@Autowired
 	StudentDao studentDao;
-	
-	@Autowired
-	BanDao banDao;
-	
-	@Autowired
-	ChatDao chatDao;
 	
 	@Autowired
 	SkillDao skillDao;
@@ -111,16 +102,6 @@ public class PostService implements PostServiceInterface {
 	}
 
 	@Override
-	public List<Chat> getChats() {
-		List<Chat> chatList = new ArrayList<>();
-		
-		for(Chat chat : chatDao.getChats()){
-			chatList.add(chat);
-		}
-		return chatList;
-	}
-
-	@Override
 	public List<Skill> getSkillsByPost(List<? extends Post> list) {
 		List<Skill> listSkill = new ArrayList<>();
 		for (Post post : list){
@@ -133,6 +114,15 @@ public class PostService implements PostServiceInterface {
 	@Override
 	public List<User> getUsersByPost(List<? extends Post> list) {
 		List<User> listUser = new ArrayList<>();
+		for (Post post : list){
+			listUser.add(studentDao.getStudent(post.getStudent_nick()));
+		}
+		return listUser;
+	}
+	
+	@Override
+	public List<Student> getStudentsByPost(List<? extends Post> list) {
+		List<Student> listUser = new ArrayList<>();
 		for (Post post : list){
 			listUser.add(studentDao.getStudent(post.getStudent_nick()));
 		}
@@ -382,8 +372,46 @@ public class PostService implements PostServiceInterface {
 		return (getActiveRecentRequests(0, nick).size() + pageElements - 1) / pageElements; // ceil the division requests.size / size
 	}
 
-	
+	@Override
+	public int getRating(String nick){
+		List<Collaboration> collabs = getCollaborations(nick);
+		int suma = 0, n = 0;
 		
+		for (Collaboration collab : collabs){
+			Offer offer = getOffer(collab.getOffer_id());
+			if (offer.getStudent_nick().equals(nick)){
+				suma += collab.getRating();
+				n++;
+			}
+		}
+		
+		return n==0 ? 0 : suma/n;
+	}
+		
+	@Override
+	public List<Integer> getRatingByStudents(List<Student> students){
+		List<Integer> ratings = new ArrayList<Integer>();
+		for (Student student : students){
+			ratings.add(getRating(student.getNick()));
+		}
+		return ratings;
+	}
 	
-
+	private Student getCollabStudent(String nick, Collaboration collab){
+		Offer offer = getOffer(collab.getOffer_id());
+		Request request = getRequest(collab.getRequest_id());
+		if (offer.getStudent_nick().equals(nick))
+			return getStudentByNick(request.getStudent_nick());
+		else
+			return getStudentByNick(offer.getStudent_nick());
+	}
+	
+	@Override
+	public List<Student> getStudentsByCollabs(String nick, List<Collaboration> collabs){
+		List<Student> students = new ArrayList<Student>();
+		for (Collaboration collab : collabs){
+			students.add(getCollabStudent(nick, collab));
+		}
+		return students;
+	}
 }

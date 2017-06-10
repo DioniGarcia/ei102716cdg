@@ -8,6 +8,7 @@
 <%@ attribute name="collabRating" required="false"%>
 <%@ attribute name="collabComments" required="false"%>
 <%@ attribute name="collabEndDate" required="false"%>
+<%@ attribute name="collabAvatarId" required="false"%>
 <%@ attribute name="collabEvalBtn" required="false" type="java.lang.Boolean"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -16,7 +17,7 @@
 		<div class="split-item"></div>
 		
 		<div class="split-item">
-			<img src="${ pageContext.request.contextPath }/resources/img/background.jpg" class="img-circle-thumbnail" alt="" width="80" height="80">
+			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${collabAvatarId}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
 		</div>
 		
 		<div class="split-item"></div>
@@ -24,7 +25,7 @@
 		
 	<div class="split-item-v-texto">
 		
-		<h2><a href="edit/${collabId }.html">${collabTitle }</a></h2>
+		<h2><a href="${collabId }.html">${collabTitle }</a></h2>
 		
 		<p>Horas : ${collabTotalHours }</p>
 		<p>Puntuación :  
@@ -48,7 +49,7 @@
 		<p class="collabEndDate">${collabEndDate}</p>
 		</c:if>
 		
-		<c:if test="${collabEvalBtn }"><button class="btn btn-primary">Evaluar</button></c:if>
+		<c:if test="${collabEvalBtn }"><a href="edit/${collabId }.html"><button class="btn btn-primary">Evaluar</button></a></c:if>
 		
 	</div>
 </div>

@@ -189,7 +189,7 @@ var myCallback = function () {
         }
 	});
     
-    $('input[type="checkbox"]').on('change', function() {
+    $('input[type="checkbox"]').off("change").on('change', function() {
 	    var skillId = this.getAttribute('class');
 	    if (skillId == null){
 	    	if (!$(this).is(':checked'))

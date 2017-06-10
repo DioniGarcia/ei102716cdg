@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.collaboration.Request;
+import es.uji.ei102716cdg.domain.user.Student;
 import es.uji.ei102716cdg.domain.user.User;
 import es.uji.ei102716cdg.service.PostServiceInterface;
 
@@ -38,15 +39,19 @@ public class HomeController {
 		
 		//Se añaden los datos necesarios para la oferta
 		List<Offer> recentOffers = postService.getActiveRecentOffers(2, user.getNick());
+		List<Student> studentsOf = postService.getStudentsByPost(recentOffers);
 		model.addAttribute("offers", recentOffers);
 		model.addAttribute("skillsOf", postService.getSkillsByPost(recentOffers));
-		model.addAttribute("usersOf", postService.getUsersByPost(recentOffers));
+		model.addAttribute("studentsOf", studentsOf);
+		model.addAttribute("ratingsOf", postService.getRatingByStudents(studentsOf));
 		
 		//Se añaden los datos necesarios para la demanda
 		List<Request> recentRequest = postService.getActiveRecentRequests(2, user.getNick());
+		List<Student> studentsRq = postService.getStudentsByPost(recentRequest);
 		model.addAttribute("requests", recentRequest);
 		model.addAttribute("skillsRq", postService.getSkillsByPost(recentRequest));
-		model.addAttribute("usersRq", postService.getUsersByPost(recentRequest));
+		model.addAttribute("studentsRq", studentsRq);
+		model.addAttribute("ratingsRq", postService.getRatingByStudents(studentsRq));
 		return "index";
 	}
 	

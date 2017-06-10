@@ -3,7 +3,7 @@ package es.uji.ei102716cdg.domain.user;
 public class Student extends User{
 	private String name;		//Nombre y apellidos
 	private String dni;			//DNI asociado al nombre, 8 digitos
-	private int    points;		//Puntos necesarios para realizar demandas
+	private int    avatar;		//Id del avatar
 	
 	public String getName() {
 		return name;
@@ -17,18 +17,18 @@ public class Student extends User{
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
-	public int getPoints() {
-		return points;
+	public int getAvatar() {
+		return avatar;
 	}
-	public void setPoints(int points) {
-		this.points = points;
+	public void setAvatar(int avatar) {
+		this.avatar = avatar;
 	}
 	
 	//To String
 	@Override
 	public String toString() {
 		return "Student [nick=" + super.getNick() + ", email=" + super.getEmail() 
-		+ ", passwd=" + super.getPasswd() + ", name=" + name + ", dni=" + dni + ", points=" + points + "]";
+		+ ", passwd=" + super.getPasswd() + ", name=" + name + ", dni=" + dni + ", avatar=" + avatar + "]";
 	}
 	
 }

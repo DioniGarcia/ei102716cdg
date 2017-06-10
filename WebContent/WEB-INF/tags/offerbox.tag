@@ -5,6 +5,8 @@
 <%@ attribute name="postTitle" required="false"%>
 <%@ attribute name="postDescription" required="false"%>
 <%@ attribute name="postDate" required="false"%>
+<%@ attribute name="avatarId" required="false"%>
+<%@ attribute name="rating" required="false"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
 <div class="postbox  split-container offerbox center" onclick="location.href='${postLink}';">
@@ -12,17 +14,12 @@
 		<div class="split-item"></div>
 		
 		<div class="split-item">
-			<img src="${ pageContext.request.contextPath }/resources/img/background.jpg" class="img-circle-thumbnail" alt="" width="80" height="80">
+			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${avatarId}.jpg" class="img-circle-thumbnail" alt="" width="80" height="80">
 		</div>
 		
 		<div class="split-item">
 			<select class="star-readonly">
-			<option value="0">0</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3" selected="selected">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
+				<t:rating rating="${rating}"/>
 			</select>
 		</div>
 		

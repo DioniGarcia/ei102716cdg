@@ -35,7 +35,7 @@ public class StudentDao {
 			student.setPasswd(rs.getString("passwd"));
 			student.setName(rs.getString("name"));
 			student.setDni(rs.getString("dni"));
-			student.setPoints(rs.getInt("points"));
+			student.setAvatar(rs.getInt("avatar"));
 			
 			return student;
 		}
@@ -49,7 +49,7 @@ public class StudentDao {
 	 * @return Lista de estudiantes
 	 * */
 	public List<Student> getStudents() {
-		return this.jdbcTemplate.query("select nick, email, passwd, name, dni, points from Student",
+		return this.jdbcTemplate.query("select nick, email, passwd, name, dni, avatar from Student",
 				new StudentMapper());
 	}
 	
@@ -69,9 +69,9 @@ public class StudentDao {
 	 * @param 	student: Estudiante a almacenar en el sistema	
 	 */
 	public void addStudent(Student student) {
-		this.jdbcTemplate.update("insert into Student(nick, email, passwd, name, dni, points) "
+		this.jdbcTemplate.update("insert into Student(nick, email, passwd, name, dni, avatar) "
 				+ "values(?, ?, ?, ?, ?, ?)",
-				student.getNick(), student.getEmail(), student.getPasswd(), student.getName(), student.getDni(), student.getPoints());
+				student.getNick(), student.getEmail(), student.getPasswd(), student.getName(), student.getDni(), student.getAvatar());
 	}
 
 	/**Si existe un estudiante con el mismo nick en la base de datos lo sobreescribe
@@ -85,9 +85,9 @@ public class StudentDao {
 				+ " passwd = ?,"
 				+ " name = ?,"
 				+ " dni = ?,"
-				+ " points = ?"
+				+ " avatar = ?"
 				+ " where nick = ?",
-				student.getNick(), student.getEmail(), student.getPasswd(), student.getName(), student.getDni(), student.getPoints(), student.getNick());
+				student.getNick(), student.getEmail(), student.getPasswd(), student.getName(), student.getDni(), student.getAvatar(), student.getNick());
 	}
 
 	/**Borra de la base de datos al estudiante asociado a un nombre de usuario dado

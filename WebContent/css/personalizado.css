@@ -344,4 +344,7 @@ div.request-banner {
   border-color: #ddd;
 }
 
-
+.error {
+	color: #f23e3e;
+	font-size: 0.8em;
+}

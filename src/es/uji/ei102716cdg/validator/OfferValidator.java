@@ -1,7 +1,5 @@
 package es.uji.ei102716cdg.validator;
 
-import java.util.Date;
-
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -34,7 +32,7 @@ public class OfferValidator implements Validator {
 					"Debes introducir una fecha de inicio");
 		
 		//Fecha inicio antes que hoy
-		else if( offer.getStartDate().before(new Date()))
+		else if( offer.isBeforeToday() )
 			errs.rejectValue("startDate", "inicioGeHoy",
 					"La fecha de inicio debe ser posterior o igual a la fecha de hoy: ");
 		

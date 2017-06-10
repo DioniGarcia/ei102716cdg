@@ -13,7 +13,9 @@
     			postLink="${ pageContext.request.contextPath }/my/requests/${request.id }"
     			postTitle="Demanda de ${skills[status.index].name } - ${skills[status.index].description}" 
     			postDescription="${request.description}" 
-    			postDate="${request.startDate },${request.endDate }">
+    			postDate="${request.startDate },${request.endDate }"
+    			avatarId="${myAvatarId}"
+    			rating="${rating}">
     	</t:requestbox>
     	</c:forEach>
     </div>

@@ -37,6 +37,10 @@
 	<link
 	    href="${pageContext.request.contextPath}/css/personalizado.css"
 	    rel="stylesheet"/>
+	    
+	<link
+	    href="${pageContext.request.contextPath}/css/my/collab-info.css"
+	    rel="stylesheet"/>
 <style>
 
 .sidenav {

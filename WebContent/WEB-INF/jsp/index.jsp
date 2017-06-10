@@ -29,7 +29,9 @@
     					postLink="${ pageContext.request.contextPath }/all/offers/${offer.id }"
     					postTitle="${skillsOf[status.index].name } - ${skillsOf[status.index].description}" 
     					postDescription="${offer.description}" 
-    					postDate="${offer.startDate },${offer.endDate }">
+    					postDate="${offer.startDate },${offer.endDate }"
+    					avatarId="${studentsOf[status.index].avatar}"
+    					rating="${ratingsOf[status.index]}">
     				</t:offerbox>
     				</c:forEach>
 				</div>
@@ -59,7 +61,9 @@
     					postLink="${ pageContext.request.contextPath }/all/requests/${request.id }"
     					postTitle="${skillsRq[status.index].name } - ${skillsRq[status.index].description}" 
     					postDescription="${request.description}" 
-    					postDate="${request.startDate },${request.endDate }">
+    					postDate="${request.startDate },${request.endDate }"
+    					avatarId="${studentsRq[status.index].avatar}"
+    					rating="${ratingsRq[status.index]}">
     				</t:requestbox>
     				</c:forEach>
 				</div>

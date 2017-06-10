@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei102716cdg.dao.OfferDao;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
+import es.uji.ei102716cdg.domain.user.Student;
 import es.uji.ei102716cdg.domain.user.User;
 import es.uji.ei102716cdg.service.PostServiceInterface;
 import es.uji.ei102716cdg.util.CustomSqlDateEditor;
@@ -59,12 +61,17 @@ public class MyOfferController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String addOffer(HttpSession session, @ModelAttribute("offer") Offer offer,
+			@RequestParam("nombre") String nombre, Model model,
 			BindingResult bindingResult){
 		
 		OfferValidator offerValidator = new OfferValidator();
 		offerValidator.validate(offer, bindingResult);
-		if(bindingResult.hasErrors())
+		if(bindingResult.hasErrors()){
+			if (nombre != null && !nombre.trim().equals("")){
+				model.addAttribute("nombre", nombre);
+			}
 			return "my/offer/add";
+		}
 		User user = (User) session.getAttribute("user");
 		offer.setStudent_nick(user.getNick());
 		offerDao.addOffer(offer);
@@ -77,15 +84,18 @@ public class MyOfferController {
 		List<Offer> offersByNick = offerDao.getOffersByNick(user.getNick());
 		model.addAttribute("offers", offersByNick);
 		model.addAttribute("skills", postService.getSkillsByPost(offersByNick));
+		model.addAttribute("rating", postService.getRating(user.getNick()));
 		return "my/offer/list";
 	}
 	
 	@RequestMapping("/{id}")
 	public String showOffer(Model model,  @PathVariable int id){
 		Offer offer = offerDao.getOffer(id);
+		Student student = postService.getStudentByNick(offer.getStudent_nick());
 		model.addAttribute("offer", offer);
 		model.addAttribute("skill", postService.getSkillById(offer.getSkill_Id()));
-		model.addAttribute("student", postService.getStudentByNick(offer.getStudent_nick()));
+		model.addAttribute("student", student);
+		model.addAttribute("rating", postService.getRating(student.getNick()));
 		return "my/offer/info";
 	}
 	
