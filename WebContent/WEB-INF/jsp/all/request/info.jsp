@@ -141,5 +141,36 @@
 	</c:choose>
 	
     <a href="${ pageContext.request.contextPath }/chat/new?with=${request.student_nick }"><button class="btn btn-primary">Chat</button></a>
+    
+    <script type="text/javascript">
+	window.location.hash = "";
+	var els = document.getElementById("ofertas");
+	for(var i=0; i<els.length; ++i) {
+	    els[i].addEventListener('focus', focus, true);
+	    els[i].addEventListener('blur', blur, true);
+	}
+	function focus() {
+	    this.classList.add('focus');
+	}
+	function blur() {
+	    this.classList.remove('focus');
+	}
+	
+	function comprobarSeleccion(){
+		var offerId = window.location.hash.substr(1);
+		if (offerId == ""){
+			alert("Selecciona una oferta, por favor.");
+		} else {
+			document.getElementById("many-req-link").href = "${ pageContext.request.contextPath }/my/collaborations/add?confirm=true&skillId=${request.skill_Id }&requestId=${request.id }&offerId=" + offerId;
+			
+		}
+	}
+	
+	
+	
+	
+	</script>
+    
+    
 </jsp:body>
 </t:paginabasica>
