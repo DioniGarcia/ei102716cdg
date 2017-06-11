@@ -12,12 +12,7 @@
 			<img style="margin-bottom: 10px;" src="${ pageContext.request.contextPath }/resources/img/avatars/${student.avatar}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
 			<span>Puntuación media:</span>
 			<select class="star-readonly">
-			<option value="0">0</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3" selected="selected">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
+			<t:rating rating="${rating }"/>
 			</select>
 			<a style="margin-top: 15px;" href="edit.html"><button class="btn btn-primary">Guardar</button></a>
 		</div>
