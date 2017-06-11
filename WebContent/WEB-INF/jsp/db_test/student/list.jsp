@@ -15,7 +15,7 @@
         	<th>Contraseña</th>
         	<th>Nombre</th>
         	<th>Dni</th>
-        	<th>Puntos</th>
+        	<th>Avatar</th>
             <th colspan="2">Acciones</th>
         </tr>
         <c:forEach items="${students}" var="student"> 
@@ -25,7 +25,7 @@
             	<td>${student.passwd}</td>
             	<td>${student.name}</td> 
             	<td>${student.dni}</td> 
-            	<td>${student.points}</td>  
+            	<td>${student.avatar}</td>  
            
                 <td><a href="update/${student.nick}.html">Editar</a> 
                 <td><a href="delete/${student.nick}.html">Borrar</a>

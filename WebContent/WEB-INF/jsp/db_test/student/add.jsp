@@ -42,9 +42,9 @@
                 <td><form:errors path="dni" /></td>
             </tr>
             <tr>
-                <td><form:label  path="points">Puntos</form:label></td>
-                <td><form:input  path="points" /></td>
-                <td><form:errors path="points" /></td>
+                <td><form:label  path="avatar">Avatar</form:label></td>
+                <td><form:input  path="avatar" /></td>
+                <td><form:errors path="avatar" /></td>
             </tr>
             
             <tr>
