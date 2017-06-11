@@ -2,6 +2,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <t:paginabasica>
 <jsp:body>
@@ -22,13 +23,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary btn-ok">Generar automáticamente</a>
+                <a href="${ pageContext.request.contextPath }/my/collaborations/add?skillId=${offer.skill_Id }&offerId=${offer.id }&confirm" class="btn btn-primary btn-ok">Generar automáticamente</a>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal: Existen demandas compatibles -->
+<!-- Modal: Existe 1 demanda compatible -->
 <div id="one-request" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -39,12 +40,59 @@
 				Tienes una demanda. Una vez establecida la colaboración está dejará
 				de estar disponible para el resto de usuarios.
 				Si quieres conservar la demanda, generaremos una nueva para establecer
-				la colaboración.       
+				la colaboración.   
+				<div> <!-- anyadele una class tamb para quitarle el efecto hover -->
+					<t:requestbox
+	    				postLink="#"
+	    				postTitle="Demanda de ${skills[0].name } - ${skills[0].description}" 
+	    				postDescription="${requests[0].description}" 
+	    				postDate="${requests[0].startDate },${requests[0].endDate }"
+	    				avatarId="${myAvatarId}"
+	    				rating="${rating}">
+	    			</t:requestbox>
+	    		</div>   
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary btn-ok">Conservar demanda</a>
-            	<a class="btn btn-primary btn-ok">Vincular</a>
+                <a href="${ pageContext.request.contextPath }/my/collaborations/add?skillId=${offer.skill_Id }&offerId=${offer.id }&confirm" class="btn btn-primary btn-ok">Conservar demanda</a>
+            	<a href="${ pageContext.request.contextPath }/my/collaborations/add?skillId=${offer.skill_Id }&offerId=${offer.id }&requestId=${request.id}&confirm" class="btn btn-primary btn-ok">Vincular</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Existen demandas compatibles -->
+<div id="many-request" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <strong>Tienes una demanda compatible con esta oferta</strong>
+            </div>
+            <div class="modal-body">
+				Tienes varias demandas, <b>selecciona</b> una de ellas.<br/>
+				Una vez establecida la colaboración está dejará de estar disponible 
+				para el resto de usuarios.
+				Si quieres conservar tus demandas, generaremos una nueva para establecer
+				la colaboración.   
+				<div id="demandas">
+				<c:forEach varStatus="status" items="${requests}" var="request">
+					<div tabindex="-1"> 
+			    	<t:requestbox
+			    			postLink="#${request.id}"
+			    			postTitle="Demanda de ${skills[status.index].name } - ${skills[status.index].description}" 
+			    			postDescription="${request.description}" 
+			    			postDate="${request.startDate },${request.endDate }"
+			    			avatarId="${myAvatarId}"
+			    			rating="${rating}">
+			    	</t:requestbox>
+			    	</div>
+    			</c:forEach>  
+    			</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <a href="${ pageContext.request.contextPath }/my/collaborations/add?skillId=${offer.skill_Id }&offerId=${offer.id }&confirm" class="btn btn-primary btn-ok">Conservar demandas</a>
+            	<a id="many-req-link" href="#" onClick="comprobarSeleccion();" class="btn btn-primary btn-ok">Vincular</a>
             </div>
         </div>
     </div>
@@ -77,11 +125,55 @@
     	<p class="post-date" style="font-size:15px; font-weight:bold;"><c:out value="${offer.startDate }, ${offer.endDate } "></c:out></p>
     </div>
     
-    <a href="${ pageContext.request.contextPath }/my/collaborations/add?offerId=${offer.id }&skillId=${skill.skill_id }"><button class="btn btn-primary">Establecer collaboración</button></a>
+    <c:choose>
+		<c:when test="${empty requests}"> <!-- No existen demandas  -->
+			<a class ="btn btn-primary" data-href="hola" data-toggle="modal" data-target="#no-request">Establecer colaboración</a>
+		</c:when>
+		<c:otherwise>
+			<c:choose>
+				<c:when test="${fn:length(requests) gt 1}"> <!-- Existen demandas compatibles -->
+					<a class ="btn btn-primary" data-href="hola" data-toggle="modal" data-target="#many-request">Establecer colaboración</a>
+				</c:when>
+				<c:otherwise> <!-- Existe una demanda compatible -->
+					<a class ="btn btn-primary" data-href="hola" data-toggle="modal" data-target="#one-request">Establecer colaboración</a>
+				</c:otherwise>
+			</c:choose>
+		</c:otherwise>
+	
+	</c:choose>
+    
     <a href="${ pageContext.request.contextPath }/chat/new?with=${offer.student_nick }"><button class="btn btn-primary">Chat</button></a>
 
-	<a class ="btn btn-primary" data-href="hola" data-toggle="modal" data-target="#confirm-delete">Establecer colaboración (POPUP)</a>
-
+	
+	
+	<script type="text/javascript">
+	window.location.hash = "";
+	var els = document.getElementById("demandas");
+	for(var i=0; i<els.length; ++i) {
+	    els[i].addEventListener('focus', focus, true);
+	    els[i].addEventListener('blur', blur, true);
+	}
+	function focus() {
+	    this.classList.add('focus');
+	}
+	function blur() {
+	    this.classList.remove('focus');
+	}
+	
+	function comprobarSeleccion(){
+		var requestId = window.location.hash.substr(1);
+		if (requestId == ""){
+			alert("Selecciona una demanda, por favor.");
+		} else {
+			document.getElementById("many-req-link").href = "${ pageContext.request.contextPath }/my/collaborations/add?confirm=true&skillId=${offer.skill_Id }&offerId=${offer.id }&requestId=" + requestId;
+			
+		}
+	}
+	
+	
+	
+	
+	</script>
 
 
 </jsp:body>

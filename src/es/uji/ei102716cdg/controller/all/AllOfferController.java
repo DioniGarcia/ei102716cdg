@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei102716cdg.dao.OfferDao;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
+import es.uji.ei102716cdg.domain.collaboration.Request;
 import es.uji.ei102716cdg.domain.user.Student;
 import es.uji.ei102716cdg.domain.user.User;
 import es.uji.ei102716cdg.service.PostServiceInterface;
@@ -60,13 +61,18 @@ public class AllOfferController {
 	}
 	
 	@RequestMapping("/{id}")
-	public String showOffer(Model model,  @PathVariable int id){
+	public String showOffer(Model model,  @PathVariable int id, HttpSession session){
+		User user = (User) session.getAttribute("user");
 		Offer offer = offerDao.getOffer(id);
 		Student student = postService.getStudentByNick(offer.getStudent_nick());
 		model.addAttribute("offer", offer);
 		model.addAttribute("skill", postService.getSkillById(offer.getSkill_Id()));
 		model.addAttribute("student", student);
 		model.addAttribute("rating", postService.getRating(student.getNick()));
+		
+		List<Request> requests = postService.getRequestsBySkillId(user.getNick(), offer.getSkill_Id());
+		model.addAttribute("skills", postService.getSkillsByPost(requests));
+		model.addAttribute("requests", requests);
 		return "all/offer/info";
 	}
 

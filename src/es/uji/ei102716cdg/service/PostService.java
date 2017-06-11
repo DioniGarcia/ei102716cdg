@@ -379,7 +379,9 @@ public class PostService implements PostServiceInterface {
 		
 		for (Collaboration collab : collabs){
 			Offer offer = getOffer(collab.getOffer_id());
-			if (offer.getStudent_nick().equals(nick)){
+			//Request request = getRequest(collab.getRequest_id());
+			//String status = collab.getStatus(offer.getEndDate(), request.getEndDate());
+			if (offer.getStudent_nick().equals(nick)  ){ //&& status=="finished"){
 				suma += collab.getRating();
 				n++;
 			}

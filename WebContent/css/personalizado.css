@@ -122,6 +122,12 @@ div.postbox.offerbox:hover {
 	cursor: pointer;
 }
 
+div.postbox.offerbox:focus, div.postbox.offerbox.focus {
+	background: linear-gradient(to top,#7db8d5, #dde8f1);	
+	border-color: #dde8f1;
+	outline: 0px;
+}
+
 .offerText{
 	color: #3e6579;
 }
@@ -137,6 +143,12 @@ div.postbox.requestbox:hover{
 	background: linear-gradient(to top,#95be72, #ebf9e0);	
 	border-color: #ebf9e0;
 	cursor: pointer;
+}
+
+div.postbox.requestbox:focus , div.postbox.requestbox.focus{
+	background: linear-gradient(to top,#95be72, #ebf9e0);	
+	border-color: #ebf9e0;
+	outline: 0px;
 }
 
 .requestText{

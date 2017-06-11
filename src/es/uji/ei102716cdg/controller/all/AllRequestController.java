@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei102716cdg.dao.RequestDao;
+import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.collaboration.Request;
 import es.uji.ei102716cdg.domain.user.Student;
 import es.uji.ei102716cdg.domain.user.User;
@@ -60,13 +61,18 @@ public class AllRequestController {
 	}
 	
 	@RequestMapping("/{id}")
-	public String showRequest(Model model,  @PathVariable int id){
+	public String showRequest(Model model,  @PathVariable int id, HttpSession session){
+		User user = (User) session.getAttribute("user");
 		Request request = requestDao.getRequest(id);
 		Student student = postService.getStudentByNick(request.getStudent_nick());
 		model.addAttribute("request", request);
 		model.addAttribute("skill", postService.getSkillById(request.getSkill_Id()));
 		model.addAttribute("student", student);
 		model.addAttribute("rating", postService.getRating(student.getNick()));
+		
+		List<Offer> offers = postService.getOffersBySkillId(user.getNick(), request.getSkill_Id());
+		model.addAttribute("skills", postService.getSkillsByPost(offers));
+		model.addAttribute("offers", offers);
 		return "all/request/info";
 	}
 
