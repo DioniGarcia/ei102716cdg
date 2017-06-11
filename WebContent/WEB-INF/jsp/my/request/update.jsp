@@ -7,6 +7,10 @@
 <jsp:body> 
     <h2>Editar Demanda</h2>
     <form:form method="post" modelAttribute="request">
+    
+    	<form:input type="hidden" path="student_nick"></form:input>
+        <form:input type="hidden" path="skill_Id"></form:input>
+    
         <table>
         
         	<tr>

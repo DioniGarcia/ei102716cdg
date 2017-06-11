@@ -7,8 +7,12 @@
 <jsp:body> 
     <h2>Editar Oferta</h2>
     <form:form method="post" modelAttribute="offer">
-        <table>
         
+        <form:input type="hidden" path="student_nick"></form:input>
+        <form:input type="hidden" path="skill_Id"></form:input>
+        
+        <table>
+        	
         	<tr>
                 <td><b>Skill:</b></td>
                 <td>
