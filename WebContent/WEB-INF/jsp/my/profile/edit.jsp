@@ -6,8 +6,9 @@
 <t:paginaperfil>
 <jsp:body> 
 	<h2>Perfil</h2><br>
+	<hr>
 	<form:form method="post" modelAttribute="student">
-	<div class="profile-container">
+	<div class="profile-container" style="margin-left:58px;">
 		<div class="profile-photo">
 			<img style="margin-bottom: 10px;" src="${ pageContext.request.contextPath }/resources/img/avatars/${student.avatar}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
 			<span>Puntuación media:</span>
@@ -16,7 +17,7 @@
 			</select>
 			<a style="margin-top: 15px;" href="edit.html"><button class="btn btn-primary">Guardar</button></a>
 		</div>
-		<div class="profile-details">
+		<div class="profile-details" style="margin-left:100px;">
 		
 		<table>
 		<tr>

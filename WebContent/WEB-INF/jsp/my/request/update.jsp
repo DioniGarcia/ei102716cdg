@@ -3,6 +3,26 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
+<style>
+.label_in{
+    padding: 0;
+    padding-right: 24px;
+}
+
+.btn_bot {
+	margin-top: 34px;
+}
+
+#description{
+	width: 338px;
+	height: 82px;
+}
+
+#offer{
+	padding-top: 15px;
+}
+</style>
+
 <t:paginaperfil>
 <jsp:body> 
     <h2>Editar Demanda</h2>
@@ -14,7 +34,7 @@
         <table>
         
         	<tr>
-                <td><b>Skill:</b></td>
+                <td class="label_in"><b>Skill:</b></td>
                 <td>
                		${ skill.name } - ${ skill.description }
 				</td>
@@ -26,7 +46,7 @@
             </tr>
             
             <tr>
-                <td><form:label path="description">Descripción</form:label></td>
+                <td class="label_in"><form:label path="description">Descripción:</form:label></td>
                 <td>
                 	<form:textarea class="form-control" type="text" path="description" /><br>
                 	<form:errors class="error" path="description"/>	
@@ -38,7 +58,7 @@
             </tr>
             
             <tr>
-                <td><form:label path="startDate">Fecha inicio</form:label></td>
+                <td class="label_in"><form:label path="startDate">Fecha inicio:</form:label></td>
                 <td>
                 	<form:input data-toggle="datepicker" class="form-control" path="startDate" placeholder="dd/mm/yyyy" />
 					<div data-toggle="datepicker"></div>
@@ -52,7 +72,7 @@
             </tr>
             
             <tr>
-                <td><form:label path="endDate">Fecha fin</form:label></td>
+                <td class="label_in"><form:label path="endDate">Fecha fin:</form:label></td>
                 <td>
                 	<form:input data-toggle="datepicker" class="form-control" path="endDate" placeholder="dd/mm/yyyy" />
 					<div data-toggle="datepicker"></div>
@@ -64,7 +84,7 @@
             <tr></tr>
             
             <tr>
-                <td colspan="2"><input type="submit" class="btn btn-primary" value="Editar" />
+                <td colspan="2"><input type="submit" class="btn btn_bot btn-primary" value="Editar" />
                 </td>
             </tr>
         </table>

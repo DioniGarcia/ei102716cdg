@@ -6,6 +6,8 @@
 <t:paginaperfil>
 <jsp:body>    
     <div class="center">
+    	<h2>Mis ofertas</h2>
+    	<hr>
     	<c:forEach varStatus="status" items="${offers}" var="offer"> 
     	<t:offerbox 
     			postLink="${ pageContext.request.contextPath }/my/offers/${offer.id }"

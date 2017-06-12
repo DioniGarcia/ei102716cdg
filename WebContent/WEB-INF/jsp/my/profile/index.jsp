@@ -6,6 +6,7 @@
 <t:paginaperfil>
 <jsp:body> 
 	<h2>Perfil</h2><br>
+	<hr>
 	<div class="profile-container">
 		<div class="profile-photo">
 			<img style="margin-bottom: 10px;" src="${ pageContext.request.contextPath }/resources/img/avatars/${student.avatar}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">

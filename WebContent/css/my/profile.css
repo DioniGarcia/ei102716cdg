@@ -30,6 +30,12 @@
 .points-help {
 	flex:6;
 	background-color:rgba(8,8,8,0.5);
+	color: white;
+	margin:      6px;
+	margin-top:  0px;
+	margin-left: 18px;
+	padding: 8px;
+	border-radius: 6px;
 }
 
 .points-hours {
@@ -38,7 +44,8 @@
 }
 
 .points-balance{
-	margin-top: 10px;
+	margin-top:   8px;
+	margin-left: 65px;
 	align-items: center;
 }
 

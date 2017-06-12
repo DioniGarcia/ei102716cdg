@@ -8,31 +8,28 @@
 
 	<div class="points-container">
 		<div class="points-main">
+		<h2>Balance de puntos</h2>
+    	<hr>
+    	<h4><b>Usuario: </b><c:out value="${student.name }"></c:out></h4>
+    	<br>
 			<div class="profile-container">
 				<div class="profile-photo">
 					<img style="margin-bottom: 10px;" src="${ pageContext.request.contextPath }/resources/img/avatars/${student.avatar}.jpg" class="img-circle-thumbnail" alt="" width="80" height="80">
-					<span>Puntuación media:</span>
-					<select class="star-readonly">
-					<option value="0">0</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3" selected="selected">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					</select>
 				</div>
 				<div class="profile-details">
-					
-					<h3><b>Nombre:&emsp;</b><c:out value="${student.name }"></c:out></h3></td>
-		
+					<span style="margin-right:12px">Puntuación media</span>
+					<select class="star-readonly">
+					<t:rating rating="${rating }"/>
+					</select>
 				</div>
 			</div>
 			
 			<div class="points-hours">
-			<div>Numero de horas recibidas : ${receivedHours}</div>
-			<div>Numero de horas prestadas : ${offeredHours}</div>
-			
+			<div>Horas recibidas : ${receivedHours}</div>
+			<div>Horas prestadas : ${offeredHours}</div>
 			</div>
+			
+			<hr>
 			
 			<div class="points-balance">
 				<c:choose>
@@ -53,7 +50,7 @@
 				
 				</c:choose>
 				
-				<svg width="50%" height="50%" viewBox="0 0 42 42" class="donut">
+				<svg width="70%" height="50%" viewBox="0 0 42 42" class="donut">
 				  <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
 				  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ffffff" stroke-width="3"></circle>
 				

@@ -24,6 +24,8 @@
 	</c:if>
 
 	<div class="center">
+	<h2>Mis colaboraciones</h2>
+    	<hr>
 	<form action="">
 	<div class="btn-group">
 		<button type="submit" name="filter" value="all" class="btn btn-default">Todas</button>

@@ -7,8 +7,9 @@
 <jsp:body>    
     
     <div class="center">
-    	<c:forEach varStatus="status" items="${requests}" var="request"> 
-    	<!--  offerbox substituir KaKa -->
+    	<h2>Mis demandas</h2>
+    	<hr>
+    	<c:forEach varStatus="status" items="${offers}" var="offer"> 
     	<t:requestbox
     			postLink="${ pageContext.request.contextPath }/my/requests/${request.id }"
     			postTitle="Demanda de ${skills[status.index].name } - ${skills[status.index].description}" 
@@ -17,7 +18,9 @@
     			avatarId="${myAvatarId}"
     			rating="${rating}">
     	</t:requestbox>
-    	</c:forEach>
+    	</c:forEach>    	
+    	
     </div>
+    
 </jsp:body>
 </t:paginaperfil>
