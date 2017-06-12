@@ -77,6 +77,11 @@
       <ul>
       	<li><a href="login.html" >Página Login</a></li>
       </ul></li>  
+      
+      <li>Prueba Error 404:
+      <ul>
+      	<li><a href="hola.html" >Error 404</a></li>
+      </ul></li>  
     
     </ul>
   </body>

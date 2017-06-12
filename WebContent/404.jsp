@@ -6,9 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>404</title>
 </head>
-<body>
+<body style="background-color: #DCECFB">
 
-<h1>Página en construcción</h1>
+ 	<h1  style="text-align: center; background-color: white; padding: 3px; margin-left: -16px; margin-right: -16px;">Error 404: La página no se encuentra disponible</h1>
+	<img style="margin-top:-21px; margin-left: 26%" alt="Error 404" src="resources/img/404.jpg" width="600px">
 
 </body>
 </html>
