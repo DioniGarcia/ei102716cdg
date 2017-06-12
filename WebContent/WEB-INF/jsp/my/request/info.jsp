@@ -35,5 +35,6 @@
     </div>
     
     <a href="${ pageContext.request.contextPath }/my/requests/update/${request.id }"><button class="btn btn-primary btn-w-h">Editar</button></a>
+
 </jsp:body>
 </t:paginaperfil>

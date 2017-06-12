@@ -125,7 +125,7 @@
 			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${student.avatar}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
 		</div>
 		<div class="split-item-v-texto">
-			<h3><c:out value="Nombre: ${student.name }"></c:out></h2>
+			<h3><c:out value="Nombre: ${student.name }"></c:out></h3>
 			<div>
 			<select class="star-readonly">
 			<t:rating rating="${rating}"></t:rating>
@@ -191,10 +191,6 @@
 			
 		}
 	}
-	
-	
-	
-	
 	</script>
 
 

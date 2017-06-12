@@ -14,6 +14,33 @@ footer > p{
     height: 35px;
 }
 
+.btn-delete {
+    background-image: -webkit-linear-gradient(top,#c43333 0,#8e0404 100%);
+    background-image: -o-linear-gradient(top,#c43333 0,#8e0404 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#c43333),to(#8e0404));
+    background-image: linear-gradient(to bottom,#c43333 0,#8e0404 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc43333', endColorstr='#ff8e0404', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    background-repeat: repeat-x;
+    border-color: #8e0404;
+    
+    width: 180px;
+    height: 35px;
+    
+    margin-left: 12px;
+}
+.btn-delete:hover,
+.btn-delete:focus,
+.btn-delete.focus,
+.btn-delete:active,
+.btn-delete.active,
+.open > .dropdown-toggle.btn-delete {
+  color: #fff;
+  background-color: #8e0404;
+  border-color: #c43333;
+  background-image: none;
+}
+
 .btn-chat {
     background-image: -webkit-linear-gradient(top,#55CC55 0,#56a356 100%);
     background-image: -o-linear-gradient(top,#55CC55 0,#56a356 100%);
