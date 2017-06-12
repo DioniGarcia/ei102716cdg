@@ -77,14 +77,6 @@ public class OfferController {
 		return "redirect:../list.html";
 	}
 	
-	@RequestMapping(value="/eliminate/{id}", method=RequestMethod.GET)
-	public String processEliminate(@PathVariable int id){
-		Offer offer = offerDao.getOffer(id);
-		offer.setActive(false);
-		offerDao.updateOffer(offer);
-		return "redirect:../list.html";
-	}
-	
 	@RequestMapping(value="/delete/{id}")
 	public String processDelete(@PathVariable int id){
 		offerDao.deleteOffer(id);
