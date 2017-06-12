@@ -127,10 +127,11 @@ public class MyOfferController {
 		
 		final Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DATE, -1);
-		offer.setEndDate((Date) cal.getTime());
+		Date yesterday = new Date(cal.getTime().getTime());
+		offer.setEndDate(yesterday);
 		
 		offerDao.updateOffer(offer);
-		return "redirect../list.html";
+		return "redirect:../list.html";
 	}
 	
 	@RequestMapping(value="/delete/{id}")
