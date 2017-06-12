@@ -116,7 +116,7 @@
 		<h3>Demanda de <c:out value="${skill.name } - ${skill.description }"></c:out></h3>
 	</div>
 	
-	<div class="post-info">
+	<div class="post-info post-inf-request">
 		<h4>Descripción:</h4>
 		<div class="description">
 			<c:out value="${request.description}"></c:out>

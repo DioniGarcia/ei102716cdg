@@ -44,6 +44,17 @@ footer > p{
 	
 	margin-bottom: 32px;
 }
+
+.post-info-offer{
+	background: linear-gradient(to top, #dde8f1, white);	
+	border: 1px solid #cfcfcf;
+}
+
+.post-inf-request {
+	background: linear-gradient(to top, #e4f8d6, white);	
+	border: 1px solid #cfcfcf;
+ }
+
 .post-info .description {
 	margin-right: 22px;
 	height: 100px;
@@ -179,8 +190,8 @@ div.postbox.offerbox:focus, div.postbox.offerbox.focus {
 
 
 div.postbox.requestbox{
-	background: linear-gradient(to top,#ebf9e0, white);	
-	border-color: #ebf9e0;
+	background: linear-gradient(to top,#e4f8d6, white);	
+	border-color: #e4f8d6;
 	cursor: pointer;
 }
 
