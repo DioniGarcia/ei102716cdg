@@ -38,6 +38,32 @@
 	    }
 	}
 	
+	.searcher {
+		float: left;
+		margin-left: 20px;
+		padding-bottom: 15px;
+	}
+	
+	.form-control {
+		height: 28px !important;
+		width: 340px  !important;
+		margin-right: 0px;
+	}
+	
+	.input-group-btn {
+	    float: left;
+	}
+	
+	.search-result {
+		padding: 12px;
+		padding-left: 20px;
+		color: #A2A0A5;
+	}
+	
+	.center {
+		padding-left: 16px;
+	}
+	
 </style>
 
 <t:paginabasica>
@@ -48,17 +74,22 @@
 	</div>
 	
 	<div class="list-background center">
-	    <div style="float:left;margin-left:20px;">
+	   
+		<div class="searcher">
 	    	<form action="list.html">
-	    		<input name="q" type="text" placeholder=""></input>
-	    		<button type="submit">Buscar</button>
+	    		<div class="input-group">
+	    			<input class="form-control" name="q" type="text" placeholder="Buscar: por nombre o descripción"></input>
+		    		<span class="input-group-btn">
+			            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+			        </span>
+	    		</div>
 	    	</form>
 	    </div>
 	    
 	    <div class="pageCount">
 			
 			<c:set var="page" value="${(empty param.page) ? 1 : param.page}" />
-			<label style="margin-bottom:15px; float: left;">
+			<label style="margin-bottom:20px; float: left; padding-top: 6px;">
 		     Mostrar
 		     <select id="selectPageCount">
 		   		 <option id="size-5" value="${ pageContext.request.contextPath }/all/requests/list.html">5</option>
@@ -77,7 +108,6 @@
     
 	    <div class="center">
 	    	<c:forEach varStatus="status" items="${requests}" var="request"> 
-	    	<!--  offerbox substituir KaKa -->
 	    	<t:requestbox
 	    			postLink="${ pageContext.request.contextPath }/all/requests/${request.id }"
 	    			postTitle="Demanda de ${skills[status.index].name } - ${skills[status.index].description}" 
