@@ -55,7 +55,7 @@ public class AllOfferController {
 		if (q == null){
 			recentOffers = postService.getPaginatedOffers(pageSize, page, user.getNick());
 		} else { 
-			recentOffers = postService.searchOffers(q);
+			recentOffers = postService.searchOffers(q, user.getNick(), page, pageSize);
 			model.addAttribute("q", q);
 		}
 		

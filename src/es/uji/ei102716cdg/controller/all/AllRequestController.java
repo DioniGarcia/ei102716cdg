@@ -55,7 +55,7 @@ public class AllRequestController {
 		if (q == null){
 			recentRequests = postService.getPaginatedRequests(pageSize, page, user.getNick());
 		} else { 
-			recentRequests = postService.searchRequests(q);
+			recentRequests = postService.searchRequests(q, user.getNick(), page, pageSize);
 			model.addAttribute("query", q);
 		}
 		

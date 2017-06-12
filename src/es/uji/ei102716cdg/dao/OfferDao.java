@@ -149,13 +149,18 @@ public class OfferDao {
 		return (Integer)holder.getKeys().get("offer_id");
 	}
 	
-	public List<Offer> searchOffers(String query){
+	public List<Offer> searchOffers(String query, String nick, int page, int pageSize){
 		query += ":*";
-		return this.jdbcTemplate.query("select off.* from offer AS off JOIN skill as sk ON (off.skill_Id = sk.skill_Id) "
-		+ "where (to_tsvector(off.description) @@ (to_tsquery(?))) "
+		return this.jdbcTemplate.query("select off.* from offer AS off "
+				+ "JOIN skill as sk ON (off.skill_Id = sk.skill_Id) "
+		+ "where ( "
+		+ "(to_tsvector(off.description) @@ (to_tsquery(?))) "
 		+ "OR (to_tsvector(sk.name) @@ (to_tsquery(?))) "
-		+ "OR ((to_tsvector(sk.description)) @@ (to_tsquery(?)))",
-		new Object[] {query, query, query}, new OfferMapper() );
+		+ "OR ((to_tsvector(sk.description)) @@ (to_tsquery(?))) "
+		+ ") AND ("
+		+ "off.active = true AND off.endDate >= CURRENT_DATE AND off.student_nick <> ?"
+		+ ") LIMIT ? OFFSET ?",
+		new Object[] {query, query, query, nick, pageSize, page-1}, new OfferMapper() );
 	}
 
 }

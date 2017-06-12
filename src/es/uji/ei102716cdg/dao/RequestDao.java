@@ -144,13 +144,18 @@ public class RequestDao {
 		return (Integer)holder.getKeys().get("request_id");
 	}
 	
-	public List<Request> searchRequests(String query){
+	public List<Request> searchRequests(String query,String nick, int page, int pageSize){
 		query += ":*";
-		return this.jdbcTemplate.query("select req.* from request AS req JOIN skill as sk ON (req.skill_Id = sk.skill_Id) "
-		+ "where (to_tsvector(req.description) @@ (to_tsquery(?))) "
+		return this.jdbcTemplate.query("select req.* from request AS req "
+				+ "JOIN skill as sk ON (req.skill_Id = sk.skill_Id) "
+		+ "where ( "
+		+ "(to_tsvector(req.description) @@ (to_tsquery(?))) "
 		+ "OR (to_tsvector(sk.name) @@ (to_tsquery(?))) "
-		+ "OR ((to_tsvector(sk.description)) @@ (to_tsquery(?)))",
-		new Object[] {query, query, query}, new RequestMapper() );
+		+ "OR ((to_tsvector(sk.description)) @@ (to_tsquery(?))) "
+		+ ") AND ("
+		+ "req.active = true AND req.endDate >= CURRENT_DATE AND req.student_nick <> ?"
+		+ ") LIMIT ? OFFSET ?",
+		new Object[] {query, query, query, nick, pageSize, page-1}, new RequestMapper() );
 	}
 
 }
