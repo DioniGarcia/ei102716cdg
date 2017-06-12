@@ -3,6 +3,27 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
+<!-- Modal eliminar -->
+<div id="eliminate" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <strong>Eliminar demanda</strong>
+            </div>
+            <div class="modal-body">
+            	<p>
+					Una vez eliminada la demanda no volverá a estar disponible.
+					¿Seguro que quieres eliminarla?    
+				</p>         
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-w-h" data-dismiss="modal">Cancelar</button>
+                <a href="${ pageContext.request.contextPath }/my/requests/eliminate/${request.id }" class="btn btn-primary btn-ok btn-w-h btn-delete">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <t:paginaperfil>
 <jsp:body>
 	<h2>Demanda <c:out value="${skill.name }"></c:out></h2>
@@ -35,6 +56,7 @@
     </div>
     
     <a href="${ pageContext.request.contextPath }/my/requests/update/${request.id }"><button class="btn btn-primary btn-w-h">Editar</button></a>
+    <a class ="btn btn-primary btn-w-h btn-delete" data-href="hola" data-toggle="modal" data-target="#eliminate">Eliminar</a>
 
 </jsp:body>
 </t:paginaperfil>

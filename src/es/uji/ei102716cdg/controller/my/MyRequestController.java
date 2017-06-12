@@ -2,6 +2,7 @@ package es.uji.ei102716cdg.controller.my;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -119,7 +120,20 @@ public class MyRequestController {
 		requestDao.updateRequest(request);
 		return "redirect:../list.html";
 	}
-	
+
+	@RequestMapping(value="/eliminate/{id}")
+	public String processEliminate(@PathVariable int id){
+		Request request = requestDao.getRequest(id);
+		request.setActive(false);
+		
+		final Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, -1);
+		Date yesterday = new Date(cal.getTime().getTime());
+		request.setEndDate(yesterday);
+		
+		requestDao.updateRequest(request);
+		return "redirect:../list.html";
+	}
 	
 	@RequestMapping(value="/delete/{id}")
 	public String processDelete(@PathVariable int id){
