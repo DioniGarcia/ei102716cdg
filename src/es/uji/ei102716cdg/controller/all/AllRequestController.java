@@ -49,7 +49,6 @@ public class AllRequestController {
 		user = (User) session.getAttribute("user");
 		session.setAttribute("user", user);
 		
-		int pageCount = postService.getOffersPageCount(pageSize, user.getNick());
 		
 		List<Request> recentRequests = null;
 		if (q == null){
@@ -58,6 +57,8 @@ public class AllRequestController {
 			recentRequests = postService.searchRequests(q, user.getNick(), page, pageSize);
 			model.addAttribute("query", q);
 		}
+		
+		int pageCount = postService.getRequestsPageCount(recentRequests, pageSize, user.getNick());
 		
 		List<Student> students = postService.getStudentsByPost(recentRequests);
 		model.addAttribute("requests", recentRequests);

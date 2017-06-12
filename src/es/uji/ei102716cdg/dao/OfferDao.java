@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import es.uji.ei102716cdg.domain.collaboration.Offer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -149,7 +150,8 @@ public class OfferDao {
 		return (Integer)holder.getKeys().get("offer_id");
 	}
 	
-	public List<Offer> searchOffers(String query, String nick, int page, int pageSize){
+	public List<Offer> searchOffers(String query, String nick){
+		if (query.trim().equals("")) return new ArrayList<Offer>();
 		query += ":*";
 		return this.jdbcTemplate.query("select off.* from offer AS off "
 				+ "JOIN skill as sk ON (off.skill_Id = sk.skill_Id) "
@@ -159,8 +161,8 @@ public class OfferDao {
 		+ "OR ((to_tsvector(sk.description)) @@ (to_tsquery(?))) "
 		+ ") AND ("
 		+ "off.active = true AND off.endDate >= CURRENT_DATE AND off.student_nick <> ?"
-		+ ") LIMIT ? OFFSET ?",
-		new Object[] {query, query, query, nick, pageSize, page-1}, new OfferMapper() );
+		+ ")",
+		new Object[] {query, query, query, nick}, new OfferMapper() );
 	}
 
 }

@@ -171,8 +171,8 @@ public interface PostServiceInterface {
 	 */
 	public List<String> getCollabEndDates(List<Collaboration> collabs);
 	
-	public int getOffersPageCount(int pageElements, String nick);
-	public int getRequestsPageCount(int pageElements, String nick);
+	public int getOffersPageCount(List<Offer> offers, int pageElements, String nick);
+	public int getRequestsPageCount(List<Request> requests, int pageElements, String nick);
 	
 	
 	/**Extrae de la Db las n ofertas con inicio más reciente, que sean activas y no pertenezcan al usuario

@@ -49,7 +49,6 @@ public class AllOfferController {
 		user = (User) session.getAttribute("user");
 		session.setAttribute("user", user);
 		
-		int pageCount = postService.getOffersPageCount(pageSize, user.getNick());
 		
 		List<Offer> recentOffers = null;
 		if (q == null){
@@ -58,6 +57,8 @@ public class AllOfferController {
 			recentOffers = postService.searchOffers(q, user.getNick(), page, pageSize);
 			model.addAttribute("q", q);
 		}
+		
+		int pageCount = postService.getOffersPageCount(recentOffers, pageSize, user.getNick());
 		
 		List<Student> students = postService.getStudentsByPost(recentOffers);
 		model.addAttribute("offers", recentOffers);

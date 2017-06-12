@@ -10,8 +10,10 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.collaboration.Request;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -144,7 +146,8 @@ public class RequestDao {
 		return (Integer)holder.getKeys().get("request_id");
 	}
 	
-	public List<Request> searchRequests(String query,String nick, int page, int pageSize){
+	public List<Request> searchRequests(String query,String nick){
+		if (query.trim().equals("")) return new ArrayList<Request>();
 		query += ":*";
 		return this.jdbcTemplate.query("select req.* from request AS req "
 				+ "JOIN skill as sk ON (req.skill_Id = sk.skill_Id) "
@@ -154,8 +157,8 @@ public class RequestDao {
 		+ "OR ((to_tsvector(sk.description)) @@ (to_tsquery(?))) "
 		+ ") AND ("
 		+ "req.active = true AND req.endDate >= CURRENT_DATE AND req.student_nick <> ?"
-		+ ") LIMIT ? OFFSET ?",
-		new Object[] {query, query, query, nick, pageSize, page-1}, new RequestMapper() );
+		+ ") ",
+		new Object[] {query, query, query, nick}, new RequestMapper() );
 	}
 
 }
