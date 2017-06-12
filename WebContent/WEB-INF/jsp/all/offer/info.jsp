@@ -5,7 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <style>
-
 .no-hover div.postbox.requestbox {
 	background: linear-gradient(to top,#e4f8d6, white) !important;	
 	border-color: #e4f8d6 !important;
@@ -17,7 +16,6 @@
 	border-color: #e4f8d6 !important;
 	cursor: default !important;
 }
-
 </style>
 
 <t:paginabasica>

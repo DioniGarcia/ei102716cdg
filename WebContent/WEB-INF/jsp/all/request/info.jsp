@@ -5,19 +5,17 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <style>
-
-.no-hover div.postbox.requestbox {
-	background: linear-gradient(to top, #dde8f1, white) !important;	
+.no-hover div.postbox.offerbox {
+	background: linear-gradient(to top,#dde8f1, white) !important;	
 	border-color: #dde8f1 !important;
 	cursor: default !important;
 }
 
-.no-hover div.postbox.requestbox:hover {
-	background: linear-gradient(to top, #dde8f1, white) !important ;	
+.no-hover div.postbox.offerbox:hover {
+	background: linear-gradient(to top,#dde8f1, white) !important ;	
 	border-color: #dde8f1 !important;
 	cursor: default !important;
 }
-
 </style>
 
 <t:paginabasica>
@@ -31,11 +29,13 @@
 	                <strong>Sin ofertas compatibles</strong>
 	            </div>
 	            <div class="modal-body">
+	            <p>
 					Aún no has creado ninguna oferta compatible.
 					Para establecer una colaboración debes disponer de
 					una oferta compatible.
 					Esta oferta no será visible por el resto de usuarios.
 					¿Quieres que creemos una por ti?               
+	            </p>
 	            </div>
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -53,11 +53,13 @@
 	                <strong>Tienes una oferta compatible con esta demanda</strong>
 	            </div>
 	            <div class="modal-body">
+	            <p>
 					Tienes una oferta. Una vez establecida la colaboración está dejará
 					de estar disponible para el resto de usuarios.
 					Si quieres conservar la oferta, generaremos una nueva para establecer
 					la colaboración.   
-					<div> <!-- anyadele una class tamb para quitarle el efecto hover -->
+				</p>
+					<div class="no-hover"> <!-- anyadele una class tamb para quitarle el efecto hover -->
 						<t:offerbox
 		    				postLink="#"
 		    				postTitle="Demanda de ${skills[0].name } - ${skills[0].description}" 
@@ -85,11 +87,13 @@
 	                <strong>Tienes una demanda compatible con esta oferta</strong>
 	            </div>
 	            <div class="modal-body">
+	            <p>
 					Tienes varias ofertas, <b>selecciona</b> una de ellas.<br/>
 					Una vez establecida la colaboración está dejará de estar disponible 
 					para el resto de usuarios.
 					Si quieres conservar tus ofertas, generaremos una nueva para establecer
 					la colaboración.   
+				</p>
 					<div id="ofertas">
 					<c:forEach varStatus="status" items="${offers}" var="offer">
 						<div tabindex="-1"> 
