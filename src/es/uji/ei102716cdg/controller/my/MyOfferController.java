@@ -82,7 +82,7 @@ public class MyOfferController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String listOffers(Model model, HttpSession session){
 		User user = (User) session.getAttribute("user");
-		List<Offer> offersByNick = offerDao.getOffersByNick(user.getNick());
+		List<Offer> offersByNick = postService.getMyOffers(user.getNick());
 		model.addAttribute("offers", offersByNick);
 		model.addAttribute("skills", postService.getSkillsByPost(offersByNick));
 		model.addAttribute("rating", postService.getRating(user.getNick()));

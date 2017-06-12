@@ -205,5 +205,9 @@ public interface PostServiceInterface {
 	
 	public List<Offer> searchOffers(String query, String nick);
 	public List<Request> searchRequests(String query, String nick);
+
+	List<Offer> getMyOffers(String nick);
+
+	List<Request> getMyRequests(String nick);
 	
 }

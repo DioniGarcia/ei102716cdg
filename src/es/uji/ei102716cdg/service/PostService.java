@@ -168,6 +168,27 @@ public class PostService implements PostServiceInterface {
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	public List<Offer> getMyOffers(String nick) {
+		List<Offer> offerList = new ArrayList<>();
+		
+		Date today = new java.sql.Date(new java.util.Date().getTime());
+		
+		for(Offer offer : offerDao.getOffersByNick(nick)){
+			if(offer.isActive()){
+				if(offer.getEndDate().after(today)){	
+					offerList.add(offer);
+				}
+				else {
+					offer.setActive(false);
+					offerDao.updateOffer(offer);
+				}
+			}
+		}
+		return (List<Offer>) sortPostByStartDate(offerList);
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
 	public List<Request> getActiveRecentRequests(int number, String nick) {
 		List<Request> requestList = new ArrayList<>();
 		
@@ -188,6 +209,27 @@ public class PostService implements PostServiceInterface {
 			
 			if(number > 0 && requestList.size() == number){
 				break;
+			}
+		}
+		return (List<Request>) sortPostByStartDate(requestList);
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Request> getMyRequests(String nick) {
+		List<Request> requestList = new ArrayList<>();
+		
+		Date today = new java.sql.Date(new java.util.Date().getTime());
+		
+		for(Request request : requestDao.getRequestsByNick(nick)){
+			if(request.isActive()){
+				if(request.getEndDate().after(today)){						
+					requestList.add(request);
+				}
+				else {
+					request.setActive(false);
+					requestDao.updateRequest(request);
+				}
 			}
 		}
 		return (List<Request>) sortPostByStartDate(requestList);

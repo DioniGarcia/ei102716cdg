@@ -83,7 +83,7 @@ public class MyRequestController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String listRequests(Model model, HttpSession session){
 		User user = (User) session.getAttribute("user");
-		List<Request> requestsByNick = requestDao.getRequestsByNick(user.getNick());
+		List<Request> requestsByNick = postService.getMyRequests(user.getNick());
 		model.addAttribute("requests", requestsByNick);
 		model.addAttribute("skills", postService.getSkillsByPost(requestsByNick));
 		model.addAttribute("rating", postService.getRating(user.getNick()));
