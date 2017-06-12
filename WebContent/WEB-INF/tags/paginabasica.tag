@@ -82,7 +82,11 @@
     <script type="text/javascript">
     
     $(document).ready(function(){
-    	
+    	 	  var url = new URL(location.href);
+    		  var pageSize = url.searchParams.get("pageSize");
+    		  if (pageSize !== null )
+    			  document.getElementById('size-' + pageSize).selected = 'selected';
+    		
     	      $('.star-readonly').barrating({
     	    	  theme: 'bootstrap-stars',
     	    	  readonly: true,

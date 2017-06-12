@@ -416,4 +416,14 @@ public class PostService implements PostServiceInterface {
 		}
 		return students;
 	}
+
+	@Override
+	public List<Offer> searchOffers(String query) {
+		return offerDao.searchOffers(query);
+	}
+
+	@Override
+	public List<Request> searchRequests(String query) {
+		return requestDao.searchRequests(query);
+	}
 }

@@ -48,6 +48,12 @@
 	</div>
 	
 	<div class="list-background center">
+	    <div style="float:left;margin-left:20px;">
+	    	<form action="list.html">
+	    		<input name="q" type="text" placeholder=""></input>
+	    		<button type="submit">Buscar</button>
+	    	</form>
+	    </div>
 	    
 	    <div class="pageCount">
 			
@@ -55,16 +61,19 @@
 			<label style="margin-bottom:15px; float: left;">
 		     Mostrar
 		     <select id="selectPageCount">
-		   		 <option value="#">5</option>
-		    	 <option value="${ pageContext.request.contextPath }/all/offers/list.html?page=${page }&pageCount=10">10</option>
-		    	 <option value="${ pageContext.request.contextPath }/all/offers/list.html?page=${page }&pageCount=25">25</option>
-		    	 <option value="${ pageContext.request.contextPath }/all/offers/list.html?page=${page }&pageCount=50">50</option>
-		    	 <option value="${ pageContext.request.contextPath }/all/offers/list.html?page=${page }&pageCount=100">100</option>
+		   		 <option id="size-5" value="${ pageContext.request.contextPath }/all/offers/list.html">5</option>
+		    	 <option id="size-10" value="${ pageContext.request.contextPath }/all/offers/list.html?pageSize=10">10</option>
+		    	 <option id="size-25" value="${ pageContext.request.contextPath }/all/offers/list.html?pageSize=25">25</option>
+		    	 <option id="size-50" value="${ pageContext.request.contextPath }/all/offers/list.html?pageSize=50">50</option>
+		    	 <option id="size-100" value="${ pageContext.request.contextPath }/all/offers/list.html?pageSize=100">100</option>
 			 </select>
 			 ofertas
 			 </label>
 		</div>
 		
+		<c:if test="${ not empty param.q }">
+			<div>&nbsp; Resultados para: ${param.q} </div> <!-- Texto a mostrar cuando se busca -->
+		</c:if> 
 	    
 	    <div class="center">
 	    	<c:forEach varStatus="status" items="${offers}" var="offer"> 
