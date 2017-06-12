@@ -4,7 +4,21 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<style>
 
+.no-hover div.postbox.requestbox {
+	background: linear-gradient(to top,#e4f8d6, white) !important;	
+	border-color: #e4f8d6 !important;
+	cursor: default !important;
+}
+
+.no-hover div.postbox.requestbox:hover {
+	background: linear-gradient(to top,#e4f8d6, white) !important;	
+	border-color: #e4f8d6 !important;
+	cursor: default !important;
+}
+
+</style>
 
 <t:paginabasica>
 <jsp:body>
@@ -17,11 +31,13 @@
                 <strong>Sin demandas compatibles</strong>
             </div>
             <div class="modal-body">
-				Aún no has creado ninguna demanda compatible.
-				Para establecer una colaboración debes disponer de
-				una demanda compatible.
-				Esta demanda no será visible por el resto de usuarios.
-				¿Quieres que creemos una por ti?               
+            	<p>
+					Aún no has creado ninguna demanda compatible.
+					Para establecer una colaboración debes disponer de
+					una demanda compatible.
+					Esta demanda no será visible por el resto de usuarios.
+					¿Quieres que creemos una por ti?      
+				</p>         
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -39,11 +55,13 @@
                 <strong>Tienes una demanda compatible con esta oferta</strong>
             </div>
             <div class="modal-body">
-				Tienes una demanda. Una vez establecida la colaboración está dejará
-				de estar disponible para el resto de usuarios.
-				Si quieres conservar la demanda, generaremos una nueva para establecer
-				la colaboración.   
-				<div> <!-- anyadele una class tamb para quitarle el efecto hover -->
+				<p>
+					Tienes una demanda. Una vez establecida la colaboración está dejará
+					de estar disponible para el resto de usuarios.
+					Si quieres conservar la demanda, generaremos una nueva para establecer
+					la colaboración.   
+				</p>
+				<div class="no-hover"> <!-- anyadele una class tamb para quitarle el efecto hover -->
 					<t:requestbox
 	    				postLink="#"
 	    				postTitle="Demanda de ${skills[0].name } - ${skills[0].description}" 
@@ -71,11 +89,13 @@
                 <strong>Tienes una demanda compatible con esta oferta</strong>
             </div>
             <div class="modal-body">
-				Tienes varias demandas, <b>selecciona</b> una de ellas.<br/>
-				Una vez establecida la colaboración está dejará de estar disponible 
-				para el resto de usuarios.
-				Si quieres conservar tus demandas, generaremos una nueva para establecer
-				la colaboración.   
+            	<p>
+					Tienes varias demandas, <b>selecciona</b> una de ellas.<br/>
+					Una vez establecida la colaboración está dejará de estar disponible 
+					para el resto de usuarios.
+					Si quieres conservar tus demandas, generaremos una nueva para establecer
+					la colaboración.  
+				</p> 
 				<div id="demandas">
 				<c:forEach varStatus="status" items="${requests}" var="request">
 					<div tabindex="-1"> 

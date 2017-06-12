@@ -4,6 +4,22 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<style>
+
+.no-hover div.postbox.requestbox {
+	background: linear-gradient(to top, #dde8f1, white) !important;	
+	border-color: #dde8f1 !important;
+	cursor: default !important;
+}
+
+.no-hover div.postbox.requestbox:hover {
+	background: linear-gradient(to top, #dde8f1, white) !important ;	
+	border-color: #dde8f1 !important;
+	cursor: default !important;
+}
+
+</style>
+
 <t:paginabasica>
 <jsp:body>
 

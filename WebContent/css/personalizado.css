@@ -4,6 +4,11 @@ footer > p{
 	text-align: center;
 }
 
+.modal-content {
+	width: 660px;
+	padding: 16px;
+}
+
 .btn-w-h {
 	width: 180px;
     height: 35px;

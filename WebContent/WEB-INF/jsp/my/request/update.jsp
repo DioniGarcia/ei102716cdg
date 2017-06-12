@@ -85,7 +85,7 @@
             <tr></tr>
             
             <tr>
-                <td colspan="2"><input type="submit" class="btn btn_bot btn-primary btn-w-h" value="Editar" />
+                <td colspan="2"><input type="submit" class="btn btn_bot btn-primary btn-w-h" value="Guardar" />
                 </td>
             </tr>
         </table>
