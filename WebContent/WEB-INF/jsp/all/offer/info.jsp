@@ -4,6 +4,8 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+
+
 <t:paginabasica>
 <jsp:body>
 
@@ -98,8 +100,8 @@
     </div>
 </div>
 
-<!-- Vista principal -->
 
+<!-- Vista principal -->
 	<div class="split-container">
 		<div class="split-item-v-foto split-container">
 			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${student.avatar}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
@@ -115,16 +117,19 @@
 	</div>
 	<hr/>
 	<div>
-		<h4>Oferta de <c:out value="${skill.name } - ${skill.description }"></c:out></h4>
+		<h3>Oferta de <c:out value="${skill.name } - ${skill.description }"></c:out></h3>
 	</div>
-	<h4>Descripción:</h4>
-	<div>
-		<c:out value="${offer.description}"></c:out>
+	<div class="post-info">
+		<h4>Descripción:</h4>
+		<div class="description">
+			<c:out value="${offer.description}"></c:out>
+		</div>
+	    <div>
+	    	<p class="post-date" style="font-size:15px; font-weight:bold;"><c:out value="${offer.startDate }, ${offer.endDate } "></c:out></p>
+	    </div>
+
 	</div>
-    <div>
-    	<p class="post-date" style="font-size:15px; font-weight:bold;"><c:out value="${offer.startDate }, ${offer.endDate } "></c:out></p>
-    </div>
-    
+	
     <c:choose>
 		<c:when test="${empty requests}"> <!-- No existen demandas  -->
 			<a class ="btn btn-primary" data-href="hola" data-toggle="modal" data-target="#no-request">Establecer colaboración</a>
@@ -141,11 +146,10 @@
 		</c:otherwise>
 	
 	</c:choose>
-    
-    <a href="${ pageContext.request.contextPath }/chat/new?with=${offer.student_nick }"><button class="btn btn-primary">Chat</button></a>
+	   
+	<a href="${ pageContext.request.contextPath }/chat/new?with=${offer.student_nick }"><button class="btn btn-primary btn-chat">Chat</button></a>
 
-	
-	
+
 	<script type="text/javascript">
 	window.location.hash = "";
 	var els = document.getElementById("demandas");

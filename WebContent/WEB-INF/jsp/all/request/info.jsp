@@ -103,7 +103,7 @@
 			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${student.avatar}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
 		</div>
 		<div class="split-item-v-texto">
-			<h2><c:out value="Nombre: ${student.name }"></c:out></h2>
+			<h3><c:out value="Nombre: ${student.name }"></c:out></h3>
 			<div>
 			<select class="star-readonly">
 			<t:rating rating="${rating}"></t:rating>
@@ -113,16 +113,19 @@
 	</div>
 	<hr/>
 	<div>
-		<h4>Demanda de <c:out value="${skill.name } - ${skill.description }"></c:out></h4>
+		<h3>Demanda de <c:out value="${skill.name } - ${skill.description }"></c:out></h3>
 	</div>
-	<h4>Descripción:</h4>
-	<div>
-		<c:out value="${request.description}"></c:out>
+	
+	<div class="post-info">
+		<h4>Descripción:</h4>
+		<div class="description">
+			<c:out value="${request.description}"></c:out>
+		</div>
+	    <div>
+	    	<p class="post-date" style="font-size:15px; font-weight:bold;"><c:out value="${request.startDate }, ${request.endDate } "></c:out></p>
+	    </div>
 	</div>
-    <div>
-    	<p class="post-date" style="font-size:15px; font-weight:bold;"><c:out value="${request.startDate }, ${request.endDate } "></c:out></p>
-    </div>
-    
+	    
     <c:choose>
 		<c:when test="${empty offers}"> <!-- No existen ofertas-->
 			<a class ="btn btn-primary" data-href="hola" data-toggle="modal" data-target="#no-offer">Establecer colaboración</a>
@@ -140,7 +143,7 @@
 	
 	</c:choose>
 	
-    <a href="${ pageContext.request.contextPath }/chat/new?with=${request.student_nick }"><button class="btn btn-primary">Chat</button></a>
+    <a href="${ pageContext.request.contextPath }/chat/new?with=${request.student_nick }"><button class="btn btn-primary btn-chat">Chat</button></a>
     
     <script type="text/javascript">
 	window.location.hash = "";

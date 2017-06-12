@@ -4,6 +4,51 @@ footer > p{
 	text-align: center;
 }
 
+.btn-w-h {
+	width: 180px;
+    height: 35px;
+}
+
+.btn-chat {
+    background-image: -webkit-linear-gradient(top,#55CC55 0,#56a356 100%);
+    background-image: -o-linear-gradient(top,#55CC55 0,#56a356 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#55CC55),to(#56a356));
+    background-image: linear-gradient(to bottom,#55CC55 0,#56a356 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff55CC55', endColorstr='#ff56a356', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    background-repeat: repeat-x;
+    border-color: #539d53;
+    
+    width: 180px;
+    height: 35px;
+    
+    margin-left: 12px;
+}
+.btn-chat:hover,
+.btn-chat:focus,
+.btn-chat.focus,
+.btn-chat:active,
+.btn-chat.active,
+.open > .dropdown-toggle.btn-chat{
+  color: #fff;
+  background-color: #56a356;
+  border-color: #55CC55;
+  background-image: none;
+}
+
+.post-info {
+	border: 1px solid gray;
+	border-radius: 12px;
+	padding: 6px;
+	padding-left: 22px;
+	
+	margin-bottom: 32px;
+}
+.post-info .description {
+	margin-right: 22px;
+	height: 100px;
+}
+
 .center {
 	display:block;
 	margin-left: auto;

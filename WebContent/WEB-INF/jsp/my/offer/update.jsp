@@ -25,8 +25,8 @@
 
 <t:paginaperfil>
 <jsp:body> 
-    <h2>Editar Oferta</h2>
-    <hr>
+    <h2>Edición: Oferta <c:out value="${skill.name }"></c:out></h2>
+   	<hr>
     <form:form method="post" modelAttribute="offer">
         
         <form:input type="hidden" path="student_nick"></form:input>
@@ -85,7 +85,7 @@
             <tr></tr>
             
             <tr>
-                <td colspan="2"><input type="submit" class="btn btn_bot btn-primary" value="Editar" />
+                <td colspan="2"><input type="submit" class="btn btn_bot btn-primary btn-w-h" value="Editar" />
                 </td>
             </tr>
         </table>
