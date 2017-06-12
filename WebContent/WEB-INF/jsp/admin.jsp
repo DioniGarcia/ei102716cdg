@@ -86,24 +86,24 @@ button#add-skill:HOVER{
 	</thead>
 	<tbody>
 		<tr>
-			<td rowspan="3"><input name="name" type="text"/></td>
+			<td rowspan="3"><input name="name" type="text" maxlength="17"/></td>
 			<td class="center"><input name="active-1" type="checkbox"/></td>
 			<td>Iniciado</td>
-			<td><input name="description-1" type="text" disabled/></td>
+			<td><input name="description-1" type="text" maxlength="20" disabled/></td>
 		</tr>
 		<tr>
 			<td class="center"><input name="active-2" type="checkbox"/></td>
 			<td>Medio</td>
-			<td><input name="description-2" type="text" disabled/></td>
+			<td><input name="description-2" type="text" maxlength="20" disabled/></td>
 		</tr>
 		<tr>
 			<td class="center"><input name="active-3" type="checkbox"/></td>
 			<td>Experto</td>
-			<td><input name="description-3" type="text" disabled/></td>
+			<td><input name="description-3" type="text" maxlength="20" disabled/></td>
 		</tr>
 	</tbody>
 </table>
-<button id="add-skill" type="submit">Validar</button>
+<button id="add-skill" type="submit">Crear</button>
 </form>
 
 <table id="skill-table" class="display" cellspacing="0" width="100%">
