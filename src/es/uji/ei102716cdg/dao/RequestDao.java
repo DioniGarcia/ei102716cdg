@@ -143,5 +143,14 @@ public class RequestDao {
 		
 		return (Integer)holder.getKeys().get("request_id");
 	}
+	
+	public List<Request> searchRequests(String query){
+		query += ":*";
+		return this.jdbcTemplate.query("select req.* from request AS req JOIN skill as sk ON (req.skill_Id = sk.skill_Id) "
+		+ "where (to_tsvector(req.description) @@ (to_tsquery(?))) "
+		+ "OR (to_tsvector(sk.name) @@ (to_tsquery(?))) "
+		+ "OR ((to_tsvector(sk.description)) @@ (to_tsquery(?)))",
+		new Object[] {query, query, query}, new RequestMapper() );
+	}
 
 }

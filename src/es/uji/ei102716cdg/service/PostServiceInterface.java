@@ -203,4 +203,7 @@ public interface PostServiceInterface {
 		
 	public List<Student> getStudentsByCollabs(String nick, List<Collaboration> collabs);
 	
+	public List<Offer> searchOffers(String query);
+	public List<Request> searchRequests(String query);
+	
 }

@@ -11,7 +11,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei102716cdg.domain.collaboration.Offer;
-import es.uji.ei102716cdg.domain.collaboration.Request;
 
 import java.util.List;
 import java.sql.Connection;
@@ -150,5 +149,13 @@ public class OfferDao {
 		return (Integer)holder.getKeys().get("offer_id");
 	}
 	
+	public List<Offer> searchOffers(String query){
+		query += ":*";
+		return this.jdbcTemplate.query("select off.* from offer AS off JOIN skill as sk ON (off.skill_Id = sk.skill_Id) "
+		+ "where (to_tsvector(off.description) @@ (to_tsquery(?))) "
+		+ "OR (to_tsvector(sk.name) @@ (to_tsquery(?))) "
+		+ "OR ((to_tsvector(sk.description)) @@ (to_tsquery(?)))",
+		new Object[] {query, query, query}, new OfferMapper() );
+	}
 
 }

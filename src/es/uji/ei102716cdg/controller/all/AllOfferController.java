@@ -40,7 +40,8 @@ public class AllOfferController {
 	@RequestMapping("/list")
 	public String listOffers(Model model, HttpSession session, @ModelAttribute("user") User user,
 											@RequestParam(value="page", required=false) Integer page,
-											@RequestParam(value="pageSize", required=false) Integer pageSize){
+											@RequestParam(value="pageSize", required=false) Integer pageSize,
+											@RequestParam(value="q", required=false) String q){
 		
 		if (pageSize == null) pageSize = 5;
 		if (page == null) page = 1;
@@ -50,7 +51,14 @@ public class AllOfferController {
 		
 		int pageCount = postService.getOffersPageCount(pageSize, user.getNick());
 		
-		List<Offer> recentOffers = postService.getPaginatedOffers(pageSize, page, user.getNick());
+		List<Offer> recentOffers = null;
+		if (q == null){
+			recentOffers = postService.getPaginatedOffers(pageSize, page, user.getNick());
+		} else { 
+			recentOffers = postService.searchOffers(q);
+			model.addAttribute("q", q);
+		}
+		
 		List<Student> students = postService.getStudentsByPost(recentOffers);
 		model.addAttribute("offers", recentOffers);
 		model.addAttribute("skills", postService.getSkillsByPost(recentOffers));
