@@ -49,19 +49,21 @@ public class AllOfferController {
 		user = (User) session.getAttribute("user");
 		session.setAttribute("user", user);
 		
-		
+		List<Offer> paginatedOffers = null;
 		List<Offer> recentOffers = null;
+		
 		if (q == null){
-			recentOffers = postService.getPaginatedOffers(pageSize, page, user.getNick());
+			recentOffers = postService.getActiveRecentOffers(0, user.getNick());
 		} else { 
-			recentOffers = postService.searchOffers(q, user.getNick(), page, pageSize);
+			recentOffers = postService.searchOffers(q, user.getNick());
 			model.addAttribute("q", q);
 		}
 		
+		paginatedOffers = postService.getPaginatedOffers(recentOffers, pageSize, page, user.getNick());
 		int pageCount = postService.getOffersPageCount(recentOffers, pageSize, user.getNick());
 		
 		List<Student> students = postService.getStudentsByPost(recentOffers);
-		model.addAttribute("offers", recentOffers);
+		model.addAttribute("offers", paginatedOffers);
 		model.addAttribute("skills", postService.getSkillsByPost(recentOffers));
 		model.addAttribute("students", students);
 		model.addAttribute("ratings", postService.getRatingByStudents(students));

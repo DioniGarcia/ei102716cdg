@@ -73,14 +73,14 @@ public interface PostServiceInterface {
 	 * @return lista de ofertas paginada
 	 */
 	
-	public List<Offer> getPaginatedOffers(int pageSize, int offset, String nick);
+	public List<Offer> getPaginatedOffers(List<Offer> offers, int pageSize, int offset, String nick);
 	
 	/**Devuelve una lista de demandas paginada
 	 * 
 	 * @return lista de demandas paginada
 	 */
 	
-	public List<Request> getPaginatedRequests(int pageSize, int offset, String nick);
+	public List<Request> getPaginatedRequests(List<Request> requests, int pageSize, int offset, String nick);
 	
 	/**Devuelve las demandas ordenadas de más a menos recientes
 	 * 
@@ -203,7 +203,7 @@ public interface PostServiceInterface {
 		
 	public List<Student> getStudentsByCollabs(String nick, List<Collaboration> collabs);
 	
-	public List<Offer> searchOffers(String query, String nick, int page, int pageSize);
-	public List<Request> searchRequests(String query, String nick, int page, int pageSize);
+	public List<Offer> searchOffers(String query, String nick);
+	public List<Request> searchRequests(String query, String nick);
 	
 }

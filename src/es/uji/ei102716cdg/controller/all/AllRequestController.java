@@ -49,19 +49,21 @@ public class AllRequestController {
 		user = (User) session.getAttribute("user");
 		session.setAttribute("user", user);
 		
-		
 		List<Request> recentRequests = null;
+		List<Request> paginatedRequests = null;
+		
 		if (q == null){
-			recentRequests = postService.getPaginatedRequests(pageSize, page, user.getNick());
+			recentRequests = postService.getActiveRecentRequests(0, user.getNick());
 		} else { 
-			recentRequests = postService.searchRequests(q, user.getNick(), page, pageSize);
+			recentRequests = postService.searchRequests(q, user.getNick());
 			model.addAttribute("query", q);
 		}
 		
+		recentRequests = postService.getPaginatedRequests(recentRequests, pageSize, page, user.getNick());
 		int pageCount = postService.getRequestsPageCount(recentRequests, pageSize, user.getNick());
 		
 		List<Student> students = postService.getStudentsByPost(recentRequests);
-		model.addAttribute("requests", recentRequests);
+		model.addAttribute("requests", paginatedRequests);
 		model.addAttribute("skills", postService.getSkillsByPost(recentRequests));
 		model.addAttribute("students", students);
 		model.addAttribute("ratings", postService.getRatingByStudents(students));

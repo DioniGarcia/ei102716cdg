@@ -340,9 +340,8 @@ public class PostService implements PostServiceInterface {
 	}
 
 	@Override
-	public List<Offer> getPaginatedOffers(int pageSize, int page, String nick) {
+	public List<Offer> getPaginatedOffers(List<Offer> offers, int pageSize, int page, String nick) {
 		int indice = page-1;
-		List<Offer> offers = getActiveRecentOffers(0, nick);
 		List<Offer> pagedOffers = new ArrayList<>();
 		for (int i = indice*pageSize; i < offers.size() && i< indice+pageSize; i++){
 			pagedOffers.add(offers.get(i));
@@ -352,9 +351,8 @@ public class PostService implements PostServiceInterface {
 	}
 
 	@Override
-	public List<Request> getPaginatedRequests(int pageSize, int page, String nick) {
+	public List<Request> getPaginatedRequests(List<Request> requests, int pageSize, int page, String nick) {
 		int indice = page-1;
-		List<Request> requests = getActiveRecentRequests(0, nick);
 		List<Request> ret = new ArrayList<>();
 		for (int i = indice*pageSize; i < requests.size() && i< indice+pageSize; i++){
 			ret.add(requests.get(i));
@@ -418,25 +416,12 @@ public class PostService implements PostServiceInterface {
 	}
 
 	@Override
-	public List<Offer> searchOffers(String query, String nick, int page, int pageSize) {
-		int indice = page-1;
-		List<Offer> offers = offerDao.searchOffers(query, nick);
-		List<Offer> pagedOffers = new ArrayList<Offer>();
-		for (int i = indice*pageSize; i < offers.size() && i< indice+pageSize; i++){
-			pagedOffers.add(offers.get(i));
-		}
-		return pagedOffers;
+	public List<Offer> searchOffers(String query, String nick) {
+		return offerDao.searchOffers(query, nick);
 	}
 
 	@Override
-	public List<Request> searchRequests(String query, String nick, int page, int pageSize) {
-		int indice = page-1;
-		List<Request> requests = requestDao.searchRequests(query, nick);
-		List<Request> ret = new ArrayList<>();
-		for (int i = indice*pageSize; i < requests.size() && i< indice+pageSize; i++){
-			ret.add(requests.get(i));
-		}
-		
-		return ret;
+	public List<Request> searchRequests(String query, String nick) {
+		return requestDao.searchRequests(query, nick);
 	}
 }
