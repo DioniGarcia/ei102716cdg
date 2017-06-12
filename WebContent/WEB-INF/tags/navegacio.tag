@@ -150,31 +150,10 @@
   <div class="row valign" >
   	
   	<!-- Titulo-->
-  	<div class="navbar-header col-md-2">
+  	<div class="navbar-header col-md-5">
       <a class="navbar-brand logo-icon" href="${pageContext.request.contextPath}/index.html">SkillSharing!</a>
     </div>
-    
-    <!-- Search-->
-	<div class="col-xs-3">
-	    <div class="input-group">
-	        <div class="input-group-btn search-panel">
-	            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-	            	<span id="search_concept">Filtrar</span> <span class="caret"></span>
-	            </button>
-	            <ul class="dropdown-menu" role="menu">
-	              <li><a href="#offer">Oferta</a></li>
-	              <li><a href="#request">Demanda</a></li>
-	              <li class="divider"></li>
-	              <li><a href="#all">Todo</a></li>
-	            </ul>
-	        </div>
-	        <input type="hidden" name="search_param" value="all" id="search_param">         
-	        <input type="text" class="form-control" name="x" placeholder="Buscar...">
-	        <span class="input-group-btn">
-	            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-	        </span>
-    	</div>
-    </div>
+
     
     <!-- Offers-->
   	<div class= "col-md-2">
