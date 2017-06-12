@@ -5,20 +5,22 @@
 
 <t:paginaperfil>
 <jsp:body>    
-    
     <div class="center">
     	<h2>Mis demandas</h2>
     	<hr>
-    	<c:forEach varStatus="status" items="${offers}" var="offer"> 
-    	<t:requestbox
-    			postLink="${ pageContext.request.contextPath }/my/requests/${request.id }"
-    			postTitle="Demanda de ${skills[status.index].name } - ${skills[status.index].description}" 
-    			postDescription="${request.description}" 
-    			postDate="${request.startDate },${request.endDate }"
-    			avatarId="${myAvatarId}"
-    			rating="${rating}">
-    	</t:requestbox>
+    	<div style="margin-left: 202px">
+    		<c:forEach varStatus="status" items="${requests}" var="request"> 
+	    	<t:requestbox
+	    			postLink="${ pageContext.request.contextPath }/my/requests/${request.id }"
+	    			postTitle="Demanda de ${skills[status.index].name } - ${skills[status.index].description}" 
+	    			postDescription="${request.description}" 
+	    			postDate="${request.startDate },${request.endDate }"
+	    			avatarId="${myAvatarId}"
+	    			rating="${rating}">
+	    	</t:requestbox>
     	</c:forEach>    	
+    	</div>
+    	
     	
     </div>
     
