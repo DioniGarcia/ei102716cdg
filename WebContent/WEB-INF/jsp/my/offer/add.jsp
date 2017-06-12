@@ -3,14 +3,32 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
+<style>
+.label_in{
+    padding: 0;
+    padding-right: 24px;
+}
+
+.btn_bot {
+	margin-top: 34px;
+}
+
+#description{
+	width: 338px;
+	height: 82px;
+}
+
+</style>
+
 <t:paginabasica>
 <jsp:body> 
     <h2>Añadir Oferta</h2>
+    <hr>
     <form:form method="post" modelAttribute="offer">
         <table>
         
         	<tr>
-                <td><form:label path="skill_Id">Skill</form:label></td>
+                <td class="label_in"><form:label path="skill_Id">Skill:</form:label></td>
                 <td>
                		<select name="nombre" id="nombre"><option></option></select>
 					<form:select path="skill_Id" id="tipo"></form:select><br>
@@ -24,7 +42,7 @@
             </tr>
             
             <tr>
-                <td><form:label path="description">Descripción</form:label></td>
+                <td class="label_in"><form:label path="description">Descripción:</form:label></td>
                 <td>
                 	<form:textarea class="form-control" type="text" path="description" /><br>
                 	<form:errors class="error" path="description"/>	
@@ -36,7 +54,7 @@
             </tr>
             
             <tr>
-                <td><form:label path="startDate">Fecha inicio</form:label></td>
+                <td class="label_in"><form:label path="startDate">Fecha inicio:</form:label></td>
                 <td>
                 	<form:input data-toggle="datepicker" class="form-control" path="startDate" placeholder="dd/mm/yyyy" />
 					<div data-toggle="datepicker"></div>
@@ -50,7 +68,7 @@
             </tr>
             
             <tr>
-                <td><form:label path="endDate">Fecha fin</form:label></td>
+                <td class="label_in"><form:label path="endDate">Fecha fin:</form:label></td>
                 <td>
                 	<form:input data-toggle="datepicker" class="form-control" path="endDate" placeholder="dd/mm/yyyy" />
 					<div data-toggle="datepicker"></div>
@@ -62,7 +80,7 @@
             <tr></tr>
             
             <tr>
-                <td colspan="2"><input type="submit" class="btn btn-primary" value="Añadir" />
+                <td colspan="2"><input type="submit" class="btn btn_bot btn-primary btn-w-h" value="Añadir" />
                 </td>
             </tr>
         </table>
