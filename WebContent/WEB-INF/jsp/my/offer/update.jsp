@@ -87,7 +87,9 @@
             <tr></tr>
             
             <tr>
-                <td colspan="2"><input type="submit" class="btn btn_bot btn-primary btn-w-h" value="Guardar" />
+                <td colspan="2">
+                	<input type="submit" class="btn btn_bot btn-primary btn-w-h" value="Guardar" />
+                	<button style="margin-left:10px;  margin-top: 32px;" onClick="history.go(-1);return true;" class="btn btn-default btn-w-h">Cancelar</button>
                 </td>
             </tr>
         </table>

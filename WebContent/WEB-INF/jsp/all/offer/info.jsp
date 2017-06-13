@@ -120,12 +120,14 @@
 
 
 <!-- Vista principal -->
+	<h2>Oferta de <c:out value="${skill.name } - ${skill.description }"></c:out></h2>
+   	<hr>
 	<div class="split-container">
 		<div class="split-item-v-foto split-container">
 			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${student.avatar}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
 		</div>
 		<div class="split-item-v-texto">
-			<h3><c:out value="Nombre: ${student.name }"></c:out></h3>
+			<h3><b>Ofertante: </b><c:out value="${student.name }"></c:out></h3>
 			<div>
 			<select class="star-readonly">
 			<t:rating rating="${rating}"></t:rating>
@@ -135,7 +137,7 @@
 	</div>
 	<hr/>
 	<div>
-		<h3>Oferta de <c:out value="${skill.name } - ${skill.description }"></c:out></h3>
+		
 	</div>
 	<div class="post-info post-info-offer">
 		<h4>Descripción:</h4>
