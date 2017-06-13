@@ -151,6 +151,7 @@ public class OfferDao {
 	}
 	
 	public List<Offer> searchOffers(String query, String nick){
+		query = query.replaceAll("[^A-Za-z0-9]", "");
 		if (query.trim().equals("")) return new ArrayList<Offer>();
 		query += ":*";
 		return this.jdbcTemplate.query("select off.* from offer AS off "

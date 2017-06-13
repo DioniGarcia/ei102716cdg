@@ -10,7 +10,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.collaboration.Request;
 
 import java.util.ArrayList;
@@ -147,6 +146,7 @@ public class RequestDao {
 	}
 	
 	public List<Request> searchRequests(String query,String nick){
+		query = query.replaceAll("[^A-Za-z0-9]", "");
 		if (query.trim().equals("")) return new ArrayList<Request>();
 		query += ":*";
 		return this.jdbcTemplate.query("select req.* from request AS req "
