@@ -106,7 +106,7 @@
 		<div class="split-item"></div>
 		
 		<div class="split-item user-info">
-			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${offerAvatarId}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
+			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${requestAvatarId}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
 			<p class="request-info">Demandante</p>
 		</div>
 		
