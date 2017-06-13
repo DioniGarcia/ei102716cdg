@@ -75,8 +75,8 @@ public class MyOfferController {
 		}
 		User user = (User) session.getAttribute("user");
 		offer.setStudent_nick(user.getNick());
-		offerDao.addOffer(offer);
-		return "redirect:list.html";
+		int offerId = offerDao.addOfferAndGetId(offer);
+		return "redirect:" + offerId + ".html";
 	}
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)

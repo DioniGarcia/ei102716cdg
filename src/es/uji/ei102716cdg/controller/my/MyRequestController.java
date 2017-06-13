@@ -76,8 +76,8 @@ public class MyRequestController {
 		}
 		User user = (User) session.getAttribute("user");
 		request.setStudent_nick(user.getNick());
-		requestDao.addRequest(request);
-		return "redirect:list.html";
+		int requestId = requestDao.addRequestAndGetId(request);
+		return "redirect:" + requestId + ".html";
 	}
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)

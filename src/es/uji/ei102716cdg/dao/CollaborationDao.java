@@ -1,15 +1,21 @@
 package es.uji.ei102716cdg.dao;
 
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei102716cdg.domain.collaboration.Collaboration;
@@ -109,4 +115,29 @@ public class CollaborationDao {
 				new Object[] {nick, nick}, new CollaborationMapper());
 	}
 	
+	public int addCollaborationAndGetId(Collaboration collaboration){
+		KeyHolder holder = new GeneratedKeyHolder();
+		final Collaboration collab = collaboration;
+		
+		this.jdbcTemplate.update(
+				new PreparedStatementCreator() {           
+
+	                @Override
+	                public PreparedStatement createPreparedStatement(Connection connection)
+	                        throws SQLException {
+	                	String sql = "insert into Collaboration( offer_id, request_id, rating, totalHours, comments ) "
+	            				+ "values(?, ?, ?, ?, ?)";
+	                    PreparedStatement ps = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+	                    ps.setInt(1, collab.getOffer_id());
+	                    ps.setInt(2, collab.getRequest_id());
+	                    ps.setShort(3, collab.getRating());
+	                    ps.setShort(4, collab.getTotalHours());
+	                    ps.setString(5, collab.getComments());
+	                    return ps;
+	                }
+	            }, holder);
+		
+		return (Integer)holder.getKeys().get("collaboration_id");
+		
+	}
 }
