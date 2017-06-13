@@ -180,9 +180,8 @@ public class SkillDao {
 	 * @return 	Lista de skills para los niveles activos
 	 */
 	public List<Skill> skillLevels(String name) {
-		name += ":*";
 		return this.jdbcTemplate.query("select * FROM Skill "
-				+ " WHERE (to_tsvector(name) @@ (plainto_tsquery(?))) AND active = true",
+				+ " WHERE name=? AND active = true ORDER BY skill_id",
 				new Object[] {name}, new SkillMapper());
 	}
 	
