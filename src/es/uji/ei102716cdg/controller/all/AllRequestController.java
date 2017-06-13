@@ -56,10 +56,10 @@ public class AllRequestController {
 			recentRequests = postService.getActiveRecentRequests(0, user.getNick());
 		} else { 
 			recentRequests = postService.searchRequests(q, user.getNick());
-			model.addAttribute("query", q);
+			model.addAttribute("q", q);
 		}
 		
-		recentRequests = postService.getPaginatedRequests(recentRequests, pageSize, page, user.getNick());
+		paginatedRequests = postService.getPaginatedRequests(recentRequests, pageSize, page, user.getNick());
 		int pageCount = postService.getRequestsPageCount(recentRequests, pageSize, user.getNick());
 		
 		List<Student> students = postService.getStudentsByPost(recentRequests);
