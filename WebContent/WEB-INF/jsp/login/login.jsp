@@ -14,13 +14,13 @@
                     <div class="form-group">
                         <div>
                             <form:input class="form-control form-v2" id="nick" path="nick" placeholder="Nombre de usuario" required="required"/>
-                            <form:errors path="nick"/>
+                            <form:errors class="title-error" path="nick"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div>
                             <form:input type="password" class="form-control" id="passwd" path="passwd" placeholder="Contraseña" required="required"/>
-                            <form:errors path="passwd"/>
+                            <form:errors class="title-error" path="passwd"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="split-container center-content-h">
                 	<div class="split-item-h ">
-                		<a href="404.jsp" class="link">¿Has olvidado la contraseña?</a>
+                		<a href="forgetPass.html" class="link">¿Has olvidado la contraseña?</a>
 					</div>
 					
 					<div class="split-item-h ">

@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute; 
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei102716cdg.dao.AdminDao;
 import es.uji.ei102716cdg.dao.UserDao;
@@ -103,5 +104,18 @@ public class LoginController {
 		session.invalidate(); 
 		return "redirect:index.html";
 	}
+	
+	@RequestMapping("/forgetPass") 
+	public String forget() {
+		return "login/forget_passwd";
+	}
+	
+	@RequestMapping(value="/forgetPass", method=RequestMethod.POST)
+	public String forgetPass(Model model,@RequestParam(value="email") String email){
+		model.addAttribute("success", true);
+		model.addAttribute("email", email);
+		return "login/forget_passwd";
+	}
+	
 
 }

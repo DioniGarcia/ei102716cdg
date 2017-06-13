@@ -62,8 +62,8 @@ span.border {
 	justify-content: center;
 }
 
-.welcome-footer-item {
-	
+.title-error {
+	color: #eee;
 }
 
 </style>

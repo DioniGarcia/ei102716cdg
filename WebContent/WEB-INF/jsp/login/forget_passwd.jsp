@@ -1,39 +1,48 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=iso-8859-1"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:titlepage>
 	<jsp:body>
 	        
-	   <form class="form-horizontal">
 			<div class="panel-default center">
                 
                 <div class="panel-body ">
-                    <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <div>
-                            <input class="form-control form-v2" id="email" placeholder="Email" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        
-                    </div>
-                    <div class="form-group last">
-                        <div>
-                            <button type="submit" class="btn btn-login">
-                                Recuperar contraseña</button>
-                        </div>
-                    </div>
-                    </form>
+                	<c:choose>
+                		<c:when test="${success }">
+                			<p class="title-error">Se he enviado tu nueva contraseña al correo ${email }</p>
+                		</c:when>
+                		<c:otherwise>
+                			<form action="" method="POST" class="form-horizontal">
+			                    <div class="form-group">
+			                        <div>
+			                            <input name="email" class="form-control form-v2" id="email" placeholder="Email" required>
+			                        </div>
+			                    </div>
+			                    <div class="form-group">
+			                        
+			                    </div>
+			                    <div class="form-group last">
+			                        <div>
+			                            <button type="submit" class="btn btn-login">
+			                                Recuperar contraseña</button>
+			                        </div>
+			                    </div>
+		                    </form>
+                		</c:otherwise>
+                	
+                	</c:choose>
+                    
                 </div>
                 <div class="split-container center-content-h">
                 	<div class="split-item-h ">
-                		<a href="login/login.jsp" class="link">Log In</a>
+                		<a href="login.html" class="link">Log In</a>
 					</div>
 					
 					<div class="split-item-h ">
-						<a href="login/register.jsp" class="link">Registra</a>
+						<a href="signup.html" class="link">Registra</a>
 					</div>
 				</div>
             </div>

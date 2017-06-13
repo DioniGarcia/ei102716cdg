@@ -6,7 +6,7 @@
 <t:titlepage>
 	<jsp:body>
 	        
-	   <form:form class="form-horizontal" method="post" modelAttribute="student" action="${pageContext.request.contextPath}/signup.html">
+	   <form:form style="margin-top:-70px;" class="form-horizontal" method="post" modelAttribute="student" action="${pageContext.request.contextPath}/signup.html">
 			<div class="panel-default center">
                 
                 <div class="panel-body ">
@@ -14,31 +14,31 @@
                     <div class="form-group">
                         <div>
                             <form:input path="dni" class="form-control form-v2" id="dni" placeholder="DNI" required="required"/>
-                            <form:errors path="dni"/>
+                            <form:errors class="title-error" path="dni"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div>
                             <form:input path="name" class="form-control form-v2" id="name" placeholder="Nombre" required="required"/>
-                            <form:errors path="name"/>
+                            <form:errors class="title-error" path="name"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div>
                             <form:input path="email" class="form-control form-v2" id="email" placeholder="Email" required="required"/>
-                            <form:errors path="email"/>
+                            <form:errors class="title-error" path="email"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div>
                             <form:input path="nick" class="form-control form-v2" id="nick" placeholder="Nombre de usuario" required="required"/>
-                            <form:errors path="nick"/>
+                            <form:errors class="title-error" path="nick"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div>
                             <form:input path="passwd" type="password" class="form-control" id="passwd" placeholder="Contraseña" required="required"/>
-                            <form:errors path="passwd"/>
+                            <form:errors class="title-error" path="passwd"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="split-container center-content-h">
                 	<div class="split-item-h ">
-                		<a href="404.jsp" class="link">¿Has olvidado la contraseña?</a>
+                		<a href="forgetPass.html" class="link">¿Has olvidado la contraseña?</a>
 					</div>
 					
 					<div class="split-item-h ">
