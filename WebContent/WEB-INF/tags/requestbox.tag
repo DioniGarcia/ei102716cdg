@@ -9,6 +9,17 @@
 <%@ attribute name="rating" required="false"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
+<style>
+
+.request-info {
+	float: right;
+	font-size: 10px;
+	opacity: 20%;
+	color: #9FC57F;
+}
+
+</style>
+
 <div tabindex="-1" class="postbox  split-container requestbox" onclick="location.href='${postLink}';">
 	<div class="split-item-v-foto split-container">
 		<div class="split-item"></div>
@@ -27,7 +38,7 @@
 	</div>
 		
 	<div class="split-item-v-texto">
-		
+		<div class="request-info">Demanda</div>
 		<div>
 			<h2 class="post-title requestText">${postTitle }</h2>
 		</div>

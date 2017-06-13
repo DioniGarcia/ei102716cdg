@@ -9,6 +9,16 @@
 <%@ attribute name="rating" required="false"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
+<style>
+
+.offer-info {
+	float: right;
+	font-size: 10px;
+	color: #9bbccd;
+}
+
+</style>
+
 <div tabindex="-1" class="postbox  split-container offerbox center" onclick="location.href='${postLink}';">
 	<div class="split-item-v-foto split-container">
 		<div class="split-item"></div>
@@ -27,7 +37,7 @@
 	</div>
 		
 	<div class="split-item-v-texto">
-		
+		<div class="offer-info">Oferta</div>
 		<div>
 			<h2 class="post-title offerText">${postTitle }</h2>
 		</div>
