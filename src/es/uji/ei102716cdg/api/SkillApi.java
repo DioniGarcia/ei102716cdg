@@ -47,7 +47,7 @@ private SkillDao skillDao;
 	@RequestMapping(value = "/levels", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String getSkillLevels(@RequestParam("name") String name){
 		String result = "";
-		List<Skill> skills = skillDao.skillLevels(Encoding.convertLatinToUTF8(name));
+		List<Skill> skills = skillDao.skillLevels(name);
 		if (skills.isEmpty()) return "[]";
 		result += "[";
 		for(Skill skill : skills){
