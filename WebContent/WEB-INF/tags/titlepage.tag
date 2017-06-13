@@ -56,6 +56,16 @@ span.border {
   letter-spacing: 7px;
 }
 
+.welcome-footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.welcome-footer-item {
+	
+}
+
 </style>
 </head>
 
@@ -82,16 +92,8 @@ span.border {
 
 </div>
 
-<div>
-	<p style="padding:5px 15px">Texto explicativo sobre que es skillsharing</p>
-	<p style="padding:5px 15px">Blablablabla</p>
-	<p style="padding:5px 15px">Blablablabla</p>
-	<p style="padding:5px 15px">Blablablabla</p>
-	<p style="padding:5px 15px">Blablablabla</p>
-	<p style="padding:5px 15px">Blablablabla</p>
-	<p style="padding:5px 15px">Blablablabla</p>
-	<p style="padding:5px 15px">Blablablabla</p>
-	<p style="padding:5px 15px">Blablablabla</p>
+<div class="welcome-footer">
+	<div class="welcome-footer-item">Powered by Spring MVC, created by DASERDI <b>&#9400;</b> &emsp; Universidad Jaume I, EI1027 - Diseño e Implementación de Sistemas de Información </div>
 </div>
 
 </body>
