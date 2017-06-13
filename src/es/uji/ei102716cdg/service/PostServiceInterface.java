@@ -201,7 +201,8 @@ public interface PostServiceInterface {
 	public List<Integer> getRatingByStudents(List<Student> students);
 	
 		
-	public List<Student> getStudentsByCollabs(String nick, List<Collaboration> collabs);
+	public List<Student> getStudentsByCollabsOf( List<Collaboration> collabs);
+	public List<Student> getStudentsByCollabsRq( List<Collaboration> collabs);
 	
 	public List<Offer> searchOffers(String query, String nick);
 	public List<Request> searchRequests(String query, String nick);

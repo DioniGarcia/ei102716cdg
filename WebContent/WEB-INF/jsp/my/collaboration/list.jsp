@@ -48,8 +48,8 @@
     			collabRating="${collab.rating }"
     			collabEndDate="${collabEndDates[status.index]}"
     			collabEvalBtn="${evalBtn }"
-    			offerAvatarId="${students[status.index].avatar}" 		
-    			requestAvatarId="${students[status.index].avatar}" 
+    			offerAvatarId="${studentsOf[status.index].avatar}" 		
+    			requestAvatarId="${studentsRq[status.index].avatar}" 
     			
     			collabComments="${collab.comments }">
     	</t:collabbox>

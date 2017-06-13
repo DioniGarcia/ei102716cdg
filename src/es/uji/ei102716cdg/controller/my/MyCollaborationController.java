@@ -99,7 +99,8 @@ public class MyCollaborationController {
 		
 		model.addAttribute("collabs", collabs);
 		model.addAttribute("skills", postService.getSkillsByCollabs(collabs));
-		model.addAttribute("students", postService.getStudentsByCollabs(nick, collabs));
+		model.addAttribute("studentsOf", postService.getStudentsByCollabsOf(collabs));
+		model.addAttribute("studentsRq", postService.getStudentsByCollabsRq(collabs));
 		return "my/collaboration/list";
 	}
 	
