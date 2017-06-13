@@ -27,7 +27,6 @@
 	<div class="center">
 	<h2>Mis colaboraciones (${fn:length(collabs)})</h2>
    	<hr>
-   	<c:if test="${ not empty collabs }">
 	<form action="">
 	<div class="btn-group">
 		<button type="submit" name="filter" value="all" class="btn btn-default">Todas</button>
@@ -37,9 +36,8 @@
 	</div>
 	<hr style="margin-top: -1px;">
 	</form>
-	</c:if>
 	
-	<c:if test="${ empty collabs }"><h4>Aún no has realizado ninguna colaboración</h4></c:if>
+	<c:if test="${ empty collabs }"><h4>No hay colaboraciones por aqui</h4></c:if>
 	<c:forEach varStatus="status" items="${collabs}" var="collab"> 
     	<t:collabbox 
     			collabId="${collab.collaboration_id }"

@@ -79,7 +79,6 @@
 		
 		<h2><a class="colab-title" href="${collabId }.html">${collabTitle }</a></h2>
 		
-		<p><b>Estado de la colaboración: </b> ${collabTotalHours } horas</p>
 		<p><b>Dedicación horaria: </b> ${collabTotalHours } horas</p>
 		
 		<div class="star-line"><p><b>Puntuación: </b></p></div>
