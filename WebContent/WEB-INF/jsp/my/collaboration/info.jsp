@@ -11,21 +11,12 @@
 	<hr/>
 	
 	<div class="collab-info-students">
-		<div class="collab-info-student">
-			<h3>Ofertante:</h3>
-		</div>
-		<div class="collab-info-student">
-			<h3>Demandante:</h3>
-		</div>
-	</div>
-	
-	<div class="collab-info-students">
 	<div class="collab-info-student split-container">
 		<div class="split-item-v-foto split-container">
 			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${studentOf.avatar}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
 		</div>
 		<div class="split-item-v-texto">
-			<h3><c:out value="Nombre: ${studentOf.name }"></c:out></h3>
+			<h3><c:out value="Ofertante: ${studentOf.name }"></c:out></h3>
 			<div>
 			<select class="star-readonly">
 			<t:rating rating="${ratingOf}"></t:rating>
@@ -39,7 +30,7 @@
 			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${studentRq.avatar}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
 		</div>
 		<div class="split-item-v-texto">
-			<h3><c:out value="Nombre: ${studentRq.name }"></c:out></h3>
+			<h3><c:out value="Demandante: ${studentRq.name }"></c:out></h3>
 			<div>
 			<select class="star-readonly">
 			<t:rating rating="${ratingRq}"></t:rating>

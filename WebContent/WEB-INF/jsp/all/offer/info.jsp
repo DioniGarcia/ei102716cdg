@@ -73,7 +73,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 <a href="${ pageContext.request.contextPath }/my/collaborations/add?skillId=${offer.skill_Id }&offerId=${offer.id }&confirm" class="btn btn-primary btn-ok">Conservar demanda</a>
-            	<a href="${ pageContext.request.contextPath }/my/collaborations/add?skillId=${offer.skill_Id }&offerId=${offer.id }&requestId=${request.id}&confirm" class="btn btn-primary btn-ok">Vincular</a>
+            	<a href="${ pageContext.request.contextPath }/my/collaborations/add?fromOffer=true&skillId=${offer.skill_Id }&offerId=${offer.id }&requestId=${request.id}&confirm" class="btn btn-primary btn-ok">Vincular</a>
             </div>
         </div>
     </div>
@@ -187,7 +187,7 @@
 		if (requestId == ""){
 			alert("Selecciona una demanda, por favor.");
 		} else {
-			document.getElementById("many-req-link").href = "${ pageContext.request.contextPath }/my/collaborations/add?confirm=true&skillId=${offer.skill_Id }&offerId=${offer.id }&requestId=" + requestId;
+			document.getElementById("many-req-link").href = "${ pageContext.request.contextPath }/my/collaborations/add?fromOffer=true&confirm=true&skillId=${offer.skill_Id }&offerId=${offer.id }&requestId=" + requestId;
 			
 		}
 	}
