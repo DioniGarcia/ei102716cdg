@@ -10,28 +10,34 @@
 		<div class="points-main">
 		<h2>Balance de puntos</h2>
     	<hr>
-    	<h4><b>Usuario: </b><c:out value="${student.name }"></c:out></h4>
     	<br>
 			<div class="profile-container">
 				<div class="profile-photo">
 					<img style="margin-bottom: 10px;" src="${ pageContext.request.contextPath }/resources/img/avatars/${student.avatar}.jpg" class="img-circle-thumbnail" alt="" width="80" height="80">
 				</div>
-				<div class="profile-details">
-					<span style="margin-right:12px">Puntuación media</span>
+			</div>
+			
+			<div class="profile-container">
+				<div class="profile-photo">
 					<select class="star-readonly">
 					<t:rating rating="${rating }"/>
 					</select>
 				</div>
 			</div>
 			
+			
+			
+			
 			<div class="points-hours">
-			<div>Horas recibidas : ${receivedHours}</div>
-			<div>Horas prestadas : ${offeredHours}</div>
+				<h4><b>Usuario: </b><c:out value="${student.name }"></c:out></h4>
+				<h4><b>Horas recibidas: </b> <c:out value="${receivedHours}"></c:out> </h4>
+				<h4><b>Horas prestadas: </b> <c:out value="${offeredHours}"></c:out> </h4>
 			</div>
 			
 			<hr>
 			
 			<div class="points-balance">
+				
 				<c:choose>
 					<c:when test="${totalHours ge 20 }">
 						<c:set var="pointsColor" value="#7cb518"></c:set>
@@ -50,7 +56,7 @@
 				
 				</c:choose>
 				
-				<svg width="60%" height="50%" viewBox="0 0 42 42" class="donut">
+				<svg width="65%" height="65%" viewBox="0 0 42 42" class="donut">
 				  <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
 				  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ffffff" stroke-width="3"></circle>
 				
@@ -60,31 +66,47 @@
 				</svg>
 				
 			</div>
+			
+			<h4 style="text-align:center; margin-left: -40px; margin-top: -10px;">Saldo actual</h4>
+			
 		</div>
 		
 		<div class="points-help" >
 			
-			<fieldset>
-			<legend>Sistema de Puntuación </legend>
-			<p style="color:white;"> 
 			
-			<br><br>-Consulta periódicamente tu balance de puntos desde el menu de perfil.
+			<h4>Sistema de Puntuación </h4>
+			<hr>
 			
-			<br><br>-La cantidad inicial de puntos serán de 20.
+			<h5>¿Para qué sirven los puntos?</h5>
+			<p>Sirven para recibir ayuda de otros usuarios.</p>
+			<ul>
+				<li>Para publicar una demanda debes tener al menos 1 punto</li>
+				<li>Una demanda cuesta 1 punto por hora recibida</li>
+				<li>Los puntos son restados al valorar la colaboración</li>
+			</ul>
 			
-			<br><br>-Para poder recibir ayuda debe el saldo ser superior a 0 puntos.
+			<p></p>
 			
-			<br><br>-Seran premiadas aquellas colaboraciones prestadas en función de la cantidad de horas de servicio teniendo en cuenta como puntuen 
-			las personas que reciben la ayuda, en un rango de 1 a 5.
-			<br><br>-Por servicio recibido serán restados una cantidad de puntos equivalente al número de horas recibidas. 
+			<h5>¿Cómo consigo más puntos?</h5>
+			<ul>
+				<li>Solo por registrarte recibes 20 puntos gratis</li>
+				<li>Por cada oferta publicada se ganan 2 puntos</li>
+				<li>Por cada colaboración en la que se preste ayuda se ganará 1 punto por hora dedicada, más un incremento en función de la puntuación recibida</li>
+			</ul>
 			
-			<br><br>-Por cada oferta publicada se sumarán dos puntos al balance. Usuarios con 0 puntos, puede volver a estar activo!
+			<p></p>
 			
-			<br><br>Hacer un uso responsable del sistema, permite disfrutar de una herramienta que promueva el intercambio de conocimiento entre estudiantes sin coste económico.
-			</p>
 			
-			</fieldset>
+			<h5>Recomendaciones</h5>
+			<ul>
+				<li>Recomendamos consultar tu balance de puntos periodicamente</li>
+				<li>Ayuda siempre que puedas y tendrás puntos cuando lo necesites</li>
+				<li>Un uso responsable del sistema permite que todos disfrutemos de un intercambio de conocimiento sin costes. Respeta las normas</li>
+			</ul>
+			
 		</div>
+		
+		
 	
 	</div>
 

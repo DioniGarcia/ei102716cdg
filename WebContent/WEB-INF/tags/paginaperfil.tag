@@ -103,7 +103,7 @@
 		  <a href="${pageContext.request.contextPath}/my/offers/list.html">Mis Ofertas</a>
           <a href="${pageContext.request.contextPath}/my/requests/list.html">Mis Demandas</a>
           <a href="${pageContext.request.contextPath}/my/collaborations/list.html">Mis Colaboraciones</a>
-		  <a href="${pageContext.request.contextPath}/my/profile/points.html">Balance</a>
+		  <a href="${pageContext.request.contextPath}/my/profile/points.html">Balance de Puntos</a>
 		</div>
 		
 		<div class="otherside">
