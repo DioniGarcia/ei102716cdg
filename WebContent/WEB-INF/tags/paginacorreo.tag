@@ -188,13 +188,40 @@
     		fechasChat[j].textContent = collabEndDate;	
     	}
     	
+    	var messageId = 1; //sirve para identificar los mensajes enviados por JS
     	
-    	$(document).ready(function() {
-    		var myDiv = $(".messages");
-    		myDiv.animate({ scrollTop: myDiv.prop("scrollHeight") - myDiv.height() }, 500);
+   		var messages = $(".messages");
+   		messages.animate({ scrollTop: messages.prop("scrollHeight") - messages.height() }, 500);
     		
-    		
-    	});
+   		$('#send-message-form').submit(function(e) {  
+   		  var formAction = $(this).attr('action');
+   		  var formData = $(this).serialize();
+   		  var currentMessageId = messageId++;
+   		  
+   		  $(".messages").append("<div class='message'><span id='msg-" + currentMessageId +"' class='my-message'>" + $("input[name='content']").val() + "&thinsp;<span style='font-size:11px;'>" +  moment().format('LT') + "</span><span id='clk-" + currentMessageId +"' style='font-size:11px;margin-left:5px;' class='glyphicon glyphicon-time'></span>"  +  "</span></div>");
+   		  $('#send-message-form').trigger('reset');
+   		  $.ajax({   
+   		    url: formAction,   
+   		 	xhrFields: { withCredentials:true },
+   		 	headers: { 
+   		    	'Accept': 'application/json'
+   			},
+   		    type: 'POST', 
+   		    data: formData, // or try  $(this).serializeArray()    
+   		    success: function(data) {    
+   		         $("#clk-"+currentMessageId).remove();
+   		         $("#msg-"+currentMessageId).append('<span style="font-size:11px;margin-left:5px">&#10004;</span>');
+   		      	 messages.animate({ scrollTop: messages.prop("scrollHeight") - messages.height() }, 200);
+   		    },
+   		    error: function(hey){
+   		    	alert("No se ha podido enviar el mensaje. Intentalo de nuevo mas tarde.")
+   		    }
+   		  });
+   		  e.preventDefault();
+   		});	
+    	
+    	
+    	
     	
     });	
     	
