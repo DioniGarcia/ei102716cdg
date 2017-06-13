@@ -50,7 +50,7 @@
 				
 				</c:choose>
 				
-				<svg width="70%" height="50%" viewBox="0 0 42 42" class="donut">
+				<svg width="60%" height="50%" viewBox="0 0 42 42" class="donut">
 				  <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
 				  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ffffff" stroke-width="3"></circle>
 				
@@ -66,21 +66,19 @@
 			
 			<fieldset>
 			<legend>Sistema de Puntuación </legend>
-			<p style="color:white;">Presentamos un ingenioso sistema de puntuación basado en la colaboración altruista entre la comunidad de estudiantes universitarios.<br>
-			<br>La idea parte de la base de mantener un balance de puntos el cual variará en función de la actividad resgitrada en el sistema.
-			Seguir estos breves consejos, ayudará seguro a tener una mejor experiecia de uso de la aplicación. 
+			<p style="color:white;"> 
 			
 			<br><br>-Consulta periódicamente tu balance de puntos desde el menu de perfil.
 			
-			<br><br>-La cantidad inicial de puntos serán de 20. ! Un muy buen inicio !
+			<br><br>-La cantidad inicial de puntos serán de 20.
 			
-			<br><br>-Para poder recibir ayuda debe nuestro saldo de puntos ser superior a 0.
+			<br><br>-Para poder recibir ayuda debe el saldo ser superior a 0 puntos.
 			
 			<br><br>-Seran premiadas aquellas colaboraciones prestadas en función de la cantidad de horas de servicio teniendo en cuenta como puntuen 
 			las personas que reciben la ayuda, en un rango de 1 a 5.
 			<br><br>-Por servicio recibido serán restados una cantidad de puntos equivalente al número de horas recibidas. 
 			
-			<br><br>-Por cada oferta publicada se sumarán dos puntos al balance. La gente sin puntos, puede reengancharse a la aplicación con buena voluntad!
+			<br><br>-Por cada oferta publicada se sumarán dos puntos al balance. Usuarios con 0 puntos, puede volver a estar activo!
 			
 			<br><br>Hacer un uso responsable del sistema, permite disfrutar de una herramienta que promueva el intercambio de conocimiento entre estudiantes sin coste económico.
 			</p>
