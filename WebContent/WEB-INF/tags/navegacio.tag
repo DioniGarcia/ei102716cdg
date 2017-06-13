@@ -19,13 +19,13 @@
 
 	.nav_link {
 		color: #666;
-		font-size: 15px;
+		font-size: 17px;
 		padding-left: 20px;
 	}
 	
 	.nav_link:hover{
 		color: #000;
-		text-decoration: none;
+		text-decoration:none;
 	}
 
     .header{
@@ -117,6 +117,10 @@
 
     .show {display:block;}
 
+	.badge {
+    	margin-left: 6px;
+    }
+
 </style>
 
 <script>
@@ -156,26 +160,25 @@
 
     
     <!-- Offers-->
-  	<div class= "col-md-2">
+  	<div class= "col-md-3">
       <a class="nav_link" href="${pageContext.request.contextPath}/all/offers/list.html">Listado de ofertas</a>
     </div>
     
     <!-- Requests-->
-  	<div class= "col-md-2">
+  	<div class= "col-md-3">
       <a class="nav_link" href="${pageContext.request.contextPath}/all/requests/list.html">Listado de demandas</a>
 
     </div>
     
     <!-- Correo-->
-  	<div class= "col-md-2">
-      	<a class="nav_link" href="${pageContext.request.contextPath}/chat.html">
-			<span class="glyphicon glyphicon-envelope"></span>Correo 
+  	<div class= "col-md-3">
+      	<a class="nav_link" href="${pageContext.request.contextPath}/chat.html">Correo Personal
 			<t:notifications/>
 		</a> 
     </div>
     
     <!-- Perfil-->
-  	<div class="col-md-2">
+  	<div class="col-md-3">
 				<t:logininfo/>
 				
 				<!-- Desplegable Perfil (Tres puntitos) -->
