@@ -29,7 +29,7 @@
 		</tr>
 		<tr>
 			<td><h3><b>Nombre:&emsp;</b></h3></td>
-			<td><h3><form:input  path="name" /></h3></td>
+			<td><h3><form:input maxlength="50"  path="name" /></h3></td>
 		</tr>
 		<tr>
 			<td><h3><b>Email:&emsp;</b></h3></td>

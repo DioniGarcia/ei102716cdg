@@ -120,7 +120,7 @@ public class MyOfferController {
 		if (bindingResult.hasErrors())
 			return "my/offer/update";
 		offerDao.updateOffer(offer);
-		return "redirect:../list.html";
+		return "redirect:../" + id + ".html";
 	}
 	
 	@RequestMapping(value="/eliminate/{id}")

@@ -39,7 +39,7 @@
 	            </div>
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-	                <a href="${ pageContext.request.contextPath }/my/collaborations/add?skillId=${request.skill_Id }&requestId=${request.id }&confirm" class="btn btn-primary btn-ok">Generar automáticamente</a>
+	                <a href="${ pageContext.request.contextPath }/my/collaborations/add?fromRequest=true&skillId=${request.skill_Id }&requestId=${request.id }&confirm" class="btn btn-primary btn-ok">Generar automáticamente</a>
 	            </div>
 	        </div>
 	    </div>
@@ -72,7 +72,7 @@
 	            </div>
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-	                <a href="${ pageContext.request.contextPath }/my/collaborations/add?skillId=${request.skill_Id }&requestId=${request.id }&confirm" class="btn btn-primary btn-ok">Conservar demanda</a>
+	                <a href="${ pageContext.request.contextPath }/my/collaborations/add?fromRequest=true&skillId=${request.skill_Id }&requestId=${request.id }&confirm" class="btn btn-primary btn-ok">Conservar demanda</a>
 	            	<a href="${ pageContext.request.contextPath }/my/collaborations/add?fromRequest=true&skillId=${request.skill_Id }&offerId=${offer.id }&requestId=${request.id}&confirm" class="btn btn-primary btn-ok">Vincular</a>
 	            </div>
 	        </div>
@@ -111,7 +111,7 @@
 	            </div>
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-	                <a href="${ pageContext.request.contextPath }/my/collaborations/add?skillId=${request.skill_Id }&requestId=${request.id }&confirm" class="btn btn-primary btn-ok">Conservar demandas</a>
+	                <a href="${ pageContext.request.contextPath }/my/collaborations/add?fromRequest=true&skillId=${request.skill_Id }&requestId=${request.id }&confirm" class="btn btn-primary btn-ok">Conservar demandas</a>
 	            	<a id="many-req-link" href="#" onClick="comprobarSeleccion();" class="btn btn-primary btn-ok">Vincular</a>
 	            </div>
 	        </div>

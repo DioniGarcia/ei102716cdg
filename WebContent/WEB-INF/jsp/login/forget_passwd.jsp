@@ -10,30 +10,33 @@
 			<div class="panel-default center">
                 
                 <div class="panel-body ">
-                	<c:choose>
-                		<c:when test="${success }">
-                			<p class="title-error">Se he enviado tu nueva contraseña al correo ${email }</p>
-                		</c:when>
-                		<c:otherwise>
-                			<form action="" method="POST" class="form-horizontal">
-			                    <div class="form-group">
-			                        <div>
-			                            <input name="email" class="form-control form-v2" id="email" placeholder="Email" required>
-			                        </div>
-			                    </div>
-			                    <div class="form-group">
-			                        
-			                    </div>
-			                    <div class="form-group last">
-			                        <div>
-			                            <button type="submit" class="btn btn-login">
-			                                Recuperar contraseña</button>
-			                        </div>
-			                    </div>
-		                    </form>
-                		</c:otherwise>
-                	
-                	</c:choose>
+               		<c:if test="${success }">
+               			<p class="title-error">Se he enviado tu nueva contraseña al correo ${email }</p>
+               		</c:if>
+               		
+               		<c:if test="${error }">
+               			<p class="title-error">El email ${email } no existe</p>
+               		</c:if>
+               		
+               		<c:if test="${ not success and not error }">	
+               			<form action="" method="POST" class="form-horizontal">
+		                    <div class="form-group">
+		                        <div>
+		                            <input name="email" class="form-control form-v2" id="email" placeholder="Email" required>
+		                        </div>
+		                    </div>
+		                    <div class="form-group">
+		                        
+		                    </div>
+		                    <div class="form-group last">
+		                        <div>
+		                            <button type="submit" class="btn btn-login">
+		                                Recuperar contraseña</button>
+		                        </div>
+		                    </div>
+	                    </form>
+	                </c:if>
+                		
                     
                 </div>
                 <div class="split-container center-content-h">

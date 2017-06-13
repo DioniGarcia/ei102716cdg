@@ -62,9 +62,9 @@ public class AllOfferController {
 		paginatedOffers = postService.getPaginatedOffers(recentOffers, pageSize, page, user.getNick());
 		int pageCount = postService.getOffersPageCount(recentOffers, pageSize, user.getNick());
 		
-		List<Student> students = postService.getStudentsByPost(recentOffers);
+		List<Student> students = postService.getStudentsByPost(paginatedOffers);
 		model.addAttribute("offers", paginatedOffers);
-		model.addAttribute("skills", postService.getSkillsByPost(recentOffers));
+		model.addAttribute("skills", postService.getSkillsByPost(paginatedOffers));
 		model.addAttribute("students", students);
 		model.addAttribute("ratings", postService.getRatingByStudents(students));
 		model.addAttribute("pageCount", pageCount);

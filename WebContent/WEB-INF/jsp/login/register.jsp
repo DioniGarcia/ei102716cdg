@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=iso-8859-1"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group">
                         <div>
-                            <form:input path="name" class="form-control form-v2" id="name" placeholder="Nombre" required="required"/>
+                            <form:input path="name" maxlength="50" class="form-control form-v2" id="name" placeholder="Nombre" required="required"/>
                             <form:errors class="title-error" path="name"/>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         <div>
-                            <form:input path="nick" class="form-control form-v2" id="nick" placeholder="Nombre de usuario" required="required"/>
+                            <form:input path="nick" maxlength="15" class="form-control form-v2" id="nick" placeholder="Nick" required="required"/>
                             <form:errors class="title-error" path="nick"/>
                         </div>
                     </div>

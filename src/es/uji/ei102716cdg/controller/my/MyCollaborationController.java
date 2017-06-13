@@ -125,12 +125,14 @@ public class MyCollaborationController {
 					offer.setActive(false);
 					offerDao.updateOffer(offer);
 					requestId = postService.addRequestAndGetId(request);
+					emailService.sendEmailOfferAccepted(offer, offer.getStudent_nick());
 				} else { // collab con una auto-oferta
 					request = postService.getRequest(requestId);
 					offer = new Offer(user.getNick(), skillId, request.getStartDate(), request.getEndDate(), request.getDescription() ,false);
 					request.setActive(false);
 					requestDao.updateRequest(request);
 					offerId = postService.addOfferAndGetId(offer);
+					emailService.sendEmailRequestAccepted(request, request.getStudent_nick());
 				}
 			} else {
 				offer = postService.getOffer(offerId);

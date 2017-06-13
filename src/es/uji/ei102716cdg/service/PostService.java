@@ -252,7 +252,7 @@ public class PostService implements PostServiceInterface {
 	 * @return	lista ordenada de más a menos reciente
 	 */
 	private List<? extends Post> sortPostByStartDate(List<? extends Post> list){
-		Comparator<Post> comparatorPost =  (p1, p2) ->  (p2).getStartDate().compareTo(p1.getStartDate());				
+		Comparator<Post> comparatorPost =  (p1, p2) ->  (p1).getStartDate().compareTo(p2.getStartDate());				
 		
 		list.sort(comparatorPost);
 		return list;

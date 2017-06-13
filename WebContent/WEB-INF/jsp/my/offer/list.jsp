@@ -8,6 +8,7 @@
     <div class="center">
     	<h2>Mis ofertas</h2>
     	<hr>
+    	<c:if test="${ empty offers }"><h4>No tienes ofertas aún</h4></c:if>
     	<c:forEach varStatus="status" items="${offers}" var="offer"> 
     	<t:offerbox 
     			postLink="${ pageContext.request.contextPath }/my/offers/${offer.id }"

@@ -102,7 +102,7 @@
 		<c:if test="${ not empty param.q }">
 			<div class="search-result" >&nbsp; Resultados para: ${param.q} </div> <!-- Texto a mostrar cuando se busca -->
 		</c:if> 
-	    
+	    <c:if test="${ empty offers and empty param.q}"><h4>¡Parece que no hay ofertas en este momento!</h4></c:if>
 	    <div class="center">
 	    	<c:forEach varStatus="status" items="${offers}" var="offer"> 
 	    	<t:offerbox 

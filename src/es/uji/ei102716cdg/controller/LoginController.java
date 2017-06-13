@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei102716cdg.dao.AdminDao;
+import es.uji.ei102716cdg.dao.StudentDao;
 import es.uji.ei102716cdg.dao.UserDao;
+import es.uji.ei102716cdg.domain.user.Student;
 import es.uji.ei102716cdg.domain.user.User;
+import es.uji.ei102716cdg.service.EmailService;
 import es.uji.ei102716cdg.util.Encoding;
 
 
@@ -25,6 +28,12 @@ public class LoginController {
 	@Autowired
 	private AdminDao adminDao;
 	
+	@Autowired 
+	private EmailService emailService;
+	
+	@Autowired
+	private StudentDao studentDao;
+	
 	
 	@Autowired
 	public void setUserDao(UserDao userDao){
@@ -34,6 +43,11 @@ public class LoginController {
 	@Autowired
 	public void setAdminDao(AdminDao adminDao){
 		this.adminDao=adminDao;
+	}
+	
+	@Autowired
+	public void setEmailService(EmailService emailService){
+		this.emailService = emailService;
 	}
 	
 	@RequestMapping("/login")
@@ -112,10 +126,23 @@ public class LoginController {
 	
 	@RequestMapping(value="/forgetPass", method=RequestMethod.POST)
 	public String forgetPass(Model model,@RequestParam(value="email") String email){
-		model.addAttribute("success", true);
 		model.addAttribute("email", email);
+		email = email.trim();
+		String nick = getNickFromEmail(email);
+		if ( nick != null){
+			emailService.sendEmailPassword(nick);
+			model.addAttribute("success", true);
+		} else {
+			model.addAttribute("error", true);
+		}
 		return "login/forget_passwd";
 	}
 	
-
+	private String getNickFromEmail(String email){
+		for (Student student : studentDao.getStudents()){
+			if (student.getEmail().equals(email))
+				return student.getNick();
+		}
+		return null;
+	}
 }

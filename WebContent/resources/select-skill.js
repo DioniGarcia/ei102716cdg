@@ -93,4 +93,18 @@ $(document).ready(function(){
 		offset: -50,
 		autoHide: true
 	});	
+	$('[data-toggle="datepicker-3"]').datepicker({
+		language: 'es-ES',
+		autoHide: true,
+		startDate: new Date()
+	});	
+	$('[data-toggle="datepicker-4"]').datepicker({
+		language: 'es-ES',
+		autoHide: true
+	});	
+	$('[data-toggle="datepicker-4"]').on('pick.datepicker', function (e) {
+		  if (e.date < (function(d){ d.setDate(d.getDate()-1); return d})(new Date)) {
+		    alert("Seleccionando una fecha anterior a hoy en el campo fecha fin provocará que se anule la oferta/demanda.");
+		  }
+		});
 });

@@ -146,7 +146,7 @@ public class RequestDao {
 	}
 	
 	public List<Request> searchRequests(String query,String nick){
-		query = query.replaceAll("[^A-Za-z0-9]", "");
+		query = query.replaceAll("[^A-Za-z0-9áéíóúñçàìòùè]", "");
 		if (query.trim().equals("")) return new ArrayList<Request>();
 		query += ":*";
 		return this.jdbcTemplate.query("select req.* from request AS req "

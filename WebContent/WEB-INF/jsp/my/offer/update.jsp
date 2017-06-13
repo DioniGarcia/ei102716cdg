@@ -30,7 +30,6 @@
     <form:form method="post" modelAttribute="offer">
         
         <form:input type="hidden" path="student_nick"></form:input>
-        <form:input type="hidden" path="skill_Id"></form:input>
         
         <table>
         	
@@ -63,8 +62,8 @@
             <tr>
                 <td class="label_in"><form:label path="startDate">Fecha inicio:</form:label></td>
                 <td>
-                	<form:input data-toggle="datepicker" class="form-control" path="startDate" placeholder="dd/mm/yyyy" />
-					<div data-toggle="datepicker"></div>
+                	<form:input data-toggle="datepicker-3" class="form-control" path="startDate" placeholder="dd/mm/yyyy" />
+					<div data-toggle="datepicker-3"></div>
 					<form:errors class="error" path="startDate"/>	
                 </td>
             </tr>
@@ -77,8 +76,8 @@
             <tr>
                 <td class="label_in"><form:label path="endDate">Fecha fin:</form:label></td>
                 <td>
-                	<form:input data-toggle="datepicker" class="form-control" path="endDate" placeholder="dd/mm/yyyy" />
-					<div data-toggle="datepicker"></div>
+                	<form:input data-toggle="datepicker-4" class="form-control" path="endDate" placeholder="dd/mm/yyyy" />
+					<div data-toggle="datepicker-4"></div>
 					<form:errors class="error" path="endDate"/>	
                 </td>
             </tr>

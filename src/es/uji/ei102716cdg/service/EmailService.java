@@ -55,8 +55,8 @@ public class EmailService {
 		String newPassword = Integer.toString(randPass);
 		
 		String title = "[Skill Sharing] Recuperacion de contraseña";
-		String message = "Has solicitado una nueva contraseña para el sitio web Skill Sharing. <br/>"
-						+ "Tu nueva contraseña es: <b>" + newPassword +"</b>";
+		String message = "Has solicitado una nueva contraseña para el sitio web Skill Sharing. "
+						+ "Tu nueva contraseña es: " + newPassword;
 		
 		Student student = studentDao.getStudent(nick);
 		String email = student.getEmail();

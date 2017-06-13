@@ -22,7 +22,7 @@
 				    	</a></p>
 					  </div>
 					</div>
-					
+					<c:if test="${ empty offers }"><h4>¡Parece que no hay ofertas en este momento!</h4></c:if>
 					<!-- Listado de ofertas destacadas -->
 					<c:forEach varStatus="status" items="${offers}" var="offer"> 
     				<t:offerbox 
@@ -54,7 +54,7 @@
 				    	</a></p>
 					  </div>
 					</div>
-					
+					<c:if test="${ empty requests }"><h4>¡Parece que no hay demandas en este momento!</h4></c:if>
 					<!-- Listado de demandas destacadas -->
 					<c:forEach varStatus="status" items="${requests}" var="request"> 
     				<t:requestbox

@@ -8,6 +8,7 @@
     <div class="center">
     	<h2>Mis demandas</h2>
     	<hr>
+    	<c:if test="${ empty requests }"><h4>¡Parece que no hay ofertas en este momento!</h4></c:if>
     	<div style="margin-left: 202px">
     		<c:forEach varStatus="status" items="${requests}" var="request"> 
 	    	<t:requestbox

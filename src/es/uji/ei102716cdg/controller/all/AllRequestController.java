@@ -62,9 +62,9 @@ public class AllRequestController {
 		paginatedRequests = postService.getPaginatedRequests(recentRequests, pageSize, page, user.getNick());
 		int pageCount = postService.getRequestsPageCount(recentRequests, pageSize, user.getNick());
 		
-		List<Student> students = postService.getStudentsByPost(recentRequests);
+		List<Student> students = postService.getStudentsByPost(paginatedRequests);
 		model.addAttribute("requests", paginatedRequests);
-		model.addAttribute("skills", postService.getSkillsByPost(recentRequests));
+		model.addAttribute("skills", postService.getSkillsByPost(paginatedRequests));
 		model.addAttribute("students", students);
 		model.addAttribute("ratings", postService.getRatingByStudents(students));
 		model.addAttribute("pageCount", pageCount);

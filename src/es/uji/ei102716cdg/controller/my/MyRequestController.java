@@ -121,7 +121,7 @@ public class MyRequestController {
 		if (bindingResult.hasErrors())
 			return "my/request/update";
 		requestDao.updateRequest(request);
-		return "redirect:../list.html";
+		return "redirect:../" + id + ".html";
 	}
 
 	@RequestMapping(value="/eliminate/{id}")

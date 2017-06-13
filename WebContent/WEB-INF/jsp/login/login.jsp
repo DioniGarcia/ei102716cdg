@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=iso-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group">
                         <div>
-                            <form:input type="password" class="form-control" id="passwd" path="passwd" placeholder="ContraseÃ±a" required="required"/>
+                            <form:input type="password" class="form-control" id="passwd" path="passwd" placeholder="Contraseña" required="required"/>
                             <form:errors class="title-error" path="passwd"/>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="split-container center-content-h">
                 	<div class="split-item-h ">
-                		<a href="forgetPass.html" class="link">Â¿Has olvidado la contraseÃ±a?</a>
+                		<a href="forgetPass.html" class="link">¿Has olvidado la contraseña?</a>
 					</div>
 					
 					<div class="split-item-h ">
