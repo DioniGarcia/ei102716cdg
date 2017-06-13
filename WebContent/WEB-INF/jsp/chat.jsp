@@ -11,7 +11,12 @@
 
 	<c:choose>
 	<c:when test="${ chatIndex }">
-		Selecciona un chat para comenzar
+		<h2>Correo personal</h2>
+		<hr>
+		<h4>Seleccione un canal de chat para hablar con otro usuario.</h4>
+		<br>
+		<h4>Si aun no tienes ningún canal activo, puedes abrir uno desde el botón "Chat" que encontraras </h4>
+		<h4>en la información de las ofertas y demandas.</h4>
 	</c:when>	
 	<c:otherwise>
 		<div class="messages">
@@ -55,7 +60,7 @@
 		<div class="send-message-box">
 				
 				<input name="content" placeholder="Escribe un mensaje..." autocomplete="off" autofocus required></input>
-				<button type="submit"><div class="enviar" title="Enviar"><span style="vertical-align:middle;margin-right: 2px;" class="glyphicon glyphicon-send"></span></div></button>
+				<button type="submit"><div class="enviar" title="Enviar"><span style="vertical-align:middle;margin-right: 7px;" class="glyphicon glyphicon-send"></span></div></button>
 			
 		</div>
 		</form>

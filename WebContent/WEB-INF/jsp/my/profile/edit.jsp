@@ -5,19 +5,21 @@
 
 <t:paginaperfil>
 <jsp:body> 
-	<h2>Perfil</h2><br>
+	<h2>Editar Perfil</h2><br>
 	<hr>
 	<form:form method="post" modelAttribute="student">
-	<div class="profile-container" style="margin-left:58px;">
+	<div class="profile-container" style="margin-left:30px;">
 		<div class="profile-photo">
 			<img style="margin-bottom: 10px;" src="${ pageContext.request.contextPath }/resources/img/avatars/${student.avatar}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
 			<span>Puntuación media:</span>
 			<select class="star-readonly">
 			<t:rating rating="${rating }"/>
 			</select>
-			<a style="margin-top: 15px;" href="edit.html"><button class="btn btn-primary">Guardar</button></a>
+			<a style="margin-top: 15px;" href="edit.html"><button class="btn btn-primary btn-w-h">Guardar</button></a>
+			<a style="margin-top: 15px;" href="/ei102716cdg2/my/profile/index.html"><button class="btn btn-default btn-w-h">Cancelar</button></a>
+			
 		</div>
-		<div class="profile-details" style="margin-left:100px;">
+		<div class="profile-details" style="margin-left:65px; margin-top: -38px;">
 		
 		<table>
 		<tr>

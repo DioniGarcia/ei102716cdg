@@ -14,7 +14,7 @@
 			<select class="star-readonly">
 			<t:rating rating="${rating }"/>
 			</select>
-			<a style="margin-top: 15px;" href="edit.html"><button class="btn btn-primary">Editar perfil</button></a>
+			<a style="margin-top: 15px;" href="edit.html"><button class="btn btn-primary btn-w-h">Editar perfil</button></a>
 		</div>
 		<div class="profile-details">
 		<table>
