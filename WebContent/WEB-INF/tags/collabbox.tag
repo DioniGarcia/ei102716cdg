@@ -19,13 +19,25 @@
 	border: 2px solid #ebf9e0;
 	border-radius: 100px;
 	margin-top:     6px;
-	margin-bottom:  6px;
+	margin-bottom:  20px;
 	padding-left:  31px;
 	padding-right: 14px;
 	
-	background: linear-gradient(to right, #dde8f1 0%, white 18%, white 50%, white 78%, #e4f8d6 100%);	
-	
+	background: linear-gradient(to right, #dde8f1 0%, white 18%, white 50%, white 78%, #e4f8d6 100%);
+	cursor: pointer;	
 }
+
+.collabbox:HOVER{
+	background: linear-gradient(to right, #7db8d5 0%, #dde8f1 18%, white 50%, #e4f8d6 78%, #95be72 100%);
+	border-color: #ebf9e0;
+	cursor: pointer;	
+}
+
+.colab-title, .colab-title:hover {
+	color: #5E5E5E;
+	text-decoration: none;
+}
+
 
 .offer-info {
 	font-size: 10px;
@@ -51,7 +63,7 @@
 
 </style>
 
-<div class="collabbox split-container">
+<div class="collabbox split-container" onclick="location.href='${collabId }.html';">
 	<div class="split-item-v-foto split-container">
 		<div class="split-item"></div>
 		
@@ -65,7 +77,7 @@
 		
 	<div class="split-item-v-texto">
 		
-		<h2><a href="${collabId }.html">${collabTitle }</a></h2>
+		<h2><a class="colab-title" href="${collabId }.html">${collabTitle }</a></h2>
 		
 		<p><b>Estado de la colaboración: </b> ${collabTotalHours } horas</p>
 		<p><b>Dedicación horaria: </b> ${collabTotalHours } horas</p>
