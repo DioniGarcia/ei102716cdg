@@ -33,6 +33,7 @@
 		<button type="submit" name="filter" value="eval" class="btn btn-default">Por evaluar</button>
 		<button type="submit" name="filter" value="old" class="btn btn-default">Finalizadas</button>
 	</div>
+	<hr style="margin-top: -1px;">
 	</form>
 	<c:forEach varStatus="status" items="${collabs}" var="collab"> 
     	<t:collabbox 
@@ -42,7 +43,8 @@
     			collabRating="${collab.rating }"
     			collabEndDate="${collabEndDates[status.index]}"
     			collabEvalBtn="${evalBtn }"
-    			collabAvatarId="${students[status.index].avatar}" 		
+    			offerAvatarId="${students[status.index].avatar}" 		
+    			requestAvatarId="${students[status.index].avatar}" 
     			
     			collabComments="${collab.comments }">
     	</t:collabbox>

@@ -8,16 +8,56 @@
 <%@ attribute name="collabRating" required="false"%>
 <%@ attribute name="collabComments" required="false"%>
 <%@ attribute name="collabEndDate" required="false"%>
-<%@ attribute name="collabAvatarId" required="false"%>
+<%@ attribute name="offerAvatarId" required="false"%>
+<%@ attribute name="requestAvatarId" required="false"%>
 <%@ attribute name="collabEvalBtn" required="false" type="java.lang.Boolean"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+<style>
+.collabbox{
+	border: 2px solid #ebf9e0;
+	border-radius: 100px;
+	margin-top:     6px;
+	margin-bottom:  6px;
+	padding-left:  31px;
+	padding-right: 14px;
+	
+	background: linear-gradient(to right, #dde8f1 0%, white 18%, white 50%, white 78%, #e4f8d6 100%);	
+	
+}
+
+.offer-info {
+	font-size: 10px;
+	color: #9bbccd;
+	padding-left: 40px;
+}
+
+.request-info {
+	float:right;
+	font-size: 10px;
+	color: #9FC57F;
+	padding-right: 45px;
+}
+
+.user-info {
+	margin-top: 30px;
+
+}
+
+.star-line {
+	float: left;
+}
+
+</style>
 
 <div class="collabbox split-container">
 	<div class="split-item-v-foto split-container">
 		<div class="split-item"></div>
 		
-		<div class="split-item">
-			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${collabAvatarId}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
+		<div class="split-item user-info">
+			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${offerAvatarId}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
+			<p class="offer-info">Ofertante</p>
 		</div>
 		
 		<div class="split-item"></div>
@@ -27,8 +67,11 @@
 		
 		<h2><a href="${collabId }.html">${collabTitle }</a></h2>
 		
-		<p>Horas : ${collabTotalHours }</p>
-		<p>Puntuación :  
+		<p><b>Estado de la colaboración: </b> ${collabTotalHours } horas</p>
+		<p><b>Dedicación horaria: </b> ${collabTotalHours } horas</p>
+		
+		<div class="star-line"><p><b>Puntuación: </b></p></div>
+		<div class="star-line">
 			<select class="star-readonly">
 				<c:forEach begin="0" end="5" var="val">
     				<c:choose>
@@ -41,16 +84,22 @@
     				</c:choose>
 				</c:forEach>
 			</select>
-		</p>
+		</div>
 		
-		<p>Comentarios: ${collabComments }</p>
-		
-		<c:if test="${not empty collabEndDate }">
-		<p class="collabEndDate">${collabEndDate}</p>
-		</c:if>
-		
-		<c:if test="${collabEvalBtn }"><a href="edit/${collabId }.html"><button class="btn btn-primary">Evaluar</button></a></c:if>
+		<div></div>
 		
 	</div>
+	
+	<div class="split-item-v-foto split-container">
+		<div class="split-item"></div>
+		
+		<div class="split-item user-info">
+			<img src="${ pageContext.request.contextPath }/resources/img/avatars/${offerAvatarId}.jpg" class="img-circle-thumbnail" alt="" width="120" height="120">
+			<p class="request-info">Demandante</p>
+		</div>
+		
+		<div class="split-item"></div>
+	</div>
+
 </div>
 
