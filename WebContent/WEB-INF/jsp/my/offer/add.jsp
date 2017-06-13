@@ -22,13 +22,13 @@
 
 <t:paginabasica>
 <jsp:body> 
-    <h2>Añadir Oferta</h2>
+    <h2>Crear Oferta</h2>
     <hr>
     <form:form method="post" modelAttribute="offer">
         <table>
         
         	<tr>
-                <td class="label_in"><form:label path="skill_Id">Skill:</form:label></td>
+                <td class="label_in"><form:label path="skill_Id">Habilidad:</form:label></td>
                 <td>
                		<select name="nombre" id="nombre"><option></option></select>
 					<form:select path="skill_Id" id="tipo"></form:select><br>
@@ -56,8 +56,8 @@
             <tr>
                 <td class="label_in"><form:label path="startDate">Fecha inicio:</form:label></td>
                 <td>
-                	<form:input data-toggle="datepicker" class="form-control" path="startDate" placeholder="dd/mm/yyyy" />
-					<div data-toggle="datepicker"></div>
+                	<form:input data-toggle="datepicker-1" class="form-control" path="startDate" placeholder="dd/mm/yyyy" />
+					<div data-toggle="datepicker-1"></div>
 					<form:errors class="error" path="startDate"/>	
                 </td>
             </tr>
@@ -70,8 +70,8 @@
             <tr>
                 <td class="label_in"><form:label path="endDate">Fecha fin:</form:label></td>
                 <td>
-                	<form:input data-toggle="datepicker" class="form-control" path="endDate" placeholder="dd/mm/yyyy" />
-					<div data-toggle="datepicker"></div>
+                	<form:input data-toggle="datepicker-2" class="form-control" path="endDate" placeholder="dd/mm/yyyy" />
+					<div data-toggle="datepicker-2"></div>
 					<form:errors class="error" path="endDate"/>	
                 </td>
             </tr>

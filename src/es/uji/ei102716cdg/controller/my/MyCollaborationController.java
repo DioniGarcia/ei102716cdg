@@ -15,12 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei102716cdg.dao.CollaborationDao;
+import es.uji.ei102716cdg.dao.OfferDao;
+import es.uji.ei102716cdg.dao.RequestDao;
 import es.uji.ei102716cdg.domain.collaboration.Collaboration;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
 import es.uji.ei102716cdg.domain.collaboration.Request;
 import es.uji.ei102716cdg.domain.skill.Skill;
 import es.uji.ei102716cdg.domain.user.Student;
 import es.uji.ei102716cdg.domain.user.User;
+import es.uji.ei102716cdg.service.EmailService;
 import es.uji.ei102716cdg.service.PostServiceInterface;
 
 
@@ -32,11 +35,30 @@ public class MyCollaborationController {
 	private CollaborationDao collaborationDao;
 	
 	@Autowired
+	private OfferDao offerDao;
+	
+	@Autowired
+	private RequestDao requestDao;
+	
+	@Autowired
 	private PostServiceInterface postService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@Autowired
 	public void setCollaborationDao(CollaborationDao collaborationDao){
 		this.collaborationDao = collaborationDao;
+	}
+	
+	@Autowired
+	public void setOfferDao(OfferDao offerDao){
+		this.offerDao = offerDao;
+	}
+	
+	@Autowired
+	public void setRequestDao(RequestDao requestDao){
+		this.requestDao = requestDao;
 	}
 	
 	@Autowired
@@ -86,27 +108,49 @@ public class MyCollaborationController {
 								@RequestParam(value="offerId", required = false) Integer offerId,
 								@RequestParam(value="requestId", required = false) Integer requestId,
 								@RequestParam(value="skillId", required = false) Integer skillId,
+								@RequestParam(value="fromOffer", required = false) String fromOffer,
+								@RequestParam(value="fromRequest", required = false) String fromRequest,
 			Model model, HttpSession session){
 		
 		User user = (User) session.getAttribute("user");
+		Offer offer = null;
+		Request request = null;
 		
 		if (confirm != null){ // 2nda parte: confirmar con 0/1 oferta/demanda (0 = debe crearse una off/req)
 			
 			if (offerId == null || requestId == null){ // se debe crear una contra-off/req
 				if (offerId != null){ // collab con una auto-demanda
-					Offer offer = postService.getOffer(offerId);
-					Request request = new Request(user.getNick(), skillId, offer.getStartDate(), offer.getEndDate(), offer.getDescription() ,true);
+					offer = postService.getOffer(offerId);
+					request = new Request(user.getNick(), skillId, offer.getStartDate(), offer.getEndDate(), offer.getDescription() ,false);
+					offer.setActive(false);
+					offerDao.updateOffer(offer);
 					requestId = postService.addRequestAndGetId(request);
 				} else { // collab con una auto-oferta
-					Request request = postService.getRequest(requestId);
-					Offer offer = new Offer(user.getNick(), skillId, request.getStartDate(), request.getEndDate(), request.getDescription() ,true);
+					request = postService.getRequest(requestId);
+					offer = new Offer(user.getNick(), skillId, request.getStartDate(), request.getEndDate(), request.getDescription() ,false);
+					request.setActive(false);
+					requestDao.updateRequest(request);
 					offerId = postService.addOfferAndGetId(offer);
 				}
-			} 
+			} else {
+				offer = postService.getOffer(offerId);
+				request = postService.getRequest(requestId);
+				offer.setActive(false);
+				offerDao.updateOffer(offer);
+				request.setActive(false);
+				requestDao.updateRequest(request);
+				
+				if (fromOffer != null){
+					emailService.sendEmailOfferAccepted(offer, offer.getStudent_nick());
+				} else {
+					emailService.sendEmailRequestAccepted(request, request.getStudent_nick());
+				}
+			}
 			
-			postService.addCollaboration(offerId, requestId);
+			int collabId = collaborationDao.addCollaborationAndGetId(new Collaboration(offerId, requestId));
 			
-			return "redirect:/my/collaborations/list.html?success=new";
+			
+			return "redirect:/my/collaborations/" + collabId + ".html";
 		}
 		
 		if (offerId != null){ // Viene desde una oferta

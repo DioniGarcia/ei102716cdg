@@ -35,9 +35,11 @@
         <table>
         
         	<tr>
-                <td class="label_in"><b>Skill:</b></td>
+                <td class="label_in"><b>Habilidad:</b></td>
                 <td>
-               		${ skill.name } - ${ skill.description }
+               		<select name="nombre" id="nombre"><option></option></select>
+					<form:select path="skill_Id" id="tipo"></form:select><br>
+					<form:errors class="error" path="skill_Id"/>	
 				</td>
             </tr>
             
@@ -90,7 +92,12 @@
             </tr>
         </table>
     </form:form>
-    
+    <c:if test="${not empty nombre}">
+    	<script type="text/javascript">
+    		var nombreSkill = "${nombre}";     
+    		var skillId = "${offer.skill_Id}";
+    	</script>
+    </c:if>
     
 </jsp:body>
 </t:paginaperfil>

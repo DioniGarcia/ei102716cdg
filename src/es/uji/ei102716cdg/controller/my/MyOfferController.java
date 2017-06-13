@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei102716cdg.dao.OfferDao;
 import es.uji.ei102716cdg.domain.collaboration.Offer;
+import es.uji.ei102716cdg.domain.skill.Skill;
 import es.uji.ei102716cdg.domain.user.Student;
 import es.uji.ei102716cdg.domain.user.User;
 import es.uji.ei102716cdg.service.PostServiceInterface;
@@ -104,7 +105,9 @@ public class MyOfferController {
 	public String editOffer(Model model, @PathVariable int id){
 		Offer offer = offerDao.getOffer(id);
 		model.addAttribute("offer", offerDao.getOffer(id));
-		model.addAttribute("skill", postService.getSkillById(offer.getSkill_Id()));
+		Skill skill = postService.getSkillById(offer.getSkill_Id());
+		model.addAttribute("skill", skill);
+		model.addAttribute("nombre", skill.getName());
 		return "my/offer/update";
 	}
 	

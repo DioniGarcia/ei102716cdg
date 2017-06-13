@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei102716cdg.dao.RequestDao;
 import es.uji.ei102716cdg.domain.collaboration.Request;
+import es.uji.ei102716cdg.domain.skill.Skill;
 import es.uji.ei102716cdg.domain.user.Student;
 import es.uji.ei102716cdg.domain.user.User;
 import es.uji.ei102716cdg.service.PostServiceInterface;
@@ -105,7 +106,9 @@ public class MyRequestController {
 	public String editRequest(Model model, @PathVariable int id){
 		Request request = requestDao.getRequest(id);
 		model.addAttribute("request", request);
-		model.addAttribute("skill", postService.getSkillById(request.getSkill_Id()));
+		Skill skill = postService.getSkillById(request.getSkill_Id());
+		model.addAttribute("skill", skill);
+		model.addAttribute("nombre", skill.getName());
 		return "my/request/update";
 	}
 	

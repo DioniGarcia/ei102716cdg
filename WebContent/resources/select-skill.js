@@ -82,8 +82,15 @@ $('#nombre').on('select2:select', function (evt) {
 	});
 });
 $(document).ready(function(){
-	$('[data-toggle="datepicker"]').datepicker({
+	$('[data-toggle="datepicker-1"]').datepicker({
 		language: 'es-ES',
+		offset: -50,
+		autoHide: true,
+		startDate: new Date()
+	});	
+	$('[data-toggle="datepicker-2"]').datepicker({
+		language: 'es-ES',
+		offset: -50,
 		autoHide: true
 	});	
 });
